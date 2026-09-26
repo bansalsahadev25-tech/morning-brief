@@ -1,0 +1,7 @@
+.tmp/
+*.local.md
+.env
+credentials.json
+token.json
+__pycache__/
+.DS_Store

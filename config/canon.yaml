@@ -1,0 +1,102 @@
+# ============================================================
+# THE CANON — hand-curated. One surfaces per day, rotating.
+# Rule: it must be GOOD. If he won't finish it, it doesn't belong.
+# Every entry carries WHY — relevance is stated, never assumed.
+# New releases are checked separately; this list is the spine.
+# ============================================================
+
+track_company_histories:
+  why_this_track: >
+    You asked for founder war stories. This is the highest-density
+    form of them. Not motivational — forensic.
+  items:
+    - { title: "Acquired — SpaceX",        fmt: podcast, len: "4h",
+        why: "How a man with no aerospace background beat Boeing and Lockheed. The decisions, in order, with the money attached." }
+    - { title: "Acquired — Tesla",         fmt: podcast, len: "3h",
+        why: "The near-death moments. Musk telling the design story is the polished version; this is the balance sheet version." }
+    - { title: "Acquired — Nvidia (3 pt)", fmt: podcast, len: "8h",
+        why: "The best business story of our era. Jensen bet the company on a market that did not exist yet, three separate times." }
+    - { title: "Acquired — LVMH",          fmt: podcast, len: "4h",
+        why: "Arnault built the most valuable company in Europe out of TASTE. For someone with a design eye: proof that aesthetics is a financial instrument." }
+    - { title: "Acquired — Hermès",        fmt: podcast, len: "3h",
+        why: "Scarcity, craft and refusing to scale as a strategy. The opposite of every startup lesson, and it worked better." }
+    - { title: "Founders podcast",         fmt: podcast, len: "1h ea",
+        why: "One founder biography per episode, compressed. Highest ideas-per-minute on the internet." }
+
+track_design_process:
+  why_this_track: >
+    You said you love watching Musk explain why a part is shaped the
+    way it is. That instinct — caring HOW a thing was made — is the
+    rarest thing you told me about yourself. Feeding it is not a
+    distraction from business. Taste is the moat nobody can copy.
+  items:
+    - { title: "Everyday Astronaut — Starbase tours w/ Musk", fmt: youtube, len: "3 parts",
+        why: "Exactly the thing you described loving. Raptor engine decisions explained at the part level, in the factory." }
+    - { title: "Abstract: The Art of Design",  fmt: netflix, len: "8 ep",
+        why: "Designers explaining process. Filmmaking-grade cinematography — made for the way you watch things." }
+    - { title: "Objectified (Gary Hustwit)",   fmt: doc, len: "75m",
+        why: "Industrial design and why objects look the way they do. Jony Ive before the mythology set in." }
+    - { title: "Jiro Dreams of Sushi",         fmt: doc, len: "81m",
+        why: "Obsession with craft over 50 years. Beautiful, and the most honest film about mastery ever made." }
+    - { title: "The Pixar Story / Creativity Inc (Catmull)", fmt: "doc + book",
+        why: "The only company that industrialized creative taste. Filmmaking AND management — your two things in one." }
+
+track_money_power_dealmaking:
+  why_this_track: >
+    You binged Entourage and loved watching Ari work. That pull is
+    real and it is worth training. Here is the non-fiction version.
+  items:
+    - { title: "Who Is Michael Ovitz?",    fmt: book,
+        why: "READ THIS FIRST. Ovitz founded CAA and is the man Ari Gold is based on. The real version of the thing you already binged — how he actually built leverage in a business with no assets but relationships." }
+    - { title: "Barbarians at the Gate",   fmt: "book + film",
+        why: "The RJR Nabisco LBO. The best book ever written about how deals actually get done, and it reads like a thriller." }
+    - { title: "The Smartest Guys in the Room", fmt: "book + doc",
+        why: "Enron. How narrative outruns reality, and what it costs. The inoculation against your own future pitch deck." }
+    - { title: "Never Split the Difference (Voss)", fmt: book,
+        why: "FBI hostage negotiation applied to deals. Immediately usable this week, not theory." }
+    - { title: "Succession",               fmt: tv, len: "4 seasons",
+        why: "Entertainment first — but the sharpest depiction of power, leverage and succession ever filmed. Watch how rooms get controlled." }
+
+track_persuasion:
+  why_this_track: >
+    You picked psychology and persuasion. Most startups die of human
+    problems, not technical ones. This is the underpriced skill.
+  items:
+    - { title: "Influence (Cialdini)",     fmt: book,
+        why: "The six levers. Load-bearing for sales, fundraising and hiring." }
+    - { title: "Ogilvy on Advertising",    fmt: book,
+        why: "How to make people want things. Short, visual, and funnier than it has any right to be." }
+    - { title: "Mad Men — the pitch scenes", fmt: tv,
+        why: "Don Draper's Carousel pitch is the best lesson in selling a feeling instead of a product. Same craft you liked in Ari." }
+
+track_technical_depth_disguised:
+  why_this_track: >
+    You declined lectures. Fine. But you want deep tech, and you
+    cannot lead engineers you cannot follow. So depth arrives as
+    story instead of homework. Non-negotiable — just not boring.
+  items:
+    - { title: "Chip War (Miller)",        fmt: book,
+        why: "Semiconductors as geopolitics. Reads like a thriller, leaves you literate in the most important industry alive." }
+    - { title: "Asianometry",              fmt: youtube,
+        why: "15-minute explainers on semis, manufacturing, industrial history. Genuinely entertaining, quietly rigorous." }
+    - { title: "Real Engineering / Practical Engineering", fmt: youtube,
+        why: "Hardware and infrastructure reasoning. Builds physical intuition for the deep tech you said you want." }
+    - { title: "The Cold Start Problem (Chen)", fmt: book,
+        why: "Network effects, mechanically. The single most useful framework for a consumer or marketplace idea." }
+
+fiction_that_teaches:
+  why_this_track: >
+    Sunday material. Entertainment that leaves residue.
+  items:
+    - { title: "The Social Network",   why: "Still the best film about founding. Watch the deposition structure — two lawsuits framing a creation myth." }
+    - { title: "Halt and Catch Fire",  why: "The most accurate show about building companies. Season 1 is slow; it becomes the best of them." }
+    - { title: "The Founder",          why: "McDonald's. How the operator lost it to the man who understood real estate. A lesson about what business you are actually in." }
+    - { title: "Air",                  why: "One deal, two hours. Nike signing Jordan. Pure Ari energy, and the pitch scene is a masterclass." }
+    - { title: "Moneyball",            why: "Finding mispriced assets that everyone else can see and nobody else values. That is the whole job." }
+
+rotation:
+  policy: >
+    One item per day. Never repeat inside 60 days. Rotate ACROSS
+    tracks — never two company histories back to back. Each surfaces
+    with its WHY and an honest time cost. If a track goes untouched
+    for 3 weeks, say so plainly and ask whether to drop it.

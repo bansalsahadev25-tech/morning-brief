@@ -1,0 +1,266 @@
+# ============================================================
+# THE MORNING BRIEF — source registry
+# auth: none | key | account | scrape
+# verify: endpoints marked `verify: true` must be smoke-tested
+#         before first run; APIs drift.
+# ============================================================
+
+# ---------- §1/§2  MONEY + DEEP STORIES ----------
+funding:
+  - id: sec_form_d
+    name: SEC EDGAR Form D full-text
+    url: https://efts.sec.gov/LATEST/search-index?q=%22Form+D%22&dateRange=custom
+    auth: none
+    note: >
+      RAW funding filings. Companies file Form D within 15 days of a
+      raise — often BEFORE press covers it. Requires a real
+      User-Agent header or SEC blocks you. This is the edge: you see
+      the round before TechCrunch does.
+    verify: true
+
+  - id: techcrunch
+    name: TechCrunch
+    url: https://techcrunch.com/feed/
+    auth: none
+
+  - id: techcrunch_startups
+    name: TechCrunch / Startups
+    url: https://techcrunch.com/category/startups/feed/
+    auth: none
+
+  - id: hn_frontpage
+    name: Hacker News front page
+    url: http://hn.algolia.com/api/v1/search?tags=front_page
+    auth: none
+    note: no key, no rate limit. Also the best sentiment source on earth.
+
+  - id: hn_launch
+    name: Launch HN / Show HN
+    url: http://hn.algolia.com/api/v1/search_by_date?tags=show_hn
+    auth: none
+
+  - id: vc_blogs
+    name: VC firm blogs
+    feeds:
+      - https://a16z.com/feed/
+      - https://www.sequoiacap.com/feed/
+      - https://review.firstround.com/feed
+      - https://www.ycombinator.com/blog/rss
+    auth: none
+
+# ---------- §3  PROBLEMS WORTH SOLVING ----------
+ideas:
+  - id: yc_rfs
+    name: YC Requests for Startups
+    url: https://www.ycombinator.com/rfs
+    auth: scrape
+    note: >
+      THE most valuable page on this list. YC publishing "we will fund
+      someone who builds X" is a pre-validated idea with a buyer
+      attached. Diff it weekly; any change is a headline.
+
+  - id: yc_companies
+    name: YC company directory
+    url: https://www.ycombinator.com/companies
+    auth: scrape
+    note: Algolia-backed. New batch = the market's current thesis, legible.
+    verify: true
+
+  - id: arxiv
+    name: arXiv new submissions
+    url: http://export.arxiv.org/api/query?search_query=cat:cs.AI+OR+cat:cs.LG&sortBy=submittedDate&sortOrder=descending
+    auth: none
+    note: >
+      Where the tech comes from ~18 months before the startup exists.
+      Filter for papers with code + a real benchmark jump. That gap
+      between "works in a paper" and "nobody productized it" is
+      where your company lives.
+
+  - id: hn_ask
+    name: Ask HN pain threads
+    url: http://hn.algolia.com/api/v1/search_by_date?tags=ask_hn
+    auth: none
+    note: people describing problems they'd pay to remove. Mine it.
+
+  - id: reddit_pain
+    name: Reddit founder subs
+    urls:
+      - https://www.reddit.com/r/startups/top.json?t=day
+      - https://www.reddit.com/r/SaaS/top.json?t=day
+      - https://www.reddit.com/r/Entrepreneur/top.json?t=day
+    auth: none
+    note: needs custom User-Agent. Free.
+
+# ---------- §4  SHIPPED ----------
+releases:
+  - id: github_trending
+    name: GitHub Trending
+    url: https://github.com/trending?since=daily
+    auth: scrape
+    note: no official API. Scrape. Star velocity > absolute stars.
+
+  - id: product_hunt
+    name: Product Hunt
+    url: https://api.producthunt.com/v2/api/graphql
+    auth: key
+    note: free developer token
+
+  - id: lab_blogs
+    name: Frontier lab releases
+    feeds:
+      - https://www.anthropic.com/news
+      - https://openai.com/blog/rss.xml
+      - https://blog.google/technology/ai/rss/
+      - https://huggingface.co/blog/feed.xml
+    auth: none
+
+# ---------- §5  THE ARENA ----------
+# Every door here must be OFF-CAMPUS and BRANCH-AGNOSTIC.
+# His degree (Geology & Geophysics, IIT KGP, locked) will never help
+# him. Nothing in this section may depend on major, department, or
+# transcript. Proof of work only.
+arena:
+  - id: us_side_doors
+    name: US-side doors (citizen — zero visa friction)
+    priority: highest
+    note: >
+      His largest structural advantage, invisible from an Indian campus.
+      US startups skip all sponsorship math for him. Remote-first roles,
+      US internships, accelerators — all normally-closed doors that are
+      simply open. Surface these hard and often.
+    tracked:
+      - { name: "Remote internships at US startups", note: "many hire remote + async. Citizenship removes the only real objection. Cycle opens Aug-Oct for next summer." }
+      - { name: "YC / accelerators",       note: "take very young founders; citizenship makes relocation trivial" }
+      - { name: "US new-grad + intern boards", note: "Hiring Cafe, Simplify, YC Work at a Startup" }
+      - { name: "AI lab residencies + fellowships", note: "frontier labs run programs that ignore your major entirely" }
+
+  - id: credential_stack
+    name: The credential stack (replaces the transcript)
+    priority: highest
+    note: >
+      He needs external, verifiable proof because his degree provides
+      none. Four kinds compound, in rough order of leverage:
+        1. SHIPPED THINGS people actually use (strongest, fully in his control)
+        2. COMPETITION WINS — objective, third-party, dated
+        3. OPEN SOURCE contributions to repos people know
+        4. AUDIENCE — writing/building in public; converts into everything else
+      Every §5 item should state which of the four it builds.
+
+  - id: fellowships
+    name: Young-founder fellowships (no degree requirement)
+    priority: highest
+    tracked:
+      - { name: Emergent Ventures,  cycle: rolling,  note: "LOWEST-FRICTION REAL DOOR. Small fast grants, no equity, explicitly funds young unproven people. India-eligible. Applying costs a weekend." }
+      - { name: Z Fellows,          cycle: rolling,  note: "1 week, small check, elite network. Built for his exact age." }
+      - { name: Neo Scholars,       cycle: "1x/yr" }
+      - { name: Thiel Fellowship,   cycle: "1x/yr",  note: "long shot, cheap to try" }
+      - { name: South Park Commons, cycle: rolling,  note: "pre-idea, for people who want to build but do not know what yet" }
+      - { name: "Open Philanthropy / misc. young-talent grants", cycle: rolling }
+
+  - id: build_comps
+    name: Online hackathons + build competitions
+    note: >
+      He ships with Claude Code. Favor global/online, build-anything,
+      demo-judged events where product taste and presentation count —
+      not algorithmic contests. Branch never matters.
+    sources:
+      - { url: "https://devpost.com/api/hackathons", auth: none }
+      - { name: MLH Global Hack Week, auth: scrape }
+      - { name: "Frontier AI lab hackathons", auth: scrape, note: "credits, visibility, the right rooms" }
+      - { name: "Product Hunt / build-in-public launches", note: "not a contest, but generates the same evidence" }
+
+  - id: deeptech_challenges
+    name: Deep tech + hardware challenges
+    note: real prize money, fewer applicants, no major requirement
+    tracked:
+      - { name: XPRIZE }
+      - { name: "NASA / space agency open challenges" }
+      - { name: "Energy + climate innovation prizes" }
+      - { name: "Defense / dual-use innovation challenges" }
+
+  - id: kaggle
+    name: Kaggle
+    status: DEMOTED
+    note: only when the purse is unusually large. Was a bad assumption.
+
+# ---------- §5b  OPEN DOORS CALENDAR ----------
+# Replaces the old visa-pathway section — deleted, he is a citizen.
+open_doors:
+  note: >
+    Rolling calendar of everything with a deadline. Renders with DAYS
+    LEFT, red under 14. A missed cycle costs six months to a year, and
+    this is the section that converts reading into doing.
+  tracked:
+    - { name: "US summer internship cycle",  window: "opens Aug-Oct for following summer", note: "TIME-SENSITIVE NOW — he is 2nd year" }
+    - { name: "YC batch deadlines",          window: "2x/yr" }
+    - { name: "Fellowship rounds",           window: "see fellowships" }
+    - { name: "Hackathon registration closes", window: rolling }
+    - { name: "Grant + prize deadlines",     window: rolling }
+
+# ---------- §6/§8  SKILLS + DEALS ----------
+learning:
+  - id: class_central
+    name: Class Central (free + discounted courses)
+    url: https://www.classcentral.com/report/feed/
+    auth: none
+    note: best free aggregator for course discounts and free windows
+
+  - id: mit_ocw
+    name: MIT OpenCourseWare
+    url: https://ocw.mit.edu/
+    auth: scrape
+
+  - id: stanford_online
+    name: Stanford Online
+    url: https://online.stanford.edu/free-courses
+    auth: scrape
+
+# ---------- §7  THE CANON ----------
+canon:
+  - id: youtube
+    name: YouTube Data API v3
+    url: https://www.googleapis.com/youtube/v3/search
+    auth: key
+    note: 10,000 units/day free. A search costs 100 units. Plenty.
+    channels:
+      - { name: Stanford eCorner,   handle: "@ecorner",        why: "Entrepreneurial Thought Leaders. Every great founder, unedited. Your single best channel." }
+      - { name: Y Combinator,       handle: "@ycombinator",    why: "Startup School + founder teardowns" }
+      - { name: Stanford Online,    handle: "@stanfordonline", why: "CS229/CS224N/CS25 full lectures" }
+      - { name: a16z,               handle: "@a16z" }
+      - { name: Lex Fridman,        handle: "@lexfridman" }
+      - { name: Acquired,           handle: "@AcquiredFM",     why: "company histories, 4hr deep. How empires were actually built." }
+
+  - id: canon_rotation
+    name: Curated canon (hand-maintained)
+    file: config/canon.yaml
+    note: >
+      New content is not the same as good content. The canon is a
+      fixed list of the lectures, docs and books that are worth
+      your time regardless of what happened yesterday. One surfaces
+      per day, rotating. This section never depends on the news cycle.
+
+  - id: tmdb
+    name: TMDB (documentaries)
+    url: https://api.themoviedb.org/3/discover/movie
+    auth: key
+    note: free key, for new doc releases only. Canon handles the classics.
+
+# ---------- MACRO ----------
+macro:
+  - id: mckinsey
+    name: McKinsey Insights
+    url: https://www.mckinsey.com/insights/rss
+    auth: none
+    verify: true
+
+  - id: consulting
+    feeds:
+      - https://www.bcg.com/publications/rss
+      - https://www.bain.com/insights/rss/
+    auth: none
+    verify: true
+
+  - id: stratechery
+    name: Stratechery (free posts)
+    url: https://stratechery.com/feed/
+    auth: none
