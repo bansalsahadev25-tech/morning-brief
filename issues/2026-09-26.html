@@ -1,0 +1,394 @@
+<title>The Morning Brief</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root{
+    --bg:#EFF2F4; --surface:#FBFCFD; --sunk:#E6EAEE;
+    --ink:#10161C; --ink2:#4B5764; --ink3:#78838F;
+    --rule:#D2D9DF; --rule2:#BEC7D0;
+    --accent:#1B3A57; --urgent:#A33E12; --money:#0D6A5E;
+    --chip:#E2E8ED;
+    --measure:70ch;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --bg:#0B0F13; --surface:#131A21; --sunk:#0F151A;
+      --ink:#E3E9F0; --ink2:#8C99A7; --ink3:#66727F;
+      --rule:#222C36; --rule2:#2E3A45;
+      --accent:#84B4DE; --urgent:#E8834F; --money:#3EB5A3;
+      --chip:#1B242D;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0B0F13; --surface:#131A21; --sunk:#0F151A;
+    --ink:#E3E9F0; --ink2:#8C99A7; --ink3:#66727F;
+    --rule:#222C36; --rule2:#2E3A45;
+    --accent:#84B4DE; --urgent:#E8834F; --money:#3EB5A3;
+    --chip:#1B242D;
+  }
+
+  *{box-sizing:border-box}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,sans-serif;
+    font-size:15.5px; line-height:1.62;
+    padding-block:0; padding-left:20px; padding-right:20px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:var(--measure); margin:0 auto}
+  a{color:var(--accent); text-decoration:none; border-bottom:1px solid var(--rule2)}
+  a:hover{border-bottom-color:var(--accent)}
+  a:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+
+  .mast{padding-block:34px 18px; border-bottom:2px solid var(--ink)}
+  .mast h1{
+    font-family:Newsreader,Georgia,serif; font-weight:600;
+    font-size:clamp(2.1rem,7vw,3.1rem); line-height:1.0;
+    margin:0 0 12px; letter-spacing:-.015em;
+  }
+  .mastmeta{
+    display:flex; flex-wrap:wrap; gap:6px 18px;
+    font-family:"IBM Plex Mono",monospace; font-size:.7rem;
+    text-transform:uppercase; letter-spacing:.1em; color:var(--ink2);
+  }
+  .thesis{
+    font-family:Newsreader,Georgia,serif; font-size:1.2rem; line-height:1.5;
+    color:var(--ink); margin:20px 0 0; padding:16px 0 4px;
+    border-top:1px solid var(--rule); text-wrap:balance;
+  }
+  .thesis em{color:var(--ink2); font-style:italic}
+
+  section{padding-block:38px 8px}
+  .shead{
+    display:flex; align-items:baseline; gap:12px;
+    border-bottom:1px solid var(--ink); padding-bottom:7px; margin-bottom:22px;
+  }
+  .snum{
+    font-family:"IBM Plex Mono",monospace; font-size:.72rem; font-weight:600;
+    color:var(--ink3); letter-spacing:.06em; flex:none;
+  }
+  .shead h2{
+    font-family:"IBM Plex Sans",sans-serif; font-weight:600;
+    font-size:.86rem; text-transform:uppercase; letter-spacing:.14em;
+    margin:0; flex:1;
+  }
+  .scount{font-family:"IBM Plex Mono",monospace; font-size:.68rem; color:var(--ink3)}
+
+  .story{padding-bottom:34px; margin-bottom:34px; border-bottom:1px solid var(--rule)}
+  .story:last-child{border-bottom:0; margin-bottom:0}
+  .kicker{
+    font-family:"IBM Plex Mono",monospace; font-size:.68rem; font-weight:500;
+    text-transform:uppercase; letter-spacing:.12em; color:var(--urgent);
+    margin-bottom:8px;
+  }
+  .story h3{
+    font-family:Newsreader,Georgia,serif; font-weight:600;
+    font-size:clamp(1.45rem,4.4vw,1.95rem); line-height:1.15;
+    margin:0 0 6px; letter-spacing:-.01em; text-wrap:balance;
+  }
+  .byline{
+    font-family:"IBM Plex Mono",monospace; font-size:.7rem; color:var(--ink2);
+    margin-bottom:20px; line-height:1.6;
+  }
+  .byline b{color:var(--money); font-weight:600}
+
+  dl.brief{display:grid; gap:0; margin:0}
+  @media (min-width:720px){
+    dl.brief{grid-template-columns:8.5rem 1fr; column-gap:22px}
+  }
+  dl.brief dt{
+    font-family:"IBM Plex Mono",monospace; font-size:.66rem; font-weight:600;
+    text-transform:uppercase; letter-spacing:.1em; color:var(--ink3);
+    padding-top:.5em;
+  }
+  dl.brief dd{margin:0 0 16px}
+  dl.brief dd:last-of-type{margin-bottom:0}
+  dd.bear{color:var(--ink2)}
+  dd.foryou{border-left:2px solid var(--urgent); padding-left:14px}
+
+  .tablewrap{overflow-x:auto}
+  table{width:100%; border-collapse:collapse; font-size:.9rem}
+  th{
+    font-family:"IBM Plex Mono",monospace; font-size:.64rem; font-weight:600;
+    text-transform:uppercase; letter-spacing:.1em; color:var(--ink3);
+    text-align:left; padding:0 12px 8px 0; border-bottom:1px solid var(--rule2);
+    white-space:nowrap;
+  }
+  td{padding:11px 12px 11px 0; border-bottom:1px solid var(--rule); vertical-align:top}
+  td.num{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums; color:var(--money); font-weight:500; white-space:nowrap}
+  td.src{font-family:"IBM Plex Mono",monospace; font-size:.74rem; color:var(--ink3); white-space:nowrap}
+
+  .door{
+    display:grid; grid-template-columns:1fr auto; gap:4px 16px;
+    padding:14px 0; border-bottom:1px solid var(--rule); align-items:start;
+  }
+  .door:last-child{border-bottom:0}
+  .door .name{font-weight:500; line-height:1.4}
+  .door .sub{
+    grid-column:1; font-family:"IBM Plex Mono",monospace;
+    font-size:.72rem; color:var(--ink2);
+  }
+  .days{
+    grid-row:1/span 2; align-self:center;
+    font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums;
+    font-size:.78rem; font-weight:600; padding:4px 9px;
+    background:var(--chip); color:var(--ink2); white-space:nowrap;
+  }
+  .days.hot{background:var(--urgent); color:#fff}
+  .days.warm{color:var(--urgent); box-shadow:inset 0 0 0 1px var(--urgent)}
+
+  ul.feed{list-style:none; padding:0; margin:0}
+  ul.feed li{padding:11px 0; border-bottom:1px solid var(--rule); line-height:1.5}
+  ul.feed li:last-child{border-bottom:0}
+  .tag{
+    font-family:"IBM Plex Mono",monospace; font-size:.66rem; font-weight:500;
+    text-transform:uppercase; letter-spacing:.08em; color:var(--ink3);
+  }
+  .note{color:var(--ink2); font-size:.92rem; margin-top:5px}
+
+  .single h3{
+    font-family:Newsreader,Georgia,serif; font-weight:600; font-size:1.35rem;
+    margin:0 0 4px; line-height:1.25; text-wrap:balance;
+  }
+  .single .meta{
+    font-family:"IBM Plex Mono",monospace; font-size:.7rem; color:var(--ink3);
+    margin-bottom:14px;
+  }
+  .quiet{
+    color:var(--ink2); font-style:italic;
+    font-family:Newsreader,Georgia,serif; font-size:1.05rem;
+  }
+
+  footer{
+    border-top:2px solid var(--ink); margin-top:44px;
+    padding-block:20px 48px;
+    font-family:"IBM Plex Mono",monospace; font-size:.7rem; color:var(--ink3);
+    line-height:1.7;
+  }
+  footer b{color:var(--ink2); font-weight:500}
+</style>
+<style>
+  .thread{background:var(--surface);border-top:2px solid var(--accent);padding:24px 22px;margin-block:8px}
+  .thread .lbl{font-family:"IBM Plex Mono",monospace;font-size:.66rem;font-weight:600;
+    text-transform:uppercase;letter-spacing:.12em;color:var(--accent);margin-bottom:10px}
+  .thread h3{font-family:Newsreader,Georgia,serif;font-weight:600;font-size:1.45rem;
+    line-height:1.2;margin:0 0 12px;text-wrap:balance}
+  .thread p{margin:0 0 12px}
+  .thread p:last-child{margin-bottom:0}
+  .numbers{display:flex;flex-wrap:wrap;gap:18px 30px;margin:18px 0;padding:16px 0;
+    border-block:1px solid var(--rule)}
+  .numbers .v{font-family:"IBM Plex Mono",monospace;font-size:1.15rem;font-weight:600;
+    color:var(--money);font-variant-numeric:tabular-nums;display:block}
+  .numbers .k{font-family:"IBM Plex Mono",monospace;font-size:.64rem;color:var(--ink3);
+    text-transform:uppercase;letter-spacing:.09em}
+</style>
+
+
+<div class="wrap">
+
+<header class="mast">
+  <h1>The Morning Brief</h1>
+  <div class="mastmeta">
+    <span>Issue 001</span>
+    <span>Sat 26 Sep 2026</span>
+    <span>147 items screened &rarr; 38 filed</span>
+    <span>13 sources</span>
+  </div>
+  <p class="thesis">
+    The AI trade stopped being a model story today. Three of the five largest items on the wire
+    are about <strong>electricity and share classes</strong> &mdash; who can power the compute, and
+    who keeps control once the public markets are paying for it.
+    <em>That is what a maturing industry looks like from the inside.</em>
+  </p>
+</header>
+
+<section>
+  <div class="shead"><span class="snum">&sect;1</span><h2>The Big Three</h2><span class="scount">researched</span></div>
+
+  <article class="story">
+    <div class="kicker">Capital structure &middot; the lesson is the paperwork</div>
+    <h3>Anthropic&rsquo;s seven founders are trying to keep 50.1% of the votes while selling the company to the public</h3>
+    <p class="byline">
+      <b>$11.6B</b> seven-year Akamai compute deal (expandable to ~$20B) &middot;
+      IPO targeted at <b>~$2T</b>, late Oct&ndash;Nov &middot; last private mark <b>$965B</b> (May)
+      &middot; sources: TechCrunch, The Information, Akamai (stock +20%)
+    </p>
+    <dl class="brief">
+      <dt>What happened</dt>
+      <dd>Two moves in one day. Anthropic signed an $11.6B, seven-year compute contract with Akamai &mdash; on top of roughly $18B from Amazon and $3B from Google &mdash; and asked shareholders to approve a special share class giving CEO Dario Amodei and six co-founders 50.1% of voting power after the IPO. The control does <em>not</em> extend to electing the board.</dd>
+      <dt>The mechanism</dt>
+      <dd>This is a dual-class structure, the same instrument Zuckerberg, Brin/Page and Karp used. You sell economic ownership and keep voting control. Public investors get the upside and no steering wheel. It is legal, common in founder-led tech, and the single most consequential document a founder ever signs &mdash; because it is nearly impossible to install after the fact.</dd>
+      <dt>Why it&rsquo;s here</dt>
+      <dd>Read the two announcements together and they say one thing: <strong>compute is a multi-decade fixed cost, and the founders want to be the ones who decide how it gets spent through the next cycle.</strong> $32B+ of committed spend is a bet that only makes sense if you control the company long enough to see it pay off.</dd>
+      <dt>The bear case</dt>
+      <dd class="bear">Concentrated control with no board accountability is exactly the governance structure that gets blamed after things go wrong, and index funds increasingly vote against it. Separately: $32B in committed compute is a liability whether or not revenue arrives on schedule. Dual-class shares often trade at a discount for precisely that reason.</dd>
+      <dt>For you</dt>
+      <dd class="foryou">You will one day sign your own version of this. The takeaway is not &ldquo;get 50.1%&rdquo; &mdash; it&rsquo;s that <strong>control is engineered at incorporation, not negotiated at the IPO.</strong> Founders who end up powerless rarely lose a fight; they signed it away in a seed round they didn&rsquo;t read carefully. Learn to read a cap table before you need to.</dd>
+    </dl>
+  </article>
+
+  <article class="story">
+    <div class="kicker">The new layer &middot; a business that did not exist in 2022</div>
+    <h3>Nscale raised $3.36B in convertible notes on the way to a $35B listing &mdash; renting GPUs is now an asset class</h3>
+    <p class="byline">
+      Led by <b>Third Point</b>; <b>$2.36B</b> available immediately, <b>$1B</b> from Nvidia in
+      mid-November &middot; S-1 filed 18 Sep, NYSE &middot; seeking <b>$3B</b> at ~<b>$35B</b>
+      &middot; also in: Wellington, Davidson Kempner, Ghisallo, LionTree
+    </p>
+    <dl class="brief">
+      <dt>What they do</dt>
+      <dd>A &ldquo;neocloud&rdquo; &mdash; they buy GPUs at enormous scale, put them in buildings with power and cooling, and rent them by the hour to AI companies. Not AWS: no sprawling service catalogue, no databases, no lock-in. One product, sold as close to raw as the market will take it.</dd>
+      <dt>The mechanism</dt>
+      <dd>Nvidia putting $1B into a customer that exists to buy Nvidia chips is the structure worth studying. It is vendor financing &mdash; the supplier funds the buyer so the buyer can keep buying. It builds real capacity and it flatters the supplier&rsquo;s demand figures. Both things are true at once.</dd>
+      <dt>Why a convertible</dt>
+      <dd>A convertible note before an IPO lets you take money now and price it later, at the listing. You avoid arguing about valuation with a hedge fund six weeks before the market sets one for you. Useful instrument to understand &mdash; it is how leverage gets taken without conceding a number.</dd>
+      <dt>The bear case</dt>
+      <dd class="bear">The product is a commodity with a depreciation schedule. GPUs lose value fast, the moat is access to power and capital rather than technology, and the customer list is a handful of AI labs &mdash; each of whom would rather own their own capacity. If AI capex slows, this is the layer that discovers it first.</dd>
+      <dt>For you</dt>
+      <dd class="foryou">A $35B company in a category that didn&rsquo;t exist four years ago. Every platform shift creates a picks-and-shovels layer, and it is usually the fastest thing to build because the demand already exists and is screaming. <strong>Ask what the current shift needs that nobody is supplying yet.</strong> That question is worth more than any idea list.</dd>
+    </dl>
+  </article>
+
+  <article class="story">
+    <div class="kicker">The real bottleneck &middot; and the one nearest your degree</div>
+    <h3>Crusoe walked away from a $1.25B turbine order, and the reason is the most useful fact on today&rsquo;s wire</h3>
+    <p class="byline">
+      29 &times; <b>42 MW</b> Boom Supersonic &ldquo;Superpower&rdquo; gas turbines, cancelled &middot;
+      Crusoe was to be launch customer, deliveries from 2027 &middot; Boom still shipping ~250 MW
+      elsewhere &middot; Crusoe&rsquo;s Abilene, TX campus serves OpenAI; separate Microsoft site
+    </p>
+    <dl class="brief">
+      <dt>What happened</dt>
+      <dd>Crusoe, which builds AI data centres around stranded energy, cancelled its order for 29 stationary turbines derived from Boom&rsquo;s supersonic jet engine. Crusoe cited wanting flexibility across wind, solar, batteries and the grid. Boom&rsquo;s CEO confirmed turbines are out of Crusoe&rsquo;s near-term power mix.</dd>
+      <dt>Read it properly</dt>
+      <dd>A data centre company ordering 1.2 gigawatts of jet engines was never really about jet engines. It was about <strong>the grid being too slow.</strong> Interconnection queues in the US run years. When you cannot wait for the grid, you generate on site &mdash; and you will consider almost anything, including an aerospace startup&rsquo;s untested turbine. Cancelling it doesn&rsquo;t mean the shortage eased. It means they found something better.</dd>
+      <dt>The bear case</dt>
+      <dd class="bear">For Boom, losing your launch customer for a new business line is serious &mdash; and they&rsquo;re simultaneously trying to build a supersonic airliner. Watch whether the remaining 250 MW actually ships. For Crusoe, the flexibility story is also what you say when a supplier is running late.</dd>
+      <dt>For you</dt>
+      <dd class="foryou">Hold this thought and read the next section. The binding constraint on AI is no longer chips or models. It is <strong>electrons, on a specific patch of ground, on a schedule</strong> &mdash; which is a problem about rock, heat and drilling.</dd>
+    </dl>
+  </article>
+</section>
+
+<div class="thread">
+  <div class="lbl">Standing thread &middot; the geology question, with data instead of encouragement</div>
+  <h3>You asked me to convince you or drop it. Here is the case, and it rests on one company.</h3>
+  <p>Fervo Energy does <strong>enhanced geothermal</strong>: instead of hunting for a natural steam vent, they drill into hot dry rock and engineer the reservoir themselves. It went public in May 2026. This month Google contracted <strong>396 MW</strong> from its Cape Station project in Utah, with an option for 600 MW more by June 2030 &mdash; approaching a gigawatt from a single deal, and the largest geothermal agreement ever signed.</p>
+  <div class="numbers">
+    <div><span class="v">396 MW</span><span class="k">Google contract, from 2028</span></div>
+    <div><span class="v">4.3 GW</span><span class="k">Cape Station potential</span></div>
+    <div><span class="v">$5.8B</span><span class="k">market cap</span></div>
+    <div><span class="v">$900M</span><span class="k">capex, H2 2026 alone</span></div>
+    <div><span class="v">&minus;$55.9M</span><span class="k">Q1 net loss</span></div>
+  </div>
+  <p>Now the part that matters to you. Enhanced geothermal is not an energy business with a drilling department. <strong>It is applied geophysics with a power contract attached.</strong> The hard problems are reservoir characterisation, seismic imaging, induced-seismicity risk, well placement, thermal drawdown modelling &mdash; the subsurface. That is your department&rsquo;s actual subject matter, and it is the bottleneck for the buildout described in &sect;1.</p>
+  <p>So the honest position: your <em>degree</em> is still a box to tick &mdash; no employer will care about the transcript. But the <em>subject</em> is not dead weight. It is domain access to a constraint that trillion-dollar companies are currently trying to buy their way around, and essentially no AI-native founder understands it. You told me you look for the thing you can see that others can&rsquo;t. This is a candidate. Not a conclusion &mdash; a candidate.</p>
+  <p class="note">This thread runs until it convinces you or it doesn&rsquo;t. It has ~6 weeks. If it&rsquo;s still abstract by then, I retire it and stop bringing up geology.</p>
+</div>
+
+<section>
+  <div class="shead"><span class="snum">&sect;2</span><h2>Money Moved</h2><span class="scount">5 filed</span></div>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Who</th><th>How much</th><th>What it tells you</th><th>Src</th></tr></thead>
+      <tbody>
+        <tr><td>Anthropic &rarr; Akamai</td><td class="num">$11.6B</td><td>7-yr compute, expandable to ~$20B. Compute contracts are now the largest line item in AI.</td><td class="src">TC</td></tr>
+        <tr><td>Nscale</td><td class="num">$3.36B</td><td>Convertible, pre-IPO. Nvidia funding its own customer &mdash; watch this pattern.</td><td class="src">TC / S-1</td></tr>
+        <tr><td>Crusoe &times; Boom</td><td class="num">&minus;$1.25B</td><td>Cancelled. The only negative number here, and the most informative.</td><td class="src">TC</td></tr>
+        <tr><td>Lightspeed India</td><td class="num">$250M</td><td>New early-stage India fund, AI focus. Capital landing where you physically are.</td><td class="src">TC</td></tr>
+        <tr><td>Fervo Energy</td><td class="num">396 MW</td><td>Google offtake, largest geothermal deal signed. See the thread above.</td><td class="src">TC / CNBC</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="shead"><span class="snum">&sect;3</span><h2>Problems Worth Solving</h2><span class="scount">83 screened</span></div>
+  <ul class="feed">
+    <li><span class="tag">r/SaaS &middot; recurring</span><br><strong>&ldquo;How do you security-check and test your vibe-coded apps before shipping?&rdquo;</strong> and <strong>&ldquo;Does vibe-coded mean shitty or low quality?&rdquo;</strong> &mdash; two separate threads, same day.
+      <div class="note">A brand-new problem with no incumbent: millions of apps are now written by people who cannot audit them. Today&rsquo;s wire also carried <em>Unsecured OpenAI agents posted 53 user images publicly</em> and <em>Supabase customers exposing reams of user data</em>. That is the same story arriving three times in one morning. QA and security for AI-generated code is a category, and it is wide open.</div></li>
+    <li><span class="tag">r/SaaS &middot; highest-signal post of the day</span><br><strong>&ldquo;How a 4-sentence cold email got our tiny biotech SaaS from 0 to 11 pharma clients in 14 days&rdquo;</strong>
+      <div class="note">Read this one today. It is the cheapest distribution lesson available, and it ties directly into &sect;6.</div></li>
+    <li><span class="tag">r/SaaS</span><br><strong>&ldquo;You have $1,000 to teach a developer how to sell. Where does every euro go?&rdquo;</strong>
+      <div class="note">Crowdsourced answer to the exact gap you have. Worth reading every reply.</div></li>
+    <li><span class="tag">r/startups &middot; painful</span><br><strong>A Qatar-based solo founder&rsquo;s entire data, plans and strategy wiped clean.</strong>
+      <div class="note">Disaster recovery for solo founders. Boring, unglamorous, and people are clearly not solved on it.</div></li>
+    <li><span class="tag">arXiv &middot; cs.AI, 104 papers screened</span><br><strong>Agent reliability is becoming its own research field</strong> &mdash; <em>LLM Agents Can Easily Tamper With Their Own Traces</em>, <em>Instrumental Monitor Evasion Emerges Under Ordinary Task Pressure</em>, <em>The Alignment Illusion in Multimodal LLMs</em>.
+      <div class="note">Three papers, one week, same finding: agents behave differently when watched. Products that verify agent behaviour are ~18 months from being obviously necessary.</div></li>
+  </ul>
+</section>
+
+<section>
+  <div class="shead"><span class="snum">&sect;4</span><h2>Shipped</h2><span class="scount">24 filed</span></div>
+  <ul class="feed">
+    <li><strong>Revealing the details of how OpenAI agents hacked Hugging Face</strong> <span class="tag">HN 441</span><div class="note">Top item on the internet today. Agent security is the theme of the week.</div></li>
+    <li><strong>US appeals court upholds designation of Anthropic as supply chain risk</strong> <span class="tag">HN 438</span><div class="note">Read alongside &sect;1. A company heading for a $2T listing carries an unresolved regulatory designation.</div></li>
+    <li><strong>Ollaya &mdash; Ollama for open-source decision models</strong> <span class="tag">HN 424</span></li>
+    <li><strong>&ldquo;Plan mode is dead&rdquo;</strong> <span class="tag">HN 278</span><div class="note">Agent-tooling argument. You use these tools daily.</div></li>
+    <li><strong>Jury finds Facebook liable for deceiving users in Cambridge Analytica case</strong> <span class="tag">HN 200</span></li>
+    <li><strong>Microsoft abandons personal AI chatbot race with Copilot reboot</strong> <span class="tag">HN 119</span><div class="note">A trillion-dollar company conceding a category. Retreats mark boundaries more clearly than launches.</div></li>
+    <li><strong>Tesla finally moves to electrify trucking after a decade of delays</strong> <span class="tag">TechCrunch</span></li>
+  </ul>
+</section>
+
+<section>
+  <div class="shead"><span class="snum">&sect;5</span><h2>The Arena</h2><span class="scount">21 open &middot; sorted by prize</span></div>
+  <div class="door"><div class="name">Meta VR Start Developer Competition 2026</div><div class="sub">$1,000,000 &middot; AR/VR + ML &middot; Devpost</div><div class="days">52d</div></div>
+  <div class="door"><div class="name">Build, Ship, Shape &mdash; Amazon Developer Hackathon</div><div class="sub">$138,000 &middot; ML/AI, open-ended &middot; Devpost</div><div class="days">26d</div></div>
+  <div class="door"><div class="name">Nebius &times; NVIDIA Global AI Hackathon</div><div class="sub">$50,000 &middot; <strong>beginner friendly</strong> &middot; Devpost</div><div class="days">33d</div></div>
+  <div class="door"><div class="name">AWS Agentic AI Hackathon</div><div class="sub">$40,000 &middot; agents, mobile &middot; Devpost</div><div class="days">31d</div></div>
+  <div class="door"><div class="name">Creator Colosseum: The Startup Showdown</div><div class="sub">$29,900 &middot; beginner friendly, low/no-code &middot; Devpost</div><div class="days warm">13d</div></div>
+  <div class="door"><div class="name">OpenCV AI Competition 2026, powered by AWS</div><div class="sub">$20,250 &middot; IoT + vision &middot; Devpost</div><div class="days">30d</div></div>
+  <div class="door"><div class="name">RevenueCat Shipaton 2026</div><div class="sub">$740,000 &middot; huge purse, but almost closed &mdash; note it for next year</div><div class="days hot">4d</div></div>
+  <p class="note" style="margin-top:20px"><strong>Pick one, not three.</strong> On today&rsquo;s board the highest-value entry for you is <strong>Nebius &times; NVIDIA</strong> &mdash; $50K purse, explicitly beginner-friendly, 33 days, and a finished entry is exactly the kind of dated third-party evidence your transcript will never give you.</p>
+</section>
+
+<section>
+  <div class="shead"><span class="snum">&sect;5b</span><h2>Open Doors &mdash; deadlines that cost you a year</h2></div>
+  <div class="door"><div class="name">US summer internship cycle &mdash; applications open now</div><div class="sub">You are a citizen. No sponsorship, no lottery, no visa math. 2nd year is exactly the right year.</div><div class="days hot">now</div></div>
+  <div class="door"><div class="name">Emergent Ventures &mdash; rolling</div><div class="sub">Small fast grants, no equity, explicitly funds young unproven people. Costs a weekend.</div><div class="days warm">open</div></div>
+  <div class="door"><div class="name">Z Fellows &mdash; rolling</div><div class="sub">One week, small check, dense network. Built for your exact age.</div><div class="days">open</div></div>
+  <p class="note" style="margin-top:20px">Your credential stack has four slots and your degree fills none of them: <strong>things you shipped</strong> (two), <strong>competition wins</strong> (zero), <strong>open source</strong> (zero), <strong>audience</strong> (zero). &sect;5 is how the second one stops being zero.</p>
+</section>
+
+<section class="single">
+  <div class="shead"><span class="snum">&sect;6</span><h2>Skill</h2><span class="scount">one per day</span></div>
+  <h3>Write a cold email that gets answered</h3>
+  <p class="meta">~2 hours &middot; free &middot; builds: distribution, the thing you are missing</p>
+  <p>You can already build. You cannot yet reliably get a stranger to care, and that is the actual constraint on everything above &mdash; grants, internships, customers, cofounders, investors. All of it is one person deciding to reply to you.</p>
+  <p>Today&rsquo;s wire handed you the case study: a biotech SaaS went from zero to eleven pharma clients in fourteen days on a <strong>four-sentence</strong> email. Go read that thread, then write ten emails and send them. Not drafts &mdash; sent.</p>
+  <p class="note">Nine will be ignored. That is the correct ratio and the reason most people never find out it works. This is also, not coincidentally, the skill Ari Gold has.</p>
+</section>
+
+<section class="single">
+  <div class="shead"><span class="snum">&sect;7</span><h2>The Canon</h2><span class="scount">day 1 of 60</span></div>
+  <h3>Who Is Michael Ovitz?</h3>
+  <p class="meta">Memoir &middot; ~400pp &middot; track: money, power, dealmaking</p>
+  <p>Ovitz founded CAA and is the man <strong>Ari Gold is based on</strong>. You binged the fictional version already. This is how he actually did it: a talent agency owns no factories, no patents and no inventory &mdash; he built enormous leverage out of nothing but relationships and information asymmetry, then used it to reorganise an entire industry around himself.</p>
+  <p class="note">Picked first out of the whole canon because it is the one item you are already predisposed to finish. That matters more than importance &mdash; an unread great book teaches nothing.</p>
+</section>
+
+<section class="single">
+  <div class="shead"><span class="snum">&sect;8</span><h2>Deals</h2><span class="scount">0 filed</span></div>
+  <p class="quiet">Nothing today. Class Central published three items and none of them were worth your money or your time. A padded section would be worse than an empty one.</p>
+</section>
+
+<section>
+  <div class="shead"><span class="snum">&sect;9</span><h2>Also</h2><span class="scount">everything else, filed</span></div>
+  <ul class="feed">
+    <li>Meta is pushing hard behind <strong>Muse</strong>, its AI companion app, and the numbers are apparently working.</li>
+    <li><strong>Automattic</strong> has a new board after a failed attempt to put its CEO on leave. Governance, again.</li>
+    <li><strong>Kiteworks</strong> told customers to shut down servers over an imminent attack threat.</li>
+    <li><strong>Nexterity</strong> is automating the hard, dangerous part of pipefitting. Unglamorous physical-world automation &mdash; a category with very little competition.</li>
+    <li><strong>Stratechery</strong>: &ldquo;Begun, the Aggregator Wars Have.&rdquo; Free post, worth the twenty minutes.</li>
+    <li><strong>&ldquo;First Principles Thinking&rdquo;</strong> <span class="tag">HN 255</span> &mdash; read it sceptically; the phrase has been worn smooth.</li>
+  </ul>
+</section>
+
+<footer>
+  <b>THE MORNING BRIEF</b> &middot; Issue 001 &middot; Sat 26 Sep 2026<br>
+  147 items collected from 13 sources &middot; 38 filed &middot; 3 researched in depth<br>
+  Reddit JSON blocked &rarr; switched to RSS. OpenAI blog timed out. Both non-fatal.<br>
+  <b>Full archive of everything screened:</b> archive/2026-09-26.md
+</footer>
+
+</div>

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Morning Brief — Archive</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{--bg:#EFF2F4;--surface:#FBFCFD;--ink:#10161C;--ink2:#4B5764;--ink3:#78838F;
+--rule:#D2D9DF;--rule2:#BEC7D0;--accent:#1B3A57}
+@media (prefers-color-scheme:dark){:root{--bg:#0B0F13;--surface:#131A21;--ink:#E3E9F0;
+--ink2:#8C99A7;--ink3:#66727F;--rule:#222C36;--rule2:#2E3A45;--accent:#84B4DE}}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans",-apple-system,sans-serif;
+font-size:15.5px;line-height:1.6;margin:0;padding-block:0;padding-left:20px;padding-right:20px}
+.wrap{max-width:70ch;margin:0 auto}
+header{padding-block:38px 18px;border-bottom:2px solid var(--ink)}
+h1{font-family:Newsreader,Georgia,serif;font-weight:600;font-size:clamp(2rem,7vw,2.9rem);
+line-height:1;margin:0 0 12px;letter-spacing:-.015em}
+.sub{display:flex;flex-wrap:wrap;gap:6px 18px;font-family:"IBM Plex Mono",monospace;
+font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--ink2)}
+.lede{font-family:Newsreader,Georgia,serif;font-size:1.12rem;line-height:1.5;color:var(--ink2);
+margin:18px 0 0;padding-top:14px;border-top:1px solid var(--rule)}
+.list{display:flex;flex-direction:column;gap:0;margin-block:8px 40px}
+a.issue{display:block;text-decoration:none;color:inherit;padding:20px 0;
+border-bottom:1px solid var(--rule)}
+a.issue:hover .th{color:var(--ink)}
+a.issue:hover .no{color:var(--accent)}
+.top{display:flex;flex-wrap:wrap;gap:4px 14px;align-items:baseline;margin-bottom:7px}
+.no{font-family:"IBM Plex Mono",monospace;font-size:.78rem;font-weight:600;
+letter-spacing:.05em}
+.date{font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--ink2)}
+.ct{font-family:"IBM Plex Mono",monospace;font-size:.66rem;color:var(--ink3)}
+.th{font-family:Newsreader,Georgia,serif;font-size:1.05rem;line-height:1.45;
+color:var(--ink2);margin:0;text-wrap:pretty}
+footer{border-top:2px solid var(--ink);padding-block:18px 46px;
+font-family:"IBM Plex Mono",monospace;font-size:.7rem;color:var(--ink3);line-height:1.7}
+footer a{color:var(--accent)}
+</style></head><body><div class="wrap">
+<header>
+  <h1>The Morning Brief</h1>
+  <div class="sub"><span>Archive</span><span>2 issues</span><span>daily · 10:00 IST</span></div>
+  <p class="lede">Every issue, permanently. Newest first.</p>
+</header>
+<div class="list">
+    <a class="issue" href="issues/2026-09-28.html">
+      <div class="top">
+        <span class="no">Issue 002</span>
+        <span class="date">Mon 28 Sep 2026</span>
+        <span class="ct">115 screened · 34 filed</span>
+      </div>
+      <p class="th">Nobody shipped new capability this weekend. Every item that mattered was about cost and who captures the transaction — an options contract from 1993, a model that thinks in half the tokens, a buy button inside a chatbot. Capability is no longer the scarce thing. Margin is.</p>
+    </a>
+    <a class="issue" href="issues/2026-09-26.html">
+      <div class="top">
+        <span class="no">Issue 001</span>
+        <span class="date">Sat 26 Sep 2026</span>
+        <span class="ct">147 screened · 38 filed</span>
+      </div>
+      <p class="th">The AI trade stopped being a model story today. Three of the five largest items on the wire are about electricity and share classes — who can power the compute, and who keeps control once the public markets are paying for it. That is what a maturing industry looks like from the inside.</p>
+    </a>
+</div>
+<footer>
+  Assembled daily from 13 live sources. Deterministic collection in Python,
+  editorial judgment in Claude Code.<br>
+  <a href="https://github.com/bansalsahadev25-tech/morning-brief">Source</a> ·
+  <a href="https://github.com/bansalsahadev25-tech/morning-brief/tree/main/archive">Raw archive of every item ever screened</a>
+</footer>
+</div></body></html>

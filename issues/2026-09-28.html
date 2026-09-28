@@ -1,0 +1,614 @@
+<title>The Morning Brief</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root{
+    --bg:#EFF2F4; --surface:#FBFCFD; --sunk:#E6EAEE;
+    --ink:#10161C; --ink2:#4B5764; --ink3:#78838F;
+    --rule:#D2D9DF; --rule2:#BEC7D0;
+    --accent:#1B3A57; --urgent:#A33E12; --money:#0D6A5E;
+    --chip:#E2E8ED;
+    --measure:70ch;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --bg:#0B0F13; --surface:#131A21; --sunk:#0F151A;
+      --ink:#E3E9F0; --ink2:#8C99A7; --ink3:#66727F;
+      --rule:#222C36; --rule2:#2E3A45;
+      --accent:#84B4DE; --urgent:#E8834F; --money:#3EB5A3;
+      --chip:#1B242D;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0B0F13; --surface:#131A21; --sunk:#0F151A;
+    --ink:#E3E9F0; --ink2:#8C99A7; --ink3:#66727F;
+    --rule:#222C36; --rule2:#2E3A45;
+    --accent:#84B4DE; --urgent:#E8834F; --money:#3EB5A3;
+    --chip:#1B242D;
+  }
+
+  *{box-sizing:border-box}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,sans-serif;
+    font-size:15.5px; line-height:1.62;
+    padding-block:0; padding-left:20px; padding-right:20px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:var(--measure); margin:0 auto}
+  a{color:var(--accent); text-decoration:none; border-bottom:1px solid var(--rule2)}
+  a:hover{border-bottom-color:var(--accent)}
+  a:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+
+  .mast{padding-block:34px 18px; border-bottom:2px solid var(--ink)}
+  .mast h1{
+    font-family:Newsreader,Georgia,serif; font-weight:600;
+    font-size:clamp(2.1rem,7vw,3.1rem); line-height:1.0;
+    margin:0 0 12px; letter-spacing:-.015em;
+  }
+  .mastmeta{
+    display:flex; flex-wrap:wrap; gap:6px 18px;
+    font-family:"IBM Plex Mono",monospace; font-size:.7rem;
+    text-transform:uppercase; letter-spacing:.1em; color:var(--ink2);
+  }
+  .thesis{
+    font-family:Newsreader,Georgia,serif; font-size:1.2rem; line-height:1.5;
+    color:var(--ink); margin:20px 0 0; padding:16px 0 4px;
+    border-top:1px solid var(--rule); text-wrap:balance;
+  }
+  .thesis em{color:var(--ink2); font-style:italic}
+
+  section{padding-block:38px 8px}
+  .shead{
+    display:flex; align-items:baseline; gap:12px;
+    border-bottom:1px solid var(--ink); padding-bottom:7px; margin-bottom:22px;
+  }
+  .snum{
+    font-family:"IBM Plex Mono",monospace; font-size:.72rem; font-weight:600;
+    color:var(--ink3); letter-spacing:.06em; flex:none;
+  }
+  .shead h2{
+    font-family:"IBM Plex Sans",sans-serif; font-weight:600;
+    font-size:.86rem; text-transform:uppercase; letter-spacing:.14em;
+    margin:0; flex:1;
+  }
+  .scount{font-family:"IBM Plex Mono",monospace; font-size:.68rem; color:var(--ink3)}
+
+  .story{padding-bottom:34px; margin-bottom:34px; border-bottom:1px solid var(--rule)}
+  .story:last-child{border-bottom:0; margin-bottom:0}
+  .kicker{
+    font-family:"IBM Plex Mono",monospace; font-size:.68rem; font-weight:500;
+    text-transform:uppercase; letter-spacing:.12em; color:var(--urgent);
+    margin-bottom:8px;
+  }
+  .story h3{
+    font-family:Newsreader,Georgia,serif; font-weight:600;
+    font-size:clamp(1.45rem,4.4vw,1.95rem); line-height:1.15;
+    margin:0 0 6px; letter-spacing:-.01em; text-wrap:balance;
+  }
+  .byline{
+    font-family:"IBM Plex Mono",monospace; font-size:.7rem; color:var(--ink2);
+    margin-bottom:20px; line-height:1.6;
+  }
+  .byline b{color:var(--money); font-weight:600}
+
+  dl.brief{display:grid; gap:0; margin:0}
+  @media (min-width:720px){
+    dl.brief{grid-template-columns:8.5rem 1fr; column-gap:22px}
+  }
+  dl.brief dt{
+    font-family:"IBM Plex Mono",monospace; font-size:.66rem; font-weight:600;
+    text-transform:uppercase; letter-spacing:.1em; color:var(--ink3);
+    padding-top:.5em;
+  }
+  dl.brief dd{margin:0 0 16px}
+  dl.brief dd:last-of-type{margin-bottom:0}
+  dd.bear{color:var(--ink2)}
+  dd.foryou{border-left:2px solid var(--urgent); padding-left:14px}
+
+  .tablewrap{overflow-x:auto}
+  table{width:100%; border-collapse:collapse; font-size:.9rem}
+  th{
+    font-family:"IBM Plex Mono",monospace; font-size:.64rem; font-weight:600;
+    text-transform:uppercase; letter-spacing:.1em; color:var(--ink3);
+    text-align:left; padding:0 12px 8px 0; border-bottom:1px solid var(--rule2);
+    white-space:nowrap;
+  }
+  td{padding:11px 12px 11px 0; border-bottom:1px solid var(--rule); vertical-align:top}
+  td.num{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums; color:var(--money); font-weight:500; white-space:nowrap}
+  td.src{font-family:"IBM Plex Mono",monospace; font-size:.74rem; color:var(--ink3); white-space:nowrap}
+
+  .door{
+    display:grid; grid-template-columns:1fr auto; gap:4px 16px;
+    padding:14px 0; border-bottom:1px solid var(--rule); align-items:start;
+  }
+  .door:last-child{border-bottom:0}
+  .door .name{font-weight:500; line-height:1.4}
+  .door .sub{
+    grid-column:1; font-family:"IBM Plex Mono",monospace;
+    font-size:.72rem; color:var(--ink2);
+  }
+  .days{
+    grid-row:1/span 2; align-self:center;
+    font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums;
+    font-size:.78rem; font-weight:600; padding:4px 9px;
+    background:var(--chip); color:var(--ink2); white-space:nowrap;
+  }
+  .days.hot{background:var(--urgent); color:#fff}
+  .days.warm{color:var(--urgent); box-shadow:inset 0 0 0 1px var(--urgent)}
+
+  ul.feed{list-style:none; padding:0; margin:0}
+  ul.feed li{padding:11px 0; border-bottom:1px solid var(--rule); line-height:1.5}
+  ul.feed li:last-child{border-bottom:0}
+  .tag{
+    font-family:"IBM Plex Mono",monospace; font-size:.66rem; font-weight:500;
+    text-transform:uppercase; letter-spacing:.08em; color:var(--ink3);
+  }
+  .note{color:var(--ink2); font-size:.92rem; margin-top:5px}
+
+  .single h3{
+    font-family:Newsreader,Georgia,serif; font-weight:600; font-size:1.35rem;
+    margin:0 0 4px; line-height:1.25; text-wrap:balance;
+  }
+  .single .meta{
+    font-family:"IBM Plex Mono",monospace; font-size:.7rem; color:var(--ink3);
+    margin-bottom:14px;
+  }
+  .quiet{
+    color:var(--ink2); font-style:italic;
+    font-family:Newsreader,Georgia,serif; font-size:1.05rem;
+  }
+
+  footer{
+    border-top:2px solid var(--ink); margin-top:44px;
+    padding-block:20px 48px;
+    font-family:"IBM Plex Mono",monospace; font-size:.7rem; color:var(--ink3);
+    line-height:1.7;
+  }
+  footer b{color:var(--ink2); font-weight:500}
+</style>
+
+<div class="wrap">
+
+<header class="mast">
+  <h1>The Morning Brief</h1>
+  <div class="mastmeta">
+    <span>Issue 002</span>
+    <span>Mon 28 Sep 2026</span>
+    <span>115 items screened &rarr; 34 filed</span>
+    <span>13 sources</span>
+  </div>
+  <p class="thesis">
+    Nobody shipped new capability this weekend. Every item that mattered was about
+    <strong>cost and who captures the transaction</strong> &mdash; an options contract
+    from 1993, a model that thinks in half the tokens, a buy button inside a chatbot.
+    <em>Capability is no longer the scarce thing. Margin is.</em>
+  </p>
+</header>
+
+<!-- ========== §1 ========== -->
+<section>
+  <div class="shead"><span class="snum">§1</span><h2>The Big Three</h2><span class="scount">researched</span></div>
+
+  <article class="story">
+    <div class="kicker">Paperwork &middot; the most expensive document you will ever skim</div>
+    <h3>A man was owed a billion dollars in Nvidia stock, and lost it to one ambiguous sentence about vesting</h3>
+    <p class="byline">
+      Eric Gullichsen &middot; Nvidia Technical Advisory Board, 1993 &middot;
+      <b>25,000</b> options granted &middot; <b>15,625</b> vested and exercised &middot;
+      <b>9,375</b> disputed &rarr; <b>4,500,000</b> shares after 480&times; splits &rarr; ~<b>$1B</b>
+      &middot; <a href="https://news.ycombinator.com/item?id=49872723">HN 618</a> &middot;
+      <a href="https://colo.to/nvidia-stock-narrative.html">primary account</a>
+    </p>
+    <dl class="brief">
+      <dt>What happened</dt>
+      <dd>
+        In 1993, after a meeting on a houseboat in Sausalito with Jensen Huang, Curtis
+        Priem and Chris Malachowsky, Gullichsen joined Nvidia's Technical Advisory Board
+        and was granted 25,000 options. The agreement said the shares vest
+        &ldquo;in a series of quarterly installments so that all shares shall vest upon
+        the expiration of <em>one year</em> from Grant Date.&rdquo;
+      </dd>
+
+      <dt>The dispute</dt>
+      <dd>
+        Nvidia's CFO and its outside counsel at Cooley asserted the options vested over
+        <em>four</em> years. Under that reading only 15,625 shares (62.5%) had vested by
+        1996, which he exercised &mdash; and then forgot about for nearly thirty years.
+        The remaining 9,375 were treated as never vested. Read as written, the agreement
+        says one year. Read as asserted, four.
+      </dd>
+
+      <dt>What it cost</dt>
+      <dd>
+        Those 9,375 shares, through 480&times; cumulative splits, would be
+        4.5 million shares today &mdash; roughly a billion dollars. He reviewed his
+        original documents decades later, spotted the discrepancy, and spent a year in
+        correspondence with Nvidia's counsel. They declined, citing the statute of
+        limitations. His own attorneys concluded a thirty-year delay would not survive a
+        motion to dismiss.
+      </dd>
+
+      <dt>The bear case</dt>
+      <dd class="bear">
+        One side of a dispute, told thirty years later. &ldquo;Quarterly installments
+        over one year&rdquo; for an advisory grant was unusual then and is unusual now, so
+        a drafting error is at least as likely as a deliberate reinterpretation. And the
+        statute of limitations exists for exactly this reason &mdash; evidence and memory
+        rot. The lesson survives either reading.
+      </dd>
+
+      <dt>For you</dt>
+      <dd class="foryou">
+        This is the sequel to Issue 001's Anthropic dual-class story, and it is the same
+        lesson from the other end of the telescope. Anthropic's founders are spending
+        real effort to get the paperwork right <em>before</em> the money exists.
+        Gullichsen didn't, when it would have cost him one uncomfortable phone call in
+        1996. <strong>Equity is decided by documents, early, and the window to argue
+        closes while the stake is still worth nothing.</strong> When someone hands you an
+        agreement &mdash; a cofounder split, an advisory grant, your first hire's
+        options &mdash; the cheapest moment to read it carefully is the moment it seems
+        least worth the trouble.
+      </dd>
+    </dl>
+  </article>
+
+  <article class="story">
+    <div class="kicker">Inference economics &middot; a whole category forming in public</div>
+    <h3>Ember-1 does what Kimi K3 does using about 40% fewer tokens &mdash; efficiency is now the product</h3>
+    <p class="byline">
+      Fireworks AI &middot; post-trained from Moonshot's open-weight <b>Kimi K3</b> &middot;
+      ~<b>40%</b> fewer reasoning tokens at comparable quality &middot;
+      Research Preview on serverless, two-week access &middot;
+      <a href="https://news.ycombinator.com/item?id=49872723">HN 446</a> &middot;
+      <a href="https://fireworks.ai/blog/ember-1">announcement</a>
+    </p>
+    <dl class="brief">
+      <dt>What it is</dt>
+      <dd>
+        Fireworks took Moonshot AI's open-weight Kimi K3 and post-trained it to produce
+        <em>shorter reasoning traces</em> while holding task accuracy. Not a dial that
+        reduces effort at inference time &mdash; the model learned which thinking was
+        load-bearing and which was ceremony.
+      </dd>
+
+      <dt>Why it matters</dt>
+      <dd>
+        In agentic coding, reasoning tokens are most of the bill. Cutting them ~40% at
+        equal quality roughly halves the cost of the same work. That is not a research
+        result, it is a margin, and margins are businesses.
+      </dd>
+
+      <dt>The pattern</dt>
+      <dd>
+        Note who did this. Fireworks did not train a frontier model &mdash; they took
+        someone else's open weights and made them <em>cheaper to run</em>. That is a
+        viable company built entirely downstream of a model they did not pay to create.
+        Open weights turn frontier labs' capital expenditure into everyone else's raw
+        material.
+      </dd>
+
+      <dt>Corroboration</dt>
+      <dd>
+        Today's arXiv sweep carried the same theme independently, which is the signal
+        worth trusting: <em>Learning to Stop without Learning to Stop</em> (self-supervised
+        confidence training for reasoning efficiency), <em>Compact Documentation for
+        Coding Agents</em>, <em>Weight Pair Encoding</em>, <em>EAServe: Encode-Aware
+        Disaggregated Serving</em>. Four papers, one weekend, all about spending fewer
+        tokens rather than achieving more. The research field and the product field have
+        converged on cost at the same moment.
+      </dd>
+
+      <dt>For you</dt>
+      <dd class="foryou">
+        The arXiv-to-product gap this brief watches for is unusually short here &mdash;
+        weeks, not the usual eighteen months. <strong>When the papers and the launches
+        arrive in the same week, the window is already open and closing.</strong> Anything
+        that measurably reduces the cost of running agents has a buyer today, and the
+        buyer is every company currently surprised by their inference bill.
+      </dd>
+    </dl>
+  </article>
+
+  <article class="story">
+    <div class="kicker">Agentic commerce &middot; and it is being tested where you live</div>
+    <h3>Google is putting a Flipkart buy button inside Gemini &mdash; checkout is moving into the assistant</h3>
+    <p class="byline">
+      Pilot live in India &middot; smartphones, electronics, mobile accessories &middot;
+      wider rollout reported for October, before the festive season &middot;
+      Google invested ~<b>$350M</b> in Flipkart in 2024 &middot;
+      <a href="https://techcrunch.com/2026/09/26/google-tests-buying-from-walmart-owned-flipkart-through-gemini-and-ai-mode-in-india/">TechCrunch</a>
+    </p>
+    <dl class="brief">
+      <dt>What happened</dt>
+      <dd>
+        A limited set of users now see a <strong>Buy</strong> button on Flipkart listings
+        surfaced inside Gemini and AI Mode in Search. Tapping it opens a Flipkart-branded
+        checkout without leaving the AI interface. It sits inside Google's
+        <strong>Universal Commerce Protocol</strong> work &mdash; an open standard for
+        agents to move through a shopping journey including checkout &mdash; though Google
+        has not confirmed UCP powers this specific pilot.
+      </dd>
+
+      <dt>The real move</dt>
+      <dd>
+        The search box has spent twenty-five years sending you somewhere else to
+        transact. This keeps you. If the assistant becomes where purchases <em>complete</em>
+        rather than where they begin, then the merchant's relationship with the customer
+        is mediated by whoever owns the assistant &mdash; and the retailer becomes
+        fulfilment.
+      </dd>
+
+      <dt>Why India first</dt>
+      <dd>
+        Not charity. India is Google's largest user base, Flipkart is a $350M
+        related party, and the festive season is the year's demand peak. It is the
+        right place to test a checkout flow at scale, cheaply, before it ships where
+        margins are thinner and regulators are louder.
+      </dd>
+
+      <dt>The bear case</dt>
+      <dd class="bear">
+        Pilots like this die routinely. A handful of users and three product categories is
+        not a rollout, trust in AI-initiated payments is unproven, and Indian payment
+        rails plus UPI habits are not trivially wrapped by a foreign assistant layer.
+        Watch whether October actually happens.
+      </dd>
+
+      <dt>For you</dt>
+      <dd class="foryou">
+        You are building a booking funnel. This is the question it forces:
+        <strong>where does the transaction complete, and who owns that surface?</strong>
+        A product whose only advantage is a nicer checkout is renting a position that
+        assistants are actively trying to take. A product whose advantage is something an
+        assistant <em>cannot</em> do &mdash; hold real-world supply, match riders into a
+        shared cab, know that the 6am Kolkata run is full &mdash; is not competing for
+        that surface at all. Own the supply and the matching, not the form.
+      </dd>
+    </dl>
+  </article>
+</section>
+
+<!-- ========== §2 ========== -->
+<section>
+  <div class="shead"><span class="snum">§2</span><h2>Money Moved</h2><span class="scount">1 filed</span></div>
+  <p class="quiet">
+    Almost nothing. One weekend item cleared the filter and it is not a funding round:
+    insurers claiming AI is already driving healthcare costs up. No rounds worth your
+    attention &mdash; a Monday wire covering a weekend is structurally quiet, because
+    nobody announces a raise on a Saturday.
+  </p>
+  <p class="note">
+    Worth knowing as a rhythm rather than an absence: funding news clusters Tuesday to
+    Thursday. Monday's issue will usually be lighter here and heavier in §3 and §4.
+  </p>
+</section>
+
+<!-- ========== §3 ========== -->
+<section>
+  <div class="shead"><span class="snum">§3</span><h2>Problems Worth Solving</h2><span class="scount">66 screened</span></div>
+  <ul class="feed">
+    <li>
+      <span class="tag">r/startups &middot; the one to read today</span><br>
+      <strong>&ldquo;Experienced founders: how do you sell before building?&rdquo;</strong>
+      <div class="note">
+        Directly upstream of §6, and directly relevant to anything you are building right
+        now. The thread is founders describing how they got money committed before writing
+        code. Read the replies, not the question.
+      </div>
+    </li>
+    <li>
+      <span class="tag">r/startups</span><br>
+      <strong>&ldquo;Can a B2B tech product be a lifestyle business at 5&ndash;10k MRR?&rdquo;</strong>
+      <div class="note">
+        Underrated question. $10k MRR is roughly &#8377;8.5 lakh a month, and almost nobody
+        discusses that tier because it makes no headlines. It is also the only tier a
+        student can reach alone, and it funds everything after it.
+      </div>
+    </li>
+    <li>
+      <span class="tag">r/startups</span><br>
+      <strong>&ldquo;22 year old starting..&rdquo;</strong> &middot;
+      <strong>&ldquo;I like the process of building to solve user problems &mdash; should I try a startup?&rdquo;</strong>
+      <div class="note">Two people your age asking the question you asked two days ago. Reading their replies is cheaper than asking it yourself.</div>
+    </li>
+    <li>
+      <span class="tag">arXiv &middot; 89 screened, one clear cluster</span><br>
+      <strong>The research field has pivoted from capability to cost.</strong>
+      <em>Learning to Stop without Learning to Stop</em> &middot;
+      <em>Compact Documentation for Coding Agents</em> &middot;
+      <em>Weight Pair Encoding</em> &middot;
+      <em>EAServe: Encode-Aware Disaggregated Serving</em>
+      <div class="note">
+        Four independent papers in one weekend, all about spending fewer tokens for the
+        same result. Combined with Ember-1 shipping the same week, this is the clearest
+        arXiv-to-product signal since this brief started.
+      </div>
+    </li>
+    <li>
+      <span class="tag">arXiv &middot; quieter, possibly bigger</span><br>
+      <strong><em>New LoRA Skills Should Read but Never Write</em></strong> and
+      <strong><em>User Model Extraction via Belief Self-Distillation</em></strong>
+      <div class="note">
+        Both are about what a model absorbs from its users and what it should be allowed
+        to do with it. Privacy plumbing for personalised agents is a category nobody owns.
+      </div>
+    </li>
+  </ul>
+</section>
+
+<!-- ========== §4 ========== -->
+<section>
+  <div class="shead"><span class="snum">§4</span><h2>Shipped</h2><span class="scount">21 filed</span></div>
+  <ul class="feed">
+    <li><strong>&ldquo;When did Google get so weird?&rdquo;</strong> <span class="tag">HN 1216</span>
+      <div class="note">Top item on the internet this weekend by a wide margin. When a company's own users start describing it as incoherent, that is a distribution opening for somebody.</div></li>
+    <li><strong>Ember-1</strong> <span class="tag">HN 446</span> <div class="note">See §1.</div></li>
+    <li><strong>In an $80 motel room, a discovery to shed light on the origins of life</strong> <span class="tag">HN 240</span></li>
+    <li><strong>Show HN: Lofi Cities</strong> &mdash; pixel-art city nights with browser-generated lofi <span class="tag">HN 232</span>
+      <div class="note">A small, complete, delightful thing one person shipped. This is the scale of your first ship &mdash; not a platform.</div></li>
+    <li><strong>Don't couple your Go code to GitHub</strong> <span class="tag">HN 229</span></li>
+    <li><strong>Self-hosting on the dark web</strong> <span class="tag">HN 168</span></li>
+    <li><strong>The state of SIMD in Rust in 2026</strong> <span class="tag">HN 139</span></li>
+    <li><strong>There is more to code review than (automatable) detection</strong> <span class="tag">HN 129</span>
+      <div class="note">Relevant to the vibe-coded-QA gap flagged in Issue 001 &mdash; an argument about what review is actually <em>for</em> once detection is automated.</div></li>
+    <li><strong>Malleable software: restoring user agency in a world of locked-down apps</strong> <span class="tag">HN 70</span></li>
+  </ul>
+</section>
+
+<!-- ========== §5 ========== -->
+<section>
+  <div class="shead"><span class="snum">§5</span><h2>The Arena</h2><span class="scount">19 open &middot; by prize</span></div>
+
+  <div class="door">
+    <div class="name">Meta VR Start Developer Competition 2026</div>
+    <div class="sub">$1,000,000 &middot; AR/VR + ML &middot; Devpost</div>
+    <div class="days">50d</div>
+  </div>
+  <div class="door">
+    <div class="name">Build, Ship, Shape &mdash; Amazon Developer Hackathon</div>
+    <div class="sub">$138,000 &middot; ML/AI, open-ended &middot; Devpost</div>
+    <div class="days">24d</div>
+  </div>
+  <div class="door">
+    <div class="name">Nebius &times; NVIDIA Global AI Hackathon</div>
+    <div class="sub">$50,000 &middot; <strong>beginner friendly</strong> &middot; still the best fit on the board</div>
+    <div class="days warm">31d</div>
+  </div>
+  <div class="door">
+    <div class="name">AWS Agentic AI Hackathon</div>
+    <div class="sub">$40,000 &middot; agents, communication &middot; Devpost</div>
+    <div class="days">29d</div>
+  </div>
+  <div class="door">
+    <div class="name">Creator Colosseum: The Startup Showdown</div>
+    <div class="sub">$29,900 &middot; beginner friendly, low/no-code &middot; Devpost</div>
+    <div class="days">33d</div>
+  </div>
+  <div class="door">
+    <div class="name">OpenCV AI Competition 2026, powered by AWS</div>
+    <div class="sub">$20,250 &middot; IoT + vision &middot; Devpost</div>
+    <div class="days">28d</div>
+  </div>
+  <div class="door">
+    <div class="name">EurekaDev 2026 &mdash; new on the board</div>
+    <div class="sub">$19,122 &middot; beginner friendly, open ended &middot; Devpost</div>
+    <div class="days">21d</div>
+  </div>
+  <div class="door">
+    <div class="name">OneAquaHealth IEEE Global Hackathon</div>
+    <div class="sub">$3,500 &middot; closing &mdash; note for next cycle</div>
+    <div class="days hot">6d</div>
+  </div>
+
+  <p class="note" style="margin-top:20px">
+    Unchanged advice, two days later: <strong>Nebius &times; NVIDIA</strong>, now 31 days
+    out. Beginner-friendly, $50K, and an entry produces exactly the dated third-party
+    evidence you have none of. EurekaDev is new and also beginner-friendly at 21 days if
+    you want a shorter runway. <em>Register for one today &mdash; registration is free and
+    it converts a vague intention into a date.</em>
+  </p>
+</section>
+
+<!-- ========== §5b ========== -->
+<section>
+  <div class="shead"><span class="snum">§5b</span><h2>Open Doors</h2></div>
+  <div class="door">
+    <div class="name">US summer internship cycle &mdash; open now, peak weeks</div>
+    <div class="sub">No sponsorship needed for you. Late Sept to Oct is the densest part of the cycle.</div>
+    <div class="days hot">now</div>
+  </div>
+  <div class="door">
+    <div class="name">Emergent Ventures &mdash; rolling</div>
+    <div class="sub">No equity, funds young unproven people. Still the lowest-friction real door on the list.</div>
+    <div class="days warm">open</div>
+  </div>
+  <div class="door">
+    <div class="name">Z Fellows &mdash; rolling</div>
+    <div class="sub">One week, small check, dense network.</div>
+    <div class="days">open</div>
+  </div>
+</section>
+
+<!-- ========== §6 ========== -->
+<section class="single">
+  <div class="shead"><span class="snum">§6</span><h2>Skill</h2><span class="scount">day 2</span></div>
+  <h3>Sell it before you build it</h3>
+  <p class="meta">~3 hours &middot; free &middot; builds: distribution, and proof the thing is wanted</p>
+  <p>
+    Issue 001 was cold email &mdash; getting a stranger to reply. This is the next rep:
+    getting a stranger to <em>commit</em> before the product exists. Today's r/startups
+    thread is founders describing exactly how they did it, and the answers are more
+    mundane than you'd expect.
+  </p>
+  <p>
+    The method: describe the thing precisely enough that someone can say yes or no, put a
+    price on it, and ask for a commitment that costs them something &mdash; a deposit, a
+    signed intent, a calendar slot. Not &ldquo;would you use this?&rdquo;, which everyone
+    answers yes to and which teaches you nothing. Ten conversations is enough to know.
+  </p>
+  <p class="note">
+    If you have something you're considering building, this is the week to find out
+    whether anyone wants it &mdash; before you spend three months finding out the
+    expensive way. Presales are also the only form of validation that arrives with money
+    attached.
+  </p>
+</section>
+
+<!-- ========== §7 ========== -->
+<section class="single">
+  <div class="shead"><span class="snum">§7</span><h2>The Canon</h2><span class="scount">day 2 of 60 &middot; track: design process</span></div>
+  <h3>Everyday Astronaut &mdash; the Starbase tours with Musk</h3>
+  <p class="meta">YouTube &middot; three parts, ~40&ndash;60 min each &middot; free</p>
+  <p>
+    You told me you love watching Musk explain why a part is shaped the way it is. This is
+    that, at length, on the factory floor: Raptor engine decisions explained down to
+    individual components, why they moved from carbon fibre to stainless steel, what got
+    deleted and why. Tim Dodd asks the questions an engineer would ask, so it never
+    flattens into PR.
+  </p>
+  <p class="note">
+    Rotated deliberately away from yesterday's dealmaking track. Watch it with the drone
+    in mind &mdash; the recurring lesson is <em>delete the part</em>, and a two-rotor
+    tiltrotor is an airframe that has already deleted most of its parts. That is why it is
+    elegant and also why it is hard.
+  </p>
+</section>
+
+<!-- ========== §8 ========== -->
+<section class="single">
+  <div class="shead"><span class="snum">§8</span><h2>Deals</h2><span class="scount">0 filed</span></div>
+  <p class="quiet">
+    Empty again. Class Central returned nothing usable for the second issue running.
+  </p>
+  <p class="note">
+    Two blanks in a row is a source problem, not a market condition &mdash; this section
+    is currently fed by one weak feed. It needs GitHub Student Pack tracking, cloud and
+    AI credit programmes, and university-specific offers before it earns its place. Until
+    then it will keep saying nothing rather than inventing something.
+  </p>
+</section>
+
+<!-- ========== §9 ========== -->
+<section>
+  <div class="shead"><span class="snum">§9</span><h2>Also</h2><span class="scount">filed, not featured</span></div>
+  <ul class="feed">
+    <li><strong>Anthropic's CEO is having dinner with President Trump</strong>, and separately <strong>Dario Amodei got the SNL treatment</strong>. Read together with Issue 001's governance story: the company heading for a ~$2T listing is now a political object, not just a lab.</li>
+    <li><strong>Truecaller</strong> is taking its scam intelligence to the open web, beyond caller ID. An Indian company turning a defensive dataset into a platform &mdash; worth watching as a template.</li>
+    <li><strong>Insurers claim AI is already increasing healthcare costs.</strong> First serious counter-narrative to &ldquo;AI reduces cost&rdquo; from people who pay the bills.</li>
+    <li><strong>AV companies pick their lanes</strong> <span class="tag">TechCrunch Mobility</span> &mdash; consolidation of strategy in autonomy.</li>
+    <li><strong>PNOE</strong> wants lab-grade breath testing to be self-serve. Hardware plus clinical validation, the slow kind of deep tech.</li>
+    <li><strong>Owed a billion dollars in Nvidia stock</strong> also generated one of the better HN comment threads of the month, if you want the counterarguments to §1.</li>
+  </ul>
+</section>
+
+<footer>
+  <b>THE MORNING BRIEF</b> &middot; Issue 002 &middot; Mon 28 Sep 2026<br>
+  115 items collected from 13 sources &middot; 34 filed &middot; 3 researched in depth<br>
+  All 13 collectors returned clean this run &mdash; no source errors.<br>
+  Sources: TechCrunch, Hacker News, Show HN, Ask HN, arXiv (cs.AI/LG/CL), GitHub Trending,
+  Devpost, YC RFS, r/startups, r/SaaS, r/Entrepreneur, Stratechery, McKinsey,
+  Class Central, a16z/Sequoia/First Round.<br>
+  <b>Full archive of everything screened:</b> github.com/bansalsahadev25-tech/morning-brief/blob/main/archive/2026-09-28.md
+</footer>
+
+</div>

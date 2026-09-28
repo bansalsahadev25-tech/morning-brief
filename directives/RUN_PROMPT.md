@@ -46,8 +46,13 @@ favicon. Update the masthead: issue number incremented, today's date, real
 counts of items screened and filed. Keep the title tag exactly
 `The Morning Brief`.
 
-**7. Commit.** `git add archive/ && git commit && git push` so the archive
-accumulates publicly. End commit messages with
+**7. Archive the issue permanently.** Copy the exact HTML you just published
+to `issues/<YYYY-MM-DD>.html`, then run `python3 execution/build_index.py` to
+regenerate `index.html`. This is what makes every past issue readable forever
+at the GitHub Pages site — the artifact URL only ever shows today.
+
+**8. Commit.** `git add archive/ issues/ index.html && git commit && git push`.
+End commit messages with
 `Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>`.
 
 If a step fails, finish every other step and say plainly what broke. A brief
