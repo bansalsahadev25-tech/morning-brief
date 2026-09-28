@@ -334,3 +334,18 @@ if __name__ == "__main__":
         print(f"\n{len(errors)} source errors (non-fatal):")
         for e in errors[:12]:
             print("   -", e)
+
+    # ---- collection floor -------------------------------------------------
+    # A normal run returns 100-150 items. Anything near zero means the
+    # environment is broken (network egress blocked, DNS down, proxy), NOT
+    # that the news was quiet. Fail loudly so nothing downstream tries to
+    # improvise a brief and publish it over a good one.
+    FLOOR = 30
+    if len(uniq) < FLOOR:
+        dead = len(errors)
+        print(f"\nFATAL: only {len(uniq)} items (floor {FLOOR}), "
+              f"{dead} collectors failed.")
+        print("This is an environment failure, not a quiet news day.")
+        print("Most likely: network egress is blocked for the source hosts.")
+        print("DO NOT publish a brief from this run.")
+        sys.exit(2)

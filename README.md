@@ -77,3 +77,21 @@ archive/      every item ever screened
 One test for every item: **does this change what the reader does this
 week?** Anything that is merely interesting gets cut. Interesting is the
 enemy — it's what makes you feel informed while nothing happens.
+
+## Known limitation: cloud environments
+
+The collectors need outbound network access to 13 source hosts. Sandboxed
+environments with a network egress allowlist (including Claude Code cloud
+routines by default) block all of them, and collection returns zero items.
+
+`collect.py` exits non-zero below a floor of 30 items so that nothing
+downstream improvises a brief from an empty run and publishes it over a good
+one. If you run this in a sandbox, allowlist these hosts:
+
+```
+hn.algolia.com        techcrunch.com       export.arxiv.org
+devpost.com           reddit.com           ycombinator.com
+github.com            stratechery.com      classcentral.com
+a16z.com              sequoiacap.com       review.firstround.com
+mckinsey.com          huggingface.co       blog.google
+```

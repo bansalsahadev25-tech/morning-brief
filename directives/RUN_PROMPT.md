@@ -1,6 +1,13 @@
 Produce today's issue of The Morning Brief. Collection has already run —
 `.tmp/raw_<today>.json` and `archive/<today>.md` exist. Work in order.
 
+**STOP CONDITION — read this first.** If collection exited non-zero, or the
+raw JSON holds fewer than 30 items, the environment is broken (almost always
+blocked network egress), not the news. In that case: **publish nothing.** Do
+not hand-assemble a brief from web search, do not overwrite the existing
+artifact, do not write an issue file. Report what failed and stop. A missing
+issue is recoverable; a thin issue published over a good one is not.
+
 **1. Read the rules.** `directives/daily_brief.md` (editorial SOP — follow it
 exactly), `config/profile.md` (who this is for), `config/canon.yaml` (the
 rotating canon). The single test for every item: *does this change what the
