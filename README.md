@@ -1,6 +1,6 @@
 # The Morning Brief
 
-A daily intelligence briefing assembled from 13 live sources, built for one
+A daily intelligence briefing assembled from ~60 live feeds, built for one
 reader: an undergraduate trying to build a company and short on evidence.
 
 Runs every morning at 10:00 IST as a scheduled Claude Code cloud agent.
@@ -49,12 +49,28 @@ Deterministic work in Python, judgment in the model. Nothing in between.
 
 ## Sources
 
-Keyless: Hacker News (Algolia), Show HN, Ask HN, TechCrunch, arXiv
-(cs.AI/LG/CL), GitHub Trending, Devpost, YC Requests for Startups,
-Reddit (RSS), Stratechery, McKinsey, Class Central, a16z / Sequoia /
-First Round.
+24 collectors, ~60 feeds, **zero API keys**:
 
-No API keys. No paid services.
+- **Wire** — Hacker News (front page, Best, Show, Ask), Lobsters, TechCrunch,
+  Techmeme, Ars Technica, The Verge, 404 Media
+- **Money** — Crunchbase News, Sifted, Inc42, YourStory, a16z, Sequoia,
+  First Round, YC
+- **Research** — arXiv (cs.AI/LG/CL), Simon Willison, Interconnects, Import AI
+- **Shipped** — GitHub Trending, Hugging Face trending models + datasets,
+  Anthropic / Google / Hugging Face blogs
+- **Learn** — Quanta, Nautilus, Aeon, MIT News, MIT Tech Review,
+  IEEE Spectrum, Marginal Revolution, Construction Physics
+- **Watch** — 14 YouTube channels via RSS: Stanford eCorner, Stanford Online,
+  YC, Acquired, Asianometry, Veritasium, 3Blue1Brown, Lex Fridman,
+  Everyday Astronaut, Real Engineering, a16z, Two Minute Papers,
+  Computerphile, Practical Engineering
+- **Build** — Hackaday, Adafruit, r/rcplanes, r/Multicopter,
+  r/diyelectronics, r/AskEngineers
+- **Doors** — Devpost, YC Requests for Startups, Class Central
+
+YouTube runs on channel RSS, so no YouTube Data API key is needed.
+Time windows differ by section: news 36h, learning 10 days,
+lectures 30 days. An essay does not expire; a funding headline does.
 
 ## Run it
 

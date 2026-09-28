@@ -264,3 +264,64 @@ macro:
     name: Stratechery (free posts)
     url: https://stratechery.com/feed/
     auth: none
+
+# ======================================================================
+#  EXPANSION (2026-09-28) — 13 sources -> 24 collectors, ~60 feeds.
+#  Still zero API keys. See execution/collect.py for the live list.
+# ======================================================================
+
+learn:
+  note: >
+    The "cool stuff" tier. Real science and ideas writing, not press
+    releases. Window is 10 days because an essay does not expire.
+  feeds:
+    - { name: Quanta Magazine,      url: "https://api.quantamagazine.org/feed/" }
+    - { name: Nautilus,             url: "https://nautil.us/feed/" }
+    - { name: Aeon,                 url: "https://aeon.co/feed.rss" }
+    - { name: MIT News,             url: "https://news.mit.edu/rss/feed" }
+    - { name: MIT Tech Review,      url: "https://www.technologyreview.com/feed/" }
+    - { name: IEEE Spectrum,        url: "https://spectrum.ieee.org/feeds/feed.rss" }
+    - { name: Marginal Revolution,  url: "https://marginalrevolution.com/feed" }
+    - { name: Construction Physics, url: "https://www.construction-physics.com/feed" }
+
+watch:
+  note: >
+    Lectures and long-form, via YouTube channel RSS. NO API KEY NEEDED —
+    this replaced the YouTube Data API entirely. Channel ids are stable;
+    resolve them from the canonical link on /@handle/videos and ALWAYS
+    verify the feed's <title> matches — handle-page scraping picks up
+    sidebar channels and silently returns the wrong feed.
+    Window 30 days.
+  channels:
+    - { name: Stanford eCorner,      id: UCctkeBNtFIOn7Yl_9TTj_4w, why: "Entrepreneurial Thought Leaders" }
+    - { name: Y Combinator,          id: UCcefcZRL2oaA_uBNeo5UOWg, why: "Demo Day launches, founder teardowns" }
+    - { name: Stanford Online,       id: UCBa5G_ESCn8Yd4vw5U-gIcg }
+    - { name: Asianometry,           id: UC1LpsuAUaKoMzzJSEt5WImw, why: "semis + industrial history" }
+    - { name: Acquired,              id: UCyFqFYfTW2VoIQKylJ04Rtw, why: "company histories, 4h deep" }
+    - { name: Veritasium,            id: UCHnyfMqiRRG1u-2MsSQLbXA }
+    - { name: 3Blue1Brown,           id: UCYO_jab_esuFRV4b17AJtAw }
+    - { name: Lex Fridman,           id: UCSHZKyawb77ixDdsGog4iWA }
+    - { name: Everyday Astronaut,    id: UC6uKrU_WqJ1R2HMTY3LIx5Q, why: "Starbase tours, design process" }
+    - { name: Real Engineering,      id: UCR1IuLEqb6UEA_zQ81kwXfg }
+    - { name: a16z,                  id: UC9cn0TuPq4dnbTY-CBsm8XA }
+    - { name: Two Minute Papers,     id: UCbfYPyITQ-7l4upoX8nvctg }
+    - { name: Computerphile,         id: UC9-y-6csu5WGm29I7JiwpnA }
+    - { name: Practical Engineering, id: UCMOqf8ab-42UUQIdVoKwjlQ }
+
+build:
+  note: Hardware people actually made. Directly feeds the tiltrotor build.
+  feeds:
+    - { name: Hackaday, url: "https://hackaday.com/blog/feed/" }
+    - { name: Adafruit, url: "https://blog.adafruit.com/feed/" }
+  reddit: [rcplanes, Multicopter, diyelectronics, AskEngineers]
+
+wire_expansion:
+  shipped:  [{ name: HN Best, url: "https://hnrss.org/best" }, { name: Lobsters, url: "https://lobste.rs/rss" }]
+  trending: { name: Hugging Face, url: "https://huggingface.co/api/models?sort=trendingScore" }
+  macro:    [Techmeme, Ars Technica, The Verge, 404 Media]
+  ideas:    [Simon Willison, Interconnects, Import AI]
+  funding:  [Crunchbase News, Sifted, Inc42, YourStory]
+
+dropped:
+  - { name: No Film School, why: "gear reviews and listicles, not craft" }
+  - { name: Works in Progress / Core77 / It's Nice That / Entrackr, why: "feeds 404" }

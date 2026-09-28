@@ -49,13 +49,20 @@ def guard(fn):
     return wrapped
 
 
-def rss(url, section, source, limit=25):
+# News expires fast; ideas do not. A Quanta essay or a Stanford lecture is
+# worth surfacing a week later, a funding headline is not.
+WINDOW = {"learn": 10, "build": 7, "watch": 30, "deals": 14}
+
+
+def rss(url, section, source, limit=25, days=None):
+    days = days if days is not None else WINDOW.get(section)
+    cutoff = (NOW - timedelta(days=days)) if days else CUTOFF
     d = feedparser.parse(requests.get(url, headers=HDRS, timeout=TIMEOUT).content)
     for e in d.entries[:limit]:
         dt = None
         if getattr(e, "published_parsed", None):
             dt = datetime(*e.published_parsed[:6], tzinfo=timezone.utc)
-        if dt and dt < CUTOFF:
+        if dt and dt < cutoff:
             continue
         add(section, e.get("title", ""), e.get("link", ""), source,
             date=dt, text=e.get("summary", ""))
@@ -303,9 +310,186 @@ def class_central():
         "Class Central", limit=15)
 
 
-COLLECTORS = [hn_frontpage, hn_show, hn_ask, techcrunch, vc_blogs, labs,
-              arxiv, github_trending, devpost, yc_rfs, reddit_pain,
-              macro, class_central]
+
+
+# ======================================================================
+#  EXPANSION — learning, deep tech, making, and things worth watching.
+#  All keyless. Sections: learn / watch / build feed §3, §4, §7 and §9.
+# ======================================================================
+
+def feeds(pairs, section, limit=12):
+    """Run a batch of RSS feeds into one section; one dead feed never
+    kills the batch."""
+    for url, name in pairs:
+        try:
+            rss(url, section, name, limit=limit)
+        except Exception as e:
+            errors.append(f"{section}/{name}: {type(e).__name__}")
+
+
+@guard
+def hn_best():
+    """hnrss.org/best — the week's best, not just today's noisiest."""
+    rss("https://hnrss.org/best", "shipped", "HN Best", limit=30)
+
+
+@guard
+def lobsters():
+    """Higher signal-to-noise than HN for deep technical work."""
+    rss("https://lobste.rs/rss", "shipped", "Lobsters", limit=25)
+
+
+@guard
+def techmeme():
+    """Aggregator of aggregators — catches what everything else missed."""
+    rss("https://www.techmeme.com/feed.xml", "macro", "Techmeme", limit=15)
+
+
+@guard
+def science_and_ideas():
+    """The 'cool stuff' tier: real science writing, not press releases."""
+    feeds([
+        ("https://api.quantamagazine.org/feed/",        "Quanta"),
+        ("https://nautil.us/feed/",                     "Nautilus"),
+        ("https://aeon.co/feed.rss",                    "Aeon"),
+        ("https://news.mit.edu/rss/feed",               "MIT News"),
+        ("https://www.technologyreview.com/feed/",      "MIT Tech Review"),
+        ("https://spectrum.ieee.org/feeds/feed.rss",    "IEEE Spectrum"),
+        ("https://marginalrevolution.com/feed",         "Marginal Revolution"),
+        ("https://www.construction-physics.com/feed",   "Construction Physics"),
+    ], "learn", limit=10)
+
+
+@guard
+def makers():
+    """Hardware, electronics, people building physical things.
+    Directly relevant to the tiltrotor build."""
+    feeds([
+        ("https://hackaday.com/blog/feed/",  "Hackaday"),
+        ("https://blog.adafruit.com/feed/",  "Adafruit"),
+    ], "build", limit=15)
+
+
+@guard
+def reddit_build():
+    """Where people fly, crash and debug the thing he is building."""
+    for sub in ["rcplanes", "Multicopter", "diyelectronics", "AskEngineers"]:
+        try:
+            r = requests.get(f"https://www.reddit.com/r/{sub}/top.rss",
+                             params={"t": "week"}, headers=HDRS, timeout=TIMEOUT)
+            d = feedparser.parse(r.content)
+            for e in d.entries[:10]:
+                add("build", e.get("title", ""), e.get("link", ""), f"r/{sub}",
+                    text=e.get("summary", ""))  # weekly top; no date filter
+        except Exception as ex:
+            errors.append(f"reddit_build/{sub}: {type(ex).__name__}")
+
+
+@guard
+def ai_practitioners():
+    """People who actually ship with this stuff, not press about it."""
+    feeds([
+        ("https://simonwillison.net/atom/everything/", "Simon Willison"),
+        ("https://www.interconnects.ai/feed",          "Interconnects"),
+        ("https://importai.substack.com/feed",         "Import AI"),
+    ], "ideas", limit=10)
+
+
+@guard
+def newsrooms():
+    """Broader tech desks — catches consumer, policy and weird."""
+    feeds([
+        ("https://feeds.arstechnica.com/arstechnica/index", "Ars Technica"),
+        ("https://www.theverge.com/rss/index.xml",          "The Verge"),
+        ("https://www.404media.co/rss/",                    "404 Media"),
+    ], "macro", limit=12)
+
+
+@guard
+def money_desks():
+    """Funding coverage beyond TechCrunch, including where he lives."""
+    feeds([
+        ("https://news.crunchbase.com/feed/", "Crunchbase News"),
+        ("https://sifted.eu/feed",            "Sifted"),
+        ("https://inc42.com/feed/",           "Inc42"),
+        ("https://yourstory.com/feed",        "YourStory"),
+    ], "funding", limit=12)
+
+
+# Channel ids are stable; resolving handles at runtime is slower and brittle.
+YT = [
+    ("UCctkeBNtFIOn7Yl_9TTj_4w", "Stanford eCorner"),
+    ("UCcefcZRL2oaA_uBNeo5UOWg", "Y Combinator"),
+    ("UCBa5G_ESCn8Yd4vw5U-gIcg", "Stanford Online"),
+    ("UC1LpsuAUaKoMzzJSEt5WImw", "Asianometry"),
+    ("UCyFqFYfTW2VoIQKylJ04Rtw", "Acquired"),
+    ("UCHnyfMqiRRG1u-2MsSQLbXA", "Veritasium"),
+    ("UCYO_jab_esuFRV4b17AJtAw", "3Blue1Brown"),
+    ("UCSHZKyawb77ixDdsGog4iWA", "Lex Fridman"),
+    ("UC6uKrU_WqJ1R2HMTY3LIx5Q", "Everyday Astronaut"),
+    ("UCR1IuLEqb6UEA_zQ81kwXfg", "Real Engineering"),
+    ("UC9cn0TuPq4dnbTY-CBsm8XA", "a16z"),
+    ("UCbfYPyITQ-7l4upoX8nvctg", "Two Minute Papers"),
+    ("UC9-y-6csu5WGm29I7JiwpnA", "Computerphile"),
+    ("UCMOqf8ab-42UUQIdVoKwjlQ", "Practical Engineering"),
+]
+
+
+@guard
+def youtube():
+    """Lectures and long-form, keyless via channel RSS. Feeds §7.
+    Window is wider than 36h — a good lecture does not expire."""
+    window = NOW - timedelta(days=30)
+    for cid, name in YT:
+        try:
+            r = requests.get("https://www.youtube.com/feeds/videos.xml",
+                             params={"channel_id": cid}, headers=HDRS,
+                             timeout=TIMEOUT)
+            d = feedparser.parse(r.content)
+            for e in d.entries[:8]:
+                dt = None
+                if getattr(e, "published_parsed", None):
+                    dt = datetime(*e.published_parsed[:6], tzinfo=timezone.utc)
+                if dt and dt < window:
+                    continue
+                add("watch", e.get("title", ""), e.get("link", ""), name,
+                    date=dt, meta={"kind": "video"})
+        except Exception as ex:
+            errors.append(f"youtube/{name}: {type(ex).__name__}")
+
+
+@guard
+def hf_trending():
+    """What the open-weights world is actually downloading this week."""
+    for kind in ("models", "datasets"):
+        try:
+            r = requests.get(f"https://huggingface.co/api/{kind}",
+                             params={"sort": "trendingScore", "direction": -1,
+                                     "limit": 15},
+                             headers=HDRS, timeout=TIMEOUT).json()
+            for m in r:
+                mid = m.get("id", "")
+                add("shipped", f"{mid}", f"https://huggingface.co/{mid}",
+                    f"HF trending {kind[:-1]}",
+                    meta={"likes": m.get("likes"),
+                          "downloads": m.get("downloads")})
+        except Exception as ex:
+            errors.append(f"hf/{kind}: {type(ex).__name__}")
+
+
+COLLECTORS = [
+    # core wire
+    hn_frontpage, hn_show, hn_ask, hn_best, lobsters, techcrunch, techmeme,
+    newsrooms, vc_blogs, labs, money_desks,
+    # research + ideas
+    arxiv, ai_practitioners, yc_rfs, reddit_pain, macro,
+    # shipped + trending
+    github_trending, hf_trending,
+    # learning, watching, making
+    science_and_ideas, youtube, makers, reddit_build,
+    # doors
+    devpost, class_central,
+]
 
 if __name__ == "__main__":
     print(f"collecting  {NOW:%Y-%m-%d %H:%M} UTC")

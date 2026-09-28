@@ -44,7 +44,21 @@ ranking signal, not a quality signal — a story everyone covers is
 usually a story with no edge left in it. Note it, don't over-weight it.
 
 ### 3. Triage into sections
-Route each item to one of the nine sections. Within each, order by
+
+The collector emits nine raw section tags. Three of them are new and do
+not map one-to-one onto the published sections:
+
+| tag | what it holds | where it goes |
+|---|---|---|
+| `learn` | Quanta, Nautilus, Aeon, MIT News, MIT Tech Review, IEEE Spectrum, Marginal Revolution, Construction Physics | §3 when it suggests something buildable; otherwise §9. **At least two `learn` items must reach the page every day** — this is the "cool stuff" tier and the reason he reads at all. |
+| `watch` | lectures and talks: Stanford eCorner, Stanford Online, YC, Acquired, Asianometry, Veritasium, 3Blue1Brown, Lex Fridman, Everyday Astronaut, Real Engineering, a16z, Computerphile, Practical Engineering | §7. Alternate: some days a fresh talk from `watch`, other days a timeless item from `config/canon.yaml`. Never two fresh days in a row — the canon exists because new ≠ good. |
+| `build` | Hackaday, Adafruit, r/rcplanes, r/Multicopter, r/diyelectronics, r/AskEngineers | §4, flagged when relevant to the tiltrotor. Hardware someone actually made beats hardware someone announced. |
+
+`watch` and `learn` items are dated up to 30 and 10 days back on purpose.
+A lecture does not expire; a funding headline does. Do not discard them
+for being older than today.
+
+Route the rest to their obvious section. Within each, order by
 hard signals only:
 - funding: round size, then stage novelty
 - arena: **deadline proximity — soonest first, always**
