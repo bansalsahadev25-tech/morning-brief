@@ -95,4 +95,14 @@ footer a{{color:var(--accent)}}
 </div></body></html>
 """
 open("index.html", "w", encoding="utf-8").write(html)
+
+# latest.html — the one permanent link. Always the newest issue, so it can be
+# bookmarked once and never change. (The artifact URL cannot do this: the
+# headless `claude -p` run that builds the brief has no Artifact tool.)
+if ISSUES:
+    newest = ISSUES[0]
+    import shutil
+    shutil.copyfile(newest, "latest.html")
+    print(f"latest.html -> {newest}")
+
 print(f"index.html — {len(rows)} issue(s): " + ", ".join(r['day'] for r in rows))

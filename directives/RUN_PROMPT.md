@@ -45,18 +45,19 @@ deadlines render with days remaining, red under 7. Section 6: one skill, one
 free resource. Section 7: one canon item not seen recently, with its
 relevance stated.
 
-**6. Publish.** Write the complete HTML to `brief.html`, then publish with
-the Artifact tool passing url
-`https://claude.ai/artifact/VqyUysjjQhpUjSFhhmMUQJ` so it updates in place
-and the bookmark keeps working. Do not create a new artifact. Do not pass a
-favicon. Update the masthead: issue number incremented, today's date, real
-counts of items screened and filed. Keep the title tag exactly
-`The Morning Brief`.
+**6. Publish.** Write the complete HTML to `brief.html`.
 
-**7. Archive the issue permanently.** Copy the exact HTML you just published
-to `issues/<YYYY-MM-DD>.html`, then run `python3 execution/build_index.py` to
-regenerate `index.html`. This is what makes every past issue readable forever
-at the GitHub Pages site — the artifact URL only ever shows today.
+Then, *only if* an `Artifact` tool exists in this session, publish it with url
+`https://claude.ai/artifact/VqyUysjjQhpUjSFhhmMUQJ` (read it first — that is
+required — do not create a new artifact, do not pass a favicon). **A headless
+`claude -p` run does NOT have this tool. That is expected: skip it silently,
+do not retry, do not treat it as a failure.** The published site below is the
+real deliverable.
+
+**7. Archive the issue permanently.** Copy the exact HTML to
+`issues/<YYYY-MM-DD>.html`, then run `python3 execution/build_index.py`. That
+regenerates `index.html` and `latest.html` — `latest.html` is the permanent
+link the reader actually uses, so this step is not optional.
 
 **8. Commit.** `git add archive/ issues/ index.html && git commit && git push`.
 End commit messages with
