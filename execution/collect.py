@@ -435,27 +435,54 @@ YT = [
 ]
 
 
+# YouTube 404s unfamiliar user-agents on the feed endpoint, and does it
+# intermittently — it served MorningBrief/1.0 fine one day and refused it
+# the next. Always ask as a browser, and retry once on a 404.
+BROWSER_UA = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+                            "AppleWebKit/537.36 (KHTML, like Gecko) "
+                            "Chrome/125.0 Safari/537.36"}
+
+
 @guard
 def youtube():
     """Lectures and long-form, keyless via channel RSS. Feeds §7.
     Window is wider than 36h — a good lecture does not expire."""
     window = NOW - timedelta(days=30)
+    live = 0
     for cid, name in YT:
-        try:
-            r = requests.get("https://www.youtube.com/feeds/videos.xml",
-                             params={"channel_id": cid}, headers=HDRS,
-                             timeout=TIMEOUT)
-            d = feedparser.parse(r.content)
-            for e in d.entries[:8]:
-                dt = None
-                if getattr(e, "published_parsed", None):
-                    dt = datetime(*e.published_parsed[:6], tzinfo=timezone.utc)
-                if dt and dt < window:
-                    continue
-                add("watch", e.get("title", ""), e.get("link", ""), name,
-                    date=dt, meta={"kind": "video"})
-        except Exception as ex:
-            errors.append(f"youtube/{name}: {type(ex).__name__}")
+        got = 0
+        for attempt in (1, 2):
+            try:
+                r = requests.get("https://www.youtube.com/feeds/videos.xml",
+                                 params={"channel_id": cid},
+                                 headers=BROWSER_UA, timeout=TIMEOUT)
+                d = feedparser.parse(r.content)
+                if not d.entries:
+                    if attempt == 1:
+                        time.sleep(4.0)          # transient rate limit
+                        continue
+                    errors.append(f"youtube/{name}: HTTP {r.status_code}, no entries")
+                    break
+                for e in d.entries[:8]:
+                    dt = None
+                    if getattr(e, "published_parsed", None):
+                        dt = datetime(*e.published_parsed[:6], tzinfo=timezone.utc)
+                    if dt and dt < window:
+                        continue
+                    add("watch", e.get("title", ""), e.get("link", ""), name,
+                        date=dt, meta={"kind": "video"})
+                    got += 1
+                break
+            except Exception as ex:
+                errors.append(f"youtube/{name}: {type(ex).__name__}")
+                break
+        if got:
+            live += 1
+        time.sleep(2.0)                          # YouTube rate-limits hard
+    # Silent emptiness is the failure mode that cost a whole section
+    # yesterday. If no channel answered, that is a fault, not a quiet week.
+    if live == 0:
+        raise RuntimeError("all 14 YouTube channels returned nothing")
 
 
 @guard

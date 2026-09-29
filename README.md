@@ -111,3 +111,13 @@ github.com            stratechery.com      classcentral.com
 a16z.com              sequoiacap.com       review.firstround.com
 mckinsey.com          huggingface.co       blog.google
 ```
+
+## Why the repo lives in ~/morning-brief
+
+macOS TCC blocks `launchd` background agents from executing anything inside
+`~/Documents`, `~/Desktop` or `~/Downloads` without Full Disk Access. The job
+fails with exit 126 and `Operation not permitted` **before running a single
+line**, so there is no application log to find — only `launchd.err`.
+
+Keep this repo outside those folders. Do not "fix" it by granting Full Disk
+Access to bash.

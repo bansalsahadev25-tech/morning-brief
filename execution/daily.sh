@@ -3,7 +3,7 @@
 # If the Mac was asleep at 10:00, launchd runs it at the next wake.
 set -u
 export PATH="$HOME/.local/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin"
-REPO="$HOME/Documents/Code Projects/morning-brief"
+REPO="$HOME/morning-brief"
 cd "$REPO" || exit 1
 LOG="$REPO/.tmp/run_$(date +%Y-%m-%d).log"
 mkdir -p .tmp
