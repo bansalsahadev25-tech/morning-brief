@@ -1,3 +1,4 @@
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>The Morning Brief</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 <style>
@@ -184,6 +185,9 @@
   #issuenav .sp{flex:1}
   #issuenav .lbl{color:var(--ink3,#78838F);text-transform:uppercase;
     letter-spacing:.1em}
+  /* keep the sticky bar from clipping whatever you jump to */
+  section,.shead,.problem,.story{scroll-margin-top:3.4rem}
+  @media print{#issuenav{display:none}}
 </style>
 <nav id="issuenav" aria-label="Issue navigation">
   <span class="lbl">Issue</span>

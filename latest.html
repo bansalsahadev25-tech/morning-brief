@@ -1,3 +1,4 @@
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>The Morning Brief</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 <style>
@@ -184,6 +185,9 @@
   #issuenav .sp{flex:1}
   #issuenav .lbl{color:var(--ink3,#78838F);text-transform:uppercase;
     letter-spacing:.1em}
+  /* keep the sticky bar from clipping whatever you jump to */
+  section,.shead,.problem,.story{scroll-margin-top:3.4rem}
+  @media print{#issuenav{display:none}}
 </style>
 <nav id="issuenav" aria-label="Issue navigation">
   <span class="lbl">Issue</span>
@@ -215,6 +219,64 @@
     distribution and who owns the boring vertical.</em>
   </p>
 </header>
+<!--PROBLEM-BOARD-START-->
+<style>
+  .problem{padding-bottom:30px;margin-bottom:30px;border-bottom:1px solid var(--rule)}
+  .problem:last-child{border-bottom:0;margin-bottom:0;padding-bottom:6px}
+  .pgrade{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:9px}
+  .pgrade .badge{font-family:"IBM Plex Mono",monospace;font-size:.62rem;font-weight:600;
+    letter-spacing:.11em;color:#fff;background:var(--g);padding:3px 8px}
+  .pgrade .caveat{font-family:"IBM Plex Mono",monospace;font-size:.66rem;color:var(--ink3)}
+  .problem h3{font-family:Newsreader,Georgia,serif;font-weight:600;
+    font-size:clamp(1.3rem,4vw,1.7rem);line-height:1.18;margin:0 0 16px;
+    letter-spacing:-.01em;text-wrap:balance}
+  ol.rpath{margin:0;padding-left:1.1rem}
+  ol.rpath li{margin-bottom:7px}
+  ol.rpath li:last-child{margin-bottom:0}
+  .pintro{font-family:Newsreader,Georgia,serif;font-size:1.06rem;line-height:1.5;
+    color:var(--ink2);margin:0 0 26px;text-wrap:pretty}
+</style>
+<section>
+  <div class="shead"><span class="snum">§0</span><h2>The Problem Board</h2>
+    <span class="scount">2 of 8</span></div>
+  <p class="pintro">
+    Every accelerator says it funds people “solving hard problems”, and not one
+    of them tells you which. This does. Sourced, graded honestly, with somewhere
+    to start reading.
+  </p>
+
+  <article class="problem">
+    <div class="pgrade" style="--g:#0D6A5E">
+      <span class="badge">START THIS MONTH</span><span class="caveat">solo · no capital · no credentials</span>
+    </div>
+    <h3>Deploying personal software is still hard, and agents made it urgent</h3>
+    <dl class="brief">
+      <dt>The problem</dt><dd>Agents made it trivial to BUILD software that will only ever have one or a handful of users — a tool for your team, a tracker for your own workflow. Deploying and sharing it is still as hard as it was in 2015. AWS and Azure were designed for software that scales to millions, and that complexity is now the bottleneck.</dd>
+      <dt>Who says it's hard</dt>
+      <dd>Y Combinator, Requests for Startups — &#x27;A Cloud for Small Software&#x27; — <a href="https://www.ycombinator.com/rfs">source</a></dd>
+      <dt>Why it's still open</dt><dd>The hard parts are not the hosting. They are auth and permissions for arbitrary user-written code, per-company environment customisation, and letting non-technical people share executable code without it becoming a security incident. Everyone underestimates the third one.</dd>
+      <dt>Who's already trying</dt><dd>Vercel, Replit, Val Town, Cloudflare Workers, Deno Deploy</dd>
+      <dt>Your angle</dt><dd class="foryou">You already live in this problem — you build with Claude Code and then have nowhere good to put the result. That is the founder&#x27;s unfair advantage in its cheapest form: you are the user.</dd>
+      <dt>Research path</dt><dd><ol class="rpath"><li>Build the ugliest possible version for yourself first: one command that takes a Claude Code project and gives you a URL with auth.</li><li>Read Val Town&#x27;s public writeups on sandboxing user code — they have hit every wall you will hit.</li><li>Then ask 10 people in your hostel who build things where their projects currently live. The answer is &#x27;localhost&#x27; and that is the market.</li></ol></dd>
+    </dl>
+  </article>
+  <article class="problem">
+    <div class="pgrade" style="--g:#A36A12">
+      <span class="badge">6–12 MONTHS OUT</span><span class="caveat">needs a team, hardware or access</span>
+    </div>
+    <h3>The software running physical work has not changed in 20 years</h3>
+    <dl class="brief">
+      <dt>The problem</dt><dd>80% of the global workforce does not sit at a desk. Construction, maintenance, fleet operations still run on software that dispatches people, tracks them, manages assets and bills the customer. Those industries spend 10-100x more on labour than on software.</dd>
+      <dt>Who says it's hard</dt>
+      <dd>Y Combinator RFS — &#x27;New Operating Systems for the Physical World&#x27; — <a href="https://www.ycombinator.com/rfs">source</a></dd>
+      <dt>Why it's still open</dt><dd>Incumbents charge for human coordination. Nobody has built the layer that schedules agents, robots and humans together — and whoever does captures end-to-end records of how the work actually happens, which no frontier lab or robotics startup will have.</dd>
+      <dt>Who's already trying</dt><dd>ServiceTitan, Samsara, Procore — all built for the old model</dd>
+      <dt>Your angle</dt><dd class="foryou">This is the category your cab booking project sits in. Dispatch, matching, fleet, real-world supply. You are already inside the problem, with users walking past you, which is the part nobody can buy.</dd>
+      <dt>Research path</dt><dd><ol class="rpath"><li>Re-read your own PLAN.md with this framing — you are not building a booking form, you are building dispatch.</li><li>Talk to the middleman you already know about what HE cannot see: idle vehicles, no-shows, driver reliability.</li><li>Samsara&#x27;s S-1 — what fleet operators actually pay for, in their own words.</li></ol></dd>
+    </dl>
+  </article>
+</section>
+<!--PROBLEM-BOARD-END-->
 
 <!-- ========== §1 ========== -->
 <section>

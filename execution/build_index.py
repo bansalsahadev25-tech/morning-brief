@@ -65,6 +65,9 @@ def nav_html(rows, current_day):
   #issuenav .sp{{flex:1}}
   #issuenav .lbl{{color:var(--ink3,#78838F);text-transform:uppercase;
     letter-spacing:.1em}}
+  /* keep the sticky bar from clipping whatever you jump to */
+  section,.shead,.problem,.story{{scroll-margin-top:3.4rem}}
+  @media print{{#issuenav{{display:none}}}}
 </style>
 <nav id="issuenav" aria-label="Issue navigation">
   <span class="lbl">Issue</span>
@@ -80,8 +83,19 @@ def nav_html(rows, current_day):
 {NAV_END}"""
 
 
+CHARSET = ('<meta charset="utf-8">'
+           '<meta name="viewport" content="width=device-width,initial-scale=1">')
+
+
 def inject_nav(path, rows, day):
     html = open(path, encoding="utf-8").read()
+
+    # Standalone issue files are served straight off GitHub Pages with no
+    # wrapper, so without an explicit charset the browser falls back to
+    # Latin-1 and every § — and every em dash — renders as mojibake.
+    if "<meta charset" not in html.lower():
+        html = CHARSET + "\n" + html
+
     block = nav_html(rows, day)
     if NAV_START in html and NAV_END in html:
         a = html.index(NAV_START)
