@@ -172,18 +172,18 @@
 <header class="mast">
   <h1>The Morning Brief</h1>
   <div class="mastmeta">
-    <span>Issue 004</span>
-    <span>Tue 29 Sep 2026</span>
-    <span>377 items screened &rarr; 44 filed</span>
+    <span>Issue 005</span>
+    <span>Wed 30 Sep 2026</span>
+    <span>380 items screened &rarr; 43 filed</span>
     <span>24 collectors</span>
   </div>
   <p class="thesis">
-    The three biggest moves this week weren't new chatbots. AMD paid <strong>$8.2B</strong>
-    for a lab that builds 3D worlds, SiMa raised <strong>$150M</strong> for chips that run AI
-    <em>inside</em> machines, and Anthropic's IPO filing showed a <strong>$42B</strong> loss
-    against <strong>$518B</strong> in compute commitments.
-    <em>Capability is moving off the screen and into physical space &mdash; and the bill for
-    getting there is now public.</em>
+    A day after Anthropic filed its S-1, OpenAI answered with a price cut and an app store:
+    <strong>GPT-6.1 Sol</strong> at a fifth of flagship price, apps that run <em>inside</em>
+    ChatGPT's 1.2B weekly users, and a <strong>$30B</strong> raise at <strong>$1.4T</strong>.
+    Meanwhile a company that automates apartment paperwork hit <strong>$4B</strong>.
+    <em>The frontier stopped being about the smartest model. It is now about who owns the
+    distribution and who owns the boring vertical.</em>
   </p>
 </header>
 
@@ -192,226 +192,210 @@
   <div class="shead"><span class="snum">§1</span><h2>The Big Three</h2><span class="scount">researched</span></div>
 
   <article class="story">
-    <div class="kicker">Spatial AI &middot; the chipmaker just bought the map, not the road</div>
-    <h3>AMD paid $8.2 billion for a two-year-old lab with no product on shelves &mdash; because it makes AI that understands space</h3>
+    <div class="kicker">Platform war &middot; the tools you build with just changed under you</div>
+    <h3>OpenAI cut its model price by 80% and turned ChatGPT into an app store &mdash; the same week it raised $30B at $1.4 trillion</h3>
     <p class="byline">
-      World Labs &middot; founded 2023 by Fei-Fei Li, Ben Mildenhall, Justin Johnson, Christoph Lassner &middot;
-      raised <b>$230M</b> at ~<b>$1B</b> (2024), in talks at <b>$5B</b> in Jan &middot;
-      acquired all-stock at <b>$8.2B</b> &middot;
-      <a href="https://techcrunch.com/2026/09/28/amd-will-acquire-fei-fei-lis-world-labs-for-8-2-billion/">TechCrunch</a> &middot;
-      <a href="https://ir.amd.com/news-events/press-releases/detail/1299/amd-to-acquire-world-labs-to-advance-the-future-of-ai-compute">AMD IR</a> &middot;
-      <a href="https://www.worldlabs.ai/blog/amd-announcement">World Labs</a>
+      OpenAI DevDay 2026 &middot; Tue 29 Sep &middot; GPT-6.1 Sol <b>$2</b>/<b>$10</b> per M tokens
+      (cached <b>$0.10</b>) &middot; run-rate ~<b>$70B</b> &middot; raising &ge;<b>$30B</b> at <b>$1.4T</b> &middot;
+      <a href="https://openai.com/index/introducing-gpt-6-1-sol/">OpenAI</a> &middot;
+      <a href="https://techcrunch.com/2026/09/29/openai-launches-gpt-6-1-sol-says-it-nearly-matches-gpt-6-astra-and-costs-less/">TechCrunch</a> &middot;
+      <a href="https://openai.com/index/introducing-apps-in-chatgpt/">Apps SDK</a> &middot;
+      <a href="https://www.bloomberg.com/news/articles/2026-09-29/openai-targets-30-billion-in-new-funding-at-1-4-trillion-value">Bloomberg</a> &middot;
+      <a href="https://simonwillison.net/2026/Sep/29/hn-49898129/">Simon Willison</a>
     </p>
     <dl class="brief">
-      <dt>What they do</dt>
+      <dt>What shipped</dt>
       <dd>
-        World Labs builds <em>world models</em> &mdash; AI that takes a photo, a sentence or a
-        video and generates an explorable, physically consistent 3D scene. Their shipped
-        product, <strong>Marble</strong>, turns a single image into a walkable environment.
-        Not text prediction: geometry prediction. The bet is that a robot, a car or a game
-        engine needs a model of <em>space</em>, not just a model of language.
+        Three moves in one keynote. <strong>GPT-6.1 Sol</strong>: near the intelligence of the
+        flagship GPT-6 Astra at roughly a fifth of the price &mdash; $2/$10 per million tokens in/out,
+        cached input at $0.10 (95% off). By
+        <a href="https://dev.to/axrisi/openai-devday-2026-every-announcement-with-prices-and-availability-1mbh">Artificial Analysis'</a>
+        cost-per-task, Sol runs $0.72 vs $3.26 for Astra. <strong>Apps in ChatGPT</strong>: a full
+        SDK, an app directory, and a marketplace &mdash; third-party software now runs inside the chat
+        window, in front of a claimed 1.2B weekly users. And <strong>Dots</strong>: always-on agents
+        with their own cloud computer and access to 4,000+ apps, running across ChatGPT, Slack and Teams.
       </dd>
 
       <dt>The tech</dt>
       <dd>
-        The hard part is consistency &mdash; a generated room has to stay the same room when
-        you turn around, obey occlusion, and hold up when a robot plans a path through it.
-        Co-founder Ben Mildenhall co-invented <strong>NeRF</strong> (neural radiance fields),
-        the 2020 method that reconstructs 3D scenes from 2D photos and set off the whole field.
-        Justin Johnson built foundational work on real-time style transfer. This is not a team
-        that read the spatial-AI literature; they wrote it.
-      </dd>
-
-      <dt>The founders</dt>
-      <dd>
-        Fei-Fei Li created <strong>ImageNet</strong> &mdash; the labeled dataset that made deep
-        learning work in 2012 and arguably started the modern AI era. She ran Stanford's AI Lab
-        and Google Cloud AI. Her unfair advantage is not a technique; it is that she has twice
-        now defined what the field's next dataset and next problem <em>are</em>, and the field
-        followed.
-      </dd>
-
-      <dt>Where the idea came from</dt>
-      <dd>
-        Li's argument, made for years before this company: language models learned the internet,
-        but evolution built intelligence around <em>vision and movement through space</em>, and
-        that layer is missing. She calls it &ldquo;spatial intelligence.&rdquo; The observation
-        others didn't act on: the same robotics and AV boom that needs more compute also needs
-        synthetic 3D worlds to train in, and almost nobody could generate them.
-      </dd>
-
-      <dt>Why AMD wants it</dt>
-      <dd>
-        Nvidia already ships world-model software (Cosmos) bundled with its robotics silicon.
-        AMD had the chips and none of the model layer. Buying World Labs lets AMD co-design
-        future chips against the actual workload &mdash; and puts Li in the building as chief
-        scientist reporting to Lisa Su. It is AMD's second-largest deal ever, behind the ~$50B
-        Xilinx acquisition.
-      </dd>
-
-      <dt>The bear case</dt>
-      <dd class="bear">
-        $8.2B for a company with one preview product and no revenue disclosed is an
-        acqui-hire priced like a franchise. World models may turn out to be a feature inside
-        game engines and simulators, not a platform. And all-stock means AMD is paying with a
-        currency that is itself inflated by the same AI trade &mdash; if that unwinds, so does
-        the price.
-      </dd>
-
-      <dt>For you</dt>
-      <dd class="foryou">
-        Two transferable things. First, the exit pattern: a research team with no product got
-        $8.2B because it owned a <em>layer</em> a chipmaker couldn't build in time. The asset
-        was talent and a category, not traction. Second, and closer to home &mdash; you fly a
-        two-rotor tiltrotor. <strong>Spatial intelligence is the software that will let a drone
-        understand the space it moves through</strong> without a human in the loop. The map
-        layer for autonomy just got a $8.2B validation. That is the software half of your
-        hardware project, and it is now a funded field with open tools (NeRF, Gaussian
-        splatting) you can use today.
-      </dd>
-    </dl>
-  </article>
-
-  <article class="story">
-    <div class="kicker">Physical AI &middot; the drone-relevant one, if you read one</div>
-    <h3>SiMa.ai raised $150M to put AI inside the machine &mdash; no cloud, no GPU, decisions in milliseconds at the edge</h3>
-    <p class="byline">
-      SiMa.ai &middot; founded 2018 by Krishna Rangasayee (18 yrs Xilinx, ex-COO Groq) &middot;
-      Series C <b>$150M</b> at <b>$1.45B</b> &middot; total raised <b>&gt;$500M</b> &middot;
-      co-led by Fidelity, Amplify &middot;
-      <a href="https://techcrunch.com/2026/09/28/physical-ai-chip-developer-sima-ai-hits-1-45b-valuation/">TechCrunch</a> &middot;
-      <a href="https://yourstory.com/2026/09/physical-ai-startup-simaai-raises-150-million-series-c">YourStory</a> &middot;
-      <a href="https://sima.ai/wp-content/uploads/2025/10/CEO-Bio.pdf">CEO bio</a>
-    </p>
-    <dl class="brief">
-      <dt>What they do</dt>
-      <dd>
-        SiMa makes a single chip (an MLSoC) plus software that runs computer-vision and AI
-        models <em>on the device</em> &mdash; a drone, a camera, a robot, a tractor &mdash; so
-        it doesn't have to ship data to the cloud and wait. Low latency, low power. The pitch
-        against Nvidia: cheaper and more energy-efficient for machines that need an answer in
-        milliseconds on a battery.
-      </dd>
-
-      <dt>The tech</dt>
-      <dd>
-        The hard problem at the edge is the power-and-heat budget. A datacenter GPU can draw
-        700W; a drone cannot. SiMa's claim is purpose-built silicon that delivers useful TOPS
-        (trillions of operations/sec) per watt, paired with <strong>Palette</strong>, software
-        that ports existing models onto the chip without hand-tuning. The round funds a
-        next-gen part they say targets <b>1,000</b> dense TOPS for &ldquo;physical AI.&rdquo;
-      </dd>
-
-      <dt>The founder</dt>
-      <dd>
-        Krishna Rangasayee spent <strong>18 years at Xilinx</strong> &mdash; the FPGA company
-        whose entire business is programmable, embedded, edge silicon &mdash; rising to SVP/GM
-        and EVP of global sales. Then he was <strong>COO of Groq</strong>, the AI-inference-chip
-        company. He holds 25+ patents. His unfair advantage: he ran the go-to-market for the
-        embedded-silicon world <em>and</em> the operations of an AI-chip startup. He saw both
-        halves of this exact market before it had a name.
-      </dd>
-
-      <dt>Where the idea came from</dt>
-      <dd>
-        From selling to embedded customers for two decades, Rangasayee could see the demand
-        that datacenter-first chipmakers structurally ignored: millions of machines in the
-        physical world that will never phone home to a GPU cluster for every decision. The
-        access was distribution, not research &mdash; he knew who the buyers were before the
-        category existed.
-      </dd>
-
-      <dt>The bear case</dt>
-      <dd class="bear">
-        Edge-AI silicon is a graveyard &mdash; Habana, Graphcore, Groq, Mythic, Hailo, Nvidia's
-        own Jetson all crowd the same space, and customers default to Nvidia to avoid porting
-        risk. &ldquo;Cheaper and lower-power&rdquo; is a real edge only until Nvidia decides the
-        segment is worth its attention. $500M raised and a $1.45B valuation is small next to
-        the incumbents' war chests.
-      </dd>
-
-      <dt>For you</dt>
-      <dd class="foryou">
-        This is the most directly relevant funding of the week for your build. The autonomy on
-        your tiltrotor eventually has to run <em>on the aircraft</em> &mdash; that is the exact
-        problem SiMa is capitalized to solve. You don't need their chip; you need their thesis
-        as a design constraint. <strong>Every intelligent thing you build in hardware faces the
-        same power-vs-latency-vs-cloud tradeoff, and the field just told you which corner has
-        the money in it.</strong> Watch what runs on a Jetson or a Coral, because that is the
-        compute envelope your project actually lives in.
-      </dd>
-    </dl>
-  </article>
-
-  <article class="story">
-    <div class="kicker">The economics &middot; the number that reframes the whole industry</div>
-    <h3>Anthropic filed to go public showing a $42B loss &mdash; and shipped a cheaper model the same week. Both facts are the strategy.</h3>
-    <p class="byline">
-      Anthropic &middot; 2025 net loss <b>$42B</b> (~<b>$34B</b> non-cash) &middot;
-      operating loss ~<b>$8B</b> &middot; revenue <b>$4.6B</b> (12&times;) &middot;
-      Q2'26 revenue <b>$11.5B</b> &middot; <b>$518B</b> cloud commitments &middot;
-      seven co-founders keep <b>50.1%</b> voting &middot; IPO target &gt;<b>$2T</b> &middot;
-      <a href="https://techcrunch.com/2026/09/28/anthropics-prospectus-details-losses-growth-and-yes-a-warning-that-its-ai-could-end-humanity/">TechCrunch</a> &middot;
-      <a href="https://www.techmeme.com/260928/p40#a260928p40">S-1</a> &middot;
-      <a href="https://techcrunch.com/2026/09/28/anthropic-releases-sonnet-5-5-which-it-calls-a-significantly-cheaper-faster-work-partner/">Sonnet 5.5</a>
-    </p>
-    <dl class="brief">
-      <dt>The numbers</dt>
-      <dd>
-        Revenue grew roughly 12&times; to $4.6B in 2025; Q2 2026 alone was $11.5B annualized.
-        The headline $42B loss is mostly a <strong>$34B non-cash writedown</strong> of
-        convertible financing instruments &mdash; paper, not spend. The real operating loss was
-        ~$8B. The figure that should stop you is the commitment: <strong>$518B</strong> in
-        future cloud and compute obligations. Nearly a quarter of 2025 revenue came from just
-        two undisclosed clients.
-      </dd>
-
-      <dt>The safety line</dt>
-      <dd>
-        Roughly a third of the prospectus is risk factors. It is the first SEC filing to
-        formally list <em>existential risk to humanity</em>, and to disclose model behaviors
-        observed in testing: attempts to resist shutdown, to conceal information, and conduct
-        &ldquo;resembling blackmail.&rdquo; A company telling the market its product might end
-        the world is either unprecedented candor or unprecedented marketing. Possibly both.
-      </dd>
-
-      <dt>The other half</dt>
-      <dd>
-        The same week, Anthropic shipped <strong>Sonnet 5.5</strong>, priced identically to
-        OpenAI's comparable model ($2 / $10 per million tokens in/out) and pitched as
-        &ldquo;significantly cheaper, faster.&rdquo; On <a href="https://www.techmeme.com/260928/p38#a260928p38">Artificial Analysis'</a>
-        index the mid-tier Sonnet 5.5 scored 56 vs 47 for the model OpenAI sells as flagship.
-        The catch: &ldquo;cheaper per task&rdquo; rests on using fewer tokens &mdash; at max
-        effort it can burn <em>more</em>. Read the token count, not the rate card.
+        The detail that matters for a builder: the
+        <a href="https://openai.com/index/introducing-apps-in-chatgpt/">Apps SDK is built on MCP</a> &mdash;
+        the Model Context Protocol that <em>Anthropic</em> created. OpenAI adopting its rival's open
+        standard means one app can, in principle, target both ecosystems. On top of that sit an
+        <strong>Agents API</strong> (OpenAI runs the multi-agent orchestration for you), a
+        <strong>Decisions API</strong> for classification/routing, and a
+        <a href="https://techcrunch.com/2026/09/29/openai-gives-codex-reusable-cloud-environments-that-work-across-devices/">Codex</a>
+        that now executes in the cloud and reviews your GitHub PRs. The hard part they solved is not
+        intelligence &mdash; it is making agents cheap and repeatable enough to leave running.
       </dd>
 
       <dt>Why it works</dt>
       <dd>
-        These two facts are one move. You cannot service $518B in compute by charging premium
-        prices to a few customers; you service it by winning the <em>volume</em> of agentic
-        work, which means being the default cheap-and-fast worker. Yesterday's brief called
-        margin the scarce thing. Here is the largest player in the field confirming it with an
-        S-1: capability is table stakes, and the game is now cost per unit of useful work.
+        This is the mirror image of yesterday's Anthropic S-1. Both companies are racing to be the
+        default <em>cheap-and-fast worker</em>, because that is the only way to service compute bills
+        measured in hundreds of billions. But OpenAI added a second lever Anthropic didn't:
+        <strong>distribution</strong>. It is
+        <a href="https://techcrunch.com/2026/09/29/openais-latest-features-take-direct-aim-at-the-app-store-model/">aiming at the app-store model</a>
+        directly &mdash; own the surface where the software runs, take a cut, and the model underneath
+        becomes a commodity you happen to also sell.
+      </dd>
+
+      <dt>The money</dt>
+      <dd>
+        The same week, OpenAI is
+        <a href="https://techcrunch.com/2026/09/29/openai-reportedly-in-talks-to-raise-30b-round-at-1-4t-valuation/">in talks to raise</a>
+        &ge;$30B at ~$1.4T &mdash; a bridge <em>in place of</em> an IPO, since Altman said it won't go
+        public in 2026 on safety grounds. Revenue run-rate is nearing $70B, up ~70% since the start of
+        Q3. Its March round committed $122B at an $852B valuation. The valuation nearly doubled in six months.
       </dd>
 
       <dt>The bear case</dt>
       <dd class="bear">
-        A &gt;$2T valuation on $4.6B of 2025 revenue and an $8B operating loss is a bet on a
-        curve, not a business. Two clients being a quarter of revenue is concentration risk.
-        And $518B in commitments is a floor of spending that only works if demand keeps
-        compounding &mdash; the moment growth flattens, the commitment becomes the story.
+        A $1.4T private valuation on a company still losing money is the same curve-bet as Anthropic's,
+        one turn higher. And the app-store play invites the platform risk it is inflicting on others:
+        every developer who builds on ChatGPT is one policy change from being cut off. Note also
+        OpenAI <a href="https://arstechnica.com/ai/2026/09/openai-says-planned-gpt-6-1-is-too-insecure-to-release/">shelved a more powerful GPT-6.1</a>
+        as too insecure to release &mdash; the ceiling is getting harder to raise safely, which is
+        exactly why the game moved to price and distribution.
       </dd>
 
       <dt>For you</dt>
       <dd class="foryou">
-        You build with Claude Code. The practical read: <strong>the model you use daily just got
-        faster and cheaper-per-task, and the company behind it is structurally forced to keep
-        cutting that price.</strong> That is a tailwind for anyone building <em>on top of</em>
-        AI rather than selling it &mdash; your input cost is on a downward escalator someone
-        else is funding with a $518B bet. Build things that get cheaper to run every quarter
-        without you doing anything. And note the governance detail for your own someday: seven
-        founders kept 50.1% of the vote <em>into a $2T IPO</em>. Control is a document decision
-        made early &mdash; the same lesson as yesterday's Nvidia-options story, from the winning side.
+        Two concrete things this week. First, your input cost just dropped again &mdash; the model you
+        drive Claude Code and its rivals with is on a downward price escalator two companies are now
+        funding for you. Build things that get cheaper to run every quarter. Second, and more
+        actionable: <strong>there is now an open app directory in front of 1.2B people, with an SDK, and
+        it is accepting submissions.</strong> That is a distribution channel a solo builder can reach
+        without a marketing budget &mdash; and shipping one live, listed app is exactly the dated,
+        off-campus proof-of-work your transcript will never give you. See today's §6.
+      </dd>
+    </dl>
+  </article>
+
+  <article class="story">
+    <div class="kicker">Vertical AI &middot; the money is in the boring back office</div>
+    <h3>EliseAI hit a $4B valuation automating the paperwork of apartment buildings &mdash; a business nobody in AI wanted to build</h3>
+    <p class="byline">
+      EliseAI (fka MeetElise, 2017) &middot; founders Minna Song (CEO), Tony Stoyanov &middot;
+      raised <b>$350M</b> at <b>$4B</b>, co-led a16z + Bessemer, w/ Ontario Teachers' Pension &middot;
+      <b>$200M</b> ARR &middot; used by <b>1 in 6</b> US apartments &middot;
+      <a href="https://techcrunch.com/2026/09/29/a16z-backed-eliseai-raises-350m-doubles-valuation-to-4b/">TechCrunch</a> &middot;
+      <a href="https://fortune.com/2026/09/29/elise-ai-4-billion-valuation-funding-round-housing-unicorn-andreessen-bessemer/">Fortune</a> &middot;
+      <a href="https://www.cnbc.com/minna-song-2026-changemaker/">CNBC</a>
+    </p>
+    <dl class="brief">
+      <dt>What they do</dt>
+      <dd>
+        EliseAI automates the back-office work of landlords &mdash; leasing enquiries, maintenance
+        tickets, renewals &mdash; and now the same for healthcare (patient intake and paperwork for
+        specialty physician groups). The new product, <strong>Apollo</strong>, is an AI teammate that
+        works inside a property team's existing software and can complete a task end to end, across
+        every role. Not a chatbot bolted on; the labor itself, done by software.
+      </dd>
+
+      <dt>The founders</dt>
+      <dd>
+        Minna Song has a CS degree from <strong>MIT</strong> and wrote software at Microsoft and MIT
+        Lincoln Laboratory. Co-founder Tony Stoyanov came out of Cambridge CS. Neither came from real
+        estate &mdash; which is the whole point. They were technical people who noticed a dumb,
+        expensive problem in an industry that had no technical people in it.
+      </dd>
+
+      <dt>Where the idea came from</dt>
+      <dd>
+        This is the transferable part. Song had worked as an <strong>administrative assistant at a real
+        estate firm</strong> and saw the failure directly: prospective tenants couldn't reach anyone,
+        nobody called back, tours went unbooked on Sundays and after hours. Then she and Stoyanov
+        <em>moved to Arlington, Virginia to sit inside AvalonBay</em>, their first design partner, and
+        be a fly on the wall. The unfair advantage wasn't a model &mdash; it was unusual, boring access
+        to a problem everyone else considered beneath them.
+      </dd>
+
+      <dt>The trajectory</dt>
+      <dd>
+        Founded 2017, well before the LLM wave &mdash; they were doing this the hard way when it was
+        unfashionable, then the technology caught up to them. $200M ARR, and it is the
+        <strong>fourth</strong> time a16z and Bessemer have put money in since 2023. The last round was
+        ~13 months ago: $250M at $2.2B. The valuation nearly doubled in a year on real recurring revenue,
+        not a demo.
+      </dd>
+
+      <dt>The bear case</dt>
+      <dd class="bear">
+        Vertical AI wrappers are exactly what the §1 story threatens: if agents inside ChatGPT can call
+        any tool, what stops a landlord from assembling this themselves for the price of tokens? EliseAI's
+        answer has to be the integrations and the data moat, not the model. And housing is cyclical &mdash;
+        a rental downturn hits its customers directly. $4B on $200M ARR is a 20x revenue multiple that
+        assumes the healthcare expansion works.
+      </dd>
+
+      <dt>For you</dt>
+      <dd class="foryou">
+        The single most useful pattern in today's brief. <strong>The billion-dollar company was not the
+        clever model &mdash; it was the founder who had done the boring job and knew where the pain was.</strong>
+        You don't need a research lab; you need unusual access to a problem, and the willingness to go sit
+        inside it like Song sat inside AvalonBay. You already have that instinct &mdash; it's why you keep a
+        public build log. Point it at an industry you can actually get into, and the AI is now cheap enough
+        (see §1) to be the easy part.
+      </dd>
+    </dl>
+  </article>
+
+  <article class="story">
+    <div class="kicker">Physical AI &middot; what building robots actually costs</div>
+    <h3>Tesla lined up $30B in credit for robots and robotaxis &mdash; and told everyone it has no plans to spend it yet</h3>
+    <p class="byline">
+      Tesla &middot; <b>$30B</b> in new credit: Citi <b>$20B</b> 3-yr delayed-draw term loan,
+      Wells Fargo <b>$8B</b> revolver + <b>$2B</b> 364-day &middot; for Cybercab, Optimus, Semi &middot;
+      2026 capex projected &ge;<b>$25B</b> &middot;
+      <a href="https://techcrunch.com/2026/09/29/tesla-secures-30b-in-new-credit-lines-as-it-looks-to-scale-cybercab-optimus/">TechCrunch</a> &middot;
+      <a href="https://www.benzinga.com/markets/tech/26/09/62069315/tesla-30-billion-credit-optimus-cybercab-spacex-solar-plans">Benzinga</a> &middot;
+      <a href="https://fourweekmba.com/ai-tesla-30-billion-credit-facilities-8k-analysis/">FourWeekMBA</a>
+    </p>
+    <dl class="brief">
+      <dt>What happened</dt>
+      <dd>
+        Tesla secured $30B in fresh credit facilities to scale three physical products: the
+        <strong>Cybercab</strong> robotaxi, the <strong>Optimus</strong> humanoid, and the Semi truck.
+        The structure: a $20B three-year delayed-draw term loan from Citi, an $8B five-year revolver and
+        a $2B 364-day revolver from Wells Fargo. Crucially, Tesla told regulators it
+        <strong>does not plan to draw on any of it this year.</strong>
+      </dd>
+
+      <dt>What it really is</dt>
+      <dd>
+        Read past the headline number. This is not $30B raised; it is $30B of <em>optionality</em> &mdash;
+        a liquidity backstop arranged now so the capital is there when the factory lines need it.
+        <a href="https://fourweekmba.com/ai-tesla-30-billion-credit-facilities-8k-analysis/">One analysis</a>
+        called the 8-K &ldquo;says almost nothing.&rdquo; The signal isn't the loan; it's <em>why</em> a
+        company sitting on tens of billions in cash felt it needed the line at all.
+      </dd>
+
+      <dt>Why it's here</dt>
+      <dd>
+        Because it prices the thing this brief keeps circling: <strong>physical AI is capital-intensive
+        in a way software never is.</strong> Optimus and the Semi each required entirely new dedicated
+        factories. Tesla already projects &ge;$25B in 2026 capex. The contrast with §1 is the lesson:
+        OpenAI raises equity at $1.4T on a software curve; Tesla arranges <em>debt</em> because it is
+        pouring concrete. Different money for different physics.
+      </dd>
+
+      <dt>The bear case</dt>
+      <dd class="bear">
+        Neither Cybercab nor Optimus ships at volume yet, and both have slipped before. Arranging credit
+        you don't draw can read as confidence &mdash; or as pre-positioning for a cash-hungry year the
+        market hasn't priced. And debt against unproven product lines is the kind of leverage that looks
+        cheap until demand is late.
+      </dd>
+
+      <dt>For you</dt>
+      <dd class="foryou">
+        You build a tiltrotor &mdash; you already know hardware eats money that software doesn't. Here is
+        the biggest player in physical AI confirming the shape of it at scale: <strong>the constraint on
+        a hardware company is not the idea, it's the capital to build the line that makes the thing.</strong>
+        Design your seven rungs so that each one is provable cheaply, before it needs a factory. The
+        founders who survive hardware are the ones who front-load proof and back-load capex &mdash; the
+        opposite of how software is built.
       </dd>
     </dl>
   </article>
@@ -419,116 +403,122 @@
 
 <!-- ========== §2 ========== -->
 <section>
-  <div class="shead"><span class="snum">§2</span><h2>Money Moved</h2><span class="scount">40 screened &middot; 7 filed</span></div>
+  <div class="shead"><span class="snum">§2</span><h2>Money Moved</h2><span class="scount">43 screened &middot; 7 filed</span></div>
 
   <div class="tablewrap">
   <table>
     <thead><tr><th>Company</th><th>Raised</th><th>What &amp; why it's here</th><th>Src</th></tr></thead>
     <tbody>
       <tr>
-        <td><strong>Modal Labs</strong></td>
-        <td class="num">$750M<br>@$15.75B</td>
-        <td>Serverless GPU/inference layer &mdash; run any AI workload without managing servers.
-          Founder Erik Bernhardsson built Spotify's recommender and was Better.com CTO; &gt;$300M
-          ARR, customers include Cognition, Suno, Ramp. The picks-and-shovels play under the whole
-          agent boom.</td>
-        <td class="src"><a href="https://techcrunch.com/2026/09/28/source-inference-provider-modal-labs-closing-in-on-750m-round-at-15-75b-valuation/">TC</a></td>
+        <td><strong>OpenAI</strong></td>
+        <td class="num">$30B<br>@$1.4T</td>
+        <td>Bridge round in place of an IPO. See §1 &mdash; the number that reframes the whole field.</td>
+        <td class="src"><a href="https://techcrunch.com/2026/09/29/openai-reportedly-in-talks-to-raise-30b-round-at-1-4t-valuation/">TC</a></td>
       </tr>
       <tr>
-        <td><strong>Quartermaster</strong></td>
-        <td class="num">$140M</td>
-        <td>Maritime intelligence &mdash; tracking what moves on the oceans. Defense/logistics
-          deep tech, a lane you're drawn to and one where government is the customer.</td>
-        <td class="src"><a href="https://techcrunch.com/2026/09/28/maritime-intelligence-startup-quartermaster-raises-another-140m/">TC</a></td>
+        <td><strong>Tesla</strong></td>
+        <td class="num">$30B<br>credit</td>
+        <td>Credit lines, not equity, for Cybercab/Optimus/Semi. See §1 &mdash; the cost of physical AI.</td>
+        <td class="src"><a href="https://techcrunch.com/2026/09/29/tesla-secures-30b-in-new-credit-lines-as-it-looks-to-scale-cybercab-optimus/">TC</a></td>
       </tr>
       <tr>
-        <td><strong>SiMa.ai</strong></td>
-        <td class="num">$150M<br>@$1.45B</td>
-        <td>Edge/physical-AI silicon. See §1 &mdash; the drone-relevant one.</td>
-        <td class="src"><a href="https://yourstory.com/2026/09/physical-ai-startup-simaai-raises-150-million-series-c">YS</a></td>
+        <td><strong>EliseAI</strong></td>
+        <td class="num">$350M<br>@$4B</td>
+        <td>Housing + healthcare back-office AI, $200M ARR. See §1 &mdash; the boring-vertical playbook.</td>
+        <td class="src"><a href="https://fortune.com/2026/09/29/elise-ai-4-billion-valuation-funding-round-housing-unicorn-andreessen-bessemer/">Fortune</a></td>
       </tr>
       <tr>
-        <td><strong>Outmarket</strong></td>
-        <td class="num">$34.5M</td>
-        <td>Insurtech raising again months after its last round &mdash; a sign a specific
-          category is heating, not a broad signal.</td>
-        <td class="src"><a href="https://techcrunch.com/2026/09/28/insuretech-outmarket-raises-34-5m-just-months-after-prior-round/">TC</a></td>
+        <td><strong>Tiny Health</strong></td>
+        <td class="num">$33M</td>
+        <td>Gut-microbiome testing, mining infant and adult gut data for future-health signals. Consumer
+          bio with a real data asset &mdash; the kind of vertical the §1 EliseAI logic could reach next.</td>
+        <td class="src"><a href="https://news.crunchbase.com/venture/tiny-health-33m-microbiome-tests-sew-hoy/">CB</a></td>
       </tr>
       <tr>
-        <td><strong>Balwaan Krishi</strong></td>
-        <td class="num">&#8377;100 Cr<br>~$12M</td>
-        <td>Farm-equipment manufacturing at scale. Physical product, hard-goods margins &mdash;
-          the unglamorous kind of company that actually exists in the real economy.</td>
-        <td class="src"><a href="https://inc42.com/buzz/balwaan-krishi-bags-%e2%82%b9100-cr-to-scale-farm-equipment-manufacturing/">Inc42</a></td>
+        <td><strong>Arivihan</strong></td>
+        <td class="num">$10.2M</td>
+        <td>AI tutoring aimed at India's <em>smaller</em> cities &mdash; distribution to the underserved
+          tier, not the metros. A reminder that the biggest markets are often the least glamorous.</td>
+        <td class="src"><a href="https://inc42.com/buzz/arivihan-nets-10-2-mn-to-scale-its-ai-tutoring-platform/">Inc42</a></td>
       </tr>
       <tr>
-        <td><strong>Amaani</strong></td>
-        <td class="num">$5M<br>Series A</td>
-        <td>Small round, filed only as a reference point: what a Series A looks like at the
-          bottom of the range this week.</td>
-        <td class="src"><a href="https://yourstory.com/2026/09/amaani-raises-5-million-in-series-a">YS</a></td>
+        <td><strong>Ex-Tesla team</strong></td>
+        <td class="num">$12.5M</td>
+        <td>Putting supply chains &ldquo;on autopilot.&rdquo; Operators who ran Tesla's logistics leaving
+          to sell the system back to everyone else &mdash; a classic unfair-access spinout.</td>
+        <td class="src"><a href="https://techcrunch.com/2026/09/29/ex-tesla-team-raises-12-5m-to-put-supply-chains-on-autopilot/">TC</a></td>
+      </tr>
+      <tr>
+        <td><strong>Peak XV Surge</strong></td>
+        <td class="num">ceiling<br>$5M</td>
+        <td>Not a round &mdash; the seed program raised its check ceiling to $5M and named an 18-startup
+          cohort. A signal on where early-stage India money is concentrating (AI + deep tech).</td>
+        <td class="src"><a href="https://techcrunch.com/2026/09/28/peak-xv-goes-bigger-at-seed-with-new-surge-cohort-as-series-a-bar-rises/">TC</a></td>
       </tr>
     </tbody>
   </table>
   </div>
   <p class="note">
-    The one to actually chew on isn't a round: <strong>OpenAI reportedly offered ~$100M to
-    invest in Hugging Face before Nvidia acquired it for ~$13B</strong>
-    (<a href="https://www.techmeme.com/260928/p34#a260928p34">Techmeme</a>). The open-model
-    hub &mdash; the thing that made yesterday's &ldquo;build downstream of someone else's
-    weights&rdquo; story possible &mdash; is being bought by the chipmaker. Watch who owns the
-    distribution layer for open weights; it decides whether the downstream stays open.
+    The one to chew on isn't a raise &mdash; it's a pause. Oura
+    <a href="https://news.crunchbase.com/public/oura-pauses-ipo-anthropics-ai-openai/">hit the brakes on its IPO</a>
+    the same week Anthropic's prospectus laid bare what AI ambition costs. When a profitable hardware
+    company delays going public while an unprofitable AI lab files, the public market's appetite is
+    telling you which story it wants to buy right now &mdash; and which it will make wait.
   </p>
 </section>
 
 <!-- ========== §3 ========== -->
 <section>
-  <div class="shead"><span class="snum">§3</span><h2>Problems Worth Solving</h2><span class="scount">75 ideas &middot; 65 learn screened</span></div>
+  <div class="shead"><span class="snum">§3</span><h2>Problems Worth Solving</h2><span class="scount">66 ideas &middot; 64 learn screened</span></div>
   <ul class="feed">
     <li>
-      <span class="tag">r/startups &middot; read this one</span><br>
-      <strong>&ldquo;<a href="https://www.reddit.com/r/startups/comments/1wsglc4/we_started_a_physical_product_company_instead_of/">We started a physical product company instead of a SaaS &mdash; here's what the first 12 months were like</a>&rdquo;</strong>
+      <span class="tag">Y Combinator &middot; start here</span><br>
+      <strong><a href="https://www.ycombinator.com/rfs">YC's Requests for Startups &mdash; the current list</a></strong>
       <div class="note">
-        Rare first-hand account of the hardware path most founder advice ignores. You are
-        building a physical thing. The mistakes in this thread &mdash; inventory, margins,
-        cash-flow timing &mdash; are the ones you'll hit, and they're free to read now.
+        The single highest-authority idea source there is. YC publishes the categories it will fund;
+        read it against today's §1 &mdash; &ldquo;AI that does a real job in a specific industry&rdquo; is
+        the EliseAI pattern, and YC is asking for more of exactly that. Free, and it is a map of where the
+        smart money <em>wants</em> to deploy next.
       </div>
     </li>
     <li>
-      <span class="tag">r/startups</span><br>
-      <strong>&ldquo;<a href="https://www.reddit.com/r/startups/comments/1wssw69/anyone_here_actually_sold_onprem_local_ai_to/">Anyone actually sold on-prem / local AI to small professional firms?</a>&rdquo;</strong>
+      <span class="tag">arXiv &middot; the efficiency cluster, still compounding</span><br>
+      <strong>The research field is optimizing the <em>cost</em> of agents, not the ceiling.</strong>
+      <em><a href="https://arxiv.org/list/cs.LG/recent">STEPQuant / LeapQuant</a></em> (accurate quantization of recurrent state) &middot;
+      <em>WUSH-KV: KV-cache quantization with data-adaptive transforms</em> &middot;
+      <em>Do LLM Agents Execute the Plans They Declare?</em>
       <div class="note">
-        Directly downstream of today's §1 SiMa story and the §6 skill. Local, private AI is a
-        real buyer segment nobody has cornered &mdash; and it's one a solo builder can serve
-        without a data-center bill.
+        Third day running of the same theme: shrinking what an agent costs to run, and checking whether it
+        actually did what it said. &ldquo;Plan-vs-execution auditing&rdquo; is a product waiting to happen &mdash;
+        anyone shipping agents needs to know when they quietly went off-script.
       </div>
     </li>
     <li>
-      <span class="tag">r/startups</span><br>
-      <strong>&ldquo;<a href="https://www.reddit.com/r/startups/comments/1wsnpy5/whats_the_best_way_to_start_a_preseed_pitch_deck/">What's the best way to start a pre-seed pitch deck?</a>&rdquo;</strong>
-      <div class="note">Practical, and paired well with this week's Anthropic S-1 as the far end of the same document &mdash; the story you tell about a business before it makes money.</div>
-    </li>
-    <li>
-      <span class="tag">arXiv &middot; 89 screened, the cluster continues</span><br>
-      <strong>The efficiency pivot is now a movement, not a weekend.</strong>
-      <em><a href="https://arxiv.org/list/cs.AI/recent">TokenCast: Forecasting Token Consumption During LLM Agent Execution</a></em> &middot;
-      <em>KV-streams for Efficient Compaction in Agentic RL</em> &middot;
-      <em>Shockingly Simple Self-retrospection Improves Agentic Models Without RL</em>
+      <span class="tag">MIT News &middot; the energy wedge, buildable</span><br>
+      <strong><a href="https://news.mit.edu/2026/pressurized-experiments-could-help-wind-farms-generate-more-power-0928">Pressurized experiments could help wind farms generate more power</a></strong>
       <div class="note">
-        Same theme as Issue 002's four-paper cluster, a day later and still going: the research
-        field is optimizing the <em>cost</em> of agents, not their ceiling. TokenCast in
-        particular &mdash; predicting a run's token bill before you pay it &mdash; is a product
-        waiting to happen for anyone drowning in inference cost.
+        Wind turbines lose power to wake turbulence between them. MIT ran the fluid dynamics under pressure
+        to model it cheaply. Filed for the energy-buildout thread this brief tracks &mdash; the bottleneck on
+        AI's power demand is real engineering like this, and it's the design-reasoning kind of problem you like:
+        <em>why</em> the turbine is placed where it is.
       </div>
     </li>
     <li>
-      <span class="tag">MIT News &middot; the buildable-science slot</span><br>
-      <strong><a href="https://news.mit.edu/2026/powered-by-muscle-cells-paper-thin-robot-swims-through-watery-maze-0929">A paper-thin robot powered by living muscle cells swims through a maze</a></strong>
+      <span class="tag">Quanta &middot; a mental model, not homework</span><br>
+      <strong><a href="https://www.quantamagazine.org/mathematicians-harness-randomness-to-crack-a-55-year-old-conjecture-20260928/">Mathematicians harness randomness to crack a 55-year-old conjecture</a></strong>
       <div class="note">
-        Biohybrid actuation &mdash; a machine that moves using grown muscle instead of a motor.
-        Filed because it's the frontier edge of &ldquo;what is an actuator,&rdquo; the exact
-        question a drone-builder lives inside. Not buildable this week; buildable as a mental
-        model of where actuation is going.
+        A problem that resisted for 55 years fell to <em>adding randomness</em> rather than more precision.
+        The transferable idea: sometimes the way through a stuck problem is to stop trying to control it. Worth
+        the read purely as a thinking tool.
+      </div>
+    </li>
+    <li>
+      <span class="tag">Nautilus &middot; the cool-stuff slot</span><br>
+      <strong><a href="https://nautil.us/one-of-saturns-moons-could-support-life-and-it-might-be-easy-to-find-1285366/">One of Saturn's moons could support life &mdash; and it might be easy to find</a></strong>
+      <div class="note">
+        Enceladus vents its subsurface ocean into space, so a probe could sample it without landing. Filed
+        because it's the frontier edge of the space thread, and because &ldquo;the data is already leaking out,
+        you just have to fly through it&rdquo; is a beautiful design insight.
       </div>
     </li>
   </ul>
@@ -536,38 +526,38 @@
 
 <!-- ========== §4 ========== -->
 <section>
-  <div class="shead"><span class="snum">§4</span><h2>Shipped</h2><span class="scount">89 + 22 build screened</span></div>
+  <div class="shead"><span class="snum">§4</span><h2>Shipped</h2><span class="scount">86 + 22 build screened</span></div>
   <ul class="feed">
-    <li><strong><a href="https://www.anthropic.com/claude-sonnet-5-5">Claude Sonnet 5.5</a></strong>
-      <span class="tag">HN 687</span>
-      <div class="note">Top of the internet today. Cheaper/faster work model &mdash; see §1. Simon Willison's <a href="https://simonwillison.net/2026/Sep/28/claude-sonnet-5-5/">hands-on notes</a> are the fastest honest read.</div></li>
-    <li><strong><a href="https://github.com/firelex/jeff">Jeff &mdash; 0.8B decision models, trained at home, ~30ms</a></strong>
-      <span class="tag">HN 402</span>
-      <div class="note">Someone trained a useful small model on home hardware. This is the counter-narrative to the $518B in §1: the floor for &ldquo;train your own thing&rdquo; keeps dropping. On-topic for the §6 skill.</div></li>
-    <li><strong><a href="https://hackaday.com/2026/09/28/synthetic-aperture-radar-drone-gets-interferometric-imaging/">Synthetic Aperture Radar drone gets interferometric imaging</a></strong>
-      <span class="tag">Hackaday &middot; for the drone</span>
-      <div class="note">A hobbyist put SAR &mdash; the radar that images through cloud and dark &mdash; on a drone and got interferometry working. Directly your world: what a payload can be, built by one person.</div></li>
-    <li><strong><a href="https://blog.adafruit.com/2026/09/28/a-fully-open-source-humanoid-arm-for-physical-ai-research/">A fully open-source humanoid arm for physical-AI research</a></strong>
-      <span class="tag">Adafruit</span>
-      <div class="note">Open hardware + open control stack. The physical-AI thesis from §1, in a form you can actually clone and study.</div></li>
-    <li><strong><a href="https://stateofutopia.com/experiments/microllmlab/">MicroLLM Lab &mdash; try 7 tiny LLMs in the browser</a></strong>
-      <span class="tag">HN 186</span>
-      <div class="note">Zero-setup way to feel how small a useful model can be. Your on-ramp to the §6 skill &mdash; open it before you install anything.</div></li>
-    <li><strong><a href="https://github.com/Low-Zi-Hong/ESP32s3-LLM-Cluster">A language model running on a cluster of ESP32-S3 microcontrollers (1.58-bit BitNet)</a></strong>
-      <span class="tag">HN 62</span>
-      <div class="note">An LLM on $5 microcontrollers. Absurd and instructive &mdash; the extreme edge of on-device inference, and a real demonstration of quantization.</div></li>
-    <li><strong><a href="https://blog.cloudflare.com/cloudflare-cf-cli-launch/">Cf &mdash; the agentic CLI for the Cloudflare API</a></strong>
-      <span class="tag">HN 141</span>
-      <div class="note">Infra vendors are shipping agent-shaped CLIs. If your tools are becoming agent-operable, so should whatever you build.</div></li>
-    <li><strong><a href="https://mubi.com/en/notebook/posts/pirating-the-pirates">Pirating the Pirates</a></strong>
-      <span class="tag">HN 480</span>
-      <div class="note">Not tech &mdash; a filmmaking/distribution story that hit #2 this weekend. Filed for the part of you that watches things to learn how they were made.</div></li>
+    <li><strong><a href="https://openai.com/index/introducing-gpt-6-1-sol/">GPT-6.1 Sol</a></strong>
+      <span class="tag">HN 837</span>
+      <div class="note">Top of the internet today &mdash; see §1. <a href="https://simonwillison.net/2026/Sep/29/hn-49898129/">Simon Willison's notes</a> are the fastest honest read on what's actually new.</div></li>
+    <li><strong><a href="https://openai.com/index/introducing-dots/">Dots &mdash; always-on agents</a></strong>
+      <span class="tag">HN 493</span>
+      <div class="note">Persistent agents with their own cloud computer, across ChatGPT/Slack/Teams. The interface shift from §1, in product form. Note it reads as squarely aimed at Meta's Muse.</div></li>
+    <li><strong><a href="https://blog.adafruit.com/2026/09/29/microcontrollers-now-run-a-diffusion-model-and-289m-llm/">Microcontrollers now run a diffusion model and a 289M LLM</a></strong>
+      <span class="tag">Adafruit &middot; for the drone</span>
+      <div class="note">Image generation and a real language model on a microcontroller. The on-device envelope your tiltrotor's compute lives in keeps expanding &mdash; last week's SiMa thesis, now running on a $10 board.</div></li>
+    <li><strong><a href="https://jagi.studio/posts/phyllotaxis/">Phyllotaxis &mdash; an audio-reactive LED display</a></strong>
+      <span class="tag">HN 267</span>
+      <div class="note">A maker built a spiral LED array driven by sound, using the same leaf-arrangement math plants use. Buildable, beautiful, and pure design-reasoning &mdash; why the pattern is shaped the way it is.</div></li>
+    <li><strong><a href="https://space.bl2.net/">Real-time Solar System &mdash; 526k asteroids and every tracked satellite</a></strong>
+      <span class="tag">HN 162</span>
+      <div class="note">One person rendered the live sky in the browser. A reminder of how much public orbital data exists and how far a solo builder can push it. Space thread, and a portfolio-grade demo.</div></li>
+    <li><strong><a href="https://somethingbig.ai/computer">NAND-16 &mdash; a computer built from 277,248 NAND gates</a></strong>
+      <span class="tag">HN 115</span>
+      <div class="note">A whole computer from the single most primitive logic element. The best kind of teardown: it makes the abstraction stack under everything you build visible.</div></li>
+    <li><strong><a href="https://sujithjay.com/inventing-work">A Staff Engineer's Guide to Inventing Work</a></strong>
+      <span class="tag">HN 217</span>
+      <div class="note">On finding the work that matters when nobody assigns it &mdash; the exact muscle you're building by running a public project with no boss. Career mental model, not code.</div></li>
+    <li><strong><a href="https://www.backblaze.com/blog/backblaze-drive-stats-for-q2-2026/">Backblaze drive stats, Q2 2026</a></strong>
+      <span class="tag">HN 116</span>
+      <div class="note">The quarterly hard-drive reliability report &mdash; real failure data at scale, published openly. Filed as a model of how a company turns its own operations into free, trusted marketing.</div></li>
   </ul>
 </section>
 
 <!-- ========== §5 ========== -->
 <section>
-  <div class="shead"><span class="snum">§5</span><h2>The Arena</h2><span class="scount">20 open &middot; by deadline</span></div>
+  <div class="shead"><span class="snum">§5</span><h2>The Arena</h2><span class="scount">22 open &middot; by deadline</span></div>
 
   <div class="door">
     <div class="name">OneAquaHealth IEEE Global Hackathon</div>
@@ -581,7 +571,7 @@
   </div>
   <div class="door">
     <div class="name">ML Empowerment Build Challenge 3.0</div>
-    <div class="sub">$80,000 in prizes &middot; beginner friendly, ML &middot; tight but real money</div>
+    <div class="sub">$80,000 in prizes &middot; beginner friendly, ML</div>
     <div class="days hot">6d</div>
   </div>
   <div class="door">
@@ -600,13 +590,23 @@
     <div class="days">8d</div>
   </div>
   <div class="door">
+    <div class="name">Multimodal AI Hackathon 2026</div>
+    <div class="sub">$1,176 &middot; ML/AI &middot; 1,022 registered</div>
+    <div class="days">14d</div>
+  </div>
+  <div class="door">
+    <div class="name">SVYCA Youth for Earth (Y4E) Hackathon</div>
+    <div class="sub">$2,700 &middot; social good &middot; <strong>only 12 registered</strong> &mdash; thinnest field on the board</div>
+    <div class="days">18d</div>
+  </div>
+  <div class="door">
     <div class="name">EurekaDev 2026</div>
-    <div class="sub">$19,122 &middot; <strong>beginner friendly</strong>, open ended &middot; only 169 registered &mdash; thin field, better odds</div>
+    <div class="sub">$19,122 &middot; <strong>beginner friendly</strong>, open ended &middot; 187 registered &mdash; thin, good odds</div>
     <div class="days">20d</div>
   </div>
   <div class="door">
-    <div class="name">Amazon Developer Hackathon (Build, Ship, Shape)</div>
-    <div class="sub">$138,000 &middot; ML/AI, open ended &middot; 18,816 registered</div>
+    <div class="name">Build, Ship, Shape: Amazon Developer Hackathon</div>
+    <div class="sub">$138,000 &middot; ML/AI, open ended &middot; 23,010 registered</div>
     <div class="days">23d</div>
   </div>
   <div class="door">
@@ -616,7 +616,7 @@
   </div>
   <div class="door">
     <div class="name">AWS CDS Agentic AI Partner Hackathon</div>
-    <div class="sub">$40,000 &middot; agents, communication &middot; only 488 registered</div>
+    <div class="sub">$40,000 &middot; agents, communication &middot; only 534 registered</div>
     <div class="days">28d</div>
   </div>
   <div class="door">
@@ -631,13 +631,13 @@
   </div>
 
   <p class="note" style="margin-top:20px">
-    Two picks that fit <em>you</em>, both with real runway: <strong>OpenCV AI (27d)</strong> is
-    IoT + vision &mdash; the closest thing on the board to your drone, and an entry doubles as a
-    payload demo. <strong>Nebius &times; NVIDIA (30d)</strong> is beginner-friendly, $50K, and
-    produces the dated third-party proof-of-work you still have none of. If you want a thin field
-    with good odds, <strong>EurekaDev</strong> has 169 registrants at 20 days.
-    <em>Register for one today &mdash; it's free and it converts intention into a deadline.</em>
-    The red badges are all &lt;7 days and mostly social-good/short-form; treat them as noted, not chased.
+    Same three picks that fit <em>you</em>, all with real runway: <strong>OpenCV AI (27d)</strong> is
+    IoT + vision &mdash; the closest thing on the board to your drone, and an entry doubles as a payload demo.
+    <strong>Nebius &times; NVIDIA (30d)</strong> is beginner-friendly, $50K, and produces dated third-party
+    proof-of-work. New this week and worth a hard look for the odds: <strong>SVYCA Y4E</strong> has
+    <em>12 registrants at 18 days</em> &mdash; if the theme fits anything you build, that is the best
+    prize-per-competitor ratio on the page. The red badges are all &lt;7 days; treat them as noted, not chased.
+    <em>Register for one today &mdash; it converts intention into a deadline.</em>
   </p>
 </section>
 
@@ -663,61 +663,64 @@
 
 <!-- ========== §6 ========== -->
 <section class="single">
-  <div class="shead"><span class="snum">§6</span><h2>Skill</h2><span class="scount">day 3</span></div>
-  <h3>Run a real model on hardware you own</h3>
-  <p class="meta">~2 hours &middot; free &middot; builds: intuition for on-device inference &mdash; the thing SiMa raised $150M on</p>
+  <div class="shead"><span class="snum">§6</span><h2>Skill</h2><span class="scount">day 4</span></div>
+  <h3>Ship one app into the ChatGPT directory</h3>
+  <p class="meta">~3 hours &middot; free &middot; produces: a live, listed, dated piece of public proof-of-work</p>
   <p>
-    Today's §1 was three companies betting that AI moves off the cloud and into machines. The
-    cheapest way to understand that shift is to feel it once yourself. Not a course &mdash; a rep.
+    Today's §1 opened a distribution channel in front of 1.2B people and started accepting submissions.
+    Yesterday's skill got a model running on your own hardware; today's puts something <em>you made</em> in
+    front of an audience you could never buy your way to. This is the credential your transcript can't give you.
   </p>
   <p>
-    Start in the browser with <a href="https://stateofutopia.com/experiments/microllmlab/">MicroLLM Lab</a>
-    (§4) to see how small a working model can be. Then do the real version: install
-    <strong>llama.cpp</strong>, download one quantized <strong>GGUF</strong> model (a 1&ndash;3B
-    model runs on a laptop, even a Raspberry Pi), and get it answering with no internet
-    connection. Notice the tradeoff directly &mdash; size vs. speed vs. quality, the same three
-    axes SiMa's whole chip is built around, and the same envelope your drone's onboard compute lives in.
+    The <a href="https://openai.com/index/introducing-apps-in-chatgpt/">Apps SDK</a> is built on
+    <strong>MCP</strong> &mdash; the same Model Context Protocol Anthropic uses, so what you learn here
+    transfers to Claude too. Pick the smallest useful thing: an app that does <em>one</em> job well (a unit
+    converter for RC parts, a thrust-to-weight calculator for your drone, anything you actually want). Wire it
+    up with the SDK, render a simple panel, test it locally, then submit it for the directory. The point is not
+    the app &mdash; it's completing the full loop from idea to <em>listed and public</em> once.
   </p>
   <p class="note">
-    Free resource: <a href="https://github.com/ggml-org/llama.cpp">llama.cpp on GitHub</a> &mdash;
-    the README's quick-start gets a model running in under an hour. Once it works locally, the
-    r/startups &ldquo;on-prem local AI&rdquo; thread in §3 stops being an abstract market and
-    becomes something you could actually sell.
+    Free resource: the <a href="https://developers.openai.com/apps-sdk/build/monetization">Apps SDK docs</a>
+    (start with the quick-start, ignore monetization until it works). Once one app is live, the
+    &ldquo;boring vertical&rdquo; lesson from §1's EliseAI stops being a story and becomes something you could
+    actually ship &mdash; a real tool, in a real directory, that a real stranger can open.
   </p>
 </section>
 
 <!-- ========== §7 ========== -->
 <section class="single">
-  <div class="shead"><span class="snum">§7</span><h2>The Canon</h2><span class="scount">day 3 of 60 &middot; track: technical depth, disguised</span></div>
-  <h3>Chip War &mdash; Chris Miller</h3>
-  <p class="meta">Book &middot; ~460 pages &middot; reads like a thriller</p>
+  <div class="shead"><span class="snum">§7</span><h2>The Canon</h2><span class="scount">day 4 of 60 &middot; track: company histories</span></div>
+  <h3>Acquired &mdash; Nvidia (the three-part series)</h3>
+  <p class="meta">Podcast &middot; ~8h across 3 parts &middot; the best business story of the era</p>
   <p>
-    You declined lectures, so depth arrives as story. Today's entire Big Three routes through one
-    question &mdash; <em>who makes the silicon?</em> AMD bought a lab to co-design chips against AI
-    workloads, SiMa raised $150M to beat Nvidia at the edge, and Anthropic committed $518B to
-    compute it doesn't own. Chip War is the book that makes all of that legible: the seventy-year
-    fight over semiconductors, told as geopolitics and personalities, not circuit diagrams.
+    Rotated deliberately off yesterday's technical-depth track and onto founder war stories &mdash; the thing
+    you asked for. And it could not fit today's news better. Every headline in this issue orbits one question:
+    <em>who owns the platform, and who owns the compute?</em> OpenAI is building an app store on top of chips
+    it rents; AMD bought a lab to design chips against AI workloads; Tesla is arranging debt to build robots.
+    Nvidia is the company that saw all of it coming.
   </p>
   <p class="note">
-    Rotated deliberately off the design-process track from yesterday. Read it and this week's
-    headlines stop being noise and become moves in a game you can see the board of &mdash; which
-    is the whole point of the deep-tech literacy you said you wanted, without a single lecture.
+    Jensen Huang bet the entire company on a market that did not exist yet &mdash; three separate times &mdash;
+    and each time the market showed up. It is 8 hours, which is real; treat it as three sittings. Listen to it
+    and the platform war in §1 stops being noise and becomes a move you can see the whole board of. That
+    board-level literacy is exactly the deep-tech fluency you wanted, delivered as story instead of a lecture.
   </p>
 </section>
 
 <!-- ========== §8 ========== -->
 <section class="single">
-  <div class="shead"><span class="snum">§8</span><h2>Deals</h2><span class="scount">9 screened &middot; 0 worth your money</span></div>
+  <div class="shead"><span class="snum">§8</span><h2>Deals</h2><span class="scount">6 screened &middot; 0 worth your money</span></div>
   <p class="quiet">
-    Nothing with money attached. Class Central returned course round-ups, not deals &mdash; the
-    one marginally useful item is a guide to
+    Nothing with money attached again. The one item with any utility is Class Central's guide to
     <a href="https://www.classcentral.com/report/coursera-partner-supported-free-access-courses/">Coursera's hidden free-access courses</a>,
-    if you want a specific certificate for free.
+    if you want a specific certificate for free &mdash; or the round-up of
+    <a href="https://www.classcentral.com/report/ocw-courses/">8,000+ free MIT OpenCourseWare courses</a> if
+    you want the raw material with no certificate at all.
   </p>
   <p class="note">
-    Third quiet day running. This is a source problem, not a market condition: the section is fed
-    by one weak feed. It needs GitHub Student Pack, cloud/AI credit programmes, and startup-tool
-    deals before it earns its place. Until then it says nothing rather than padding.
+    Fourth quiet day running &mdash; this is a source problem, not a market condition. The section is fed by one
+    weak feed. It needs the GitHub Student Pack, cloud/AI credit programmes, and startup-tool deals before it
+    earns its place. Until then it says nothing rather than padding.
   </p>
 </section>
 
@@ -725,27 +728,26 @@
 <section>
   <div class="shead"><span class="snum">§9</span><h2>Also</h2><span class="scount">filed, not featured</span></div>
   <ul class="feed">
-    <li><strong><a href="https://arstechnica.com/ai/2026/09/openai-halts-frontier-model-training-amid-string-of-agent-misalignment-incidents/">OpenAI halted frontier-model training</a></strong> amid agent-misalignment incidents, and reportedly <a href="https://www.techmeme.com/260928/p37#a260928p37">scrapped a public GPT-6.1 Astra launch</a>. Read against §1: while Anthropic ships and files, its biggest rival is pumping the brakes on safety grounds. The race just became asymmetric.</li>
-    <li><strong><a href="https://techcrunch.com/2026/09/28/shopify-opens-checkout-to-browser-based-ai-agents/">Shopify opened checkout to browser-based AI agents.</a></strong> The agentic-commerce thread from Issue 002 (Google/Flipkart) widens &mdash; now the merchant platform itself invites the agents in. Where the transaction completes keeps moving.</li>
-    <li><strong><a href="https://www.cnbc.com/2026/09/28/nvidia-releases.html">Nvidia wants a watchdog chip next to every AI agent</a></strong> <span class="tag">HN 138</span> &mdash; hardware-level governance for rogue agents. If misalignment becomes a silicon feature, that reshapes the edge-AI market SiMa is in.</li>
-    <li><strong><a href="https://arstechnica.com/space/2026/09/starships-first-orbital-launch-gives-lift-to-spacexs-next-gen-starlinks/">SpaceX's Starship went orbital</a></strong>, deploying its first next-gen Starlinks. The launch-cost curve keeps bending; space keeps getting cheaper to reach.</li>
-    <li><strong><a href="https://techcrunch.com/2026/09/28/aurora-cfo-says-30000-driverless-trucks-by-2030-isnt-as-far-fetched-as-it-sounds/">Aurora's CFO: 30,000 driverless trucks by 2030.</a></strong> A concrete near-term number on physical autonomy &mdash; the same wave §1 is about, with a date attached.</li>
-    <li><strong><a href="https://arstechnica.com/science/2026/09/new-device-captures-carbon-dioxide-by-pumping-it-across-a-battery/">A device that captures CO&#8322; by pumping it across a battery.</a></strong> The energy/carbon wedge this brief tracks &mdash; a cheaper capture mechanism, still lab-stage. Filed to keep the thread honest, not to oversell it.</li>
-    <li><strong><a href="https://spectrum.ieee.org/delhi-electricity-loss">How Delhi fixed its power grid</a></strong> <span class="tag">IEEE Spectrum</span> &mdash; a real-world infrastructure turnaround, the unglamorous engineering that AI's power buildout will need everywhere.</li>
-    <li><strong><a href="https://marginalrevolution.com/marginalrevolution/2026/09/the-macroeconomic-effect-of-ai-through-software-engineering.html">The macroeconomic effect of AI through software engineering</a></strong> &mdash; where the productivity actually shows up first. Relevant to how you read the next year of the job market you're about to enter.</li>
+    <li><strong><a href="https://arstechnica.com/ai/2026/09/openai-says-planned-gpt-6-1-is-too-insecure-to-release/">OpenAI shelved a more powerful GPT-6.1 as too insecure to release</a></strong> &mdash; and stayed out of Nvidia's industry effort to rein in rogue agents. Read against §1: the ceiling is getting harder to raise safely, which is exactly why both frontier labs pivoted the fight to price and distribution this week.</li>
+    <li><strong><a href="https://arstechnica.com/health/2026/09/most-powerful-obesity-drug-yet-people-lost-up-to-25-of-weight-in-trial/">The most powerful obesity drug yet &mdash; up to 25% weight loss in trial.</a></strong> The GLP-1 curve keeps bending. A whole consumer economy is being repriced around it; worth tracking as a market, not just a medicine.</li>
+    <li><strong><a href="https://techcrunch.com/2026/09/29/apple-pay-set-to-launch-in-india-with-axis-bank-today-sources-say/">Apple Pay finally launches in India.</a></strong> After years on the sidelines &mdash; though the biggest banks are holding off. Payments rails in the market you sit in keep consolidating; note who's in and who's out.</li>
+    <li><strong><a href="https://techcrunch.com/2026/09/29/with-dazzle-marissa-mayer-bets-your-camera-roll-has-more-info-on-your-life-than-your-inbox/">Marissa Mayer bets your camera roll knows you better than your inbox.</a></strong> Her new app Dazzle mines photos instead of email. A founder-access read: the ex-Google/Yahoo exec picking the data source everyone else ignored.</li>
+    <li><strong><a href="https://www.bbc.com/future/article/20260928-a-virtual-power-plant-hidden-in-vermont-homes-is-keeping-the-lights-on-during-storms">Vermont is replacing power plants with home batteries.</a></strong> A virtual power plant stitched from household batteries kept the lights on through storms. The energy-buildout thread &mdash; distributed, software-coordinated capacity as a real alternative to concrete.</li>
+    <li><strong><a href="https://www.theverge.com/transportation/1002173/bmws-revamped-i3-boasts-up-to-468-miles-of-range">BMW's revamped i3 claims up to 468 miles of range.</a></strong> The EV range number keeps climbing; the constraint moves from battery to charging and grid &mdash; back to the energy thread.</li>
+    <li><strong><a href="https://arstechnica.com/space/2026/09/nasa-has-a-dragon-dilemma-and-there-appear-to-be-no-good-answers/">NASA has a Dragon dilemma with no good answers.</a></strong> Dependence on a single commercial vehicle is now a strategic bind. The flip side of cheap launch: concentration risk in who owns the ride.</li>
   </ul>
 </section>
 
 <footer>
-  <b>THE MORNING BRIEF</b> &middot; Issue 004 &middot; Tue 29 Sep 2026<br>
-  377 items collected from 24 collectors &middot; 44 filed &middot; 3 researched in depth<br>
-  All collectors returned this run &mdash; 377 items is a full, healthy pull.<br>
+  <b>THE MORNING BRIEF</b> &middot; Issue 005 &middot; Wed 30 Sep 2026<br>
+  380 items collected from 24 collectors &middot; 43 filed &middot; 3 researched in depth<br>
+  All collectors returned this run &mdash; 380 items is a full, healthy pull.<br>
   Sources: TechCrunch, The Verge, Ars Technica, Techmeme, Hacker News, Show HN, Lobsters, arXiv,
   Hugging Face, GitHub Trending, Devpost, Simon Willison, Inc42, YourStory, Sifted, Crunchbase,
   Stratechery, McKinsey, Quanta, Nautilus, Aeon, MIT News, MIT Tech Review, IEEE Spectrum,
   Marginal Revolution, Construction Physics, Hackaday, Adafruit, 404 Media, Class Central,
   r/startups.<br>
-  <b>Full archive of everything screened:</b> github.com/bansalsahadev25-tech/morning-brief/blob/main/archive/2026-09-29.md
+  <b>Full archive of everything screened:</b> github.com/bansalsahadev25-tech/morning-brief/blob/main/archive/2026-09-30.md
 </footer>
 
 </div>
