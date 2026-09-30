@@ -7,9 +7,61 @@ Write for someone who will *act* on this, not browse it.
 
 ---
 
+## §0 — THE PROBLEM BOARD leads every issue
+
+This is now the point of the brief. Everything else is context for it.
+
+The reader's actual bottleneck is not information. It is that every
+accelerator, grant and VC says "we fund people solving hard problems"
+and **nobody tells him which problems**. Emergent Ventures says it.
+YC says it. He cannot act on it. So the brief says it, specifically,
+with sources and a research path.
+
+**Every issue opens with two problems from `config/problems.yaml`:**
+one `green`, one `amber` or `red`. Rotate; never repeat inside 21 days;
+a `green` may repeat until he has acted on it.
+
+Render each with all of:
+
+```
+THE PROBLEM       plain, concrete, no hype
+WHO SAYS IT'S HARD  named source + link — never an unsourced assertion
+WHY IT'S STILL OPEN what specifically defeats people
+WHO'S ALREADY TRYING so he doesn't reinvent, and knows the competition
+YOUR ANGLE        why HE specifically could or could not attack it
+RESEARCH PATH     3 concrete next steps, each a link or a named action
+```
+
+**The grade is the most valuable thing on the page.** Be honest:
+
+- `green` — start this month, solo, no capital, no credentials
+- `amber` — real within 6-12 months, needs a team, hardware or access
+- `red` — needs capital, clearance, a lab or a decade
+
+Never inflate a grade to be encouraging. Telling a 19-year-old he can
+go solve fusion wastes years of his life. A `red` is filed so he
+recognises it later, not hidden.
+
+**New problems** arrive from DARPA solicitations, Institute for Progress,
+Marginal Revolution (Tyler Cowen runs Emergent Ventures — reading him is
+reading the grader), XPRIZE, grants.gov, and a diff of YC's RFS page.
+When YC's RFS changes, that is a §0 headline on its own: a pre-validated
+idea with a funder attached.
+
+When a problem in the board gets solved, funded away, or he rejects it —
+edit `config/problems.yaml`. It is plain text on purpose.
+
+---
+
 ## Editorial standard
 
 The test for every item: **does this change what he does this week?**
+
+And the sharper version, since §0 now leads: **does this reveal a problem
+worth solving, or tell him something he needs in order to solve one?**
+A funding round matters because it shows where money believes a problem
+is. A launch matters because it closes or opens a gap. Report the news
+as evidence about problems, not as news.
 
 An item earns its place if it gives him one of:
 - an idea he could build

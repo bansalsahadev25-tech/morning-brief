@@ -51,7 +51,7 @@ def guard(fn):
 
 # News expires fast; ideas do not. A Quanta essay or a Stanford lecture is
 # worth surfacing a week later, a funding headline is not.
-WINDOW = {"learn": 10, "build": 7, "watch": 30, "deals": 14}
+WINDOW = {"learn": 10, "build": 7, "watch": 30, "deals": 14, "problems": 21}
 
 
 def rss(url, section, source, limit=25, days=None):
@@ -504,6 +504,16 @@ def hf_trending():
             errors.append(f"hf/{kind}: {type(ex).__name__}")
 
 
+@guard
+def problem_sources():
+    """Places that publish HARD PROBLEMS rather than news. Feeds §0.
+    Window is wide — a hard problem does not expire in 36 hours."""
+    feeds([
+        ("https://www.darpa.mil/rss.xml", "DARPA"),
+        ("https://ifp.org/feed/",         "Institute for Progress"),
+    ], "problems", limit=15)
+
+
 COLLECTORS = [
     # core wire
     hn_frontpage, hn_show, hn_ask, hn_best, lobsters, techcrunch, techmeme,
@@ -513,7 +523,7 @@ COLLECTORS = [
     # shipped + trending
     github_trending, hf_trending,
     # learning, watching, making
-    science_and_ideas, youtube, makers, reddit_build,
+    science_and_ideas, youtube, makers, reddit_build, problem_sources,
     # doors
     devpost, class_central,
 ]

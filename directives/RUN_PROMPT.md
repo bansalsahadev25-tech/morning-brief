@@ -21,6 +21,21 @@ CSS as-is. Do not redesign: this is a daily publication and should look
 identical issue to issue. Note which canon item and which skill ran, so
 today's differ.
 
+**2b. Build §0 — THE PROBLEM BOARD. This leads the issue.**
+Read `config/problems.yaml`. Pick two problems: one `green`, one `amber`
+or `red`. Check the last few files in `issues/` so you do not repeat one
+inside 21 days (a `green` may repeat until he acts on it). Render each
+with: THE PROBLEM / WHO SAYS IT'S HARD (named source + link) / WHY IT'S
+STILL OPEN / WHO'S ALREADY TRYING / YOUR ANGLE / RESEARCH PATH (3
+concrete steps). Show the grade prominently and honestly — never inflate
+one to be encouraging.
+
+Then check for NEW problems in today's raw JSON: items from DARPA,
+Institute for Progress, Marginal Revolution, or any change in YC's
+Requests for Startups. A changed YC RFS is a §0 headline on its own.
+If you find a genuinely new hard problem worth keeping, append it to
+`config/problems.yaml` with the same fields and a grade.
+
 **3. Triage.** Read `.tmp/raw_*.json` (today's). Route into the nine
 sections per the SOP. Order within each section by hard signals only —
 funding by round size, arena by deadline proximity (soonest first, always),

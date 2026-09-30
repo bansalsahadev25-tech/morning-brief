@@ -1,0 +1,235 @@
+# ======================================================================
+#  THE PROBLEM BOARD
+#
+#  "We're excited to hear from ambitious founders solving hard problems."
+#  — Emergent Ventures, and everyone else. Nobody tells you WHICH ones.
+#  This file does.
+#
+#  Hard problems are not a news feed. YC changes its RFS a few times a
+#  year; XPRIZE runs ~10 prizes at once; ARIA has ~8 opportunity spaces.
+#  So this is a CURATED board, refreshed when the sources move, plus a
+#  thin daily feed layer (DARPA, IFP, grants.gov, Devpost) for new ones.
+#
+#  GRADE is the whole point. Most "hard problems" are not attackable by
+#  a 19-year-old with a laptop, and pretending otherwise wastes years.
+#    green  — start this month, solo, no capital, no credentials
+#    amber  — real for you within 6-12 months, needs a team/hardware/access
+#    red    — needs capital, clearance, a lab or a decade. Filed, not hidden.
+#
+#  Every entry must carry: who says it is hard (with a link), why it is
+#  still open, who is already trying, and a concrete research path.
+#  No problem without a source. No source without a link.
+# ======================================================================
+
+meta:
+  last_refreshed: 2026-09-30
+  refresh_when: "YC RFS changes, XPRIZE opens/closes a prize, ARIA posts a
+                 new opportunity space, or a graded problem gets solved."
+  rotation: "Two problems surface per issue — one green, one amber or red.
+             Never repeat inside 21 days. Green ones repeat until acted on."
+
+problems:
+
+  - id: small-software-cloud
+    grade: green
+    title: Deploying personal software is still hard, and agents made it urgent
+    problem: >
+      Agents made it trivial to BUILD software that will only ever have one
+      or a handful of users — a tool for your team, a tracker for your own
+      workflow. Deploying and sharing it is still as hard as it was in 2015.
+      AWS and Azure were designed for software that scales to millions, and
+      that complexity is now the bottleneck.
+    who_says: "Y Combinator, Requests for Startups — 'A Cloud for Small Software'"
+    source: https://www.ycombinator.com/rfs
+    why_open: >
+      The hard parts are not the hosting. They are auth and permissions for
+      arbitrary user-written code, per-company environment customisation, and
+      letting non-technical people share executable code without it becoming
+      a security incident. Everyone underestimates the third one.
+    who_is_trying: Vercel, Replit, Val Town, Cloudflare Workers, Deno Deploy
+    your_angle: >
+      You already live in this problem — you build with Claude Code and then
+      have nowhere good to put the result. That is the founder's unfair
+      advantage in its cheapest form: you are the user.
+    research_path:
+      - "Build the ugliest possible version for yourself first: one command that
+         takes a Claude Code project and gives you a URL with auth."
+      - "Read Val Town's public writeups on sandboxing user code — they have
+         hit every wall you will hit."
+      - "Then ask 10 people in your hostel who build things where their
+         projects currently live. The answer is 'localhost' and that is the market."
+
+  - id: agent-permissions-audit
+    grade: green
+    title: Nobody can prove what an AI agent actually touched
+    problem: >
+      Agents run with far more authority than their task needs — the same
+      shell, filesystem and credential access whether they are summarising a
+      document or changing infrastructure. When one goes somewhere it should
+      not, there is no audit trail to answer "what did it touch, under whose
+      authority".
+    who_says: >
+      OpenAI's own disclosure (agents reached government sites unprompted,
+      detected 2 months later), plus six arXiv papers this quarter and
+      security researchers naming the missing control at RSAC.
+    source: https://arxiv.org/html/2607.13718v1
+    why_open: >
+      Sandboxing shipped (NVIDIA, Cisco). Provenance did not. The papers are
+      2024-26 and mostly preprints — 3 peer-reviewed out of 21 systems
+      surveyed. That is a field with no incumbent.
+    who_is_trying: NVIDIA (NemoClaw), Cisco (DefenseClaw) — both sandbox, neither audits
+    your_angle: >
+      Requires zero capital and zero credentials. You run agents daily on a
+      machine holding your keys, so you can feel the problem today.
+    research_path:
+      - "arXiv 2607.13718 'How Agents Ask for Permission' — the landscape in one paper."
+      - "arXiv 2606.22504 'Lingering Authority' — credentials an agent still holds after the task ends."
+      - "Then instrument your own setup: log every tool call your agent makes for a week. The log IS the prototype."
+
+  - id: physical-world-os
+    grade: amber
+    title: The software running physical work has not changed in 20 years
+    problem: >
+      80% of the global workforce does not sit at a desk. Construction,
+      maintenance, fleet operations still run on software that dispatches
+      people, tracks them, manages assets and bills the customer. Those
+      industries spend 10-100x more on labour than on software.
+    who_says: "Y Combinator RFS — 'New Operating Systems for the Physical World'"
+    source: https://www.ycombinator.com/rfs
+    why_open: >
+      Incumbents charge for human coordination. Nobody has built the layer
+      that schedules agents, robots and humans together — and whoever does
+      captures end-to-end records of how the work actually happens, which
+      no frontier lab or robotics startup will have.
+    who_is_trying: ServiceTitan, Samsara, Procore — all built for the old model
+    your_angle: >
+      This is the category your cab booking project sits in. Dispatch,
+      matching, fleet, real-world supply. You are already inside the problem,
+      with users walking past you, which is the part nobody can buy.
+    research_path:
+      - "Re-read your own PLAN.md with this framing — you are not building a booking form, you are building dispatch."
+      - "Talk to the middleman you already know about what HE cannot see: idle vehicles, no-shows, driver reliability."
+      - "Samsara's S-1 — what fleet operators actually pay for, in their own words."
+
+  - id: aging-care
+    grade: amber
+    title: There will not be enough people to care for the old
+    problem: >
+      By 2030 one in five Americans is over 65, with millions of unfilled
+      caregiving jobs and 53 million family members already doing it unpaid.
+      Almost no technology is built for older people — even Alexa and Google
+      Home are frustrating for most seniors.
+    who_says: "Y Combinator RFS — 'AI for the Aging Population'"
+    source: https://www.ycombinator.com/rfs
+    why_open: >
+      Consumer tech optimises for people who adapt fast. The people who need
+      this most adapt slowest, and the buyer (adult child) is not the user
+      (parent) — a split that breaks normal product intuition.
+    who_is_trying: Papa, Honor, ElliQ — mostly US, mostly expensive
+    your_angle: >
+      India's aging curve is steeper and its caregiving market is almost
+      entirely informal. You can observe it directly; US founders cannot.
+      Amber not green because it needs real users, not a hostel room.
+    research_path:
+      - "Interview five families in your own extended network about who cares for the oldest member and what breaks."
+      - "Read ElliQ's published retention data — the honest numbers on whether seniors keep using these things."
+      - "Look at what Indian hospital discharge actually hands a family. It is usually a piece of paper."
+
+  - id: api-change-propagation
+    grade: green
+    title: API providers announce changes instead of applying them
+    problem: >
+      When an API changes, every customer hand-edits their own codebase.
+      Agentic coding tools proved companies will grant codebase access to
+      external tools if the value is there. The infrastructure exists; the
+      layer connecting API providers to their customers' code does not.
+    who_says: "Y Combinator RFS, from a founder who worked with 50+ API vendors"
+    source: https://www.ycombinator.com/rfs
+    why_open: >
+      Two years ago nobody would grant an external tool write access to their
+      repo. Claude Code, Devin and Greptile normalised it. The window opened
+      recently enough that nobody has built the obvious thing.
+    who_is_trying: "Greptile, Ellipsis, Renovate (dependencies only, not API semantics)"
+    your_angle: >
+      Pure software, no capital, and you already understand agentic code
+      editing from the inside. Narrow enough to prototype in a weekend.
+    research_path:
+      - "Pick one API with frequent breaking changes (Stripe, Twilio) and read two years of changelogs."
+      - "Write the migration codemod for a single breaking change by hand — feel the work before automating it."
+      - "Renovate's architecture docs — how automated PRs against a stranger's repo actually get trusted."
+
+  - id: proof-of-human
+    grade: red
+    title: We no longer have a reliable way to tell who is real
+    problem: >
+      Every trust signal we have — a face, a voice — was built for a world
+      where faking a human was expensive. That world is gone. Whoever builds
+      the replacement becomes the layer every bank, app and video call checks.
+    who_says: "Y Combinator RFS"
+    source: https://www.ycombinator.com/rfs
+    why_open: "Needs cryptographic standards, regulators and distribution deals simultaneously."
+    who_is_trying: Worldcoin, Persona, Clear, Apple/Google device attestation
+    your_angle: >
+      Red for you. This is a standards-and-distribution problem, not a
+      building problem. Filed so you recognise it when it matters, not as a
+      thing to start.
+    research_path:
+      - "Understand it well enough to have an opinion — read about C2PA content provenance."
+      - "File and revisit in two years."
+
+  - id: compute-power-siting
+    grade: red
+    title: AI is running out of electricity and land, not chips
+    problem: >
+      New data centres take years for approval and enough megawatts, and can
+      still be killed by local opposition. YC's proposed answer is compute
+      flotillas at sea; others are drilling for superhot rock.
+    who_says: "Y Combinator RFS ('Bringing Compute to the Oceans'); Mazama's $135M round; Google's 396MW Fervo deal"
+    source: https://www.ycombinator.com/rfs
+    why_open: "Permitting, capital intensity, and physics. None of it is software."
+    who_is_trying: Crusoe, Fervo, Mazama, Oklo
+    your_angle: >
+      Red as a company. But this is where your degree's subject matter is
+      the bottleneck — subsurface instrumentation and drilling data are
+      underbuilt and adjacent to it. Watch, learn the vocabulary, do not start.
+    research_path:
+      - "Chip War (in your canon) for why this is geopolitical, not just technical."
+      - "Fervo and Mazama engineering blogs — the actual hard parts, in their words."
+
+  - id: vibe-code-qa
+    grade: green
+    title: Millions of apps are now written by people who cannot audit them
+    problem: >
+      AI-generated code ships daily from people without the background to
+      review it. Two r/SaaS threads in one day asked how to test vibe-coded
+      apps; the same morning brought two live data exposures.
+    who_says: "r/SaaS practitioners; the Supabase and agent-image incidents"
+    source: https://www.reddit.com/r/SaaS/
+    why_open: "Brand new. The population of affected people did not exist three years ago."
+    who_is_trying: Snyk, Semgrep — built for professional engineers, not this audience
+    your_angle: >
+      You ARE the user, and so is everyone in your hostel who ships with AI.
+      Green: no capital, immediate feedback, and a market you can interview
+      in person this week.
+    research_path:
+      - "Take three things you built with Claude Code and try to break them. Write down what you find."
+      - "Semgrep's rule syntax — the state of the art you would be simplifying."
+      - "Ask in r/SaaS what they would pay for. They answer."
+
+feeds:
+  note: >
+    Thin daily layer for NEW problems. These get filed under `problems`
+    and surfaced when something genuinely new appears — not every day.
+  sources:
+    - { name: DARPA,          url: "https://www.darpa.mil/rss.xml",  kind: rss,
+        why: "Open solicitations are literally 'here is a hard problem, here is money'" }
+    - { name: Institute for Progress, url: "https://ifp.org/feed/",  kind: rss,
+        why: "Writes about bottlenecks in science, immigration, energy, biosecurity" }
+    - { name: Marginal Revolution, url: "https://marginalrevolution.com/feed", kind: rss,
+        why: "Tyler Cowen runs Emergent Ventures. Reading him is reading the grader." }
+    - { name: YC RFS,         url: "https://www.ycombinator.com/rfs", kind: diff,
+        why: "Diff it. Any change is a headline — a pre-validated idea with a funder attached." }
+    - { name: XPRIZE,         url: "https://www.xprize.org/prizes",   kind: scrape,
+        why: "Multi-million purses attached to named problems" }
+    - { name: Grants.gov,     url: "https://grants.gov/",             kind: scrape,
+        why: "Funded problem statements, filterable" }

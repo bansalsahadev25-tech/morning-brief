@@ -31,6 +31,77 @@ def meta(path):
 
 rows = [meta(p) for p in ISSUES]
 
+
+
+# ----------------------------------------------------------------------
+# Issue navigation. Injected into EVERY issue file on every build, so old
+# issues list new ones too. Bounded by markers and replaced idempotently,
+# so re-running never stacks copies.
+# ----------------------------------------------------------------------
+NAV_START = "<!--ISSUE-NAV-START-->"
+NAV_END = "<!--ISSUE-NAV-END-->"
+
+
+def nav_html(rows, current_day):
+    opts = "".join(
+        '<option value="{href}"{sel}>Issue {num} &middot; {pretty}</option>'.format(
+            href=os.path.basename(r["href"]),
+            sel=" selected" if r["day"] == current_day else "",
+            num=r["num"], pretty=r["pretty"])
+        for r in rows)
+    return f"""{NAV_START}
+<style>
+  #issuenav{{position:sticky;top:0;z-index:99;display:flex;align-items:center;
+    gap:12px;flex-wrap:wrap;padding:9px 20px;margin:0 -20px 0;
+    background:var(--surface,#FBFCFD);border-bottom:1px solid var(--rule,#D2D9DF);
+    font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.7rem}}
+  #issuenav a{{color:var(--accent,#1B3A57);text-decoration:none;border-bottom:0;
+    text-transform:uppercase;letter-spacing:.09em;font-weight:600}}
+  #issuenav a:hover{{text-decoration:underline}}
+  #issuenav select{{font-family:inherit;font-size:.72rem;padding:4px 8px;
+    background:var(--bg,#EFF2F4);color:var(--ink,#10161C);
+    border:1px solid var(--rule2,#BEC7D0);border-radius:0;cursor:pointer;
+    max-width:min(62vw,26rem)}}
+  #issuenav .sp{{flex:1}}
+  #issuenav .lbl{{color:var(--ink3,#78838F);text-transform:uppercase;
+    letter-spacing:.1em}}
+</style>
+<nav id="issuenav" aria-label="Issue navigation">
+  <span class="lbl">Issue</span>
+  <select id="issuepick" aria-label="Choose an issue">{opts}</select>
+  <span class="sp"></span>
+  <a href="index.html">All issues</a>
+</nav>
+<script>
+  document.getElementById("issuepick").addEventListener("change", function (e) {{
+    if (e.target.value) window.location.href = e.target.value;
+  }});
+</script>
+{NAV_END}"""
+
+
+def inject_nav(path, rows, day):
+    html = open(path, encoding="utf-8").read()
+    block = nav_html(rows, day)
+    if NAV_START in html and NAV_END in html:
+        a = html.index(NAV_START)
+        b = html.index(NAV_END) + len(NAV_END)
+        html = html[:a] + block + html[b:]
+    else:
+        # Sit it just inside the page wrapper so it inherits the theme tokens.
+        anchor = '<div class="wrap">'
+        if anchor in html:
+            html = html.replace(anchor, anchor + "\n" + block, 1)
+        else:
+            html = block + html
+    open(path, "w", encoding="utf-8").write(html)
+
+
+for r in rows:
+    inject_nav(r["href"], rows, r["day"])
+print(f"nav injected into {len(rows)} issue(s)")
+
+
 cards = "\n".join(f"""    <a class="issue" href="{r['href']}">
       <div class="top">
         <span class="no">Issue {r['num']}</span>
