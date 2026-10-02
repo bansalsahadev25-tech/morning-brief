@@ -238,17 +238,26 @@ def inject_votes(path, day):
         n += 1
     doc = "".join(out) + doc[last:]
 
-    # feed list items too — one line each, but they are most of the page
-    def li_sub(mm):
+    # Only real items get a vote: headlines above, and the one-line entries
+    # in <ul class="feed">. NOT research-path steps (<ol class="rpath">) or
+    # nav lists — rating "read this paper" is noise, not preference.
+    def feed_block(block_m):
         nonlocal n
-        inner = mm.group(1)
-        if 'class="vote"' in inner or len(re.sub(r"<[^>]+>", "", inner).strip()) < 15:
-            return mm.group(0)
-        n += 1
-        return ("<li>" + inner + _widget(_vid(day, inner), inner, "feed", day)
-                + "</li>")
+        block = block_m.group(0)
 
-    doc = re.sub(r"<li>(.*?)</li>", li_sub, doc, flags=re.S)
+        def li_sub(mm):
+            nonlocal n
+            inner = mm.group(1)
+            if ('class="vote"' in inner
+                    or len(re.sub(r"<[^>]+>", "", inner).strip()) < 25):
+                return mm.group(0)
+            n += 1
+            return ("<li>" + inner
+                    + _widget(_vid(day, inner), inner, "feed", day) + "</li>")
+
+        return re.sub(r"<li>(.*?)</li>", li_sub, block, flags=re.S)
+
+    doc = re.sub(r'<ul class="feed">.*?</ul>', feed_block, doc, flags=re.S)
     doc = doc.replace("</style>", "</style>\n" + VOTE_CSS, 1)
     doc = doc.rstrip() + VOTE_JS + "\n"
     open(path, "w", encoding="utf-8").write(doc)
