@@ -9,7 +9,9 @@
 #     On 2026-10-02 the job started at 10:12 into dead DNS and burned
 #     2.5 hours retrying. Hence wait_for_network and the retry loop.
 set -u
-export PATH="$HOME/.local/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin"
+# /usr/sbin and /sbin matter: ping lives in /sbin, and leaving them out
+# silently turned the network probe into "command not found" every time.
+export PATH="$HOME/.local/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 REPO="$HOME/morning-brief"
 cd "$REPO" || exit 1
 mkdir -p .tmp
@@ -21,19 +23,25 @@ notify() {  # $1 title, $2 message, $3 sound
 }
 
 wait_for_network() {  # up to 12 minutes, checking every 15s
-  local tries=0
-  until ping -c1 -t2 1.1.1.1 >/dev/null 2>&1 && \
-        ( host -W 2 hn.algolia.com >/dev/null 2>&1 || \
-          curl -s -m 5 -o /dev/null https://news.ycombinator.com ); do
+  # Probe with curl, not ping: HTTPS to a real source host is what the
+  # collectors actually need, and ICMP can be filtered on campus Wi-Fi.
+  # Every failure is logged — a probe that can never succeed must not look
+  # the same as a network that is merely slow.
+  local tries=0 why=""
+  while true; do
+    if curl -sS -m 6 -o /dev/null https://hn.algolia.com/api/v1/search?tags=front_page 2>/dev/null; then
+      echo "network up after $((tries * 15))s"
+      return 0
+    fi
+    why="$(curl -sS -m 6 -o /dev/null https://hn.algolia.com/api/v1/search?tags=front_page 2>&1 | head -1)"
     tries=$((tries + 1))
     if [ "$tries" -ge 48 ]; then
-      echo "network never came up after 12 minutes"
+      echo "network never came up after 12 minutes — last probe said: ${why:-unknown}"
       return 1
     fi
+    [ $((tries % 8)) -eq 1 ] && echo "  waiting for network (${tries}x15s): ${why:-no response}"
     sleep 15
   done
-  echo "network up after $((tries * 15))s"
-  return 0
 }
 
 {
