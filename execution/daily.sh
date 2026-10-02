@@ -70,8 +70,17 @@ wait_for_network() {  # up to 12 minutes, checking every 15s
   python3 execution/archive.py || { echo "FATAL: archive failed"; exit 1; }
 
   # --- 2. editorial pass (Claude Pro subscription, no API key) -----------
-  claude -p "$(cat directives/RUN_PROMPT.md)" \
-    --permission-mode bypassPermissions --model opus 2>&1
+  # Retried: long runs occasionally die on a dropped socket
+  # ("API Error: The socket connection was closed unexpectedly"), which
+  # leaves no issue file and loses the whole morning for a transient fault.
+  for pass_try in 1 2 3; do
+      echo "--- editorial pass, attempt $pass_try ---"
+      claude -p "$(cat directives/RUN_PROMPT.md)" \
+        --permission-mode bypassPermissions --model opus 2>&1
+      [ -f "issues/$TODAY.html" ] && break
+      echo "editorial pass produced no issue file; retrying in 60s"
+      sleep 60
+  done
 
   # --- 3. deterministic publish; must survive an early-exiting LLM pass --
   if [ ! -f "issues/$TODAY.html" ]; then

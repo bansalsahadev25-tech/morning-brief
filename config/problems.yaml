@@ -22,9 +22,16 @@
 # ======================================================================
 
 meta:
-  last_refreshed: 2026-09-30
+  last_refreshed: 2026-10-02
   refresh_when: "YC RFS changes, XPRIZE opens/closes a prize, ARIA posts a
                  new opportunity space, or a graded problem gets solved."
+  changelog:
+    - "2026-10-02: YC published its Fall 2026 RFS. New categories vs the summer
+       list include 'The Future of American Defense' (authored by the U.S.
+       Secretary of the Army, Daniel P. Driscoll), 'Data for the Real World',
+       'Multiplayer AI', and 'AI-Native Compliance Infrastructure'. Added the
+       defense one below as `american-defense` — a funder-attached, named hard
+       problem that sits one domain from the reader's tiltrotor."
   rotation: "Two problems surface per issue — one green, one amber or red.
              Never repeat inside 21 days. Green ones repeat until acted on."
 
@@ -215,6 +222,42 @@ problems:
       - "Take three things you built with Claude Code and try to break them. Write down what you find."
       - "Semgrep's rule syntax — the state of the art you would be simplifying."
       - "Ask in r/SaaS what they would pay for. They answer."
+
+  - id: american-defense
+    grade: amber
+    title: The U.S. Army just asked founders, by name, to rebuild how it fights
+    problem: >
+      YC's Fall 2026 RFS carries a category written by the sitting U.S.
+      Secretary of the Army: "We need cutting-edge drones, resilient logistics,
+      and advanced manufacturing." The old defense model — a handful of primes,
+      ten-year procurement cycles, exquisite hardware — cannot produce the cheap,
+      attritable, autonomous systems modern conflict actually consumes. The gap
+      between what the Pentagon buys and what it needs is now a funded request.
+    who_says: >
+      Y Combinator, Requests for Startups (Fall 2026) — 'The Future of American
+      Defense', authored by Daniel P. Driscoll, U.S. Secretary of the Army.
+      Reinforced same week by DARPA's just-concluded Vertical Lift Challenger
+      (VTOL prize) and a $3.5M autonomous-trauma-robotics competition.
+    source: https://www.ycombinator.com/rfs
+    why_open: >
+      The hard parts are not the drone. They are ITAR, security clearance,
+      capital intensity, and a procurement system built to reject newcomers.
+      Anduril spent years and billions proving a startup could sell to the DoD
+      at all. The autonomy and coordination software, though, is moving faster
+      than the hardware and the paperwork — which is where a small team lives.
+    who_is_trying: "Anduril, Shield AI, Skydio, Neros, Saronic — all post-seed, most capital-heavy"
+    your_angle: >
+      Amber, not red, for one specific reason: you are US-eligible without
+      sponsorship, which is the single barrier that blocks most of your peers
+      from this entire market — and you already design and fly a two-rotor VTOL
+      aircraft. The COMPANY is red (clearance, capital, ITAR). The ON-RAMP is
+      not: autonomy software, swarm coordination in simulation, and a drone you
+      can already demonstrate. You are one domain away from a problem a cabinet
+      secretary just put his name on.
+    research_path:
+      - "Read 'The Future of American Defense' on the YC RFS page — it is a funded problem statement signed by the buyer."
+      - "Reframe your tiltrotor build log as a defense-autonomy demo, not a hobby: what can it sense, carry, or coordinate? Study what Anduril's Lattice and Neros actually ship to see the real bar."
+      - "Listen to DARPA's Vertical Lift Challenger recap (Ep 97) for why the VTOL prize stayed unclaimed — the unsolved parts are your opening. Then apply to one US defense-tech internship or hackathon this cycle; you qualify, and most applicants don't."
 
 feeds:
   note: >
