@@ -53,6 +53,26 @@ edit `config/problems.yaml`. It is plain text on purpose.
 
 ---
 
+## §W — THE WILDCARD, and the feedback loop
+
+Every item on the page carries a thumbs up / thumbs down. Clicks POST to a
+local server (`execution/server.py`, always running) and land in
+`feedback/votes.jsonl`. Before each run, `execution/learn.py` digests them
+into `config/interests.md` — **in plain English, never as a score.** He
+rejected an opaque weighting model once and was right to; a number nobody
+can read drifts somewhere nobody asked for. He can edit that file by hand,
+and when he does, his words beat the counts.
+
+§W is the exploration arm and is **exempt from all of it**. Its sources sit
+outside the tech wire entirely, and it must stay strange: if the wildcard
+gets curated toward what already scores well, it stops doing the one job it
+has, which is finding interests that are not in the file yet. Roughly one
+item in five across the whole brief should sit outside his known tastes.
+
+A feed that only confirms what he already likes stops teaching him anything.
+
+---
+
 ## Editorial standard
 
 The test for every item: **does this change what he does this week?**

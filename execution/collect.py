@@ -81,7 +81,7 @@ def guard(fn):
 
 # News expires fast; ideas do not. A Quanta essay or a Stanford lecture is
 # worth surfacing a week later, a funding headline is not.
-WINDOW = {"learn": 10, "build": 7, "watch": 30, "deals": 14, "problems": 21}
+WINDOW = {"learn": 10, "build": 7, "watch": 30, "deals": 14, "problems": 21, "wildcard": 21}
 
 
 def rss(url, section, source, limit=25, days=None):
@@ -544,6 +544,52 @@ def hf_trending():
 
 
 @guard
+def wildcard():
+    """§W — THE WILDCARD. Deliberately outside the tech wire.
+
+    The brief cannot tell him what he cares about if it only ever shows
+    him one world. This is the exploration arm: history, biology,
+    economics, design, obscurity, global reporting. Items here are
+    chosen for being INTERESTING, not useful. The thumbs-up data decides
+    what graduates into the main sections.
+
+    Window is long and the sample is random on purpose — a narrow, fresh
+    wildcard is a contradiction.
+    """
+    feeds([
+        ("https://www.atlasobscura.com/feeds/latest",       "Atlas Obscura"),
+        ("https://publicdomainreview.org/rss.xml",          "Public Domain Review"),
+        ("https://www.damninteresting.com/feed/",           "Damn Interesting"),
+        ("https://longreads.com/feed/",                     "Longreads"),
+        ("https://feeds.kottke.org/main",                   "Kottke"),
+        ("https://www.astralcodexten.com/feed",             "Astral Codex Ten"),
+        ("https://feeds.simplecast.com/BqbsxVfO",           "99% Invisible"),
+        ("https://restofworld.org/feed/latest/",            "Rest of World"),
+        ("https://feeds.feedburner.com/Metafilter",         "MetaFilter"),
+        ("https://www.worksinprogress.news/feed",           "Works in Progress"),
+        ("https://www.thediff.co/feed",                     "The Diff"),
+        ("https://www.palladiummag.com/feed/",              "Palladium"),
+        ("https://www.noemamag.com/feed/",                  "Noema"),
+        ("http://rss.sciam.com/ScientificAmerican-Global",  "Scientific American"),
+    ], "wildcard", limit=6)
+
+    # Research from fields he would never search for himself.
+    for cat, label in [("econ.GN", "arXiv econ"), ("q-bio.NC", "arXiv neuro"),
+                       ("physics.soc-ph", "arXiv social physics")]:
+        try:
+            r = requests.get("http://export.arxiv.org/api/query", params={
+                "search_query": f"cat:{cat}", "sortBy": "submittedDate",
+                "sortOrder": "descending", "max_results": 8},
+                headers=HDRS, timeout=TIMEOUT)
+            d = feedparser.parse(r.content)
+            for e in d.entries:
+                add("wildcard", e.get("title", "").replace("\n", " "),
+                    e.get("link", ""), label, text=e.get("summary", ""))
+        except Exception as ex:
+            errors.append(f"wildcard/{label}: {type(ex).__name__}")
+
+
+@guard
 def problem_sources():
     """Places that publish HARD PROBLEMS rather than news. Feeds §0.
     Window is wide — a hard problem does not expire in 36 hours."""
@@ -563,6 +609,7 @@ COLLECTORS = [
     github_trending, hf_trending,
     # learning, watching, making
     science_and_ideas, youtube, makers, reddit_build, problem_sources,
+    wildcard,
     # doors
     devpost, class_central,
 ]

@@ -167,6 +167,24 @@
   }
   footer b{color:var(--ink2); font-weight:500}
 </style>
+<!--VOTE-CSS-START-->
+<style>
+  .vote{display:inline-flex;gap:3px;margin-left:9px;vertical-align:middle;
+    opacity:.3;transition:opacity .15s}
+  h3:hover .vote,li:hover .vote,.vote:hover,.vote.voted{opacity:1}
+  .vote button{font-family:inherit;font-size:.62rem;line-height:1;cursor:pointer;
+    padding:3px 6px;border:1px solid var(--rule2,#BEC7D0);background:transparent;
+    color:var(--ink3,#78838F);border-radius:2px}
+  .vote button:hover{border-color:var(--ink2,#4B5764);color:var(--ink,#10161C)}
+  .vote button.on.v-up{background:#0D6A5E;border-color:#0D6A5E;color:#fff}
+  .vote button.on.v-dn{background:#A33E12;border-color:#A33E12;color:#fff}
+  body.no-server .vote{display:none}
+  #fbnote{font-family:"IBM Plex Mono",monospace;font-size:.64rem;
+    color:var(--ink3,#78838F);padding:7px 0;border-bottom:1px solid var(--rule,#D2D9DF)}
+  body.no-server #fbnote{display:none}
+</style>
+<!--VOTE-CSS-END-->
+
 
 <div class="wrap">
 <!--ISSUE-NAV-START-->
@@ -224,7 +242,7 @@
 
   <article class="story">
     <div class="kicker">Paperwork &middot; the most expensive document you will ever skim</div>
-    <h3>A man was owed a billion dollars in Nvidia stock, and lost it to one ambiguous sentence about vesting</h3>
+    <h3>A man was owed a billion dollars in Nvidia stock, and lost it to one ambiguous sentence about vesting</h3><span class="vote" data-id="bf037c5c0947" data-title="A man was owed a billion dollars in Nvidia stock, and lost it to one ambiguous sentence about vesting" data-section="§1" data-issue="2026-09-28"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span>
     <p class="byline">
       Eric Gullichsen &middot; Nvidia Technical Advisory Board, 1993 &middot;
       <b>25,000</b> options granted &middot; <b>15,625</b> vested and exercised &middot;
@@ -287,7 +305,7 @@
 
   <article class="story">
     <div class="kicker">Inference economics &middot; a whole category forming in public</div>
-    <h3>Ember-1 does what Kimi K3 does using about 40% fewer tokens &mdash; efficiency is now the product</h3>
+    <h3>Ember-1 does what Kimi K3 does using about 40% fewer tokens &mdash; efficiency is now the product</h3><span class="vote" data-id="a34a3444516a" data-title="Ember-1 does what Kimi K3 does using about 40% fewer tokens &amp;mdash; efficiency is now the product" data-section="§1" data-issue="2026-09-28"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span>
     <p class="byline">
       Fireworks AI &middot; post-trained from Moonshot's open-weight <b>Kimi K3</b> &middot;
       ~<b>40%</b> fewer reasoning tokens at comparable quality &middot;
@@ -344,7 +362,7 @@
 
   <article class="story">
     <div class="kicker">Agentic commerce &middot; and it is being tested where you live</div>
-    <h3>Google is putting a Flipkart buy button inside Gemini &mdash; checkout is moving into the assistant</h3>
+    <h3>Google is putting a Flipkart buy button inside Gemini &mdash; checkout is moving into the assistant</h3><span class="vote" data-id="5293e24e04cf" data-title="Google is putting a Flipkart buy button inside Gemini &amp;mdash; checkout is moving into the assistant" data-section="§1" data-issue="2026-09-28"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span>
     <p class="byline">
       Pilot live in India &middot; smartphones, electronics, mobile accessories &middot;
       wider rollout reported for October, before the festive season &middot;
@@ -428,7 +446,7 @@
         now. The thread is founders describing how they got money committed before writing
         code. Read the replies, not the question.
       </div>
-    </li>
+    <span class="vote" data-id="a0850469df9c" data-title="r/startups &amp;middot; the one to read today &amp;ldquo;Experienced founders: how do you sell before building?&amp;rdquo; Directly upstream of §6, and directly relevant to anything you are building right now. Th" data-section="feed" data-issue="2026-09-28"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
     <li>
       <span class="tag">r/startups</span><br>
       <strong>&ldquo;Can a B2B tech product be a lifestyle business at 5&ndash;10k MRR?&rdquo;</strong>
@@ -437,13 +455,13 @@
         discusses that tier because it makes no headlines. It is also the only tier a
         student can reach alone, and it funds everything after it.
       </div>
-    </li>
+    <span class="vote" data-id="34485555b8f0" data-title="r/startups &amp;ldquo;Can a B2B tech product be a lifestyle business at 5&amp;ndash;10k MRR?&amp;rdquo; Underrated question. $10k MRR is roughly &amp;#8377;8.5 lakh a month, and almost nobody discusses that tier beca" data-section="feed" data-issue="2026-09-28"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
     <li>
       <span class="tag">r/startups</span><br>
       <strong>&ldquo;22 year old starting..&rdquo;</strong> &middot;
       <strong>&ldquo;I like the process of building to solve user problems &mdash; should I try a startup?&rdquo;</strong>
       <div class="note">Two people your age asking the question you asked two days ago. Reading their replies is cheaper than asking it yourself.</div>
-    </li>
+    <span class="vote" data-id="6444e877745b" data-title="r/startups &amp;ldquo;22 year old starting..&amp;rdquo; &amp;middot; &amp;ldquo;I like the process of building to solve user problems &amp;mdash; should I try a startup?&amp;rdquo; Two people your age asking the question you" data-section="feed" data-issue="2026-09-28"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
     <li>
       <span class="tag">arXiv &middot; 89 screened, one clear cluster</span><br>
       <strong>The research field has pivoted from capability to cost.</strong>
@@ -456,7 +474,7 @@
         same result. Combined with Ember-1 shipping the same week, this is the clearest
         arXiv-to-product signal since this brief started.
       </div>
-    </li>
+    <span class="vote" data-id="2f838539ce52" data-title="arXiv &amp;middot; 89 screened, one clear cluster The research field has pivoted from capability to cost. Learning to Stop without Learning to Stop &amp;middot; Compact Documentation for Coding Agents &amp;middot" data-section="feed" data-issue="2026-09-28"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
     <li>
       <span class="tag">arXiv &middot; quieter, possibly bigger</span><br>
       <strong><em>New LoRA Skills Should Read but Never Write</em></strong> and
@@ -465,7 +483,7 @@
         Both are about what a model absorbs from its users and what it should be allowed
         to do with it. Privacy plumbing for personalised agents is a category nobody owns.
       </div>
-    </li>
+    <span class="vote" data-id="7dead53e2adf" data-title="arXiv &amp;middot; quieter, possibly bigger New LoRA Skills Should Read but Never Write and User Model Extraction via Belief Self-Distillation Both are about what a model absorbs from its users and what i" data-section="feed" data-issue="2026-09-28"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
   </ul>
 </section>
 
@@ -474,17 +492,17 @@
   <div class="shead"><span class="snum">§4</span><h2>Shipped</h2><span class="scount">21 filed</span></div>
   <ul class="feed">
     <li><strong>&ldquo;When did Google get so weird?&rdquo;</strong> <span class="tag">HN 1216</span>
-      <div class="note">Top item on the internet this weekend by a wide margin. When a company's own users start describing it as incoherent, that is a distribution opening for somebody.</div></li>
-    <li><strong>Ember-1</strong> <span class="tag">HN 446</span> <div class="note">See §1.</div></li>
-    <li><strong>In an $80 motel room, a discovery to shed light on the origins of life</strong> <span class="tag">HN 240</span></li>
+      <div class="note">Top item on the internet this weekend by a wide margin. When a company's own users start describing it as incoherent, that is a distribution opening for somebody.</div><span class="vote" data-id="4acc0113dec3" data-title="&amp;ldquo;When did Google get so weird?&amp;rdquo; HN 1216 Top item on the internet this weekend by a wide margin. When a company's own users start describing it as incoherent, that is a distribution opening" data-section="feed" data-issue="2026-09-28"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><strong>Ember-1</strong> <span class="tag">HN 446</span> <div class="note">See §1.</div><span class="vote" data-id="eea3751c2934" data-title="Ember-1 HN 446 See §1." data-section="feed" data-issue="2026-09-28"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><strong>In an $80 motel room, a discovery to shed light on the origins of life</strong> <span class="tag">HN 240</span><span class="vote" data-id="1403a325084c" data-title="In an $80 motel room, a discovery to shed light on the origins of life HN 240" data-section="feed" data-issue="2026-09-28"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
     <li><strong>Show HN: Lofi Cities</strong> &mdash; pixel-art city nights with browser-generated lofi <span class="tag">HN 232</span>
-      <div class="note">A small, complete, delightful thing one person shipped. This is the scale of your first ship &mdash; not a platform.</div></li>
-    <li><strong>Don't couple your Go code to GitHub</strong> <span class="tag">HN 229</span></li>
-    <li><strong>Self-hosting on the dark web</strong> <span class="tag">HN 168</span></li>
-    <li><strong>The state of SIMD in Rust in 2026</strong> <span class="tag">HN 139</span></li>
+      <div class="note">A small, complete, delightful thing one person shipped. This is the scale of your first ship &mdash; not a platform.</div><span class="vote" data-id="1b500d86cf69" data-title="Show HN: Lofi Cities &amp;mdash; pixel-art city nights with browser-generated lofi HN 232 A small, complete, delightful thing one person shipped. This is the scale of your first ship &amp;mdash; not a platfor" data-section="feed" data-issue="2026-09-28"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><strong>Don't couple your Go code to GitHub</strong> <span class="tag">HN 229</span><span class="vote" data-id="05770a1f470b" data-title="Don't couple your Go code to GitHub HN 229" data-section="feed" data-issue="2026-09-28"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><strong>Self-hosting on the dark web</strong> <span class="tag">HN 168</span><span class="vote" data-id="444beacd0709" data-title="Self-hosting on the dark web HN 168" data-section="feed" data-issue="2026-09-28"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><strong>The state of SIMD in Rust in 2026</strong> <span class="tag">HN 139</span><span class="vote" data-id="19f00a8be6bb" data-title="The state of SIMD in Rust in 2026 HN 139" data-section="feed" data-issue="2026-09-28"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
     <li><strong>There is more to code review than (automatable) detection</strong> <span class="tag">HN 129</span>
-      <div class="note">Relevant to the vibe-coded-QA gap flagged in Issue 001 &mdash; an argument about what review is actually <em>for</em> once detection is automated.</div></li>
-    <li><strong>Malleable software: restoring user agency in a world of locked-down apps</strong> <span class="tag">HN 70</span></li>
+      <div class="note">Relevant to the vibe-coded-QA gap flagged in Issue 001 &mdash; an argument about what review is actually <em>for</em> once detection is automated.</div><span class="vote" data-id="8491b49af838" data-title="There is more to code review than (automatable) detection HN 129 Relevant to the vibe-coded-QA gap flagged in Issue 001 &amp;mdash; an argument about what review is actually for once detection is automate" data-section="feed" data-issue="2026-09-28"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><strong>Malleable software: restoring user agency in a world of locked-down apps</strong> <span class="tag">HN 70</span><span class="vote" data-id="553c844e05e0" data-title="Malleable software: restoring user agency in a world of locked-down apps HN 70" data-section="feed" data-issue="2026-09-28"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
   </ul>
 </section>
 
@@ -565,7 +583,7 @@
 <!-- ========== §6 ========== -->
 <section class="single">
   <div class="shead"><span class="snum">§6</span><h2>Skill</h2><span class="scount">day 2</span></div>
-  <h3>Sell it before you build it</h3>
+  <h3>Sell it before you build it</h3><span class="vote" data-id="6ac1d00fc5de" data-title="Sell it before you build it" data-section="§6" data-issue="2026-09-28"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span>
   <p class="meta">~3 hours &middot; free &middot; builds: distribution, and proof the thing is wanted</p>
   <p>
     Issue 001 was cold email &mdash; getting a stranger to reply. This is the next rep:
@@ -590,7 +608,7 @@
 <!-- ========== §7 ========== -->
 <section class="single">
   <div class="shead"><span class="snum">§7</span><h2>The Canon</h2><span class="scount">day 2 of 60 &middot; track: design process</span></div>
-  <h3>Everyday Astronaut &mdash; the Starbase tours with Musk</h3>
+  <h3>Everyday Astronaut &mdash; the Starbase tours with Musk</h3><span class="vote" data-id="1d345dbd3baf" data-title="Everyday Astronaut &amp;mdash; the Starbase tours with Musk" data-section="§7" data-issue="2026-09-28"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span>
   <p class="meta">YouTube &middot; three parts, ~40&ndash;60 min each &middot; free</p>
   <p>
     You told me you love watching Musk explain why a part is shaped the way it is. This is
@@ -625,12 +643,12 @@
 <section>
   <div class="shead"><span class="snum">§9</span><h2>Also</h2><span class="scount">filed, not featured</span></div>
   <ul class="feed">
-    <li><strong>Anthropic's CEO is having dinner with President Trump</strong>, and separately <strong>Dario Amodei got the SNL treatment</strong>. Read together with Issue 001's governance story: the company heading for a ~$2T listing is now a political object, not just a lab.</li>
-    <li><strong>Truecaller</strong> is taking its scam intelligence to the open web, beyond caller ID. An Indian company turning a defensive dataset into a platform &mdash; worth watching as a template.</li>
-    <li><strong>Insurers claim AI is already increasing healthcare costs.</strong> First serious counter-narrative to &ldquo;AI reduces cost&rdquo; from people who pay the bills.</li>
-    <li><strong>AV companies pick their lanes</strong> <span class="tag">TechCrunch Mobility</span> &mdash; consolidation of strategy in autonomy.</li>
-    <li><strong>PNOE</strong> wants lab-grade breath testing to be self-serve. Hardware plus clinical validation, the slow kind of deep tech.</li>
-    <li><strong>Owed a billion dollars in Nvidia stock</strong> also generated one of the better HN comment threads of the month, if you want the counterarguments to §1.</li>
+    <li><strong>Anthropic's CEO is having dinner with President Trump</strong>, and separately <strong>Dario Amodei got the SNL treatment</strong>. Read together with Issue 001's governance story: the company heading for a ~$2T listing is now a political object, not just a lab.<span class="vote" data-id="52c71c2b1439" data-title="Anthropic's CEO is having dinner with President Trump , and separately Dario Amodei got the SNL treatment . Read together with Issue 001's governance story: the company heading for a ~$2T listing is n" data-section="feed" data-issue="2026-09-28"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><strong>Truecaller</strong> is taking its scam intelligence to the open web, beyond caller ID. An Indian company turning a defensive dataset into a platform &mdash; worth watching as a template.<span class="vote" data-id="a9d2fd17f3db" data-title="Truecaller is taking its scam intelligence to the open web, beyond caller ID. An Indian company turning a defensive dataset into a platform &amp;mdash; worth watching as a template." data-section="feed" data-issue="2026-09-28"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><strong>Insurers claim AI is already increasing healthcare costs.</strong> First serious counter-narrative to &ldquo;AI reduces cost&rdquo; from people who pay the bills.<span class="vote" data-id="e4936d46d236" data-title="Insurers claim AI is already increasing healthcare costs. First serious counter-narrative to &amp;ldquo;AI reduces cost&amp;rdquo; from people who pay the bills." data-section="feed" data-issue="2026-09-28"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><strong>AV companies pick their lanes</strong> <span class="tag">TechCrunch Mobility</span> &mdash; consolidation of strategy in autonomy.<span class="vote" data-id="903a545f7a75" data-title="AV companies pick their lanes TechCrunch Mobility &amp;mdash; consolidation of strategy in autonomy." data-section="feed" data-issue="2026-09-28"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><strong>PNOE</strong> wants lab-grade breath testing to be self-serve. Hardware plus clinical validation, the slow kind of deep tech.<span class="vote" data-id="bf9420c8c8aa" data-title="PNOE wants lab-grade breath testing to be self-serve. Hardware plus clinical validation, the slow kind of deep tech." data-section="feed" data-issue="2026-09-28"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><strong>Owed a billion dollars in Nvidia stock</strong> also generated one of the better HN comment threads of the month, if you want the counterarguments to §1.<span class="vote" data-id="dc1889977697" data-title="Owed a billion dollars in Nvidia stock also generated one of the better HN comment threads of the month, if you want the counterarguments to §1." data-section="feed" data-issue="2026-09-28"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
   </ul>
 </section>
 
@@ -645,3 +663,44 @@
 </footer>
 
 </div>
+<script>
+(function () {
+  var local = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
+  if (!local) { document.body.classList.add("no-server"); return; }
+  var day = (document.querySelector(".vote") || {}).dataset
+          ? document.querySelector(".vote").dataset.issue : "";
+
+  function paint(el, vote) {
+    el.querySelector(".v-up").classList.toggle("on", vote === "up");
+    el.querySelector(".v-dn").classList.toggle("on", vote === "down");
+    el.classList.toggle("voted", vote === "up" || vote === "down");
+  }
+
+  fetch("/fb/state?issue=" + encodeURIComponent(day))
+    .then(function (r) { return r.json(); })
+    .then(function (state) {
+      document.querySelectorAll(".vote").forEach(function (el) {
+        if (state[el.dataset.id]) paint(el, state[el.dataset.id]);
+      });
+    })
+    .catch(function () { document.body.classList.add("no-server"); });
+
+  document.addEventListener("click", function (e) {
+    var btn = e.target.closest(".v-up, .v-dn");
+    if (!btn) return;
+    var el = btn.closest(".vote");
+    var want = btn.classList.contains("v-up") ? "up" : "down";
+    var already = btn.classList.contains("on");
+    var vote = already ? "clear" : want;
+    paint(el, already ? null : want);
+    fetch("/fb", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        id: el.dataset.id, vote: vote, title: el.dataset.title,
+        section: el.dataset.section, issue: el.dataset.issue
+      })
+    }).catch(function () {});
+  });
+})();
+</script>

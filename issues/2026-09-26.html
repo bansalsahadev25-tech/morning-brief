@@ -167,6 +167,24 @@
   }
   footer b{color:var(--ink2); font-weight:500}
 </style>
+<!--VOTE-CSS-START-->
+<style>
+  .vote{display:inline-flex;gap:3px;margin-left:9px;vertical-align:middle;
+    opacity:.3;transition:opacity .15s}
+  h3:hover .vote,li:hover .vote,.vote:hover,.vote.voted{opacity:1}
+  .vote button{font-family:inherit;font-size:.62rem;line-height:1;cursor:pointer;
+    padding:3px 6px;border:1px solid var(--rule2,#BEC7D0);background:transparent;
+    color:var(--ink3,#78838F);border-radius:2px}
+  .vote button:hover{border-color:var(--ink2,#4B5764);color:var(--ink,#10161C)}
+  .vote button.on.v-up{background:#0D6A5E;border-color:#0D6A5E;color:#fff}
+  .vote button.on.v-dn{background:#A33E12;border-color:#A33E12;color:#fff}
+  body.no-server .vote{display:none}
+  #fbnote{font-family:"IBM Plex Mono",monospace;font-size:.64rem;
+    color:var(--ink3,#78838F);padding:7px 0;border-bottom:1px solid var(--rule,#D2D9DF)}
+  body.no-server #fbnote{display:none}
+</style>
+<!--VOTE-CSS-END-->
+
 <style>
   .thread{background:var(--surface);border-top:2px solid var(--accent);padding:24px 22px;margin-block:8px}
   .thread .lbl{font-family:"IBM Plex Mono",monospace;font-size:.66rem;font-weight:600;
@@ -239,7 +257,7 @@
 
   <article class="story">
     <div class="kicker">Capital structure &middot; the lesson is the paperwork</div>
-    <h3>Anthropic&rsquo;s seven founders are trying to keep 50.1% of the votes while selling the company to the public</h3>
+    <h3>Anthropic&rsquo;s seven founders are trying to keep 50.1% of the votes while selling the company to the public</h3><span class="vote" data-id="10090ce93b67" data-title="Anthropic&amp;rsquo;s seven founders are trying to keep 50.1% of the votes while selling the company to the public" data-section="&sect;1" data-issue="2026-09-26"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span>
     <p class="byline">
       <b>$11.6B</b> seven-year Akamai compute deal (expandable to ~$20B) &middot;
       IPO targeted at <b>~$2T</b>, late Oct&ndash;Nov &middot; last private mark <b>$965B</b> (May)
@@ -261,7 +279,7 @@
 
   <article class="story">
     <div class="kicker">The new layer &middot; a business that did not exist in 2022</div>
-    <h3>Nscale raised $3.36B in convertible notes on the way to a $35B listing &mdash; renting GPUs is now an asset class</h3>
+    <h3>Nscale raised $3.36B in convertible notes on the way to a $35B listing &mdash; renting GPUs is now an asset class</h3><span class="vote" data-id="fb1276f63099" data-title="Nscale raised $3.36B in convertible notes on the way to a $35B listing &amp;mdash; renting GPUs is now an asset class" data-section="&sect;1" data-issue="2026-09-26"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span>
     <p class="byline">
       Led by <b>Third Point</b>; <b>$2.36B</b> available immediately, <b>$1B</b> from Nvidia in
       mid-November &middot; S-1 filed 18 Sep, NYSE &middot; seeking <b>$3B</b> at ~<b>$35B</b>
@@ -283,7 +301,7 @@
 
   <article class="story">
     <div class="kicker">The real bottleneck &middot; and the one nearest your degree</div>
-    <h3>Crusoe walked away from a $1.25B turbine order, and the reason is the most useful fact on today&rsquo;s wire</h3>
+    <h3>Crusoe walked away from a $1.25B turbine order, and the reason is the most useful fact on today&rsquo;s wire</h3><span class="vote" data-id="06135866170b" data-title="Crusoe walked away from a $1.25B turbine order, and the reason is the most useful fact on today&amp;rsquo;s wire" data-section="&sect;1" data-issue="2026-09-26"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span>
     <p class="byline">
       29 &times; <b>42 MW</b> Boom Supersonic &ldquo;Superpower&rdquo; gas turbines, cancelled &middot;
       Crusoe was to be launch customer, deliveries from 2027 &middot; Boom still shipping ~250 MW
@@ -304,7 +322,7 @@
 
 <div class="thread">
   <div class="lbl">Standing thread &middot; the geology question, with data instead of encouragement</div>
-  <h3>You asked me to convince you or drop it. Here is the case, and it rests on one company.</h3>
+  <h3>You asked me to convince you or drop it. Here is the case, and it rests on one company.</h3><span class="vote" data-id="6129d6cf5dbb" data-title="You asked me to convince you or drop it. Here is the case, and it rests on one company." data-section="&sect;1" data-issue="2026-09-26"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span>
   <p>Fervo Energy does <strong>enhanced geothermal</strong>: instead of hunting for a natural steam vent, they drill into hot dry rock and engineer the reservoir themselves. It went public in May 2026. This month Google contracted <strong>396 MW</strong> from its Cape Station project in Utah, with an option for 600 MW more by June 2030 &mdash; approaching a gigawatt from a single deal, and the largest geothermal agreement ever signed.</p>
   <div class="numbers">
     <div><span class="v">396 MW</span><span class="k">Google contract, from 2028</span></div>
@@ -338,28 +356,28 @@
   <div class="shead"><span class="snum">&sect;3</span><h2>Problems Worth Solving</h2><span class="scount">83 screened</span></div>
   <ul class="feed">
     <li><span class="tag">r/SaaS &middot; recurring</span><br><strong>&ldquo;How do you security-check and test your vibe-coded apps before shipping?&rdquo;</strong> and <strong>&ldquo;Does vibe-coded mean shitty or low quality?&rdquo;</strong> &mdash; two separate threads, same day.
-      <div class="note">A brand-new problem with no incumbent: millions of apps are now written by people who cannot audit them. Today&rsquo;s wire also carried <em>Unsecured OpenAI agents posted 53 user images publicly</em> and <em>Supabase customers exposing reams of user data</em>. That is the same story arriving three times in one morning. QA and security for AI-generated code is a category, and it is wide open.</div></li>
+      <div class="note">A brand-new problem with no incumbent: millions of apps are now written by people who cannot audit them. Today&rsquo;s wire also carried <em>Unsecured OpenAI agents posted 53 user images publicly</em> and <em>Supabase customers exposing reams of user data</em>. That is the same story arriving three times in one morning. QA and security for AI-generated code is a category, and it is wide open.</div><span class="vote" data-id="2d19c3344249" data-title="r/SaaS &amp;middot; recurring &amp;ldquo;How do you security-check and test your vibe-coded apps before shipping?&amp;rdquo; and &amp;ldquo;Does vibe-coded mean shitty or low quality?&amp;rdquo; &amp;mdash; two separate thre" data-section="feed" data-issue="2026-09-26"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
     <li><span class="tag">r/SaaS &middot; highest-signal post of the day</span><br><strong>&ldquo;How a 4-sentence cold email got our tiny biotech SaaS from 0 to 11 pharma clients in 14 days&rdquo;</strong>
-      <div class="note">Read this one today. It is the cheapest distribution lesson available, and it ties directly into &sect;6.</div></li>
+      <div class="note">Read this one today. It is the cheapest distribution lesson available, and it ties directly into &sect;6.</div><span class="vote" data-id="2b0d50efac1a" data-title="r/SaaS &amp;middot; highest-signal post of the day &amp;ldquo;How a 4-sentence cold email got our tiny biotech SaaS from 0 to 11 pharma clients in 14 days&amp;rdquo; Read this one today. It is the cheapest distri" data-section="feed" data-issue="2026-09-26"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
     <li><span class="tag">r/SaaS</span><br><strong>&ldquo;You have $1,000 to teach a developer how to sell. Where does every euro go?&rdquo;</strong>
-      <div class="note">Crowdsourced answer to the exact gap you have. Worth reading every reply.</div></li>
+      <div class="note">Crowdsourced answer to the exact gap you have. Worth reading every reply.</div><span class="vote" data-id="74b7556f73a0" data-title="r/SaaS &amp;ldquo;You have $1,000 to teach a developer how to sell. Where does every euro go?&amp;rdquo; Crowdsourced answer to the exact gap you have. Worth reading every reply." data-section="feed" data-issue="2026-09-26"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
     <li><span class="tag">r/startups &middot; painful</span><br><strong>A Qatar-based solo founder&rsquo;s entire data, plans and strategy wiped clean.</strong>
-      <div class="note">Disaster recovery for solo founders. Boring, unglamorous, and people are clearly not solved on it.</div></li>
+      <div class="note">Disaster recovery for solo founders. Boring, unglamorous, and people are clearly not solved on it.</div><span class="vote" data-id="0f29bb36df04" data-title="r/startups &amp;middot; painful A Qatar-based solo founder&amp;rsquo;s entire data, plans and strategy wiped clean. Disaster recovery for solo founders. Boring, unglamorous, and people are clearly not solved " data-section="feed" data-issue="2026-09-26"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
     <li><span class="tag">arXiv &middot; cs.AI, 104 papers screened</span><br><strong>Agent reliability is becoming its own research field</strong> &mdash; <em>LLM Agents Can Easily Tamper With Their Own Traces</em>, <em>Instrumental Monitor Evasion Emerges Under Ordinary Task Pressure</em>, <em>The Alignment Illusion in Multimodal LLMs</em>.
-      <div class="note">Three papers, one week, same finding: agents behave differently when watched. Products that verify agent behaviour are ~18 months from being obviously necessary.</div></li>
+      <div class="note">Three papers, one week, same finding: agents behave differently when watched. Products that verify agent behaviour are ~18 months from being obviously necessary.</div><span class="vote" data-id="7c200978e48f" data-title="arXiv &amp;middot; cs.AI, 104 papers screened Agent reliability is becoming its own research field &amp;mdash; LLM Agents Can Easily Tamper With Their Own Traces , Instrumental Monitor Evasion Emerges Under O" data-section="feed" data-issue="2026-09-26"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
   </ul>
 </section>
 
 <section>
   <div class="shead"><span class="snum">&sect;4</span><h2>Shipped</h2><span class="scount">24 filed</span></div>
   <ul class="feed">
-    <li><strong>Revealing the details of how OpenAI agents hacked Hugging Face</strong> <span class="tag">HN 441</span><div class="note">Top item on the internet today. Agent security is the theme of the week.</div></li>
-    <li><strong>US appeals court upholds designation of Anthropic as supply chain risk</strong> <span class="tag">HN 438</span><div class="note">Read alongside &sect;1. A company heading for a $2T listing carries an unresolved regulatory designation.</div></li>
-    <li><strong>Ollaya &mdash; Ollama for open-source decision models</strong> <span class="tag">HN 424</span></li>
-    <li><strong>&ldquo;Plan mode is dead&rdquo;</strong> <span class="tag">HN 278</span><div class="note">Agent-tooling argument. You use these tools daily.</div></li>
-    <li><strong>Jury finds Facebook liable for deceiving users in Cambridge Analytica case</strong> <span class="tag">HN 200</span></li>
-    <li><strong>Microsoft abandons personal AI chatbot race with Copilot reboot</strong> <span class="tag">HN 119</span><div class="note">A trillion-dollar company conceding a category. Retreats mark boundaries more clearly than launches.</div></li>
-    <li><strong>Tesla finally moves to electrify trucking after a decade of delays</strong> <span class="tag">TechCrunch</span></li>
+    <li><strong>Revealing the details of how OpenAI agents hacked Hugging Face</strong> <span class="tag">HN 441</span><div class="note">Top item on the internet today. Agent security is the theme of the week.</div><span class="vote" data-id="4d906393a3c2" data-title="Revealing the details of how OpenAI agents hacked Hugging Face HN 441 Top item on the internet today. Agent security is the theme of the week." data-section="feed" data-issue="2026-09-26"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><strong>US appeals court upholds designation of Anthropic as supply chain risk</strong> <span class="tag">HN 438</span><div class="note">Read alongside &sect;1. A company heading for a $2T listing carries an unresolved regulatory designation.</div><span class="vote" data-id="fed310b756de" data-title="US appeals court upholds designation of Anthropic as supply chain risk HN 438 Read alongside &amp;sect;1. A company heading for a $2T listing carries an unresolved regulatory designation." data-section="feed" data-issue="2026-09-26"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><strong>Ollaya &mdash; Ollama for open-source decision models</strong> <span class="tag">HN 424</span><span class="vote" data-id="5863458d614d" data-title="Ollaya &amp;mdash; Ollama for open-source decision models HN 424" data-section="feed" data-issue="2026-09-26"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><strong>&ldquo;Plan mode is dead&rdquo;</strong> <span class="tag">HN 278</span><div class="note">Agent-tooling argument. You use these tools daily.</div><span class="vote" data-id="73151b138b09" data-title="&amp;ldquo;Plan mode is dead&amp;rdquo; HN 278 Agent-tooling argument. You use these tools daily." data-section="feed" data-issue="2026-09-26"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><strong>Jury finds Facebook liable for deceiving users in Cambridge Analytica case</strong> <span class="tag">HN 200</span><span class="vote" data-id="7ba46dfde01c" data-title="Jury finds Facebook liable for deceiving users in Cambridge Analytica case HN 200" data-section="feed" data-issue="2026-09-26"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><strong>Microsoft abandons personal AI chatbot race with Copilot reboot</strong> <span class="tag">HN 119</span><div class="note">A trillion-dollar company conceding a category. Retreats mark boundaries more clearly than launches.</div><span class="vote" data-id="49d45ad7fbf0" data-title="Microsoft abandons personal AI chatbot race with Copilot reboot HN 119 A trillion-dollar company conceding a category. Retreats mark boundaries more clearly than launches." data-section="feed" data-issue="2026-09-26"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><strong>Tesla finally moves to electrify trucking after a decade of delays</strong> <span class="tag">TechCrunch</span><span class="vote" data-id="11b7a58c1f72" data-title="Tesla finally moves to electrify trucking after a decade of delays TechCrunch" data-section="feed" data-issue="2026-09-26"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
   </ul>
 </section>
 
@@ -385,7 +403,7 @@
 
 <section class="single">
   <div class="shead"><span class="snum">&sect;6</span><h2>Skill</h2><span class="scount">one per day</span></div>
-  <h3>Write a cold email that gets answered</h3>
+  <h3>Write a cold email that gets answered</h3><span class="vote" data-id="11b5adad5f75" data-title="Write a cold email that gets answered" data-section="&sect;6" data-issue="2026-09-26"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span>
   <p class="meta">~2 hours &middot; free &middot; builds: distribution, the thing you are missing</p>
   <p>You can already build. You cannot yet reliably get a stranger to care, and that is the actual constraint on everything above &mdash; grants, internships, customers, cofounders, investors. All of it is one person deciding to reply to you.</p>
   <p>Today&rsquo;s wire handed you the case study: a biotech SaaS went from zero to eleven pharma clients in fourteen days on a <strong>four-sentence</strong> email. Go read that thread, then write ten emails and send them. Not drafts &mdash; sent.</p>
@@ -394,7 +412,7 @@
 
 <section class="single">
   <div class="shead"><span class="snum">&sect;7</span><h2>The Canon</h2><span class="scount">day 1 of 60</span></div>
-  <h3>Who Is Michael Ovitz?</h3>
+  <h3>Who Is Michael Ovitz?</h3><span class="vote" data-id="72a191e00a94" data-title="Who Is Michael Ovitz?" data-section="&sect;7" data-issue="2026-09-26"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span>
   <p class="meta">Memoir &middot; ~400pp &middot; track: money, power, dealmaking</p>
   <p>Ovitz founded CAA and is the man <strong>Ari Gold is based on</strong>. You binged the fictional version already. This is how he actually did it: a talent agency owns no factories, no patents and no inventory &mdash; he built enormous leverage out of nothing but relationships and information asymmetry, then used it to reorganise an entire industry around himself.</p>
   <p class="note">Picked first out of the whole canon because it is the one item you are already predisposed to finish. That matters more than importance &mdash; an unread great book teaches nothing.</p>
@@ -408,12 +426,12 @@
 <section>
   <div class="shead"><span class="snum">&sect;9</span><h2>Also</h2><span class="scount">everything else, filed</span></div>
   <ul class="feed">
-    <li>Meta is pushing hard behind <strong>Muse</strong>, its AI companion app, and the numbers are apparently working.</li>
-    <li><strong>Automattic</strong> has a new board after a failed attempt to put its CEO on leave. Governance, again.</li>
-    <li><strong>Kiteworks</strong> told customers to shut down servers over an imminent attack threat.</li>
-    <li><strong>Nexterity</strong> is automating the hard, dangerous part of pipefitting. Unglamorous physical-world automation &mdash; a category with very little competition.</li>
-    <li><strong>Stratechery</strong>: &ldquo;Begun, the Aggregator Wars Have.&rdquo; Free post, worth the twenty minutes.</li>
-    <li><strong>&ldquo;First Principles Thinking&rdquo;</strong> <span class="tag">HN 255</span> &mdash; read it sceptically; the phrase has been worn smooth.</li>
+    <li>Meta is pushing hard behind <strong>Muse</strong>, its AI companion app, and the numbers are apparently working.<span class="vote" data-id="37201b7c8a94" data-title="Meta is pushing hard behind Muse , its AI companion app, and the numbers are apparently working." data-section="feed" data-issue="2026-09-26"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><strong>Automattic</strong> has a new board after a failed attempt to put its CEO on leave. Governance, again.<span class="vote" data-id="a598e1045c31" data-title="Automattic has a new board after a failed attempt to put its CEO on leave. Governance, again." data-section="feed" data-issue="2026-09-26"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><strong>Kiteworks</strong> told customers to shut down servers over an imminent attack threat.<span class="vote" data-id="96c38e1d34de" data-title="Kiteworks told customers to shut down servers over an imminent attack threat." data-section="feed" data-issue="2026-09-26"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><strong>Nexterity</strong> is automating the hard, dangerous part of pipefitting. Unglamorous physical-world automation &mdash; a category with very little competition.<span class="vote" data-id="3527fe9940e1" data-title="Nexterity is automating the hard, dangerous part of pipefitting. Unglamorous physical-world automation &amp;mdash; a category with very little competition." data-section="feed" data-issue="2026-09-26"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><strong>Stratechery</strong>: &ldquo;Begun, the Aggregator Wars Have.&rdquo; Free post, worth the twenty minutes.<span class="vote" data-id="b1a24e1a7d1b" data-title="Stratechery : &amp;ldquo;Begun, the Aggregator Wars Have.&amp;rdquo; Free post, worth the twenty minutes." data-section="feed" data-issue="2026-09-26"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><strong>&ldquo;First Principles Thinking&rdquo;</strong> <span class="tag">HN 255</span> &mdash; read it sceptically; the phrase has been worn smooth.<span class="vote" data-id="a2a7c79182df" data-title="&amp;ldquo;First Principles Thinking&amp;rdquo; HN 255 &amp;mdash; read it sceptically; the phrase has been worn smooth." data-section="feed" data-issue="2026-09-26"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
   </ul>
 </section>
 
@@ -425,3 +443,44 @@
 </footer>
 
 </div>
+<script>
+(function () {
+  var local = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
+  if (!local) { document.body.classList.add("no-server"); return; }
+  var day = (document.querySelector(".vote") || {}).dataset
+          ? document.querySelector(".vote").dataset.issue : "";
+
+  function paint(el, vote) {
+    el.querySelector(".v-up").classList.toggle("on", vote === "up");
+    el.querySelector(".v-dn").classList.toggle("on", vote === "down");
+    el.classList.toggle("voted", vote === "up" || vote === "down");
+  }
+
+  fetch("/fb/state?issue=" + encodeURIComponent(day))
+    .then(function (r) { return r.json(); })
+    .then(function (state) {
+      document.querySelectorAll(".vote").forEach(function (el) {
+        if (state[el.dataset.id]) paint(el, state[el.dataset.id]);
+      });
+    })
+    .catch(function () { document.body.classList.add("no-server"); });
+
+  document.addEventListener("click", function (e) {
+    var btn = e.target.closest(".v-up, .v-dn");
+    if (!btn) return;
+    var el = btn.closest(".vote");
+    var want = btn.classList.contains("v-up") ? "up" : "down";
+    var already = btn.classList.contains("on");
+    var vote = already ? "clear" : want;
+    paint(el, already ? null : want);
+    fetch("/fb", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        id: el.dataset.id, vote: vote, title: el.dataset.title,
+        section: el.dataset.section, issue: el.dataset.issue
+      })
+    }).catch(function () {});
+  });
+})();
+</script>

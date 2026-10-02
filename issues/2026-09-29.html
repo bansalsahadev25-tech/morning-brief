@@ -167,6 +167,24 @@
   }
   footer b{color:var(--ink2); font-weight:500}
 </style>
+<!--VOTE-CSS-START-->
+<style>
+  .vote{display:inline-flex;gap:3px;margin-left:9px;vertical-align:middle;
+    opacity:.3;transition:opacity .15s}
+  h3:hover .vote,li:hover .vote,.vote:hover,.vote.voted{opacity:1}
+  .vote button{font-family:inherit;font-size:.62rem;line-height:1;cursor:pointer;
+    padding:3px 6px;border:1px solid var(--rule2,#BEC7D0);background:transparent;
+    color:var(--ink3,#78838F);border-radius:2px}
+  .vote button:hover{border-color:var(--ink2,#4B5764);color:var(--ink,#10161C)}
+  .vote button.on.v-up{background:#0D6A5E;border-color:#0D6A5E;color:#fff}
+  .vote button.on.v-dn{background:#A33E12;border-color:#A33E12;color:#fff}
+  body.no-server .vote{display:none}
+  #fbnote{font-family:"IBM Plex Mono",monospace;font-size:.64rem;
+    color:var(--ink3,#78838F);padding:7px 0;border-bottom:1px solid var(--rule,#D2D9DF)}
+  body.no-server #fbnote{display:none}
+</style>
+<!--VOTE-CSS-END-->
+
 
 <div class="wrap">
 <!--ISSUE-NAV-START-->
@@ -226,7 +244,7 @@
 
   <article class="story">
     <div class="kicker">Spatial AI &middot; the chipmaker just bought the map, not the road</div>
-    <h3>AMD paid $8.2 billion for a two-year-old lab with no product on shelves &mdash; because it makes AI that understands space</h3>
+    <h3>AMD paid $8.2 billion for a two-year-old lab with no product on shelves &mdash; because it makes AI that understands space</h3><span class="vote" data-id="18ccedea3303" data-title="AMD paid $8.2 billion for a two-year-old lab with no product on shelves &amp;mdash; because it makes AI that understands space" data-section="§1" data-issue="2026-09-29"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span>
     <p class="byline">
       World Labs &middot; founded 2023 by Fei-Fei Li, Ben Mildenhall, Justin Johnson, Christoph Lassner &middot;
       raised <b>$230M</b> at ~<b>$1B</b> (2024), in talks at <b>$5B</b> in Jan &middot;
@@ -307,7 +325,7 @@
 
   <article class="story">
     <div class="kicker">Physical AI &middot; the drone-relevant one, if you read one</div>
-    <h3>SiMa.ai raised $150M to put AI inside the machine &mdash; no cloud, no GPU, decisions in milliseconds at the edge</h3>
+    <h3>SiMa.ai raised $150M to put AI inside the machine &mdash; no cloud, no GPU, decisions in milliseconds at the edge</h3><span class="vote" data-id="c9e5506d6ae4" data-title="SiMa.ai raised $150M to put AI inside the machine &amp;mdash; no cloud, no GPU, decisions in milliseconds at the edge" data-section="§1" data-issue="2026-09-29"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span>
     <p class="byline">
       SiMa.ai &middot; founded 2018 by Krishna Rangasayee (18 yrs Xilinx, ex-COO Groq) &middot;
       Series C <b>$150M</b> at <b>$1.45B</b> &middot; total raised <b>&gt;$500M</b> &middot;
@@ -378,7 +396,7 @@
 
   <article class="story">
     <div class="kicker">The economics &middot; the number that reframes the whole industry</div>
-    <h3>Anthropic filed to go public showing a $42B loss &mdash; and shipped a cheaper model the same week. Both facts are the strategy.</h3>
+    <h3>Anthropic filed to go public showing a $42B loss &mdash; and shipped a cheaper model the same week. Both facts are the strategy.</h3><span class="vote" data-id="b602e0d882b7" data-title="Anthropic filed to go public showing a $42B loss &amp;mdash; and shipped a cheaper model the same week. Both facts are the strategy." data-section="§1" data-issue="2026-09-29"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span>
     <p class="byline">
       Anthropic &middot; 2025 net loss <b>$42B</b> (~<b>$34B</b> non-cash) &middot;
       operating loss ~<b>$8B</b> &middot; revenue <b>$4.6B</b> (12&times;) &middot;
@@ -526,7 +544,7 @@
         building a physical thing. The mistakes in this thread &mdash; inventory, margins,
         cash-flow timing &mdash; are the ones you'll hit, and they're free to read now.
       </div>
-    </li>
+    <span class="vote" data-id="72f973c20d00" data-title="r/startups &amp;middot; read this one &amp;ldquo; We started a physical product company instead of a SaaS &amp;mdash; here's what the first 12 months were like &amp;rdquo; Rare first-hand account of the hardware path" data-section="feed" data-issue="2026-09-29"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
     <li>
       <span class="tag">r/startups</span><br>
       <strong>&ldquo;<a href="https://www.reddit.com/r/startups/comments/1wssw69/anyone_here_actually_sold_onprem_local_ai_to/">Anyone actually sold on-prem / local AI to small professional firms?</a>&rdquo;</strong>
@@ -535,12 +553,12 @@
         real buyer segment nobody has cornered &mdash; and it's one a solo builder can serve
         without a data-center bill.
       </div>
-    </li>
+    <span class="vote" data-id="3a424ba06fcf" data-title="r/startups &amp;ldquo; Anyone actually sold on-prem / local AI to small professional firms? &amp;rdquo; Directly downstream of today's §1 SiMa story and the §6 skill. Local, private AI is a real buyer segment" data-section="feed" data-issue="2026-09-29"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
     <li>
       <span class="tag">r/startups</span><br>
       <strong>&ldquo;<a href="https://www.reddit.com/r/startups/comments/1wsnpy5/whats_the_best_way_to_start_a_preseed_pitch_deck/">What's the best way to start a pre-seed pitch deck?</a>&rdquo;</strong>
       <div class="note">Practical, and paired well with this week's Anthropic S-1 as the far end of the same document &mdash; the story you tell about a business before it makes money.</div>
-    </li>
+    <span class="vote" data-id="beb0314671cf" data-title="r/startups &amp;ldquo; What's the best way to start a pre-seed pitch deck? &amp;rdquo; Practical, and paired well with this week's Anthropic S-1 as the far end of the same document &amp;mdash; the story you tell " data-section="feed" data-issue="2026-09-29"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
     <li>
       <span class="tag">arXiv &middot; 89 screened, the cluster continues</span><br>
       <strong>The efficiency pivot is now a movement, not a weekend.</strong>
@@ -553,7 +571,7 @@
         particular &mdash; predicting a run's token bill before you pay it &mdash; is a product
         waiting to happen for anyone drowning in inference cost.
       </div>
-    </li>
+    <span class="vote" data-id="fd1924b92347" data-title="arXiv &amp;middot; 89 screened, the cluster continues The efficiency pivot is now a movement, not a weekend. TokenCast: Forecasting Token Consumption During LLM Agent Execution &amp;middot; KV-streams for Eff" data-section="feed" data-issue="2026-09-29"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
     <li>
       <span class="tag">MIT News &middot; the buildable-science slot</span><br>
       <strong><a href="https://news.mit.edu/2026/powered-by-muscle-cells-paper-thin-robot-swims-through-watery-maze-0929">A paper-thin robot powered by living muscle cells swims through a maze</a></strong>
@@ -563,7 +581,7 @@
         question a drone-builder lives inside. Not buildable this week; buildable as a mental
         model of where actuation is going.
       </div>
-    </li>
+    <span class="vote" data-id="24d8fc0ae63f" data-title="MIT News &amp;middot; the buildable-science slot A paper-thin robot powered by living muscle cells swims through a maze Biohybrid actuation &amp;mdash; a machine that moves using grown muscle instead of a mot" data-section="feed" data-issue="2026-09-29"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
   </ul>
 </section>
 
@@ -573,28 +591,28 @@
   <ul class="feed">
     <li><strong><a href="https://www.anthropic.com/claude-sonnet-5-5">Claude Sonnet 5.5</a></strong>
       <span class="tag">HN 687</span>
-      <div class="note">Top of the internet today. Cheaper/faster work model &mdash; see §1. Simon Willison's <a href="https://simonwillison.net/2026/Sep/28/claude-sonnet-5-5/">hands-on notes</a> are the fastest honest read.</div></li>
+      <div class="note">Top of the internet today. Cheaper/faster work model &mdash; see §1. Simon Willison's <a href="https://simonwillison.net/2026/Sep/28/claude-sonnet-5-5/">hands-on notes</a> are the fastest honest read.</div><span class="vote" data-id="66891e1c24c5" data-title="Claude Sonnet 5.5 HN 687 Top of the internet today. Cheaper/faster work model &amp;mdash; see §1. Simon Willison's hands-on notes are the fastest honest read." data-section="feed" data-issue="2026-09-29"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
     <li><strong><a href="https://github.com/firelex/jeff">Jeff &mdash; 0.8B decision models, trained at home, ~30ms</a></strong>
       <span class="tag">HN 402</span>
-      <div class="note">Someone trained a useful small model on home hardware. This is the counter-narrative to the $518B in §1: the floor for &ldquo;train your own thing&rdquo; keeps dropping. On-topic for the §6 skill.</div></li>
+      <div class="note">Someone trained a useful small model on home hardware. This is the counter-narrative to the $518B in §1: the floor for &ldquo;train your own thing&rdquo; keeps dropping. On-topic for the §6 skill.</div><span class="vote" data-id="64931d9ad9b6" data-title="Jeff &amp;mdash; 0.8B decision models, trained at home, ~30ms HN 402 Someone trained a useful small model on home hardware. This is the counter-narrative to the $518B in §1: the floor for &amp;ldquo;train you" data-section="feed" data-issue="2026-09-29"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
     <li><strong><a href="https://hackaday.com/2026/09/28/synthetic-aperture-radar-drone-gets-interferometric-imaging/">Synthetic Aperture Radar drone gets interferometric imaging</a></strong>
       <span class="tag">Hackaday &middot; for the drone</span>
-      <div class="note">A hobbyist put SAR &mdash; the radar that images through cloud and dark &mdash; on a drone and got interferometry working. Directly your world: what a payload can be, built by one person.</div></li>
+      <div class="note">A hobbyist put SAR &mdash; the radar that images through cloud and dark &mdash; on a drone and got interferometry working. Directly your world: what a payload can be, built by one person.</div><span class="vote" data-id="a34f8b1b06bd" data-title="Synthetic Aperture Radar drone gets interferometric imaging Hackaday &amp;middot; for the drone A hobbyist put SAR &amp;mdash; the radar that images through cloud and dark &amp;mdash; on a drone and got interfero" data-section="feed" data-issue="2026-09-29"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
     <li><strong><a href="https://blog.adafruit.com/2026/09/28/a-fully-open-source-humanoid-arm-for-physical-ai-research/">A fully open-source humanoid arm for physical-AI research</a></strong>
       <span class="tag">Adafruit</span>
-      <div class="note">Open hardware + open control stack. The physical-AI thesis from §1, in a form you can actually clone and study.</div></li>
+      <div class="note">Open hardware + open control stack. The physical-AI thesis from §1, in a form you can actually clone and study.</div><span class="vote" data-id="eada7b169c27" data-title="A fully open-source humanoid arm for physical-AI research Adafruit Open hardware + open control stack. The physical-AI thesis from §1, in a form you can actually clone and study." data-section="feed" data-issue="2026-09-29"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
     <li><strong><a href="https://stateofutopia.com/experiments/microllmlab/">MicroLLM Lab &mdash; try 7 tiny LLMs in the browser</a></strong>
       <span class="tag">HN 186</span>
-      <div class="note">Zero-setup way to feel how small a useful model can be. Your on-ramp to the §6 skill &mdash; open it before you install anything.</div></li>
+      <div class="note">Zero-setup way to feel how small a useful model can be. Your on-ramp to the §6 skill &mdash; open it before you install anything.</div><span class="vote" data-id="606ee6bfe7c7" data-title="MicroLLM Lab &amp;mdash; try 7 tiny LLMs in the browser HN 186 Zero-setup way to feel how small a useful model can be. Your on-ramp to the §6 skill &amp;mdash; open it before you install anything." data-section="feed" data-issue="2026-09-29"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
     <li><strong><a href="https://github.com/Low-Zi-Hong/ESP32s3-LLM-Cluster">A language model running on a cluster of ESP32-S3 microcontrollers (1.58-bit BitNet)</a></strong>
       <span class="tag">HN 62</span>
-      <div class="note">An LLM on $5 microcontrollers. Absurd and instructive &mdash; the extreme edge of on-device inference, and a real demonstration of quantization.</div></li>
+      <div class="note">An LLM on $5 microcontrollers. Absurd and instructive &mdash; the extreme edge of on-device inference, and a real demonstration of quantization.</div><span class="vote" data-id="9efaa6eb6c37" data-title="A language model running on a cluster of ESP32-S3 microcontrollers (1.58-bit BitNet) HN 62 An LLM on $5 microcontrollers. Absurd and instructive &amp;mdash; the extreme edge of on-device inference, and a " data-section="feed" data-issue="2026-09-29"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
     <li><strong><a href="https://blog.cloudflare.com/cloudflare-cf-cli-launch/">Cf &mdash; the agentic CLI for the Cloudflare API</a></strong>
       <span class="tag">HN 141</span>
-      <div class="note">Infra vendors are shipping agent-shaped CLIs. If your tools are becoming agent-operable, so should whatever you build.</div></li>
+      <div class="note">Infra vendors are shipping agent-shaped CLIs. If your tools are becoming agent-operable, so should whatever you build.</div><span class="vote" data-id="38a3f94b4701" data-title="Cf &amp;mdash; the agentic CLI for the Cloudflare API HN 141 Infra vendors are shipping agent-shaped CLIs. If your tools are becoming agent-operable, so should whatever you build." data-section="feed" data-issue="2026-09-29"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
     <li><strong><a href="https://mubi.com/en/notebook/posts/pirating-the-pirates">Pirating the Pirates</a></strong>
       <span class="tag">HN 480</span>
-      <div class="note">Not tech &mdash; a filmmaking/distribution story that hit #2 this weekend. Filed for the part of you that watches things to learn how they were made.</div></li>
+      <div class="note">Not tech &mdash; a filmmaking/distribution story that hit #2 this weekend. Filed for the part of you that watches things to learn how they were made.</div><span class="vote" data-id="3bc00e61a42c" data-title="Pirating the Pirates HN 480 Not tech &amp;mdash; a filmmaking/distribution story that hit #2 this weekend. Filed for the part of you that watches things to learn how they were made." data-section="feed" data-issue="2026-09-29"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
   </ul>
 </section>
 
@@ -697,7 +715,7 @@
 <!-- ========== §6 ========== -->
 <section class="single">
   <div class="shead"><span class="snum">§6</span><h2>Skill</h2><span class="scount">day 3</span></div>
-  <h3>Run a real model on hardware you own</h3>
+  <h3>Run a real model on hardware you own</h3><span class="vote" data-id="25896f749dbb" data-title="Run a real model on hardware you own" data-section="§6" data-issue="2026-09-29"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span>
   <p class="meta">~2 hours &middot; free &middot; builds: intuition for on-device inference &mdash; the thing SiMa raised $150M on</p>
   <p>
     Today's §1 was three companies betting that AI moves off the cloud and into machines. The
@@ -722,7 +740,7 @@
 <!-- ========== §7 ========== -->
 <section class="single">
   <div class="shead"><span class="snum">§7</span><h2>The Canon</h2><span class="scount">day 3 of 60 &middot; track: technical depth, disguised</span></div>
-  <h3>Chip War &mdash; Chris Miller</h3>
+  <h3>Chip War &mdash; Chris Miller</h3><span class="vote" data-id="5312ba1084c7" data-title="Chip War &amp;mdash; Chris Miller" data-section="§7" data-issue="2026-09-29"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span>
   <p class="meta">Book &middot; ~460 pages &middot; reads like a thriller</p>
   <p>
     You declined lectures, so depth arrives as story. Today's entire Big Three routes through one
@@ -758,14 +776,14 @@
 <section>
   <div class="shead"><span class="snum">§9</span><h2>Also</h2><span class="scount">filed, not featured</span></div>
   <ul class="feed">
-    <li><strong><a href="https://arstechnica.com/ai/2026/09/openai-halts-frontier-model-training-amid-string-of-agent-misalignment-incidents/">OpenAI halted frontier-model training</a></strong> amid agent-misalignment incidents, and reportedly <a href="https://www.techmeme.com/260928/p37#a260928p37">scrapped a public GPT-6.1 Astra launch</a>. Read against §1: while Anthropic ships and files, its biggest rival is pumping the brakes on safety grounds. The race just became asymmetric.</li>
-    <li><strong><a href="https://techcrunch.com/2026/09/28/shopify-opens-checkout-to-browser-based-ai-agents/">Shopify opened checkout to browser-based AI agents.</a></strong> The agentic-commerce thread from Issue 002 (Google/Flipkart) widens &mdash; now the merchant platform itself invites the agents in. Where the transaction completes keeps moving.</li>
-    <li><strong><a href="https://www.cnbc.com/2026/09/28/nvidia-releases.html">Nvidia wants a watchdog chip next to every AI agent</a></strong> <span class="tag">HN 138</span> &mdash; hardware-level governance for rogue agents. If misalignment becomes a silicon feature, that reshapes the edge-AI market SiMa is in.</li>
-    <li><strong><a href="https://arstechnica.com/space/2026/09/starships-first-orbital-launch-gives-lift-to-spacexs-next-gen-starlinks/">SpaceX's Starship went orbital</a></strong>, deploying its first next-gen Starlinks. The launch-cost curve keeps bending; space keeps getting cheaper to reach.</li>
-    <li><strong><a href="https://techcrunch.com/2026/09/28/aurora-cfo-says-30000-driverless-trucks-by-2030-isnt-as-far-fetched-as-it-sounds/">Aurora's CFO: 30,000 driverless trucks by 2030.</a></strong> A concrete near-term number on physical autonomy &mdash; the same wave §1 is about, with a date attached.</li>
-    <li><strong><a href="https://arstechnica.com/science/2026/09/new-device-captures-carbon-dioxide-by-pumping-it-across-a-battery/">A device that captures CO&#8322; by pumping it across a battery.</a></strong> The energy/carbon wedge this brief tracks &mdash; a cheaper capture mechanism, still lab-stage. Filed to keep the thread honest, not to oversell it.</li>
-    <li><strong><a href="https://spectrum.ieee.org/delhi-electricity-loss">How Delhi fixed its power grid</a></strong> <span class="tag">IEEE Spectrum</span> &mdash; a real-world infrastructure turnaround, the unglamorous engineering that AI's power buildout will need everywhere.</li>
-    <li><strong><a href="https://marginalrevolution.com/marginalrevolution/2026/09/the-macroeconomic-effect-of-ai-through-software-engineering.html">The macroeconomic effect of AI through software engineering</a></strong> &mdash; where the productivity actually shows up first. Relevant to how you read the next year of the job market you're about to enter.</li>
+    <li><strong><a href="https://arstechnica.com/ai/2026/09/openai-halts-frontier-model-training-amid-string-of-agent-misalignment-incidents/">OpenAI halted frontier-model training</a></strong> amid agent-misalignment incidents, and reportedly <a href="https://www.techmeme.com/260928/p37#a260928p37">scrapped a public GPT-6.1 Astra launch</a>. Read against §1: while Anthropic ships and files, its biggest rival is pumping the brakes on safety grounds. The race just became asymmetric.<span class="vote" data-id="9b121e7a8674" data-title="OpenAI halted frontier-model training amid agent-misalignment incidents, and reportedly scrapped a public GPT-6.1 Astra launch . Read against §1: while Anthropic ships and files, its biggest rival is " data-section="feed" data-issue="2026-09-29"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><strong><a href="https://techcrunch.com/2026/09/28/shopify-opens-checkout-to-browser-based-ai-agents/">Shopify opened checkout to browser-based AI agents.</a></strong> The agentic-commerce thread from Issue 002 (Google/Flipkart) widens &mdash; now the merchant platform itself invites the agents in. Where the transaction completes keeps moving.<span class="vote" data-id="65923a28fe4d" data-title="Shopify opened checkout to browser-based AI agents. The agentic-commerce thread from Issue 002 (Google/Flipkart) widens &amp;mdash; now the merchant platform itself invites the agents in. Where the transa" data-section="feed" data-issue="2026-09-29"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><strong><a href="https://www.cnbc.com/2026/09/28/nvidia-releases.html">Nvidia wants a watchdog chip next to every AI agent</a></strong> <span class="tag">HN 138</span> &mdash; hardware-level governance for rogue agents. If misalignment becomes a silicon feature, that reshapes the edge-AI market SiMa is in.<span class="vote" data-id="921344afdbd8" data-title="Nvidia wants a watchdog chip next to every AI agent HN 138 &amp;mdash; hardware-level governance for rogue agents. If misalignment becomes a silicon feature, that reshapes the edge-AI market SiMa is in." data-section="feed" data-issue="2026-09-29"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><strong><a href="https://arstechnica.com/space/2026/09/starships-first-orbital-launch-gives-lift-to-spacexs-next-gen-starlinks/">SpaceX's Starship went orbital</a></strong>, deploying its first next-gen Starlinks. The launch-cost curve keeps bending; space keeps getting cheaper to reach.<span class="vote" data-id="65de8f081e39" data-title="SpaceX's Starship went orbital , deploying its first next-gen Starlinks. The launch-cost curve keeps bending; space keeps getting cheaper to reach." data-section="feed" data-issue="2026-09-29"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><strong><a href="https://techcrunch.com/2026/09/28/aurora-cfo-says-30000-driverless-trucks-by-2030-isnt-as-far-fetched-as-it-sounds/">Aurora's CFO: 30,000 driverless trucks by 2030.</a></strong> A concrete near-term number on physical autonomy &mdash; the same wave §1 is about, with a date attached.<span class="vote" data-id="fb97e739176e" data-title="Aurora's CFO: 30,000 driverless trucks by 2030. A concrete near-term number on physical autonomy &amp;mdash; the same wave §1 is about, with a date attached." data-section="feed" data-issue="2026-09-29"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><strong><a href="https://arstechnica.com/science/2026/09/new-device-captures-carbon-dioxide-by-pumping-it-across-a-battery/">A device that captures CO&#8322; by pumping it across a battery.</a></strong> The energy/carbon wedge this brief tracks &mdash; a cheaper capture mechanism, still lab-stage. Filed to keep the thread honest, not to oversell it.<span class="vote" data-id="c0382361fe07" data-title="A device that captures CO&amp;#8322; by pumping it across a battery. The energy/carbon wedge this brief tracks &amp;mdash; a cheaper capture mechanism, still lab-stage. Filed to keep the thread honest, not to" data-section="feed" data-issue="2026-09-29"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><strong><a href="https://spectrum.ieee.org/delhi-electricity-loss">How Delhi fixed its power grid</a></strong> <span class="tag">IEEE Spectrum</span> &mdash; a real-world infrastructure turnaround, the unglamorous engineering that AI's power buildout will need everywhere.<span class="vote" data-id="dce126fff2af" data-title="How Delhi fixed its power grid IEEE Spectrum &amp;mdash; a real-world infrastructure turnaround, the unglamorous engineering that AI's power buildout will need everywhere." data-section="feed" data-issue="2026-09-29"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><strong><a href="https://marginalrevolution.com/marginalrevolution/2026/09/the-macroeconomic-effect-of-ai-through-software-engineering.html">The macroeconomic effect of AI through software engineering</a></strong> &mdash; where the productivity actually shows up first. Relevant to how you read the next year of the job market you're about to enter.<span class="vote" data-id="6a19aed481c0" data-title="The macroeconomic effect of AI through software engineering &amp;mdash; where the productivity actually shows up first. Relevant to how you read the next year of the job market you're about to enter." data-section="feed" data-issue="2026-09-29"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
   </ul>
 </section>
 
@@ -782,3 +800,44 @@
 </footer>
 
 </div>
+<script>
+(function () {
+  var local = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
+  if (!local) { document.body.classList.add("no-server"); return; }
+  var day = (document.querySelector(".vote") || {}).dataset
+          ? document.querySelector(".vote").dataset.issue : "";
+
+  function paint(el, vote) {
+    el.querySelector(".v-up").classList.toggle("on", vote === "up");
+    el.querySelector(".v-dn").classList.toggle("on", vote === "down");
+    el.classList.toggle("voted", vote === "up" || vote === "down");
+  }
+
+  fetch("/fb/state?issue=" + encodeURIComponent(day))
+    .then(function (r) { return r.json(); })
+    .then(function (state) {
+      document.querySelectorAll(".vote").forEach(function (el) {
+        if (state[el.dataset.id]) paint(el, state[el.dataset.id]);
+      });
+    })
+    .catch(function () { document.body.classList.add("no-server"); });
+
+  document.addEventListener("click", function (e) {
+    var btn = e.target.closest(".v-up, .v-dn");
+    if (!btn) return;
+    var el = btn.closest(".vote");
+    var want = btn.classList.contains("v-up") ? "up" : "down";
+    var already = btn.classList.contains("on");
+    var vote = already ? "clear" : want;
+    paint(el, already ? null : want);
+    fetch("/fb", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        id: el.dataset.id, vote: vote, title: el.dataset.title,
+        section: el.dataset.section, issue: el.dataset.issue
+      })
+    }).catch(function () {});
+  });
+})();
+</script>

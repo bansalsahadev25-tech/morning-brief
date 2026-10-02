@@ -69,14 +69,19 @@ wait_for_network() {  # up to 12 minutes, checking every 15s
   done
   python3 execution/archive.py || { echo "FATAL: archive failed"; exit 1; }
 
+  # --- 1b. digest yesterday's votes into plain-English interests --------
+  python3 execution/learn.py || echo "WARN: learn.py failed (non-fatal)"
+
   # --- 2. editorial pass (Claude Pro subscription, no API key) -----------
   # Retried: long runs occasionally die on a dropped socket
   # ("API Error: The socket connection was closed unexpectedly"), which
   # leaves no issue file and loses the whole morning for a transient fault.
   for pass_try in 1 2 3; do
       echo "--- editorial pass, attempt $pass_try ---"
+      # < /dev/null is load-bearing: claude -p blocks waiting on stdin, and
+      # under launchd that produced a silent no-op (exit 0, zero output).
       claude -p "$(cat directives/RUN_PROMPT.md)" \
-        --permission-mode bypassPermissions --model opus 2>&1
+        --permission-mode bypassPermissions --model opus < /dev/null 2>&1
       [ -f "issues/$TODAY.html" ] && break
       echo "editorial pass produced no issue file; retrying in 60s"
       sleep 60
@@ -97,8 +102,12 @@ Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>" || echo "(nothing to comm
   git push -q origin main || echo "WARN: push failed (brief still built locally)"
 
   # --- 4. put it in front of him -----------------------------------------
-  open -a "Brave Browser" "file://$REPO/latest.html" \
-    || open "file://$REPO/latest.html" \
+  # Served by the local server (com.sahadev.briefserver) so the thumbs
+  # buttons can POST. file:// would render but every vote would vanish.
+  URL="http://localhost:8899/latest.html"
+  curl -s -o /dev/null -m 3 "$URL" || { echo "server down; starting it";
+      launchctl kickstart gui/$(id -u)/com.sahadev.briefserver 2>/dev/null; sleep 2; }
+  open -a "Brave Browser" "$URL" || open "$URL" \
     || echo "WARN: could not open a browser"
   notify "The Morning Brief" "$(grep -oE 'Issue [0-9]+' "issues/$TODAY.html" | head -1) is up — opened in Brave."
 

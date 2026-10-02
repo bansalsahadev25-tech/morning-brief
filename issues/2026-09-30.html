@@ -167,6 +167,24 @@
   }
   footer b{color:var(--ink2); font-weight:500}
 </style>
+<!--VOTE-CSS-START-->
+<style>
+  .vote{display:inline-flex;gap:3px;margin-left:9px;vertical-align:middle;
+    opacity:.3;transition:opacity .15s}
+  h3:hover .vote,li:hover .vote,.vote:hover,.vote.voted{opacity:1}
+  .vote button{font-family:inherit;font-size:.62rem;line-height:1;cursor:pointer;
+    padding:3px 6px;border:1px solid var(--rule2,#BEC7D0);background:transparent;
+    color:var(--ink3,#78838F);border-radius:2px}
+  .vote button:hover{border-color:var(--ink2,#4B5764);color:var(--ink,#10161C)}
+  .vote button.on.v-up{background:#0D6A5E;border-color:#0D6A5E;color:#fff}
+  .vote button.on.v-dn{background:#A33E12;border-color:#A33E12;color:#fff}
+  body.no-server .vote{display:none}
+  #fbnote{font-family:"IBM Plex Mono",monospace;font-size:.64rem;
+    color:var(--ink3,#78838F);padding:7px 0;border-bottom:1px solid var(--rule,#D2D9DF)}
+  body.no-server #fbnote{display:none}
+</style>
+<!--VOTE-CSS-END-->
+
 
 <div class="wrap">
 <!--ISSUE-NAV-START-->
@@ -249,7 +267,7 @@
     <div class="pgrade" style="--g:#0D6A5E">
       <span class="badge">START THIS MONTH</span><span class="caveat">solo · no capital · no credentials</span>
     </div>
-    <h3>Deploying personal software is still hard, and agents made it urgent</h3>
+    <h3>Deploying personal software is still hard, and agents made it urgent</h3><span class="vote" data-id="1511b094e19d" data-title="Deploying personal software is still hard, and agents made it urgent" data-section="§0" data-issue="2026-09-30"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span>
     <dl class="brief">
       <dt>The problem</dt><dd>Agents made it trivial to BUILD software that will only ever have one or a handful of users — a tool for your team, a tracker for your own workflow. Deploying and sharing it is still as hard as it was in 2015. AWS and Azure were designed for software that scales to millions, and that complexity is now the bottleneck.</dd>
       <dt>Who says it's hard</dt>
@@ -257,14 +275,14 @@
       <dt>Why it's still open</dt><dd>The hard parts are not the hosting. They are auth and permissions for arbitrary user-written code, per-company environment customisation, and letting non-technical people share executable code without it becoming a security incident. Everyone underestimates the third one.</dd>
       <dt>Who's already trying</dt><dd>Vercel, Replit, Val Town, Cloudflare Workers, Deno Deploy</dd>
       <dt>Your angle</dt><dd class="foryou">You already live in this problem — you build with Claude Code and then have nowhere good to put the result. That is the founder&#x27;s unfair advantage in its cheapest form: you are the user.</dd>
-      <dt>Research path</dt><dd><ol class="rpath"><li>Build the ugliest possible version for yourself first: one command that takes a Claude Code project and gives you a URL with auth.</li><li>Read Val Town&#x27;s public writeups on sandboxing user code — they have hit every wall you will hit.</li><li>Then ask 10 people in your hostel who build things where their projects currently live. The answer is &#x27;localhost&#x27; and that is the market.</li></ol></dd>
+      <dt>Research path</dt><dd><ol class="rpath"><li>Build the ugliest possible version for yourself first: one command that takes a Claude Code project and gives you a URL with auth.<span class="vote" data-id="6ea23d3f5373" data-title="Build the ugliest possible version for yourself first: one command that takes a Claude Code project and gives you a URL with auth." data-section="feed" data-issue="2026-09-30"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li><li>Read Val Town&#x27;s public writeups on sandboxing user code — they have hit every wall you will hit.<span class="vote" data-id="0f60f68390d3" data-title="Read Val Town&amp;#x27;s public writeups on sandboxing user code — they have hit every wall you will hit." data-section="feed" data-issue="2026-09-30"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li><li>Then ask 10 people in your hostel who build things where their projects currently live. The answer is &#x27;localhost&#x27; and that is the market.<span class="vote" data-id="0eb19c840ee1" data-title="Then ask 10 people in your hostel who build things where their projects currently live. The answer is &amp;#x27;localhost&amp;#x27; and that is the market." data-section="feed" data-issue="2026-09-30"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li></ol></dd>
     </dl>
   </article>
   <article class="problem">
     <div class="pgrade" style="--g:#A36A12">
       <span class="badge">6–12 MONTHS OUT</span><span class="caveat">needs a team, hardware or access</span>
     </div>
-    <h3>The software running physical work has not changed in 20 years</h3>
+    <h3>The software running physical work has not changed in 20 years</h3><span class="vote" data-id="c33be3e91bca" data-title="The software running physical work has not changed in 20 years" data-section="§0" data-issue="2026-09-30"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span>
     <dl class="brief">
       <dt>The problem</dt><dd>80% of the global workforce does not sit at a desk. Construction, maintenance, fleet operations still run on software that dispatches people, tracks them, manages assets and bills the customer. Those industries spend 10-100x more on labour than on software.</dd>
       <dt>Who says it's hard</dt>
@@ -272,7 +290,7 @@
       <dt>Why it's still open</dt><dd>Incumbents charge for human coordination. Nobody has built the layer that schedules agents, robots and humans together — and whoever does captures end-to-end records of how the work actually happens, which no frontier lab or robotics startup will have.</dd>
       <dt>Who's already trying</dt><dd>ServiceTitan, Samsara, Procore — all built for the old model</dd>
       <dt>Your angle</dt><dd class="foryou">This is the category your cab booking project sits in. Dispatch, matching, fleet, real-world supply. You are already inside the problem, with users walking past you, which is the part nobody can buy.</dd>
-      <dt>Research path</dt><dd><ol class="rpath"><li>Re-read your own PLAN.md with this framing — you are not building a booking form, you are building dispatch.</li><li>Talk to the middleman you already know about what HE cannot see: idle vehicles, no-shows, driver reliability.</li><li>Samsara&#x27;s S-1 — what fleet operators actually pay for, in their own words.</li></ol></dd>
+      <dt>Research path</dt><dd><ol class="rpath"><li>Re-read your own PLAN.md with this framing — you are not building a booking form, you are building dispatch.<span class="vote" data-id="93b0412eb9d5" data-title="Re-read your own PLAN.md with this framing — you are not building a booking form, you are building dispatch." data-section="feed" data-issue="2026-09-30"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li><li>Talk to the middleman you already know about what HE cannot see: idle vehicles, no-shows, driver reliability.<span class="vote" data-id="d5cafd71f2cf" data-title="Talk to the middleman you already know about what HE cannot see: idle vehicles, no-shows, driver reliability." data-section="feed" data-issue="2026-09-30"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li><li>Samsara&#x27;s S-1 — what fleet operators actually pay for, in their own words.<span class="vote" data-id="775eca27bee0" data-title="Samsara&amp;#x27;s S-1 — what fleet operators actually pay for, in their own words." data-section="feed" data-issue="2026-09-30"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li></ol></dd>
     </dl>
   </article>
 </section>
@@ -284,7 +302,7 @@
 
   <article class="story">
     <div class="kicker">Platform war &middot; the tools you build with just changed under you</div>
-    <h3>OpenAI cut its model price by 80% and turned ChatGPT into an app store &mdash; the same week it raised $30B at $1.4 trillion</h3>
+    <h3>OpenAI cut its model price by 80% and turned ChatGPT into an app store &mdash; the same week it raised $30B at $1.4 trillion</h3><span class="vote" data-id="7261e7f07289" data-title="OpenAI cut its model price by 80% and turned ChatGPT into an app store &amp;mdash; the same week it raised $30B at $1.4 trillion" data-section="§1" data-issue="2026-09-30"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span>
     <p class="byline">
       OpenAI DevDay 2026 &middot; Tue 29 Sep &middot; GPT-6.1 Sol <b>$2</b>/<b>$10</b> per M tokens
       (cached <b>$0.10</b>) &middot; run-rate ~<b>$70B</b> &middot; raising &ge;<b>$30B</b> at <b>$1.4T</b> &middot;
@@ -365,7 +383,7 @@
 
   <article class="story">
     <div class="kicker">Vertical AI &middot; the money is in the boring back office</div>
-    <h3>EliseAI hit a $4B valuation automating the paperwork of apartment buildings &mdash; a business nobody in AI wanted to build</h3>
+    <h3>EliseAI hit a $4B valuation automating the paperwork of apartment buildings &mdash; a business nobody in AI wanted to build</h3><span class="vote" data-id="d348008fda8e" data-title="EliseAI hit a $4B valuation automating the paperwork of apartment buildings &amp;mdash; a business nobody in AI wanted to build" data-section="§1" data-issue="2026-09-30"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span>
     <p class="byline">
       EliseAI (fka MeetElise, 2017) &middot; founders Minna Song (CEO), Tony Stoyanov &middot;
       raised <b>$350M</b> at <b>$4B</b>, co-led a16z + Bessemer, w/ Ontario Teachers' Pension &middot;
@@ -434,7 +452,7 @@
 
   <article class="story">
     <div class="kicker">Physical AI &middot; what building robots actually costs</div>
-    <h3>Tesla lined up $30B in credit for robots and robotaxis &mdash; and told everyone it has no plans to spend it yet</h3>
+    <h3>Tesla lined up $30B in credit for robots and robotaxis &mdash; and told everyone it has no plans to spend it yet</h3><span class="vote" data-id="bd27d39a33fa" data-title="Tesla lined up $30B in credit for robots and robotaxis &amp;mdash; and told everyone it has no plans to spend it yet" data-section="§1" data-issue="2026-09-30"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span>
     <p class="byline">
       Tesla &middot; <b>$30B</b> in new credit: Citi <b>$20B</b> 3-yr delayed-draw term loan,
       Wells Fargo <b>$8B</b> revolver + <b>$2B</b> 364-day &middot; for Cybercab, Optimus, Semi &middot;
@@ -571,7 +589,7 @@
         the EliseAI pattern, and YC is asking for more of exactly that. Free, and it is a map of where the
         smart money <em>wants</em> to deploy next.
       </div>
-    </li>
+    <span class="vote" data-id="6a06f3b5e2a6" data-title="Y Combinator &amp;middot; start here YC's Requests for Startups &amp;mdash; the current list The single highest-authority idea source there is. YC publishes the categories it will fund; read it against today'" data-section="feed" data-issue="2026-09-30"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
     <li>
       <span class="tag">arXiv &middot; the efficiency cluster, still compounding</span><br>
       <strong>The research field is optimizing the <em>cost</em> of agents, not the ceiling.</strong>
@@ -583,7 +601,7 @@
         actually did what it said. &ldquo;Plan-vs-execution auditing&rdquo; is a product waiting to happen &mdash;
         anyone shipping agents needs to know when they quietly went off-script.
       </div>
-    </li>
+    <span class="vote" data-id="9b1386370a17" data-title="arXiv &amp;middot; the efficiency cluster, still compounding The research field is optimizing the cost of agents, not the ceiling. STEPQuant / LeapQuant (accurate quantization of recurrent state) &amp;middot;" data-section="feed" data-issue="2026-09-30"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
     <li>
       <span class="tag">MIT News &middot; the energy wedge, buildable</span><br>
       <strong><a href="https://news.mit.edu/2026/pressurized-experiments-could-help-wind-farms-generate-more-power-0928">Pressurized experiments could help wind farms generate more power</a></strong>
@@ -593,7 +611,7 @@
         AI's power demand is real engineering like this, and it's the design-reasoning kind of problem you like:
         <em>why</em> the turbine is placed where it is.
       </div>
-    </li>
+    <span class="vote" data-id="9a6a73ec3616" data-title="MIT News &amp;middot; the energy wedge, buildable Pressurized experiments could help wind farms generate more power Wind turbines lose power to wake turbulence between them. MIT ran the fluid dynamics und" data-section="feed" data-issue="2026-09-30"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
     <li>
       <span class="tag">Quanta &middot; a mental model, not homework</span><br>
       <strong><a href="https://www.quantamagazine.org/mathematicians-harness-randomness-to-crack-a-55-year-old-conjecture-20260928/">Mathematicians harness randomness to crack a 55-year-old conjecture</a></strong>
@@ -602,7 +620,7 @@
         The transferable idea: sometimes the way through a stuck problem is to stop trying to control it. Worth
         the read purely as a thinking tool.
       </div>
-    </li>
+    <span class="vote" data-id="11d637de38ab" data-title="Quanta &amp;middot; a mental model, not homework Mathematicians harness randomness to crack a 55-year-old conjecture A problem that resisted for 55 years fell to adding randomness rather than more precisi" data-section="feed" data-issue="2026-09-30"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
     <li>
       <span class="tag">Nautilus &middot; the cool-stuff slot</span><br>
       <strong><a href="https://nautil.us/one-of-saturns-moons-could-support-life-and-it-might-be-easy-to-find-1285366/">One of Saturn's moons could support life &mdash; and it might be easy to find</a></strong>
@@ -611,7 +629,7 @@
         because it's the frontier edge of the space thread, and because &ldquo;the data is already leaking out,
         you just have to fly through it&rdquo; is a beautiful design insight.
       </div>
-    </li>
+    <span class="vote" data-id="b027750cb219" data-title="Nautilus &amp;middot; the cool-stuff slot One of Saturn's moons could support life &amp;mdash; and it might be easy to find Enceladus vents its subsurface ocean into space, so a probe could sample it without " data-section="feed" data-issue="2026-09-30"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
   </ul>
 </section>
 
@@ -621,28 +639,28 @@
   <ul class="feed">
     <li><strong><a href="https://openai.com/index/introducing-gpt-6-1-sol/">GPT-6.1 Sol</a></strong>
       <span class="tag">HN 837</span>
-      <div class="note">Top of the internet today &mdash; see §1. <a href="https://simonwillison.net/2026/Sep/29/hn-49898129/">Simon Willison's notes</a> are the fastest honest read on what's actually new.</div></li>
+      <div class="note">Top of the internet today &mdash; see §1. <a href="https://simonwillison.net/2026/Sep/29/hn-49898129/">Simon Willison's notes</a> are the fastest honest read on what's actually new.</div><span class="vote" data-id="37c6473aefb3" data-title="GPT-6.1 Sol HN 837 Top of the internet today &amp;mdash; see §1. Simon Willison's notes are the fastest honest read on what's actually new." data-section="feed" data-issue="2026-09-30"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
     <li><strong><a href="https://openai.com/index/introducing-dots/">Dots &mdash; always-on agents</a></strong>
       <span class="tag">HN 493</span>
-      <div class="note">Persistent agents with their own cloud computer, across ChatGPT/Slack/Teams. The interface shift from §1, in product form. Note it reads as squarely aimed at Meta's Muse.</div></li>
+      <div class="note">Persistent agents with their own cloud computer, across ChatGPT/Slack/Teams. The interface shift from §1, in product form. Note it reads as squarely aimed at Meta's Muse.</div><span class="vote" data-id="f5bb4a8a25e5" data-title="Dots &amp;mdash; always-on agents HN 493 Persistent agents with their own cloud computer, across ChatGPT/Slack/Teams. The interface shift from §1, in product form. Note it reads as squarely aimed at Meta'" data-section="feed" data-issue="2026-09-30"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
     <li><strong><a href="https://blog.adafruit.com/2026/09/29/microcontrollers-now-run-a-diffusion-model-and-289m-llm/">Microcontrollers now run a diffusion model and a 289M LLM</a></strong>
       <span class="tag">Adafruit &middot; for the drone</span>
-      <div class="note">Image generation and a real language model on a microcontroller. The on-device envelope your tiltrotor's compute lives in keeps expanding &mdash; last week's SiMa thesis, now running on a $10 board.</div></li>
+      <div class="note">Image generation and a real language model on a microcontroller. The on-device envelope your tiltrotor's compute lives in keeps expanding &mdash; last week's SiMa thesis, now running on a $10 board.</div><span class="vote" data-id="715a68630f14" data-title="Microcontrollers now run a diffusion model and a 289M LLM Adafruit &amp;middot; for the drone Image generation and a real language model on a microcontroller. The on-device envelope your tiltrotor's compu" data-section="feed" data-issue="2026-09-30"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
     <li><strong><a href="https://jagi.studio/posts/phyllotaxis/">Phyllotaxis &mdash; an audio-reactive LED display</a></strong>
       <span class="tag">HN 267</span>
-      <div class="note">A maker built a spiral LED array driven by sound, using the same leaf-arrangement math plants use. Buildable, beautiful, and pure design-reasoning &mdash; why the pattern is shaped the way it is.</div></li>
+      <div class="note">A maker built a spiral LED array driven by sound, using the same leaf-arrangement math plants use. Buildable, beautiful, and pure design-reasoning &mdash; why the pattern is shaped the way it is.</div><span class="vote" data-id="748eadc94a62" data-title="Phyllotaxis &amp;mdash; an audio-reactive LED display HN 267 A maker built a spiral LED array driven by sound, using the same leaf-arrangement math plants use. Buildable, beautiful, and pure design-reason" data-section="feed" data-issue="2026-09-30"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
     <li><strong><a href="https://space.bl2.net/">Real-time Solar System &mdash; 526k asteroids and every tracked satellite</a></strong>
       <span class="tag">HN 162</span>
-      <div class="note">One person rendered the live sky in the browser. A reminder of how much public orbital data exists and how far a solo builder can push it. Space thread, and a portfolio-grade demo.</div></li>
+      <div class="note">One person rendered the live sky in the browser. A reminder of how much public orbital data exists and how far a solo builder can push it. Space thread, and a portfolio-grade demo.</div><span class="vote" data-id="f313bbce21be" data-title="Real-time Solar System &amp;mdash; 526k asteroids and every tracked satellite HN 162 One person rendered the live sky in the browser. A reminder of how much public orbital data exists and how far a solo b" data-section="feed" data-issue="2026-09-30"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
     <li><strong><a href="https://somethingbig.ai/computer">NAND-16 &mdash; a computer built from 277,248 NAND gates</a></strong>
       <span class="tag">HN 115</span>
-      <div class="note">A whole computer from the single most primitive logic element. The best kind of teardown: it makes the abstraction stack under everything you build visible.</div></li>
+      <div class="note">A whole computer from the single most primitive logic element. The best kind of teardown: it makes the abstraction stack under everything you build visible.</div><span class="vote" data-id="1a671716fca4" data-title="NAND-16 &amp;mdash; a computer built from 277,248 NAND gates HN 115 A whole computer from the single most primitive logic element. The best kind of teardown: it makes the abstraction stack under everythin" data-section="feed" data-issue="2026-09-30"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
     <li><strong><a href="https://sujithjay.com/inventing-work">A Staff Engineer's Guide to Inventing Work</a></strong>
       <span class="tag">HN 217</span>
-      <div class="note">On finding the work that matters when nobody assigns it &mdash; the exact muscle you're building by running a public project with no boss. Career mental model, not code.</div></li>
+      <div class="note">On finding the work that matters when nobody assigns it &mdash; the exact muscle you're building by running a public project with no boss. Career mental model, not code.</div><span class="vote" data-id="212e0323c070" data-title="A Staff Engineer's Guide to Inventing Work HN 217 On finding the work that matters when nobody assigns it &amp;mdash; the exact muscle you're building by running a public project with no boss. Career ment" data-section="feed" data-issue="2026-09-30"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
     <li><strong><a href="https://www.backblaze.com/blog/backblaze-drive-stats-for-q2-2026/">Backblaze drive stats, Q2 2026</a></strong>
       <span class="tag">HN 116</span>
-      <div class="note">The quarterly hard-drive reliability report &mdash; real failure data at scale, published openly. Filed as a model of how a company turns its own operations into free, trusted marketing.</div></li>
+      <div class="note">The quarterly hard-drive reliability report &mdash; real failure data at scale, published openly. Filed as a model of how a company turns its own operations into free, trusted marketing.</div><span class="vote" data-id="639c517fdfb7" data-title="Backblaze drive stats, Q2 2026 HN 116 The quarterly hard-drive reliability report &amp;mdash; real failure data at scale, published openly. Filed as a model of how a company turns its own operations into " data-section="feed" data-issue="2026-09-30"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
   </ul>
 </section>
 
@@ -755,7 +773,7 @@
 <!-- ========== §6 ========== -->
 <section class="single">
   <div class="shead"><span class="snum">§6</span><h2>Skill</h2><span class="scount">day 4</span></div>
-  <h3>Ship one app into the ChatGPT directory</h3>
+  <h3>Ship one app into the ChatGPT directory</h3><span class="vote" data-id="1c5bb3c9e65f" data-title="Ship one app into the ChatGPT directory" data-section="§6" data-issue="2026-09-30"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span>
   <p class="meta">~3 hours &middot; free &middot; produces: a live, listed, dated piece of public proof-of-work</p>
   <p>
     Today's §1 opened a distribution channel in front of 1.2B people and started accepting submissions.
@@ -781,7 +799,7 @@
 <!-- ========== §7 ========== -->
 <section class="single">
   <div class="shead"><span class="snum">§7</span><h2>The Canon</h2><span class="scount">day 4 of 60 &middot; track: company histories</span></div>
-  <h3>Acquired &mdash; Nvidia (the three-part series)</h3>
+  <h3>Acquired &mdash; Nvidia (the three-part series)</h3><span class="vote" data-id="a3663ab6e95b" data-title="Acquired &amp;mdash; Nvidia (the three-part series)" data-section="§7" data-issue="2026-09-30"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span>
   <p class="meta">Podcast &middot; ~8h across 3 parts &middot; the best business story of the era</p>
   <p>
     Rotated deliberately off yesterday's technical-depth track and onto founder war stories &mdash; the thing
@@ -819,13 +837,13 @@
 <section>
   <div class="shead"><span class="snum">§9</span><h2>Also</h2><span class="scount">filed, not featured</span></div>
   <ul class="feed">
-    <li><strong><a href="https://arstechnica.com/ai/2026/09/openai-says-planned-gpt-6-1-is-too-insecure-to-release/">OpenAI shelved a more powerful GPT-6.1 as too insecure to release</a></strong> &mdash; and stayed out of Nvidia's industry effort to rein in rogue agents. Read against §1: the ceiling is getting harder to raise safely, which is exactly why both frontier labs pivoted the fight to price and distribution this week.</li>
-    <li><strong><a href="https://arstechnica.com/health/2026/09/most-powerful-obesity-drug-yet-people-lost-up-to-25-of-weight-in-trial/">The most powerful obesity drug yet &mdash; up to 25% weight loss in trial.</a></strong> The GLP-1 curve keeps bending. A whole consumer economy is being repriced around it; worth tracking as a market, not just a medicine.</li>
-    <li><strong><a href="https://techcrunch.com/2026/09/29/apple-pay-set-to-launch-in-india-with-axis-bank-today-sources-say/">Apple Pay finally launches in India.</a></strong> After years on the sidelines &mdash; though the biggest banks are holding off. Payments rails in the market you sit in keep consolidating; note who's in and who's out.</li>
-    <li><strong><a href="https://techcrunch.com/2026/09/29/with-dazzle-marissa-mayer-bets-your-camera-roll-has-more-info-on-your-life-than-your-inbox/">Marissa Mayer bets your camera roll knows you better than your inbox.</a></strong> Her new app Dazzle mines photos instead of email. A founder-access read: the ex-Google/Yahoo exec picking the data source everyone else ignored.</li>
-    <li><strong><a href="https://www.bbc.com/future/article/20260928-a-virtual-power-plant-hidden-in-vermont-homes-is-keeping-the-lights-on-during-storms">Vermont is replacing power plants with home batteries.</a></strong> A virtual power plant stitched from household batteries kept the lights on through storms. The energy-buildout thread &mdash; distributed, software-coordinated capacity as a real alternative to concrete.</li>
-    <li><strong><a href="https://www.theverge.com/transportation/1002173/bmws-revamped-i3-boasts-up-to-468-miles-of-range">BMW's revamped i3 claims up to 468 miles of range.</a></strong> The EV range number keeps climbing; the constraint moves from battery to charging and grid &mdash; back to the energy thread.</li>
-    <li><strong><a href="https://arstechnica.com/space/2026/09/nasa-has-a-dragon-dilemma-and-there-appear-to-be-no-good-answers/">NASA has a Dragon dilemma with no good answers.</a></strong> Dependence on a single commercial vehicle is now a strategic bind. The flip side of cheap launch: concentration risk in who owns the ride.</li>
+    <li><strong><a href="https://arstechnica.com/ai/2026/09/openai-says-planned-gpt-6-1-is-too-insecure-to-release/">OpenAI shelved a more powerful GPT-6.1 as too insecure to release</a></strong> &mdash; and stayed out of Nvidia's industry effort to rein in rogue agents. Read against §1: the ceiling is getting harder to raise safely, which is exactly why both frontier labs pivoted the fight to price and distribution this week.<span class="vote" data-id="37e51e1f216b" data-title="OpenAI shelved a more powerful GPT-6.1 as too insecure to release &amp;mdash; and stayed out of Nvidia's industry effort to rein in rogue agents. Read against §1: the ceiling is getting harder to raise sa" data-section="feed" data-issue="2026-09-30"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><strong><a href="https://arstechnica.com/health/2026/09/most-powerful-obesity-drug-yet-people-lost-up-to-25-of-weight-in-trial/">The most powerful obesity drug yet &mdash; up to 25% weight loss in trial.</a></strong> The GLP-1 curve keeps bending. A whole consumer economy is being repriced around it; worth tracking as a market, not just a medicine.<span class="vote" data-id="ebac5daaadf8" data-title="The most powerful obesity drug yet &amp;mdash; up to 25% weight loss in trial. The GLP-1 curve keeps bending. A whole consumer economy is being repriced around it; worth tracking as a market, not just a m" data-section="feed" data-issue="2026-09-30"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><strong><a href="https://techcrunch.com/2026/09/29/apple-pay-set-to-launch-in-india-with-axis-bank-today-sources-say/">Apple Pay finally launches in India.</a></strong> After years on the sidelines &mdash; though the biggest banks are holding off. Payments rails in the market you sit in keep consolidating; note who's in and who's out.<span class="vote" data-id="f66c89ea960b" data-title="Apple Pay finally launches in India. After years on the sidelines &amp;mdash; though the biggest banks are holding off. Payments rails in the market you sit in keep consolidating; note who's in and who's " data-section="feed" data-issue="2026-09-30"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><strong><a href="https://techcrunch.com/2026/09/29/with-dazzle-marissa-mayer-bets-your-camera-roll-has-more-info-on-your-life-than-your-inbox/">Marissa Mayer bets your camera roll knows you better than your inbox.</a></strong> Her new app Dazzle mines photos instead of email. A founder-access read: the ex-Google/Yahoo exec picking the data source everyone else ignored.<span class="vote" data-id="034e162d9874" data-title="Marissa Mayer bets your camera roll knows you better than your inbox. Her new app Dazzle mines photos instead of email. A founder-access read: the ex-Google/Yahoo exec picking the data source everyone" data-section="feed" data-issue="2026-09-30"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><strong><a href="https://www.bbc.com/future/article/20260928-a-virtual-power-plant-hidden-in-vermont-homes-is-keeping-the-lights-on-during-storms">Vermont is replacing power plants with home batteries.</a></strong> A virtual power plant stitched from household batteries kept the lights on through storms. The energy-buildout thread &mdash; distributed, software-coordinated capacity as a real alternative to concrete.<span class="vote" data-id="582eda5917d5" data-title="Vermont is replacing power plants with home batteries. A virtual power plant stitched from household batteries kept the lights on through storms. The energy-buildout thread &amp;mdash; distributed, softwa" data-section="feed" data-issue="2026-09-30"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><strong><a href="https://www.theverge.com/transportation/1002173/bmws-revamped-i3-boasts-up-to-468-miles-of-range">BMW's revamped i3 claims up to 468 miles of range.</a></strong> The EV range number keeps climbing; the constraint moves from battery to charging and grid &mdash; back to the energy thread.<span class="vote" data-id="0f9b133c156f" data-title="BMW's revamped i3 claims up to 468 miles of range. The EV range number keeps climbing; the constraint moves from battery to charging and grid &amp;mdash; back to the energy thread." data-section="feed" data-issue="2026-09-30"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><strong><a href="https://arstechnica.com/space/2026/09/nasa-has-a-dragon-dilemma-and-there-appear-to-be-no-good-answers/">NASA has a Dragon dilemma with no good answers.</a></strong> Dependence on a single commercial vehicle is now a strategic bind. The flip side of cheap launch: concentration risk in who owns the ride.<span class="vote" data-id="1e07143c1a65" data-title="NASA has a Dragon dilemma with no good answers. Dependence on a single commercial vehicle is now a strategic bind. The flip side of cheap launch: concentration risk in who owns the ride." data-section="feed" data-issue="2026-09-30"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
   </ul>
 </section>
 
@@ -842,3 +860,44 @@
 </footer>
 
 </div>
+<script>
+(function () {
+  var local = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
+  if (!local) { document.body.classList.add("no-server"); return; }
+  var day = (document.querySelector(".vote") || {}).dataset
+          ? document.querySelector(".vote").dataset.issue : "";
+
+  function paint(el, vote) {
+    el.querySelector(".v-up").classList.toggle("on", vote === "up");
+    el.querySelector(".v-dn").classList.toggle("on", vote === "down");
+    el.classList.toggle("voted", vote === "up" || vote === "down");
+  }
+
+  fetch("/fb/state?issue=" + encodeURIComponent(day))
+    .then(function (r) { return r.json(); })
+    .then(function (state) {
+      document.querySelectorAll(".vote").forEach(function (el) {
+        if (state[el.dataset.id]) paint(el, state[el.dataset.id]);
+      });
+    })
+    .catch(function () { document.body.classList.add("no-server"); });
+
+  document.addEventListener("click", function (e) {
+    var btn = e.target.closest(".v-up, .v-dn");
+    if (!btn) return;
+    var el = btn.closest(".vote");
+    var want = btn.classList.contains("v-up") ? "up" : "down";
+    var already = btn.classList.contains("on");
+    var vote = already ? "clear" : want;
+    paint(el, already ? null : want);
+    fetch("/fb", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        id: el.dataset.id, vote: vote, title: el.dataset.title,
+        section: el.dataset.section, issue: el.dataset.issue
+      })
+    }).catch(function () {});
+  });
+})();
+</script>

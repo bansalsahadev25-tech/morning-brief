@@ -111,9 +111,156 @@ def inject_nav(path, rows, day):
     open(path, "w", encoding="utf-8").write(html)
 
 
+
+
+# ----------------------------------------------------------------------
+# Feedback widgets. Injected into every rateable item on every build.
+#
+# Ids are derived from the issue date + the item's own text, so they are
+# stable across rebuilds without the editorial pass having to know
+# anything about them. Votes POST to the local server; on GitHub Pages
+# (no server) the widgets hide themselves rather than silently failing.
+# ----------------------------------------------------------------------
+import hashlib
+
+VOTE_START, VOTE_END = "<!--VOTE-CSS-START-->", "<!--VOTE-CSS-END-->"
+
+
+def _vid(day, text):
+    clean = re.sub(r"<[^>]+>", " ", text)
+    clean = re.sub(r"\s+", " ", clean).strip().lower()[:300]
+    return hashlib.sha1(f"{day}|{clean}".encode()).hexdigest()[:12]
+
+
+def _widget(vid, title, section, day):
+    t = html_escape(re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", title)).strip()[:200])
+    return (f'<span class="vote" data-id="{vid}" data-title="{t}" '
+            f'data-section="{section}" data-issue="{day}">'
+            f'<button class="v-up" type="button" aria-label="More like this">&#9650;</button>'
+            f'<button class="v-dn" type="button" aria-label="Less like this">&#9660;</button>'
+            f'</span>')
+
+
+def html_escape(t):
+    return (t.replace("&", "&amp;").replace("<", "&lt;")
+             .replace(">", "&gt;").replace('"', "&quot;"))
+
+
+VOTE_CSS = """<!--VOTE-CSS-START-->
+<style>
+  .vote{display:inline-flex;gap:3px;margin-left:9px;vertical-align:middle;
+    opacity:.3;transition:opacity .15s}
+  h3:hover .vote,li:hover .vote,.vote:hover,.vote.voted{opacity:1}
+  .vote button{font-family:inherit;font-size:.62rem;line-height:1;cursor:pointer;
+    padding:3px 6px;border:1px solid var(--rule2,#BEC7D0);background:transparent;
+    color:var(--ink3,#78838F);border-radius:2px}
+  .vote button:hover{border-color:var(--ink2,#4B5764);color:var(--ink,#10161C)}
+  .vote button.on.v-up{background:#0D6A5E;border-color:#0D6A5E;color:#fff}
+  .vote button.on.v-dn{background:#A33E12;border-color:#A33E12;color:#fff}
+  body.no-server .vote{display:none}
+  #fbnote{font-family:"IBM Plex Mono",monospace;font-size:.64rem;
+    color:var(--ink3,#78838F);padding:7px 0;border-bottom:1px solid var(--rule,#D2D9DF)}
+  body.no-server #fbnote{display:none}
+</style>
+<!--VOTE-CSS-END-->"""
+
+VOTE_JS = r"""
+<script>
+(function () {
+  var local = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
+  if (!local) { document.body.classList.add("no-server"); return; }
+  var day = (document.querySelector(".vote") || {}).dataset
+          ? document.querySelector(".vote").dataset.issue : "";
+
+  function paint(el, vote) {
+    el.querySelector(".v-up").classList.toggle("on", vote === "up");
+    el.querySelector(".v-dn").classList.toggle("on", vote === "down");
+    el.classList.toggle("voted", vote === "up" || vote === "down");
+  }
+
+  fetch("/fb/state?issue=" + encodeURIComponent(day))
+    .then(function (r) { return r.json(); })
+    .then(function (state) {
+      document.querySelectorAll(".vote").forEach(function (el) {
+        if (state[el.dataset.id]) paint(el, state[el.dataset.id]);
+      });
+    })
+    .catch(function () { document.body.classList.add("no-server"); });
+
+  document.addEventListener("click", function (e) {
+    var btn = e.target.closest(".v-up, .v-dn");
+    if (!btn) return;
+    var el = btn.closest(".vote");
+    var want = btn.classList.contains("v-up") ? "up" : "down";
+    var already = btn.classList.contains("on");
+    var vote = already ? "clear" : want;
+    paint(el, already ? null : want);
+    fetch("/fb", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        id: el.dataset.id, vote: vote, title: el.dataset.title,
+        section: el.dataset.section, issue: el.dataset.issue
+      })
+    }).catch(function () {});
+  });
+})();
+</script>"""
+
+
+def inject_votes(path, day):
+    doc = open(path, encoding="utf-8").read()
+    if "VOTE-CSS-START" in doc:                      # strip old pass first
+        a = doc.index(VOTE_START)
+        b = doc.index(VOTE_END) + len(VOTE_END)
+        doc = doc[:a] + doc[b:]
+    doc = re.sub(r'<span class="vote".*?</span>', "", doc, flags=re.S)
+    doc = re.sub(r"<script>\s*\(function \(\) \{\s*var local.*?</script>", "",
+                 doc, flags=re.S)
+
+    def sect_of(pos):
+        head = doc.rfind('<span class="snum">', 0, pos)
+        if head == -1:
+            return "unknown"
+        m = re.match(r'<span class="snum">([^<]+)</span>', doc[head:head + 80])
+        return (m.group(1).strip() if m else "unknown")
+
+    out, last, n = [], 0, 0
+    for m in re.finditer(r"</h3>", doc):
+        start = doc.rfind("<h3", 0, m.start())
+        if start == -1:
+            continue
+        title = doc[start:m.start()]
+        vid = _vid(day, title)
+        out.append(doc[last:m.end()])
+        out.append(_widget(vid, title, sect_of(start), day))
+        last = m.end()
+        n += 1
+    doc = "".join(out) + doc[last:]
+
+    # feed list items too — one line each, but they are most of the page
+    def li_sub(mm):
+        nonlocal n
+        inner = mm.group(1)
+        if 'class="vote"' in inner or len(re.sub(r"<[^>]+>", "", inner).strip()) < 15:
+            return mm.group(0)
+        n += 1
+        return ("<li>" + inner + _widget(_vid(day, inner), inner, "feed", day)
+                + "</li>")
+
+    doc = re.sub(r"<li>(.*?)</li>", li_sub, doc, flags=re.S)
+    doc = doc.replace("</style>", "</style>\n" + VOTE_CSS, 1)
+    doc = doc.rstrip() + VOTE_JS + "\n"
+    open(path, "w", encoding="utf-8").write(doc)
+    return n
+
+
+
+total_votes = 0
 for r in rows:
     inject_nav(r["href"], rows, r["day"])
-print(f"nav injected into {len(rows)} issue(s)")
+    total_votes += inject_votes(r["href"], r["day"])
+print(f"nav injected into {len(rows)} issue(s); {total_votes} vote widgets")
 
 
 cards = "\n".join(f"""    <a class="issue" href="{r['href']}">

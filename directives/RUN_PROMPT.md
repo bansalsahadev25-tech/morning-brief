@@ -8,6 +8,13 @@ not hand-assemble a brief from web search, do not overwrite the existing
 artifact, do not write an issue file. Report what failed and stop. A missing
 issue is recoverable; a thin issue published over a good one is not.
 
+**0. Read what he actually likes.** `config/interests.md` is regenerated
+from his thumbs up/down before every run. Treat it as **direction, not a
+filter** — never drop a whole topic over a few downvotes, and keep roughly
+one item in five outside everything it mentions. If it says there is not
+enough signal yet, ignore it and keep the mix broad. He can edit that file
+by hand; if he has, his words win over the counts.
+
 **1. Read the rules.** `directives/daily_brief.md` (editorial SOP — follow it
 exactly), `config/profile.md` (who this is for), `config/canon.yaml` (the
 rotating canon). The single test for every item: *does this change what the
@@ -53,6 +60,20 @@ case. Prefer primary sources — SEC filings, the company's own site, its
 Then ~300–400 words per story in the SOP's labelled structure. Every factual
 claim carries a real link. Numbers or silence — never "significant growth".
 Say plainly when something is undisclosed.
+
+**4b. §W — THE WILDCARD.** Six to eight items from the `wildcard` section
+of the raw JSON (Atlas Obscura, Public Domain Review, Longreads, Kottke,
+Astral Codex Ten, 99% Invisible, Rest of World, MetaFilter, Works in
+Progress, The Diff, Palladium, Noema, Scientific American, and arXiv in
+economics / neuroscience / social physics).
+
+This section exists to find interests he does not know he has, so:
+**do not curate it toward what he already likes.** Pick for genuine
+strangeness and range — history, biology, design, obscurity, global
+reporting, one thing that seems to belong in no section at all. One line
+of why it caught your eye, no justification of usefulness. It is the only
+section where "this is merely interesting" is the correct reason to
+include something. Never let `config/interests.md` narrow it.
 
 **5. Fill the rest.** Sections 2–9. Dense, linked, short. An empty section
 says so — "Quiet day, nothing worth your money" beats padding. Arena
