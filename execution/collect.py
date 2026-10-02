@@ -15,6 +15,7 @@ UA = "MorningBrief/1.0 (personal research digest; contact: local)"
 HDRS = {"User-Agent": UA}
 TIMEOUT = 20
 NOW = datetime.now(timezone.utc)
+DEADLINE = time.monotonic() + 420        # 7 min wall clock for the whole run
 CUTOFF = NOW - timedelta(hours=36)   # 36h so a late-night run misses nothing
 
 items, errors = [], []
@@ -34,16 +35,45 @@ def add(section, title, url, source, *, date=None, text="", meta=None):
     })
 
 
+NET_DOWN = False          # set once a name fails to resolve
+
+
+def _is_dns(e):
+    t = f"{type(e).__name__}: {e}"
+    return ("NameResolutionError" in t or "nodename nor servname" in t
+            or "Temporary failure in name resolution" in t)
+
+
 def guard(fn):
-    """Run a collector; never let it kill the run."""
+    """Run a collector; never let it kill the run.
+
+    Two circuit breakers, both learned the hard way on 2026-10-02 when the
+    Mac woke before Wi-Fi came back: the run spent 2.5 hours retrying into
+    dead DNS. Now a single unresolvable hostname trips NET_DOWN and the
+    rest of the collectors return immediately, and nothing may run past
+    the global DEADLINE.
+    """
     def wrapped():
+        global NET_DOWN
         name = fn.__name__
+        if NET_DOWN:
+            print(f"  skip {name:<22} network down")
+            return
+        if time.monotonic() > DEADLINE:
+            errors.append(f"{name}: skipped, run deadline exceeded")
+            print(f"  skip {name:<22} deadline")
+            return
         try:
             t0 = time.time()
             n0 = len(items)
             fn()
             print(f"  ok   {name:<22} +{len(items)-n0:<4} {time.time()-t0:.1f}s")
         except Exception as e:
+            if _is_dns(e):
+                NET_DOWN = True
+                errors.append(f"{name}: DNS failure — network is down")
+                print(f"  FAIL {name:<22} DNS down; aborting remaining collectors")
+                return
             errors.append(f"{name}: {type(e).__name__}: {e}")
             print(f"  FAIL {name:<22} {type(e).__name__}: {e}")
     return wrapped
@@ -319,11 +349,18 @@ def class_central():
 
 def feeds(pairs, section, limit=12):
     """Run a batch of RSS feeds into one section; one dead feed never
-    kills the batch."""
+    kills the batch. Bails out entirely if DNS has already failed."""
+    global NET_DOWN
     for url, name in pairs:
+        if NET_DOWN or time.monotonic() > DEADLINE:
+            return
         try:
             rss(url, section, name, limit=limit)
         except Exception as e:
+            if _is_dns(e):
+                NET_DOWN = True
+                errors.append(f"{section}/{name}: DNS failure — network is down")
+                return
             errors.append(f"{section}/{name}: {type(e).__name__}")
 
 
@@ -450,6 +487,8 @@ def youtube():
     window = NOW - timedelta(days=30)
     live = 0
     for cid, name in YT:
+        if NET_DOWN or time.monotonic() > DEADLINE:
+            break
         got = 0
         for attempt in (1, 2):
             try:
@@ -567,6 +606,10 @@ if __name__ == "__main__":
         print(f"\nFATAL: only {len(uniq)} items (floor {FLOOR}), "
               f"{dead} collectors failed.")
         print("This is an environment failure, not a quiet news day.")
+        if NET_DOWN:
+            print("CAUSE: DNS could not resolve the source hosts — no network.")
+            print("Exit 3 so the caller knows to wait and retry.")
+            sys.exit(3)
         print("Most likely: network egress is blocked for the source hosts.")
         print("DO NOT publish a brief from this run.")
         sys.exit(2)
