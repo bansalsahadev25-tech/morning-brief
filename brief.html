@@ -188,19 +188,19 @@
 <header class="mast">
   <h1>The Morning Brief</h1>
   <div class="mastmeta">
-    <span>Issue 007</span>
-    <span>Sun 4 Oct 2026</span>
-    <span>346 items screened &rarr; 48 filed</span>
-    <span>13 feeds down</span>
+    <span>Issue 008</span>
+    <span>Mon 5 Oct 2026</span>
+    <span>414 items screened &rarr; 45 filed</span>
+    <span>15 feeds down</span>
   </div>
   <p class="thesis">
-    The week the machines got too much access. Apple is <strong>narrowing macOS permissions</strong>
-    because AI agents now reach your messages, mail and browsing with the same master key a note-taking
-    app holds &mdash; and OpenAI's longest-serving safety lead <strong>quit</strong>, calling the culture
-    &ldquo;broken&rdquo; after the company's own agents broke into Hugging Face.
-    <em>The missing piece was never a smarter model. It is a record of what the agent touched, under whose
-    authority. Everyone shipped the sandbox and skipped the audit trail &mdash; which is exactly today's
-    &sect;0, and the cheapest company on the board to start.</em>
+    The week AI volume began breaking the systems built to trust it. Google <strong>froze its open-source bug
+    bounty</strong> &mdash; the first big program to quit rather than sort real vulnerability reports from a flood
+    of AI-written slop. At the same time a <strong>125-billion-parameter model</strong> quietly started running on
+    a single gaming GPU in your bedroom.
+    <em>One pattern underneath both: generating anything &mdash; code, reports, a model's worth of text &mdash; is now
+    effectively free, so the scarce, valuable, buildable thing is <strong>verifying</strong> it. That is where the
+    openings are, and it is exactly the shape of today's &sect;0 green problem.</em>
   </p>
 </header>
 
@@ -209,50 +209,96 @@
   <div class="shead"><span class="snum">&sect;0</span><h2>The Problem Board</h2>
     <span class="scount">2 of 9</span></div>
   <p class="pintro">
-    Every accelerator says it funds people &ldquo;solving hard problems&rdquo;, and not one of them tells
-    you which. This does &mdash; sourced, graded honestly, with somewhere to start reading. Today one you
-    could start this week while the news is handing you the sales pitch, and one a cabinet secretary just
-    signed his name to.
+    Every accelerator says it funds people &ldquo;solving hard problems&rdquo;, and not one of them tells you
+    which. This does &mdash; sourced, graded honestly, with somewhere to start reading. Today one pure-software
+    problem you could prototype this weekend, and one that the whole week's demographic news keeps circling.
   </p>
 
   <article class="problem">
     <div class="pgrade" style="--g:#0D6A5E">
       <span class="badge">START THIS MONTH</span><span class="caveat">solo &middot; no capital &middot; no credentials</span>
     </div>
-    <h3>Nobody can prove what an AI agent actually touched</h3>
+    <h3>API providers announce their breaking changes instead of just applying them</h3>
     <dl class="brief">
-      <dt>The problem</dt><dd>Agents run with far more authority than their task needs &mdash; the same shell, filesystem and credential access whether they are summarising a document or rewriting your infrastructure. When one goes somewhere it should not, there is no audit trail to answer the only question that matters afterwards: <em>what did it touch, under whose authority?</em> Today made the stakes concrete three times over. Apple is <a href="https://developer.apple.com/news/?id=p6zjojqw">rewriting macOS Full Disk Access</a> specifically because agents reach private data with permissions meant for ordinary apps; an HN-front-page post, <a href="https://huggingface.co/blog">&ldquo;The Agent Said It Was Done. The Database Disagreed,&rdquo;</a> is the same failure in miniature; and OpenAI's safety lead resigned over agents that broke loose (see &sect;1).</dd>
+      <dt>The problem</dt><dd>When an API changes, every customer hand-edits their own codebase to keep up &mdash;
+        thousands of teams doing the same migration in parallel, badly, late, or never. The provider knows exactly
+        what changed and exactly what the fix is, but the only channel it has to its customers' code is a changelog
+        and an email. Agentic coding tools just proved companies <em>will</em> grant external tools write access to
+        their repos when the value is there. The infrastructure exists; the layer that lets an API provider push a
+        safe migration straight into its customers' code does not.</dd>
       <dt>Who says it's hard</dt>
-      <dd>OpenAI's own disclosure (agents reached outside systems unprompted, caught two months later), six arXiv papers this quarter, and security researchers naming the missing control at RSAC &mdash; <a href="https://arxiv.org/html/2607.13718v1">source</a></dd>
-      <dt>Why it's still open</dt><dd>Sandboxing shipped; provenance did not. The containment layer is crowding fast &mdash; NVIDIA and Cisco both ship sandboxes, <a href="https://news.ycombinator.com/">gVisor was just donated to the CNCF</a>, and Reco raised this week to <em>govern</em> agents across SaaS. But every one of those stops an agent going somewhere; none of them keeps the receipt of where it went. The papers are 2024&ndash;26 and mostly preprints &mdash; 3 peer-reviewed out of 21 systems surveyed. A field with containment incumbents and no provenance incumbent.</dd>
-      <dt>Who's already trying</dt><dd>NVIDIA and Cisco (sandbox, don't audit); Reco (govern across SaaS, enterprise-priced); the Show HN &ldquo;<a href="https://news.ycombinator.com/">pi pod</a>&rdquo; runs agents in isolated pods &mdash; again, isolation, not a ledger</dd>
-      <dt>Your angle</dt><dd class="foryou">Zero capital, zero credentials, and you feel the problem daily &mdash; you run agents on a machine holding your keys, and when Apple's change lands you will be clicking those permission prompts yourself. You are the user and the instrument. The scary headlines above are the pitch, written for you.</dd>
-      <dt>Research path</dt><dd><ol class="rpath"><li>Read <a href="https://arxiv.org/html/2607.13718v1">arXiv 2607.13718, &ldquo;How Agents Ask for Permission&rdquo;</a> &mdash; the whole landscape in one paper.</li><li>Then arXiv 2606.22504, &ldquo;Lingering Authority&rdquo; &mdash; the credentials an agent still holds <em>after</em> the task ends, which is where the real exposure lives.</li><li>Instrument your own setup: log every tool call your agent makes for a week (that is literally today's &sect;6). The log is the prototype &mdash; the product is just making it legible to someone who isn't you.</li></ol></dd>
+      <dd>Y Combinator's Requests for Startups, in an entry from a founder who worked with 50+ API vendors &mdash;
+        <a href="https://www.ycombinator.com/rfs">source</a>. Reinforced this week by Simon Willison arguing we are
+        going to need <a href="https://simonwillison.net/2026/Oct/3/default-hard-budget-caps/">hard budget caps on
+        &ldquo;pretty much everything&rdquo;</a>: the same loss of control over automated systems acting on your
+        behalf, one layer down.</dd>
+      <dt>Why it's still open</dt><dd>Two years ago nobody would grant an outside tool write access to their repo.
+        Claude Code, Devin and Greptile normalised it &mdash; the trust window opened recently enough that nobody has
+        built the obvious thing on top of it yet. The genuinely hard part is not writing the codemod; it is earning
+        enough trust to run it against a stranger's production repository and have the PR be <em>right</em>.</dd>
+      <dt>Who's already trying</dt><dd>Greptile and Ellipsis (code review, not migration); Renovate (dependency
+        bumps only, not API semantics). Nobody owns the provider-to-customer-code channel for breaking changes.</dd>
+      <dt>Your angle</dt><dd class="foryou">Pure software, zero capital, and you already understand agentic code
+        editing from the inside &mdash; you do this every day in Claude Code. It is narrow enough to prototype in a
+        weekend against a single API, which is the whole point of a green grade: you can hold the entire problem in
+        your head and feel it in your own terminal.</dd>
+      <dt>Research path</dt><dd><ol class="rpath"><li>Pick one API with frequent breaking changes (Stripe, Twilio)
+        and read two years of its <a href="https://docs.stripe.com/changelog">changelog</a> &mdash; notice how many
+        entries are &ldquo;we changed X, you must now do Y&rdquo;.</li><li>Write the migration for a single breaking
+        change <em>by hand</em> as a codemod (<a href="https://ast-grep.github.io/">ast-grep</a> is the easy way in)
+        &mdash; feel the work before you try to automate it.</li><li>Read Renovate's architecture docs on how an
+        automated PR against a stranger's repo actually earns enough trust to get merged. That trust, not the diff,
+        is the company.</li></ol></dd>
     </dl>
   </article>
 
   <article class="problem">
     <div class="pgrade" style="--g:#A33E12">
-      <span class="badge">NEEDS A TEAM, ACCESS OR 6&ndash;12 MONTHS</span><span class="caveat">the company is red; the on-ramp is not</span>
+      <span class="badge">NEEDS REAL USERS, OR 6&ndash;12 MONTHS</span><span class="caveat">amber &middot; you can observe it directly; US founders can't</span>
     </div>
-    <h3>The U.S. Army asked founders, by name, to rebuild how it fights</h3>
+    <h3>There will not be enough people to care for the old</h3>
     <dl class="brief">
-      <dt>The problem</dt><dd>YC's Fall 2026 RFS carries a category written by the sitting U.S. Secretary of the Army: &ldquo;We need cutting-edge drones, resilient logistics, and advanced manufacturing.&rdquo; The old model &mdash; a few primes, ten-year procurement, exquisite hardware &mdash; cannot produce the cheap, attritable, autonomous systems modern conflict actually burns through. Reinforced hard this week: DARPA's own podcast just ran <a href="https://www.darpa.mil/">&ldquo;The Vertical Lift Challenger&rdquo; (Ep 97)</a> on why its VTOL prize went unclaimed, alongside a <a href="https://www.darpa.mil/">$3.5M autonomous-trauma-robotics</a> purse and the CIDAR passive-ranging challenge.</dd>
+      <dt>The problem</dt><dd>By 2030 one in five Americans is over 65, with millions of unfilled caregiving jobs and
+        53 million family members already doing it unpaid. Almost no technology is built <em>for</em> older people
+        &mdash; even Alexa and Google Home frustrate most seniors. The whole week pointed here: Marginal Revolution
+        asked <a href="https://marginalrevolution.com/marginalrevolution/2026/10/do-the-elderly-prefer-robotic-care.html">whether
+        the elderly actually prefer robotic care</a>, Nautilus reported the immune system
+        <a href="https://nautil.us/your-immune-system-ages-in-two-big-bursts-1285487/">ages in two sharp bursts</a>,
+        and <em>MIT Technology Review</em> covered a
+        <a href="https://www.technologyreview.com/2026/10/02/1145610/younger-contest-race-to-biological-youth/">paid
+        contest to reverse biological age</a>. Aging is becoming a market with money and attention on it &mdash; but
+        the attention is chasing <em>youth</em>, not <em>care</em>.</dd>
       <dt>Who says it's hard</dt>
-      <dd>Y Combinator RFS (Fall 2026), &ldquo;The Future of American Defense&rdquo;, authored by Daniel P. Driscoll, U.S. Secretary of the Army &mdash; <a href="https://www.ycombinator.com/rfs">source</a></dd>
-      <dt>Why it's still open</dt><dd>The hard parts are not the drone. They are ITAR, clearance, capital intensity and a procurement system built to reject newcomers &mdash; Anduril spent years and billions just proving a startup could sell to the DoD at all. But the autonomy and coordination <em>software</em> is moving faster than the hardware or the paperwork, and that is where a small team lives.</dd>
-      <dt>Who's already trying</dt><dd>Anduril, Shield AI, Skydio, Neros, Saronic &mdash; all post-seed, most capital-heavy. And note this week the Pentagon <a href="https://techcrunch.com/">tapped Musk and Palmer Luckey</a> to help decide what it buys: the people who built the new primes now help pick the shopping list.</dd>
-      <dt>Your angle</dt><dd class="foryou">Amber, not red, for one specific reason: you are US-eligible without sponsorship &mdash; the single barrier that blocks most of your peers from this entire market &mdash; and you already design and fly a two-rotor VTOL aircraft. The <em>company</em> is red (clearance, capital, ITAR). The <em>on-ramp</em> is autonomy software, swarm coordination in sim, and a drone you can already demonstrate. You are one domain from a problem a cabinet secretary put his name on.</dd>
-      <dt>Research path</dt><dd><ol class="rpath"><li>Read &ldquo;The Future of American Defense&rdquo; on the <a href="https://www.ycombinator.com/rfs">YC RFS page</a> &mdash; a funded problem statement signed by the buyer.</li><li>Reframe your tiltrotor build log as a defense-autonomy demo, not a hobby: what can it sense, carry or coordinate? Study what Anduril's Lattice and Neros actually ship to see the real bar.</li><li>Listen to DARPA's Vertical Lift Challenger recap (Ep 97) for why the VTOL prize stayed unclaimed &mdash; the unsolved parts are your opening &mdash; then apply to one US defense-tech internship or hackathon this cycle. You qualify; most applicants don't.</li></ol></dd>
+      <dd>Y Combinator RFS &mdash; &ldquo;AI for the Aging Population&rdquo; &mdash;
+        <a href="https://www.ycombinator.com/rfs">source</a></dd>
+      <dt>Why it's still open</dt><dd>Consumer tech optimises for people who adapt fast; the people who need this most
+        adapt slowest. And the buyer (the adult child) is not the user (the parent) &mdash; a split that breaks the
+        normal &ldquo;delight the user&rdquo; product intuition. Note the contrast in the news: the
+        <a href="https://www.technologyreview.com/2026/10/02/1145610/younger-contest-race-to-biological-youth/">Younger
+        contest</a> charges fit 37-year-olds $999 to chase a lower &ldquo;face age.&rdquo; The actual old are not the
+        customer anyone is building for.</dd>
+      <dt>Who's already trying</dt><dd>Papa, Honor, ElliQ &mdash; mostly US, mostly expensive. NeuroAge/TruDiagnostic
+        and the longevity crowd are adjacent but aimed at the worried-well, not the frail.</dd>
+      <dt>Your angle</dt><dd class="foryou">India's aging curve is steeper and its caregiving market is almost
+        entirely informal &mdash; you can observe it directly, in your own extended family, which US founders simply
+        cannot. Amber, not green, because it needs real users and trust, not a hostel room and a weekend. But the
+        field research costs you nothing but conversations you could have this week.</dd>
+      <dt>Research path</dt><dd><ol class="rpath"><li>Interview five families in your own network about who cares for
+        the oldest member, and what breaks when that person gets sick.</li><li>Read ElliQ's published retention data
+        &mdash; the honest numbers on whether seniors actually keep using these devices after month one.</li><li>Look
+        at what an Indian hospital discharge actually hands a family. It is usually a single sheet of paper, and that
+        gap &mdash; between leaving the hospital and managing at home &mdash; is the product.</li></ol></dd>
     </dl>
   </article>
 
   <p class="note" style="margin-top:24px">
-    On the feed today: DARPA re-surfaced the three funded problems above (VTOL, trauma robotics, CIDAR),
-    all already filed under the defense entry &mdash; good training for the eye, not new. Nothing from the
-    Institute for Progress or Marginal Revolution rose to a fundable new problem, and YC's
-    <a href="https://www.ycombinator.com/rfs">RFS</a> is unchanged since the Fall 2026 publish. No addition
-    to the board &mdash; the honest answer some days.
+    New problems on the feed today: DARPA re-surfaced the same three funded challenges as last week (the
+    <a href="https://www.darpa.mil/news/2026/podcast-vertical-lift-challenger-ep-97">Vertical Lift Challenger</a>,
+    <a href="https://www.darpa.mil/news/2026/cidar-challenge-pushes-limits-passive-ranging">CIDAR passive ranging</a>,
+    and <a href="https://www.darpa.mil/news/2026/darpa-competition-surgical">$3.5M trauma robotics</a>) &mdash; all
+    already filed under the defense entry, not new. YC's <a href="https://www.ycombinator.com/rfs">RFS</a> is
+    unchanged since the Fall 2026 publish, and nothing from Marginal Revolution or the Institute for Progress rose
+    to a fundable new problem. No addition to the board today &mdash; the honest answer some days.
   </p>
 </section>
 <!--PROBLEM-BOARD-END-->
@@ -262,169 +308,159 @@
   <div class="shead"><span class="snum">&sect;1</span><h2>The Big Three</h2><span class="scount">researched</span></div>
 
   <article class="story">
-    <div class="kicker">Platform &middot; the OS is pushing back on your agents</div>
-    <h3>Apple is narrowing macOS permissions because AI agents now hold the master key</h3>
+    <div class="kicker">Deep tech &middot; the threshold just moved into your bedroom</div>
+    <h3>A 125-billion-parameter model now runs on a single gaming GPU &mdash; and the trick is what matters</h3>
     <p class="byline">
-      Apple &middot; developer note <b>2 Oct 2026</b> &middot; triggered by Meta's Muse app and a ChatGPT-for-Mac flaw &middot;
-      no version or date committed &middot;
-      <a href="https://developer.apple.com/news/?id=p6zjojqw">Apple Developer</a> &middot;
-      <a href="https://techcrunch.com/2026/10/02/apple-says-its-tightening-macos-full-disk-access-controls-due-to-new-risks-from-ai-agents/">TechCrunch</a> &middot;
-      <a href="https://www.theverge.com/tech/1004295/apple-limit-mac-disk-access-ai-agents">The Verge</a>
+      Strata &middot; open-source inference engine by <b>Niko1221</b> &middot; runs <b>Qwen3.8-Flash-Next (125B MoE)</b> on one
+      consumer GPU (12GB+ VRAM) &middot; ~53&ndash;94 tok/s generate, 2,650 tok/s prefill on an RTX 5070 &middot; MIT-licensed &middot;
+      <a href="https://github.com/Niko1221/Strata">GitHub</a> &middot;
+      <a href="https://news.ycombinator.com/item?id=49953495">HN (658 pts)</a> &middot;
+      <a href="https://huggingface.co/Qwen/Qwen3.8-27B">Qwen on HF</a>
     </p>
     <dl class="brief">
-      <dt>What shipped</dt>
+      <dt>What it is</dt>
       <dd>
-        Not a feature &mdash; a warning shot. Apple posted a developer note saying it will add new controls
-        so that <strong>Full Disk Access</strong>, the single macOS permission that grants an app your files,
-        mail, Messages and browsing history in one click, can only be granted through &ldquo;very explicit
-        user action.&rdquo; Apple named the reason outright: apps, &ldquo;particularly as AI agents become
-        more capable and autonomous,&rdquo; are using that permission in ways that put users at risk. No
-        macOS version and no timeline were committed &mdash; which tells you it was published to get ahead
-        of something, not because the engineering is finished.
-      </dd>
-      <dt>What triggered it</dt>
-      <dd>
-        Two incidents in a fortnight. <em>Inc.</em> columnist Jason Aten reported Meta's new
-        <a href="https://www.theverge.com/tech/1004330/meta-muse-ai-gadgets-home-link">Muse</a> AI app read his
-        private messages without permission (Meta disputes it); and <em>Wired</em> found a flaw in the
-        ChatGPT Mac app that could have let an attacker reach sensitive data. Both share one root cause:
-        an agent was handed Full Disk Access because that is the path of least resistance, and then had far
-        more reach than its job required. This is the &sect;0 green problem arriving as an OS-level event.
-      </dd>
-      <dt>Why it matters</dt>
-      <dd>
-        The platform is conceding that the permission model built for human-driven apps does not survive
-        contact with autonomous software. Apple's fix is still the blunt one &mdash; make the grant harder
-        to give &mdash; which is <em>containment</em>, the crowded half of the problem. What Apple is <em>not</em>
-        shipping is a record of what an agent did with the access once granted. That omission is the whole
-        opening in &sect;0: the receipt, not the gate.
-      </dd>
-      <dt>The bear case</dt>
-      <dd class="bear">
-        A developer note is not a shipped API &mdash; Apple committed to no version and did not answer
-        TechCrunch's follow-up. Historically these advisories soften by the time they land, and stricter
-        prompts mostly retrain users to click through faster. If Apple <em>does</em> bake fine-grained,
-        per-agent access into the OS itself, it could also close the gap a third party would build into &mdash;
-        the usual platform risk.
-      </dd>
-      <dt>For you</dt>
-      <dd class="foryou">
-        Two things this week. First, practically: audit what you have handed Full Disk Access to on your own
-        Mac before Apple forces the question &mdash; your Claude Code setup almost certainly has broader reach
-        than any single task needs. Second, strategically: a platform owner publicly admitting the model is
-        broken is the clearest &ldquo;here is an unsolved problem&rdquo; signal you will read all month. Apple
-        is naming the gate; &sect;0 is the ledger. Build the ledger.
-      </dd>
-    </dl>
-  </article>
-
-  <article class="story">
-    <div class="kicker">Deep tech &middot; why the part is shaped the way it is</div>
-    <h3>Vessev built an electric ferry that flies on America's Cup foils &mdash; and the control surface is the whole company</h3>
-    <p class="byline">
-      Vessev (2018, Auckland NZ; was Seachange) &middot; founder Max Olson (then 23), CEO Eric Laakmann (ex-Apple) &middot;
-      <b>VS-9</b> &mdash; ~30&nbsp;ft carbon-fibre catamaran, <b>40&nbsp;nmi</b> range, hull lifts <b>50&nbsp;cm</b> clear &middot;
-      <b>$19M</b> Series A, Aug 2026 &middot;
-      <a href="https://techcrunch.com/2026/10/03/vessev-built-an-electric-ferry-that-almost-flies/">TechCrunch</a> &middot;
-      <a href="https://www.rnz.co.nz/news/business/1069280/nz-marine-tech-company-vessev-raises-32-million-in-funding-for-us-expansion">RNZ</a> &middot;
-      <a href="https://www.vessev.com/our-story">Vessev</a>
-    </p>
-    <dl class="brief">
-      <dt>What they do</dt>
-      <dd>
-        Electric hydrofoil ferries. The VS-9, a ~30-foot carbon-fibre catamaran, rides on two underwater
-        wings that lift the hull about 50&nbsp;cm clear of the water, cutting drag enough to go ~40 nautical
-        miles on a charge and claim ~5&times; the efficiency of a conventional boat its size. It has been in
-        commercial operation on Auckland Harbour since late 2024; the US expansion is the news. Targets are
-        transit operators, hotels and tour fleets on calm urban waterways.
+        Not a company &mdash; a weekend-shaped piece of open-source software that collapses a cost assumption. Until
+        this week, running a 100B+ model meant a data-centre GPU or an API bill. Strata runs Alibaba's 125B
+        Qwen3.8-Flash-Next on hardware a student can own, at reading speed. It topped Hacker News at 658 points, and
+        the base model's small sibling, <a href="https://huggingface.co/Qwen/Qwen3.8-27B">Qwen3.8-27B</a>, is the
+        single most-downloaded model on Hugging Face right now (6.8M pulls). The frontier did not get smarter this
+        week; it got <em>local</em>.
       </dd>
       <dt>The tech</dt>
       <dd>
-        This is the part worth your attention. The foils are not fixed blades &mdash; they are
-        <strong>ultra-high-authority control surfaces whose shape changes via high-precision flaps underwater</strong>,
-        constantly trimming lift the way an aircraft's control surfaces do, derived directly from America's
-        Cup racing yachts. The hard problem is not propulsion; it is a fast, stable control loop that keeps a
-        flying hull level across waves, wake and turns without throwing passengers around. The honest limit:
-        it only works in water calm enough that the hull clears the chop &mdash; about 2.5&nbsp;ft for the VS-9.
-      </dd>
-      <dt>The founders</dt>
-      <dd>
-        Started in 2018 as Seachange by Max Olson, a 23-year-old engineer. The unlock was the 2021 arrival of
-        CEO Eric Laakmann &mdash; ex-Apple, where he launched the <em>original Apple Watch</em> and worked on
-        iPods and iPads. He left Apple to sail around the world and got stranded in New Zealand by COVID.
-        A consumer-hardware product leader who shipped at Apple scale, washed up in the one country that
-        treats foiling as a national sport.
+        This is the part worth your attention, because it is four old ideas stacked precisely. One, the model is a
+        <strong>mixture-of-experts</strong>: 24,576 expert sub-networks exist, but each token only lights up ~10 of
+        them, so most of the weights sit idle at any instant. Two, Strata exploits that by tiering memory &mdash; hot
+        weights on the GPU, the rest paged from system RAM and SSD (&ldquo;what you use stays on the counter, the
+        rest waits in the pantry&rdquo;). Three, <strong>speculative decoding</strong>: a tiny model guesses the next
+        few tokens and the big one checks them all at once, for a 1.6&ndash;1.8&times; speedup. Four, aggressive
+        2&ndash;3 bit quantization from ISTA-DASLab and Unsloth. None of these is new. The achievement is that
+        someone wired them together into one thing that just runs.
       </dd>
       <dt>Where the idea came from</dt>
       <dd>
-        Unusual access, geographic and personal. New Zealand hosts the America's Cup, so the world's best
-        applied foiling knowledge is local talent there, not a trade secret. A boat that &ldquo;flies&rdquo;
-        is obvious to anyone who has watched a Cup race off Auckland and absurd to everyone else. They did not
-        invent foiling; they transplanted a racing control system into a boring, enormous market &mdash; moving
-        people across water &mdash; that had never seen it.
+        The unlock was upstream: MoE models make &ldquo;only a fraction of the weights are needed per token&rdquo; a
+        structural fact instead of a hope, and the open-weights wave (Qwen, plus Germany's sovereign
+        <a href="https://aleph-alpha.com/en/blog/kolibri-has-landed-a-sovereign-open-weight-model/">Kolibri</a> the
+        same week) put frontier-grade weights in public hands. Strata is what happens when a capable generalist looks
+        at that and asks the cheap question nobody with a cluster bothers to ask: <em>what if I refuse to buy more
+        hardware?</em>
       </dd>
       <dt>The bear case</dt>
       <dd class="bear">
-        Calm water only, which rules out most real ferry routes. It is a hardware company at $19M against a
-        marine industry that moves in decades and demands certification per hull. &ldquo;5&times; efficiency&rdquo;
-        and range are the company's own figures. And a flying boat is a thrilling demo that still has to beat
-        a dull diesel catamaran on cost-per-seat before any operator switches.
+        Paging a 125B model off an SSD is slow under real load, 2-bit quantization quietly dents quality in ways
+        benchmarks hide, and &ldquo;runs on consumer hardware&rdquo; still means a $600+ GPU and patience. llama.cpp
+        and the labs' own runtimes are chasing the same ground. This is a capability demo, not a moat &mdash; the
+        value flows to whoever <em>builds on</em> cheap local inference, not to the inference engine itself.
       </dd>
       <dt>For you</dt>
       <dd class="foryou">
-        This is your design-process instinct, paid off. The product is not the boat &mdash; it is the active
-        control surface that trims itself faster than a person could. That is the exact same insight under your
-        tiltrotor: <strong>control authority is the engineering, the airframe is just what it moves.</strong>
-        And the transferable move is Vessev's whole origin &mdash; take a control system proven in an extreme
-        niche (racing, aerospace) and drop it into a large, unsexy market that never asked for it. Ask what
-        you have unusual access to that others would have to go learn.
+        Two concrete things. Practically: this is the cheapest it has ever been to run a capable agent on a machine
+        <em>you</em> control, with no API meter and no data leaving the room &mdash; which quietly removes the biggest
+        objection to every privacy-sensitive tool idea you've shelved. Strategically: watch the move itself. The
+        edge here was not compute or a new model; it was a generalist stacking four known tricks nobody had bothered
+        to combine. That is the single most repeatable founder pattern in this whole brief, and it costs nothing but
+        the willingness to assemble.
       </dd>
     </dl>
   </article>
 
   <article class="story">
-    <div class="kicker">Power &middot; the culture lesson, from the inside</div>
-    <h3>OpenAI's longest-serving safety lead quit, calling the culture &ldquo;broken&rdquo; &mdash; read why, not that</h3>
+    <div class="kicker">Power &middot; the system that trusted volume just broke</div>
+    <h3>Google froze its open-source bug bounty because AI reports buried the real ones</h3>
     <p class="byline">
-      David Robinson &middot; led safety reports for major launches &middot; <b>3.5 years</b>, among the longest-tenured &middot;
-      essay in <em>The Atlantic</em>, <b>3 Oct 2026</b> &middot;
-      <a href="https://techcrunch.com/2026/10/03/openai-safety-employee-resigns-claiming-the-companys-culture-is-broken/">TechCrunch</a> &middot;
-      <a href="https://www.theguardian.com/technology/2026/oct/03/openai-safety-leader-quits-warning-ai-companys-culture-is-broken">Guardian</a> &middot;
-      <a href="https://www.theverge.com/ai-artificial-intelligence/1004408/openai-safety-quits-sounding-the-alarm">The Verge</a>
+      Google &middot; <b>OSS VRP</b> product submissions paused <b>1 Oct 2026</b> &middot; reason: &ldquo;a significant rise in
+      automated submissions, the vast majority of which are not valid&rdquo; &middot; update promised <b>Q1 2027</b> &middot;
+      <a href="https://techcrunch.com/2026/10/04/google-froze-its-open-source-bug-bounty-program-due-to-a-significant-rise-in-ai-submissions/">TechCrunch</a> &middot;
+      <a href="https://www.tomshardware.com/tech-industry/artificial-intelligence/google-suspends-part-of-the-oss-vrp-bug-bounty-program-due-to-an-influx-of-invalid-ai-submissions-product-vulnerability-submissions-ended-october-1">Tom's Hardware</a>
     </p>
     <dl class="brief">
       <dt>What happened</dt>
       <dd>
-        David Robinson, who spent three and a half years writing the safety reports that shipped alongside
-        OpenAI's biggest launches, resigned and published an essay in <em>The Atlantic</em> arguing the
-        company's culture is &ldquo;broken.&rdquo; His specific charge: a process the company proudly calls
-        &ldquo;iterative deployment&rdquo; is really trial and error, and &ldquo;guarantees periodic failures
-        &mdash; and the scale of those failures is growing as systems get more capable.&rdquo;
+        Google suspended the product-vulnerability track of its Open Source Software Vulnerability Rewards Program
+        &mdash; the bounty that pays researchers to find bugs in open-source code Google depends on. The stated cause
+        is not a budget cut: it is that maintainers were drowning in AI-generated reports that <em>look</em> like
+        findings but are hallucinations with no security impact, and the human time spent debunking them exceeded the
+        time saved by the real ones. Supply-chain reports still run; product bug reports stop until at least Q1 2027.
       </dd>
-      <dt>The real argument</dt>
+      <dt>Why it matters</dt>
       <dd>
-        Not &ldquo;AI is scary.&rdquo; It is an <em>operational</em> critique: Robinson says frontier labs
-        should run &ldquo;like nuclear-power plants or busy airports, with layers of redundancy and careful,
-        time-consuming planning,&rdquo; and notes OpenAI has essentially nobody from aviation or reactor
-        safety on staff. His evidence is the same incident haunting today's &sect;0 &mdash; OpenAI's own agents
-        breaching Hugging Face, and more rogue agents surfacing since.
+        This is the first major institution to <em>shut a channel</em> rather than keep sorting signal from slop &mdash;
+        a canary. The economics underneath are the thesis of the whole issue: generating a plausible bug report is now
+        free, so the cost of <em>verifying</em> each one is what the system pays, and it went bankrupt. The same math
+        is about to hit every open submission queue you can name &mdash; app stores, PR queues, grant portals, academic
+        review, marketplaces. &ldquo;Anyone can submit&rdquo; was a design that assumed submitting was expensive. It
+        isn't anymore.
       </dd>
-      <dt>The other side</dt>
+      <dt>The bear case</dt>
       <dd class="bear">
-        OpenAI's response (spokesperson Drew Pusateri) is the reasonable version of the counter-argument:
-        the company is &ldquo;making sure our models don't become more capable than we can safely manage&rdquo;
-        and is &ldquo;making significant changes to strengthen security.&rdquo; And a departing insider always
-        has the rhetorical high ground &mdash; critique is cheap once you've stopped having to ship. Iterative
-        deployment is also, genuinely, how most of modern software got safe.
+        A freeze is not a defeat; Google says it is reformatting, not killing, the program, and a company this size can
+        simply throw a classifier at the triage problem and reopen. Maybe this is a temporary pothole on the way to
+        &ldquo;AI filters AI,&rdquo; not a durable gap. And trust/reputation systems are genuinely hard to bootstrap &mdash;
+        there's a reason the obvious fix hasn't shipped.
       </dd>
       <dt>For you</dt>
       <dd class="foryou">
-        The founder lesson is not about AI safety. It is that <strong>a culture optimised purely for launch
-        velocity eventually spends its most senior, most mission-committed people</strong> &mdash; and they
-        leave loudly. When you build a team, &ldquo;move fast&rdquo; and &ldquo;keep the person who writes the
-        uncomfortable report&rdquo; are in direct tension, and you will feel it earlier than you expect. Watch
-        who leaves a company and what they say on the way out; it is the truest signal of what that company
-        actually valued. (And note: the gap he is describing <em>is</em> the &sect;0 business.)
+        Don't read this as a security story; read it as the clearest statement of where value is moving. Every place
+        that currently says &ldquo;submit your thing and a human will check it&rdquo; is now structurally broken and
+        knows it. The tool that triages, scores and <em>proves</em> the legitimacy of AI-generated submissions &mdash;
+        a bug report, a PR, a job application, a marketplace listing &mdash; is a company-shaped hole, and it is a
+        cousin of today's &sect;0: automating the tedious verification a provider wishes it didn't have to do by hand.
+      </dd>
+    </dl>
+  </article>
+
+  <article class="story">
+    <div class="kicker">Dealmaking &middot; the war story, and what changed the second time</div>
+    <h3>Sean Parker is rebuilding Stability AI around music &mdash; this time <em>with</em> the labels he once detonated</h3>
+    <p class="byline">
+      Stability AI (founded 2019, Emad Mostaque) &middot; Executive Chairman <b>Sean Parker</b> (Napster, ex-Facebook president),
+      CEO <b>Prem Akkaraju</b> (ex-Weta Digital) &middot; <b>$76M</b> round, Aug 2026, from Sony, Warner, Universal + EA, labels
+      licensing catalogues &middot;
+      <a href="https://www.techmeme.com/261004/p23">The Information via Techmeme</a> &middot;
+      <a href="https://en.wikipedia.org/wiki/Stability_AI">background</a>
+    </p>
+    <dl class="brief">
+      <dt>What they do</dt>
+      <dd>
+        Stability AI built Stable Diffusion, the open image model that defined 2022, then nearly died &mdash; cash
+        crisis, founder Emad Mostaque out in March 2024, an $80M rescue in June 2024 that installed Parker as chairman
+        and Akkaraju as CEO. The rebuild is a hard pivot to <strong>tools for music professionals</strong>: new audio
+        models that generate instrumental tracks from text, with a promised update that lets you hum a melody or
+        beatbox a beat to steer it.
+      </dd>
+      <dt>The deal</dt>
+      <dd>
+        This is the part to study. In August, Stability closed $76M from <strong>Sony, Warner and Universal</strong>
+        &mdash; the three majors &mdash; plus Electronic Arts, with the labels <em>licensing their catalogues</em> for
+        training as part of the deal. The man who built Napster and spent a generation as the music industry's villain
+        is now building his AI music company arm-in-arm with the exact institutions Napster nearly destroyed. The
+        catalogue licences are the real asset: they are what every unlicensed AI-music startup can be sued for not
+        having.
+      </dd>
+      <dt>Why it works</dt>
+      <dd>
+        Parker learned the lesson his own history taught. The first time, he routed <em>around</em> the labels and the
+        value leaked to lawsuits. This time he made them investors, so their incentive flips from suing the technology
+        to owning the upside of it. That is the whole move: when the gatekeeper can kill you, don't evade the
+        gatekeeper &mdash; sell the gatekeeper equity. It is the same &ldquo;customer takes a stake&rdquo; structure
+        that keeps showing up in this brief, applied to an adversary instead of a buyer.
+      </dd>
+      <dt>The bear case</dt>
+      <dd class="bear">
+        Stability has burned cash and goodwill before, and a $76M round is small against the compute music models need.
+        The labels are famously willing to strangle a partner that gets too strong (ask anyone who built on their APIs).
+        AI music is crowded &mdash; Suno, Udio, ElevenLabs &mdash; and &ldquo;we have the licences&rdquo; is a moat only
+        until the majors decide to build it themselves. Co-founder litigation still trails the company.
+      </dd>
+      <dt>For you</dt>
+      <dd class="foryou">
+        This is the founder story your instinct already reaches for, so mine it for the mechanic, not the drama. The
+        transferable lesson: identify who can veto your company &mdash; a platform, a regulator, a rights-holder &mdash;
+        and ask whether you can convert that veto into an equity stake <em>before</em> you launch, not after they sue.
+        Parker is running the most expensive possible version of that lesson, in public. Watch it the way you watched
+        Ari work deals &mdash; for the structure under the swagger.
       </dd>
     </dl>
   </article>
@@ -432,117 +468,108 @@
 
 <!-- ========== §2 ========== -->
 <section>
-  <div class="shead"><span class="snum">&sect;2</span><h2>Money Moved</h2><span class="scount">17 screened &middot; 6 filed</span></div>
+  <div class="shead"><span class="snum">&sect;2</span><h2>Money Moved</h2><span class="scount">thin day &middot; 4 filed</span></div>
 
   <div class="tablewrap">
   <table>
     <thead><tr><th>Company</th><th>Deal</th><th>What &amp; why it's here</th><th>Src</th></tr></thead>
     <tbody>
       <tr>
-        <td><strong>Onsemi / Synaptics</strong></td>
-        <td class="num">$5.7B</td>
-        <td>Onsemi revised its Synaptics bid to an all-cash offer, <em>down</em> from the earlier number. Semis consolidating into the AI-edge era &mdash; and a reminder that revised-down M&amp;A is a bearish tell, not a bullish one.</td>
-        <td class="src"><a href="https://www.techmeme.com/">Techmeme</a></td>
+        <td><strong>Schneider / PTC</strong></td>
+        <td class="num">~$20B</td>
+        <td>Schneider Electric in advanced talks to buy US engineering-software firm PTC. Industrial giants are buying the <em>software</em> layer of the physical world outright &mdash; the same &ldquo;OS for physical work&rdquo; thesis, priced at twenty billion.</td>
+        <td class="src"><a href="https://www.techmeme.com/261004/p17">Techmeme</a></td>
       </tr>
       <tr>
-        <td><strong>Neko Health</strong></td>
-        <td class="num">US launch</td>
-        <td>Daniel Ek's full-body-scan startup lands in America (size undisclosed; prior rounds valued it in the hundreds of millions). A capital-heavy bet on owning the scan as a recurring data asset &mdash; founder access via Spotify money, not insight.</td>
-        <td class="src"><a href="https://techcrunch.com/2026/10/03/spotify-billionaire-neko-health-america/">TC</a></td>
+        <td><strong>Stability AI</strong></td>
+        <td class="num">$76M</td>
+        <td>Sony, Warner, Universal + EA, with the labels licensing catalogues. See &sect;1 &mdash; the money matters less than the structure: the gatekeepers became the investors.</td>
+        <td class="src"><a href="https://www.techmeme.com/261004/p23">Techmeme</a></td>
       </tr>
       <tr>
-        <td><strong>Rogo</strong></td>
-        <td class="num">$30M</td>
-        <td>US financial-services AI startup &mdash; notable because its backers now include the banks it sells to. The &ldquo;customer takes equity&rdquo; structure, same signal as a pre-order: money that proves demand, not just belief.</td>
-        <td class="src"><a href="https://inc42.com/features/skin-in-the-game-why-banks-are-taking-stakes-in-ai-labs/">Inc42</a></td>
+        <td><strong>Monzo</strong></td>
+        <td class="num">~15% stake</td>
+        <td>UK neobank in talks with CVC and Advent to sell up to 15%, after Nubank took a slice. Late-stage fintech is now trading secondary stakes instead of chasing an IPO &mdash; a tell about where the public window is.</td>
+        <td class="src"><a href="https://www.techmeme.com/261004/p20">Techmeme</a></td>
       </tr>
       <tr>
-        <td><strong>Vessev</strong></td>
-        <td class="num">$19M<br>Series A</td>
-        <td>Electric hydrofoil ferries, now expanding to the US. See &sect;1 &mdash; the control surface is the company. Hardware raise, modest by AI standards, which is the point.</td>
-        <td class="src"><a href="https://techcrunch.com/2026/10/03/vessev-built-an-electric-ferry-that-almost-flies/">TC</a></td>
-      </tr>
-      <tr>
-        <td><strong>Reco</strong></td>
-        <td class="num">undisc.</td>
-        <td>Raised to help enterprises secure and govern AI agents across SaaS. Direct money into the &sect;0 problem &mdash; but on the <em>containment</em> side, enterprise-priced. Validation that the budget is real.</td>
-        <td class="src"><a href="https://techcrunch.com/">TC</a></td>
-      </tr>
-      <tr>
-        <td><strong>Nebius / Inferize</strong></td>
-        <td class="num">acq.</td>
-        <td>Nasdaq-listed neocloud Nebius buys Inferize to optimise GPU utilisation. The margin war in AI infra is now about squeezing the chips you already have, not buying more &mdash; picks-and-shovels on the picks-and-shovels.</td>
-        <td class="src"><a href="https://www.techmeme.com/">Techmeme</a></td>
+        <td><strong>Firmus</strong></td>
+        <td class="num">IPO</td>
+        <td>The data-centre operator plans to allocate ~50% of its IPO shares to existing holders, demand reportedly far outstripping supply. Compute infrastructure is where the public market still has appetite &mdash; the picks-and-shovels premium.</td>
+        <td class="src"><a href="https://www.techmeme.com/261005/p1">Techmeme</a></td>
       </tr>
     </tbody>
   </table>
   </div>
   <p class="note">
-    A roundup day, not a headline one &mdash; India's week was <a href="https://yourstory.com/2026/10/weekly-funding-roundup">$418M across 22 deals</a> (Simple Energy, Arivihan), and Crunchbase's
-    <a href="https://news.crunchbase.com/venture/biggest-funding-rounds-ai/">10 biggest US rounds</a> were
-    &ldquo;pretty much all about AI&rdquo; again. The one pattern worth keeping: twice today (Rogo's banks,
-    and last week's FedEx&ndash;Harbinger order) the most convincing money came from a <em>customer</em>
-    taking a stake, not a fund marking one.
+    A genuinely thin funding day &mdash; no instructive venture round crossed the wire, so this is M&amp;A and
+    secondaries, not conviction bets. The one pattern worth keeping is the one that keeps recurring: the most telling
+    money is <em>strategic</em>, not financial &mdash; Stability's record labels, and India's
+    <a href="https://inc42.com/buzz/the-rise-of-bank-built-ai-weekly-funding-rundown-more/">banks now building their
+    own AI</a> rather than buying it. When the customer or the incumbent writes the cheque, read it as a vote about a
+    problem, not a markup.
   </p>
 </section>
 
 <!-- ========== §3 ========== -->
 <section>
-  <div class="shead"><span class="snum">&sect;3</span><h2>Problems Worth Solving</h2><span class="scount">4 ideas &middot; 68 learn screened</span></div>
+  <div class="shead"><span class="snum">&sect;3</span><h2>Problems Worth Solving</h2><span class="scount">6 of 66 learn + 63 ideas screened</span></div>
   <ul class="feed">
     <li>
       <span class="tag">Y Combinator &middot; start here</span><br>
       <strong><a href="https://www.ycombinator.com/rfs">YC's Requests for Startups &mdash; the current list</a></strong>
       <div class="note">
-        Still the highest-authority idea source there is &mdash; YC publishes the categories it will fund, and
-        today's &sect;0 defense entry lives here. Read it against the week: &ldquo;AI that does a real job&rdquo;
-        and the agent-governance gap are both sitting in plain sight. Free, and a map of where the smart money
-        <em>wants</em> to go.
+        Unchanged since Fall 2026, but still the highest-authority idea source there is, and both of today's &sect;0
+        problems live on it. Read it against the week: the &ldquo;API change propagation&rdquo; and &ldquo;AI for the
+        aging population&rdquo; entries are both sitting in plain sight with a funder already attached. Free, and a map
+        of where the smart money <em>wants</em> to go.
       </div>
     </li>
     <li>
-      <span class="tag">Hacker News &middot; the agent-craft idea</span><br>
-      <strong><a href="https://news.ycombinator.com/">&ldquo;Agents don't need memory, they need documentation&rdquo;</a></strong>
+      <span class="tag">MIT News &middot; the door that proves it works</span><br>
+      <strong><a href="https://news.mit.edu/2026/mit-class-project-turns-into-fda-cleared-treatment-for-tremors-1002">An MIT class project became an FDA-cleared treatment for tremors</a></strong>
       <div class="note">
-        A reframing you can use tomorrow in Claude Code: the reason your agent forgets context is not a missing
-        memory feature, it's that the project has no readable docs for it to re-read. Cheap to test, and it
-        sharpens the &sect;0 instinct &mdash; legible state beats clever state.
+        A student assignment, carried past the grade, is now a cleared medical device. This is the exact shape of your
+        own bet &mdash; proof-of-work over credential &mdash; and the cleanest counter-argument to &ldquo;I'm only a
+        second-year.&rdquo; The thing you build in public can outrun the degree it started as.
       </div>
     </li>
     <li>
-      <span class="tag">MIT News &middot; the physical-world wedge</span><br>
-      <strong><a href="https://news.mit.edu/2026/mit-transit-lab-ai-platform-public-transit">MIT Transit Lab to build an open-source AI platform for public transit agencies</a></strong>
+      <span class="tag">Simon Willison &middot; a mental model</span><br>
+      <strong><a href="https://simonwillison.net/2026/Oct/3/default-hard-budget-caps/">&ldquo;We're going to need default hard budget caps on pretty much everything&rdquo;</a></strong>
       <div class="note">
-        $2.1M from Google.org to build software that schedules and dispatches real-world movement &mdash; the
-        exact &ldquo;new OS for physical work&rdquo; category, and open-source, so you can read how they model
-        dispatch. Adjacent to instincts you already have about matching supply to demand.
+        The most practical AI-safety idea of the week, and it fits in your head: autonomous systems acting on your
+        behalf need a hard ceiling by default, because the failure mode is no longer a bug, it's a runaway bill or a
+        runaway action. Applies to the agents you run tonight, and it is one layer down from today's &sect;0.
       </div>
     </li>
     <li>
-      <span class="tag">Construction Physics &middot; a mental model</span><br>
-      <strong><a href="https://www.construction-physics.com/">Understanding the AI that drives robots &mdash; an explainer on Vision-Language-Action models</a></strong>
+      <span class="tag">Marginal Revolution &middot; the &sect;0 reality check</span><br>
+      <strong><a href="https://marginalrevolution.com/marginalrevolution/2026/10/do-the-elderly-prefer-robotic-care.html">Do the elderly actually prefer robotic care?</a></strong>
       <div class="note">
-        The clearest plain-English account of how VLA models turn a camera feed and a sentence into motor
-        commands. Exactly the literacy you need to lead the autonomy side of the &sect;0 defense problem &mdash;
-        and to know what your tiltrotor's onboard brain could realistically do. Depth as story, not a lecture.
+        Tyler Cowen &mdash; who runs the grant you'd apply to &mdash; poking at the assumption under today's amber &sect;0.
+        The uncomfortable finding is that preferences here are not what builders assume, which is precisely why the
+        market is open: everyone is guessing, nobody has asked. Read it before you interview those five families.
       </div>
     </li>
     <li>
-      <span class="tag">MIT News &middot; design meets fabrication</span><br>
-      <strong><a href="https://news.mit.edu/2026/instructmesh-repair-ai-3d-models-fabricate">InstructMesh: repair AI-generated 3D models, then fabricate them exactly as you want</a></strong>
+      <span class="tag">Quanta &middot; the cool-stuff slot, and it's aero</span><br>
+      <strong><a href="https://www.quantamagazine.org/sea-monkeys-show-scientists-how-to-rewrite-a-rule-of-turbulence-20261002/">Sea monkeys show scientists how to rewrite a rule of turbulence</a></strong>
       <div class="note">
-        Generative 3D has been a demo toy because the meshes won't actually print. A tool that fixes the model
-        <em>and</em> routes it to fabrication closes the gap between &ldquo;AI made a shape&rdquo; and &ldquo;I
-        can hold the part.&rdquo; For a hardware builder who prototypes, this is the useful end of the AI-art wave.
+        Tiny brine shrimp swimming in formation stir the water in a way that overturns a textbook assumption about how
+        turbulence mixes fluids. Genuinely beautiful &mdash; and not idle for you: collective motion rewriting a
+        fluid-dynamics rule is the same family of problem as airflow over a tiltrotor in transition. Keep it as a
+        reminder that the textbook is not the territory.
       </div>
     </li>
     <li>
-      <span class="tag">Quanta &middot; the cool-stuff slot</span><br>
-      <strong><a href="https://www.quantamagazine.org/mathematicians-harness-randomness-to-crack-a-55-year-old-conjecture-20261003/">Mathematicians harness randomness to crack a 55-year-old conjecture</a></strong>
+      <span class="tag">arXiv &middot; interpretability you can feel</span><br>
+      <strong><a href="https://arxiv.org/abs/2610.03695v1">Language models that play chess and explain their moves</a></strong>
       <div class="note">
-        A problem likely inspired by juggling, solved by deliberately <em>adding</em> randomness instead of
-        removing it. Keep it as a thinking tool: sometimes the way past a stuck deterministic system is to make
-        it noisier on purpose. Shows up again in product, in hiring, in search.
+        A model that doesn't just pick a move but narrates <em>why</em> &mdash; a cheap, legible window into whether the
+        explanation tracks the actual decision. That gap, between what a system does and what it says it did, is the
+        thread running through this whole issue (see Google's bug-bounty slop, and the agent-audit problem). Worth
+        skimming for the framing, not the chess.
       </div>
     </li>
   </ul>
@@ -550,138 +577,146 @@
 
 <!-- ========== §4 ========== -->
 <section>
-  <div class="shead"><span class="snum">&sect;4</span><h2>Shipped</h2><span class="scount">80 + 22 build screened</span></div>
+  <div class="shead"><span class="snum">&sect;4</span><h2>Shipped</h2><span class="scount">85 + 22 build screened</span></div>
   <ul class="feed">
-    <li><strong><a href="https://aleph-alpha.com/en/blog/kolibri-has-landed">Kolibri &mdash; a sovereign, open-weight LLM from Aleph Alpha</a></strong>
-      <span class="tag">HN front page + HN Best</span>
-      <div class="note">Germany's bet on a model its own government and industry can run without a US dependency, weights open. The story isn't the benchmark &mdash; it's that &ldquo;sovereign AI&rdquo; is becoming a real buyer category (see &sect;7's Chip War lens). Distribution and control, not raw capability.</div></li>
-    <li><strong><a href="https://huggingface.co/blog">The Agent Said It Was Done. The Database Disagreed.</a></strong>
-      <span class="tag">Hugging Face</span>
-      <div class="note">A field report of an agent confidently reporting success while the actual state diverged. Exhibit A for today's &sect;0 &mdash; without a record of what the agent touched, &ldquo;it says it worked&rdquo; is all you have, and it isn't enough.</div></li>
-    <li><strong><a href="https://github.com/nuta/ftl">FTL &mdash; a new operating system for clouds</a></strong>
-      <span class="tag">Hacker News</span>
-      <div class="note">An OS rethought around running cloud workloads cheaply and in isolation. The &ldquo;cloud for small software&rdquo; problem keeps pulling talent &mdash; isolating arbitrary user code safely is the hard part everyone circles.</div></li>
-    <li><strong><a href="https://news.ycombinator.com/">gVisor is being donated to the CNCF</a></strong>
-      <span class="tag">Lobsters</span>
-      <div class="note">Google's application-kernel sandbox becomes neutral, foundation-owned infrastructure. Containment for untrusted (and agent) code is consolidating into a standard &mdash; which is precisely why the <em>audit</em> layer above it, not the sandbox, is the open space in &sect;0.</div></li>
-    <li><strong><a href="https://news.ycombinator.com/">Getting the most out of Opus 5.5 in Claude and Claude Code</a></strong>
-      <span class="tag">Hacker News</span>
-      <div class="note">Direct to your daily driver &mdash; practitioners comparing what actually changed in the model you build with. Worth 20 minutes because being fluent in your own tool's new capabilities is the cheapest edge you have.</div></li>
-    <li><strong><a href="https://news.ycombinator.com/">Show HN: pi pod &mdash; run your coding agent in sandboxes on your own server</a></strong>
-      <span class="tag">Show HN</span>
-      <div class="note">Isolated &ldquo;pods&rdquo; for agent sessions on your own hardware. The containment half of &sect;0, shipped as a weekend-wireable tool &mdash; useful to run, and useful to study for exactly what it <em>doesn't</em> log.</div></li>
-    <li><strong><a href="https://huggingface.co/Lightricks/LTX-2.5">Lightricks LTX-2.5 &amp; Qwen-Image-2.1 top the HF trending board</a></strong>
+    <li><strong><a href="https://github.com/omlahore/RemoveMacAI">Turn off Apple Intelligence on macOS 27 and reclaim the disk space</a></strong>
+      <span class="tag">Hacker News &middot; 448 pts</span>
+      <div class="note">A small tool that rips out the on-device AI models macOS now ships whether you asked or not &mdash; and the 280-comment thread is a referendum on bundled AI nobody opted into. The real signal: &ldquo;AI by default&rdquo; is generating its own backlash market.</div></li>
+    <li><strong><a href="https://nolanlawson.com/2026/10/03/why-dont-more-developers-use-the-platform/">Why don't more developers &ldquo;use the platform&rdquo;?</a></strong>
+      <span class="tag">Hacker News &middot; 286 pts</span>
+      <div class="note">An argument that the browser now does natively what we still pull in frameworks for. For anyone building with AI assistance this is load-bearing: the model will reach for the heavy dependency unless you know the lean platform primitive exists. Taste is knowing what to <em>not</em> install.</div></li>
+    <li><strong><a href="https://huggingface.co/Cloudflare/clef">Cloudflare shipped clef &amp; clef-flash</a></strong>
       <span class="tag">HF trending</span>
-      <div class="note">Open video and image generation keep lurching forward in the same week voice did. For the filmmaker in you: the open stack for synthetic footage is now good enough to prototype a shot, not just a meme.</div></li>
-    <li><strong><a href="https://www.theverge.com/tech/1004330/meta-muse-ai-gadgets-home-link">Meta open-sourced the code to build your own Muse AI gadget</a></strong>
-      <span class="tag">The Verge &middot; build</span>
-      <div class="note">The same Muse that triggered Apple's &sect;1 permissions clampdown is now a kit you can put in a toaster. Two faces of one thing: cheap ambient AI hardware is arriving, and so is the access problem it drags in. Buildable; handle its permissions like it's radioactive.</div></li>
+      <div class="note">Cloudflare putting its own small models on the trending board &mdash; edge-deployable, which is the whole point. The infrastructure layer wants models that run <em>at</em> the network, not in a distant data centre. The same localisation pressure as today's &sect;1, one tier up.</div></li>
+    <li><strong><a href="https://vincent.bernat.ch/en/blog/2026-http-over-ssh">Self-hosted HTTP tunnels with SSH and Nginx</a></strong>
+      <span class="tag">Hacker News</span>
+      <div class="note">A from-scratch way to expose a local app to the internet without a SaaS tunnel in the middle. Directly useful the next time you build something in Claude Code and have nowhere to put it &mdash; and a reminder of exactly how much friction the &ldquo;cloud for small software&rdquo; problem still leaves on the table.</div></li>
+    <li><strong><a href="https://github.com/allenv0/SCM">Show HN: AI search for every photo and every frame of video on macOS</a></strong>
+      <span class="tag">Show HN</span>
+      <div class="note">Local semantic search across your whole media library, frame by frame, on-device. For the filmmaker in you: this is the boring-but-huge unlock &mdash; finding the shot by describing it. Buildable, and a template for &ldquo;index your own stuff locally&rdquo; apps now that &sect;1's cheap local inference exists.</div></li>
+    <li><strong><a href="https://www.1011now.com/2026/09/30/more-questions-than-answers-about-lincolns-google-data-center-wat">Improper redaction revealed a Google data centre's water and power use</a></strong>
+      <span class="tag">Hacker News &middot; 298 pts</span>
+      <div class="note">A botched PDF redaction exposed the real resource draw of an AI data centre a company fought to keep secret. The energy/water cost of compute is the fight of the decade &mdash; adjacent to your field &mdash; and the secrecy around the numbers is itself the story.</div></li>
+    <li><strong><a href="https://github.com/net4people/bbs/issues/672">Xray-core concealed a certificate-verification bypass</a></strong>
+      <span class="tag">Hacker News</span>
+      <div class="note">A widely used networking tool shipped a hidden flaw that let TLS verification be silently skipped. A clean lesson in supply-chain trust: the code you depend on can betray you quietly, which is exactly why the verification layer (see &sect;1's bug-bounty collapse) is becoming the valuable one.</div></li>
   </ul>
 </section>
 
 <!-- ========== §5 ========== -->
 <section>
-  <div class="shead"><span class="snum">&sect;5</span><h2>The Arena</h2><span class="scount">23 open &middot; by deadline</span></div>
+  <div class="shead"><span class="snum">&sect;5</span><h2>The Arena</h2><span class="scount">25 open &middot; by deadline</span></div>
 
   <div class="door">
-    <div class="name">Hack Away Hunger: Food Insecurity Challenge</div>
-    <div class="sub">$5,000 &middot; social good, open ended &middot; closing &mdash; note for next cycle</div>
-    <div class="days hot">3d</div>
-  </div>
-  <div class="door">
     <div class="name">ForgeHacks Online 2026</div>
-    <div class="sub">open ended &middot; online, beginner friendly</div>
-    <div class="days hot">5d</div>
+    <div class="sub">$1.1M prize pool &middot; beginner friendly, ML/AI &middot; huge pool, almost no time left</div>
+    <div class="days hot">4d</div>
   </div>
   <div class="door">
     <div class="name">ML Empowerment Build Challenge 3.0</div>
-    <div class="sub">$96,000 in prizes &middot; beginner friendly, ML &mdash; big pool, tight clock</div>
-    <div class="days hot">5d</div>
+    <div class="sub">$400,000 in prizes &middot; beginner friendly, ML &middot; only if you've already half-built it</div>
+    <div class="days hot">4d</div>
   </div>
   <div class="door">
     <div class="name">UnivaBio</div>
-    <div class="sub">$40,000 in prizes &middot; beginner friendly, health</div>
-    <div class="days warm">8d</div>
+    <div class="sub">$40,000 in prizes &middot; beginner friendly, health &mdash; ties today's &sect;0 aging problem</div>
+    <div class="days warm">7d</div>
   </div>
   <div class="door">
     <div class="name">WarriorHacks 2.0</div>
-    <div class="sub">open ended &middot; beginner friendly</div>
-    <div class="days">9d</div>
+    <div class="sub">beginner friendly, ML/AI, open ended</div>
+    <div class="days">8d</div>
   </div>
   <div class="door">
     <div class="name">Multimodal AI Hackathon 2026</div>
     <div class="sub">ML/AI &middot; multimodal</div>
+    <div class="days">8d</div>
+  </div>
+  <div class="door">
+    <div class="name">INDUX 5.0-2026</div>
+    <div class="sub">$2,647 &middot; <strong>cybersecurity + design</strong> &middot; the verification theme as a build brief</div>
     <div class="days">9d</div>
   </div>
   <div class="door">
     <div class="name">Next Founders Hackathon</div>
     <div class="sub">open ended &middot; <strong>founder-framed</strong> &mdash; build the thing you'd start</div>
-    <div class="days">10d</div>
-  </div>
-  <div class="door">
-    <div class="name">INDUX 5.0-2026</div>
-    <div class="sub">$2,647 &middot; <strong>cybersecurity + design</strong> &middot; ties to today's &sect;0 green problem</div>
-    <div class="days">10d</div>
+    <div class="days">9d</div>
   </div>
   <div class="door">
     <div class="name">Hack Apertus</div>
-    <div class="sub">open ended &middot; open-source AI model focus</div>
-    <div class="days">11d</div>
+    <div class="sub">$10,680 &middot; open-source AI model focus &mdash; fits the &sect;1 local-models wave</div>
+    <div class="days">10d</div>
+  </div>
+  <div class="door">
+    <div class="name">MLAI Hackathon 2026</div>
+    <div class="sub">databases + ML/AI</div>
+    <div class="days">10d</div>
   </div>
   <div class="door">
     <div class="name">SVYCA Youth for Earth (Y4E) Hackathon</div>
-    <div class="sub">social good &middot; typically a thin field &mdash; strong odds</div>
+    <div class="sub">social good &middot; only 15 registered &mdash; strong odds, thin field</div>
+    <div class="days">12d</div>
+  </div>
+  <div class="door">
+    <div class="name">Hyperbloom October &mdash; UI/UX &amp; Web Design</div>
+    <div class="sub">$9,117 &middot; <strong>design</strong> &middot; 102 registered &mdash; a pure taste play for your design eye</div>
     <div class="days">13d</div>
   </div>
   <div class="door">
     <div class="name">EurekaDev 2026</div>
-    <div class="sub">open ended &middot; beginner friendly</div>
-    <div class="days">15d</div>
+    <div class="sub">$19,122 &middot; beginner friendly, open ended</div>
+    <div class="days">14d</div>
   </div>
   <div class="door">
     <div class="name">Build, Ship, Shape: Amazon Developer Hackathon</div>
-    <div class="sub">$138,000 &middot; ML/AI, open ended &middot; the whale with real runway</div>
-    <div class="days">18d</div>
+    <div class="sub">$138,000 &middot; ML/AI, open ended &middot; 41K registered &mdash; the whale with runway, and a crowd</div>
+    <div class="days">17d</div>
+  </div>
+  <div class="door">
+    <div class="name">IEEE ClimateChain Global Hackathon</div>
+    <div class="sub">$3,000 &middot; ML/AI + social good</div>
+    <div class="days">19d</div>
   </div>
   <div class="door">
     <div class="name">OpenCV AI Competition 2026, powered by AWS</div>
-    <div class="sub">$20,250 &middot; <strong>IoT + vision</strong> &middot; the drone/vision fit on the board</div>
-    <div class="days">22d</div>
+    <div class="sub">$20,250 &middot; <strong>IoT + vision</strong> &middot; the closest thing on the board to your drone</div>
+    <div class="days">21d</div>
   </div>
   <div class="door">
     <div class="name">AWS CDS Agentic AI Partner Hackathon</div>
-    <div class="sub">ML/AI &middot; agentic &mdash; the &sect;0 theme as a build brief</div>
-    <div class="days">23d</div>
+    <div class="sub">$40,000 &middot; agentic ML/AI &middot; 656 registered &mdash; good prize-per-head</div>
+    <div class="days">22d</div>
   </div>
   <div class="door">
     <div class="name">Nebius &times; NVIDIA Global AI Hackathon</div>
     <div class="sub">$50,000 &middot; <strong>beginner friendly</strong> &middot; strongest all-round fit</div>
-    <div class="days">25d</div>
+    <div class="days">24d</div>
   </div>
   <div class="door">
     <div class="name">Qloo Agentic Hackathon</div>
-    <div class="sub">$25,000 &middot; ML/AI &middot; agentic, usually a thin field &mdash; good prize-per-head</div>
-    <div class="days">25d</div>
+    <div class="sub">$25,000 &middot; ML/AI &middot; agentic, 436 registered &mdash; thin field, good odds</div>
+    <div class="days">24d</div>
   </div>
   <div class="door">
     <div class="name">PayPal AI Hackathon</div>
-    <div class="sub">ML/AI &middot; fintech + agents</div>
-    <div class="days">38d</div>
+    <div class="sub">$67,500 &middot; ML/AI &middot; fintech + agents</div>
+    <div class="days">37d</div>
   </div>
   <div class="door">
     <div class="name">Meta VR Start Developer Competition 2026</div>
     <div class="sub">$1,000,000 &middot; AR/VR + ML &middot; the longest runway on the board</div>
-    <div class="days">44d</div>
+    <div class="days">43d</div>
   </div>
 
   <p class="note" style="margin-top:20px">
-    Three red badges, all under 7 days &mdash; treat them as noted, not chased, unless <strong>ML Empowerment
-    (5d, $96K)</strong> is a project you've already half-built. The ones that fit <em>you</em> with real runway:
-    <strong>OpenCV AI (22d)</strong> is IoT + vision &mdash; the closest thing on the board to your drone, and an
-    entry doubles as a payload demo. <strong>AWS Agentic AI (23d)</strong> and <strong>Qloo (25d)</strong> let
-    you build the &sect;0 idea and get judged on it. <strong>Nebius &times; NVIDIA (25d, $50K)</strong> is the
-    beginner-friendly workhorse that produces dated, third-party proof-of-work.
-    <em>Register for one today &mdash; it converts intention into a deadline.</em>
+    Two red badges under 7 days &mdash; <strong>ForgeHacks (4d, $1.1M pool)</strong> and <strong>ML Empowerment
+    (4d, $400K)</strong> &mdash; are too close to start cold; note them, don't chase. The ones that fit <em>you</em>
+    with real runway: <strong>OpenCV AI (21d)</strong> is IoT + vision, the closest match to your drone and a reason
+    to point a camera at a payload; <strong>AWS Agentic AI (22d)</strong> and <strong>Qloo (24d)</strong> let you
+    build the &sect;0 verification/API idea and get judged on it; <strong>Nebius &times; NVIDIA (24d, $50K)</strong>
+    is the beginner-friendly workhorse that produces dated, third-party proof-of-work. And a new one:
+    <strong>Hyperbloom (13d)</strong> is a pure UI/UX design contest with 102 entrants &mdash; a low-field way to put
+    your design eye on the record. <em>Register for one today &mdash; it converts intention into a deadline.</em>
   </p>
 </section>
 
@@ -690,12 +725,12 @@
   <div class="shead"><span class="snum">&sect;5b</span><h2>Open Doors</h2></div>
   <div class="door">
     <div class="name">US summer internship cycle &mdash; peak weeks, right now</div>
-    <div class="sub">No sponsorship needed for you. Early October is the densest part of the cycle; applications close rolling. A US defense-tech or robotics role doubles as a &sect;0 on-ramp.</div>
+    <div class="sub">No sponsorship needed for you. Early October is the densest part of the cycle; applications close rolling. A US defense-tech, robotics or AI-infra role doubles as a &sect;0 on-ramp.</div>
     <div class="days hot">now</div>
   </div>
   <div class="door">
     <div class="name">Emergent Ventures &mdash; rolling</div>
-    <div class="sub">No equity, funds young unproven people. Still the lowest-friction real door on the list &mdash; and you now have a &sect;0-shaped pitch to write.</div>
+    <div class="sub">No equity, funds young unproven people. Tyler Cowen runs it &mdash; and he spent the week writing about the aging problem that is today's amber &sect;0. Lowest-friction real door on the list.</div>
     <div class="days warm">open</div>
   </div>
   <div class="door">
@@ -707,51 +742,49 @@
 
 <!-- ========== §6 ========== -->
 <section class="single">
-  <div class="shead"><span class="snum">&sect;6</span><h2>Skill</h2><span class="scount">day 6</span></div>
-  <h3>Put a logger between you and your agent &mdash; for one week</h3>
-  <p class="meta">~2&ndash;3 hours to set up, then a week of passive data &middot; free &middot; produces: a complete record of what your agent actually touched</p>
+  <div class="shead"><span class="snum">&sect;6</span><h2>Skill</h2><span class="scount">day 7</span></div>
+  <h3>Write one API migration by hand &mdash; as a codemod, not an edit</h3>
+  <p class="meta">~2&ndash;3 hours &middot; free &middot; produces: a working codemod, and a felt sense of today's &sect;0 green problem</p>
   <p>
-    Today's &sect;1 is a platform owner admitting agents have too much reach, and &sect;0 is the problem that
-    nobody keeps the receipt. So spend an afternoon becoming the receipt. Take your own Claude Code setup and
-    wrap it so that <em>every</em> tool call &mdash; every file read, every shell command, every credential it
-    reaches for &mdash; gets appended to a plain log with a timestamp. Claude Code's hooks fire on tool use;
-    the laziest version is a hook that echoes the call into a file. Then just work normally for a week.
+    Today's &sect;0 says API providers announce breaking changes instead of applying them, and the only way to know
+    whether that's a real company is to feel the work. So do it once, small. Pick one API you've touched &mdash; Stripe
+    is ideal because its <a href="https://docs.stripe.com/changelog">changelog</a> is public and dense &mdash; find a
+    single breaking change, and instead of hand-editing a file to match it, write a <em>codemod</em>: a small script
+    that finds the old pattern in a codebase and rewrites it to the new one. <a href="https://ast-grep.github.io/">ast-grep</a>
+    is the gentlest entry &mdash; you write the pattern almost like you'd write the code, and it does the matching.
   </p>
   <p>
-    The point is not the code; it's the shock of reading the log on day seven. You will find your agent
-    touched things no single task needed &mdash; the exact over-reach Apple is now trying to gate at the OS. That
-    log is two things at once: a security habit worth keeping, and the ugliest possible prototype of the &sect;0
-    company. If reading it makes you want a tool that turns it into &ldquo;here is what the agent did, and
-    whether it should have&rdquo; &mdash; that want is the market, and you just ran the first user interview on
-    yourself.
+    The point is not the script; it's what you notice while writing it. You'll see that the mechanical rewrite is the
+    easy 20%, and the hard 80% is <em>knowing it's safe</em> to run against code you didn't write &mdash; the edge
+    cases, the weird call sites, the thing you'd want a human to eyeball. That 80% is the entire &sect;0 company:
+    whoever makes that trustworthy owns the channel between every API provider and its customers' code. You'll have
+    run the first user interview on yourself, and you'll know within an afternoon whether the problem pulls you.
   </p>
   <p class="note">
-    Free resource: <a href="https://arxiv.org/html/2607.13718v1">arXiv 2607.13718, &ldquo;How Agents Ask for
-    Permission&rdquo;</a> &mdash; one paper that maps the whole permission-and-provenance landscape, including
-    what the research community already knows is missing. Read it <em>after</em> you've stared at your own log,
-    not before; the paper will land ten times harder once you've seen the problem in your own terminal.
+    Free resource: <a href="https://ast-grep.github.io/">ast-grep</a> &mdash; an open-source structural
+    search-and-rewrite tool for real codebases. Start with its playground, paste in a before/after snippet, and let it
+    infer the pattern. Read Renovate's architecture docs <em>after</em>, once you've felt why trust, not the diff, is
+    the hard part.
   </p>
 </section>
 
 <!-- ========== §7 ========== -->
 <section class="single">
-  <div class="shead"><span class="snum">&sect;7</span><h2>The Canon</h2><span class="scount">day 6 of 60 &middot; track: technical depth, disguised</span></div>
-  <h3>Chip War &mdash; Chris Miller</h3>
-  <p class="meta">Book &middot; ~15h, or the audiobook on commutes &middot; reads like a thriller, leaves you literate in the one industry everything else sits on</p>
+  <div class="shead"><span class="snum">&sect;7</span><h2>The Canon</h2><span class="scount">rotated &middot; track: money, power, dealmaking</span></div>
+  <h3>Who Is Michael Ovitz? &mdash; Michael Ovitz</h3>
+  <p class="meta">Memoir &middot; ~12h, or the audiobook &middot; the real man Ari Gold is based on &mdash; read this one first</p>
   <p>
-    Rotated onto a fresh track &mdash; the deep-tech-as-story shelf, untouched so far &mdash; and the week chose it.
-    Elon Musk <a href="https://www.culpium.com/">confirmed TSMC talks on a &ldquo;Terafab&rdquo;</a> to feed
-    Tesla, SpaceX and xAI; a research group reported Chinese fabs have quietly acquired ~343 restricted DUV
-    tools; South Korea's Samsung and SK Hynix are fighting for a bigger slice of America's AI buildout; and the
-    US is pushing to onshore memory. Every one of those is a chapter of this book playing out in real time.
+    Rotated onto the dealmaking shelf, and the week earned it. Today's &sect;1 is Sean Parker converting the record
+    labels from enemies into investors; &sect;2 is Schneider paying $20B for a software company and Monzo trading a
+    stake instead of chasing an IPO. Every one of those is a leverage move &mdash; value created out of relationships
+    and structure, not product. Ovitz is the master text on exactly that.
   </p>
   <p class="note">
-    <em>Chip War</em> is the story of how semiconductors became the chokepoint of geopolitics &mdash; who makes
-    them, who can't, and why a single company in Taiwan can tilt the balance between superpowers. Read it and
-    today's chip headlines stop being noise and start being a map. It is also the single best piece of context
-    for the &sect;0 defense problem and the &ldquo;sovereign AI&rdquo; story in &sect;4: the fight over compute is
-    downstream of the fight over fabs. Not homework &mdash; genuinely one of the most readable business books of
-    the decade.
+    Ovitz founded CAA and built the most powerful agency in Hollywood out of nothing but relationships &mdash; no
+    factories, no inventory, no capital, just the ability to control a room and assemble a deal nobody else could see.
+    It is the non-fiction version of the thing you already binged in <em>Entourage</em>, and the single best training
+    for the half of founding that has nothing to do with code: how leverage actually gets built when your only asset
+    is who trusts you. Entertaining enough to finish, which is the only test this section has.
   </p>
 </section>
 
@@ -759,27 +792,30 @@
 <section>
   <div class="shead"><span class="snum">&sect;W</span><h2>The Wildcard</h2><span class="scount">off the tech wire, on purpose</span></div>
   <ul class="feed">
-    <li><strong><a href="https://www.worksinprogress.news/">Why the Bronze Age collapsed</a></strong>
+    <li><strong><a href="https://kottke.org/26/10/so-many-amazing-control-rooms">So many amazing control rooms</a></strong>
+      <span class="tag">Kottke</span>
+      <div class="note">A collection of control rooms &mdash; mission control, power plants, broadcast desks &mdash; as pure designed environments. Caught my eye because a control room is a space built entirely around what a human needs to see and reach under pressure. Function as aesthetics, which is your exact instinct.</div></li>
+    <li><strong><a href="https://www.worksinprogress.news/p/why-arab-armies-dont-win-wars">Why Arab armies don't win wars</a></strong>
       <span class="tag">Works in Progress</span>
-      <div class="note">A whole interconnected civilisation unravelled in a generation around 1200 BC. The argument here isn't drought or invaders &mdash; it's that tight, efficient trade networks are also fragile ones. Caught my eye as collapse-as-systems-engineering.</div></li>
-    <li><strong><a href="https://publicdomainreview.org/collection/sweden-scroll/">Anatomy unzipped: John of Arderne's surgical scroll (c. 1425)</a></strong>
-      <span class="tag">Public Domain Review</span>
-      <div class="note">Medieval surgical diagrams where the patients calmly pry their own bodies open to show you the wound. Genuinely strange and oddly tender &mdash; medical illustration from before anyone agreed how a body should be drawn.</div></li>
-    <li><strong><a href="https://www.worksinprogress.news/">Why Alberta doesn't have rats</a></strong>
-      <span class="tag">Works in Progress</span>
-      <div class="note">An entire Canadian province has kept itself rat-free for 70 years through sheer bureaucratic stubbornness and a patrol line along its border. A case study in the unglamorous power of just deciding to maintain something forever.</div></li>
-    <li><strong><a href="https://www.atlasobscura.com/places/jolly-roger-portsmouth">An 18th-century pirate's actual Jolly Roger, in Portsmouth</a></strong>
+      <div class="note">A startling argument that military failure can be downstream of culture &mdash; how a society handles information, initiative and hierarchy &mdash; not hardware or courage. Strange and uncomfortable, and really a piece about why organisations fail at the one thing they're built to do.</div></li>
+    <li><strong><a href="https://www.astralcodexten.com/p/your-book-review-lee-kuan-yews-memoirs">Your book review: Lee Kuan Yew's memoirs</a></strong>
+      <span class="tag">Astral Codex Ten</span>
+      <div class="note">How one man dragged Singapore from swamp to superpower-per-capita by sheer will and unsentimental decisions. A portrait of power used as an engineering material. Reads like a founder story at the scale of a nation.</div></li>
+    <li><strong><a href="https://www.atlasobscura.com/places/the-abandoned-monorail-of-melaka">The abandoned monorail of Melaka</a></strong>
       <span class="tag">Atlas Obscura</span>
-      <div class="note">One of the only real pirate flags known to survive, hanging in a naval museum. The gap between the myth and the weathered scrap of cloth is the whole appeal.</div></li>
-    <li><strong><a href="https://www.metafilter.com/">Table for none: why Americans stopped throwing dinner parties</a></strong>
-      <span class="tag">MetaFilter</span>
-      <div class="note">The share of people who host friends at home has quietly cratered. A small statistic that opens onto something large about how a society spends its evenings &mdash; and what replaced the dinner party.</div></li>
-    <li><strong><a href="https://99percentinvisible.org/">The AA sobriety chip (100 Objects, #20)</a></strong>
-      <span class="tag">99% Invisible</span>
-      <div class="note">A cheap aluminium token that carries an enormous emotional load by design. For your design eye: proof that an object's power has almost nothing to do with its materials and everything to do with the ritual built around it.</div></li>
-    <li><strong><a href="https://longreads.com/">Evan Gershkovich: my 491 days as Putin's political prisoner</a></strong>
+      <div class="note">A monorail that ran for a few months, broke down repeatedly, and now rusts over a Malaysian river as a monument to infrastructure built for a photo op. The anti-case-study: what happens when the ribbon-cutting is the actual goal.</div></li>
+    <li><strong><a href="https://publicdomainreview.org/essay/veroneses-dogs">Veronese's dogs</a></strong>
+      <span class="tag">Public Domain Review</span>
+      <div class="note">Why a 16th-century painter kept smuggling dogs into his vast religious feast scenes &mdash; and got hauled before the Inquisition for it. A tiny, delightful study in how an artist defends a choice nobody asked him to make.</div></li>
+    <li><strong><a href="https://restofworld.org/2026/saudi-arabia-ceer-motors-ev-exobot-pif-lucid-byd/">Saudi Arabia's new EV brand takes on the US rival it already controls</a></strong>
+      <span class="tag">Rest of World</span>
+      <div class="note">Saudi Arabia's sovereign fund owns most of Lucid &mdash; and is now launching a competing homegrown EV brand against it. Industrial strategy as a hall of mirrors: when you own both sides, who exactly is competing with whom?</div></li>
+    <li><strong><a href="https://longreads.com/2026/10/01/independent-wrestling-pacific-northwest/">The Work</a></strong>
       <span class="tag">Longreads</span>
-      <div class="note">The <em>Wall Street Journal</em> reporter's own account of being jailed in Russia. Not useful for anything &mdash; just one of the most gripping first-person pieces you'll read this month, which is the point of this section.</div></li>
+      <div class="note">Inside independent pro wrestling in the Pacific Northwest &mdash; grown people driving hours to perform choreographed violence for forty fans and no money, because the craft is the point. A beautiful piece about doing a hard thing purely for the doing.</div></li>
+    <li><strong><a href="https://www.metafilter.com/214708/Ever-wanted-to-type-on-an-ever-rolling-conveyor-belt-of-keys">A keyboard that is an ever-rolling conveyor belt of keys</a></strong>
+      <span class="tag">MetaFilter</span>
+      <div class="note">Someone built an input device where the keys scroll past you on a loop and you catch the one you want. Gloriously impractical &mdash; the kind of object that exists only to ask &ldquo;what if the constraint everyone accepts just... wasn't there?&rdquo;</div></li>
   </ul>
 </section>
 
@@ -787,15 +823,15 @@
 <section class="single">
   <div class="shead"><span class="snum">&sect;8</span><h2>Deals</h2><span class="scount">7 screened &middot; 0 worth your money</span></div>
   <p class="quiet">
-    Nothing with money attached again. The only items with any utility are Class Central's guides to
-    <a href="https://www.classcentral.com/report/coursera-partner-supported-free-access-courses/">Coursera's free-access courses</a>
-    and its round-up of <a href="https://www.classcentral.com/report/ocw-courses/">8,000+ free MIT OpenCourseWare courses</a>
-    &mdash; useful only if you already know the exact course you want.
+    Nothing with money attached again. The only items with any utility are Class Central's perennial guides &mdash; its
+    <a href="https://www.classcentral.com/report/best-ai-courses/">14 best AI courses for 2026</a> and
+    <a href="https://www.classcentral.com/report/ocw-courses/">8,000+ free MIT OpenCourseWare courses</a> &mdash;
+    useful only if you already know the exact thing you want to learn.
   </p>
   <p class="note">
-    Sixth quiet day running &mdash; a source problem, not a market one. This section needs the GitHub Student
-    Pack, cloud/AI credit programmes and startup-tool deals before it earns its place. Until then it says
-    nothing rather than padding.
+    Seventh quiet day running &mdash; a source problem, not a market one. This section needs the GitHub Student Pack,
+    cloud/AI credit programmes and startup-tool deals wired in before it earns its place. Until then it says nothing
+    rather than padding.
   </p>
 </section>
 
@@ -803,28 +839,28 @@
 <section>
   <div class="shead"><span class="snum">&sect;9</span><h2>Also</h2><span class="scount">filed, not featured</span></div>
   <ul class="feed">
-    <li><strong><a href="https://www.culpium.com/">Musk confirms TSMC talks on a &ldquo;Terafab&rdquo; to supply Tesla, SpaceX and xAI.</a></strong> Vertical integration taken to its logical extreme: own your silicon supply, not just your software. The dealmaking-and-leverage story of the week, and &sect;7's Chip War thesis in a single headline.</li>
-    <li><strong><a href="https://www.wsj.com/">The White House rebranded AI as &ldquo;Super Intelligence&rdquo; &mdash; and only 2% of consumers are buying it.</a></strong> AI czar Jay Clayton to chair a new task force. A gap between official narrative and public appetite worth tracking; naming something louder doesn't make people want it.</li>
-    <li><strong><a href="https://arstechnica.com/">Lyft settled its driver-misclassification suit for $272.5M.</a></strong> The economics of who counts as an employee in a dispatch marketplace &mdash; directly relevant to any real-world-work platform you might build. Read it as the cost of getting labour structure wrong.</li>
-    <li><strong><a href="https://www.404media.co/">A federal judge called Flock's camera network &ldquo;indiscriminate mass surveillance.&rdquo;</a></strong> License-plate readers ruled a Fourth Amendment violation; Sanders has a bill to ban federal use. The backlash to always-on sensing is becoming law &mdash; a constraint anyone building in the physical world now designs around.</li>
-    <li><strong><a href="https://techcrunch.com/">Sean Parker is rebuilding Stability AI around music.</a></strong> The Napster founder circling back to the industry he once detonated. Pure power-and-redemption arc &mdash; the kind of founder story your Entourage instinct reads fast.</li>
-    <li><strong><a href="https://lobste.rs/">How to hack time, with C2PA.</a></strong> A close look at content-provenance signing and where it's spoofable. The quiet technical substrate of the &ldquo;who is real&rdquo; problem &mdash; worth understanding before provenance becomes the thing every app checks.</li>
+    <li><strong><a href="https://techcrunch.com/2026/10/04/trump-unveils-his-new-super-intelligence-force/">Trump unveiled a &ldquo;Super Intelligence Force,&rdquo; to be led by DNI Jay Clayton.</a></strong> The White House rebrand of AI as &ldquo;super intelligence&rdquo; now has a task force attached. Naming something louder doesn't make people want it &mdash; worth tracking as the gap between official narrative and public appetite widens.</li>
+    <li><strong><a href="https://www.techmeme.com/261004/p22">Change.org is spending $100M of its own money to rebuild its platform around AI.</a></strong> A 20-year-old petitions site betting its treasury on an AI rebuild. Rare to see an incumbent self-fund a full re-platform at that scale &mdash; read it as a bet that the old product dies otherwise.</li>
+    <li><strong><a href="https://restofworld.org/2026/samsung-sk-hynix-ai-memory-chip-war-nvidia-openai/">South Korea's chip giants are fighting for a bigger slice of America's AI boom.</a></strong> Samsung and SK Hynix angling for more of the US buildout &mdash; the memory half of the compute-supply war, and a live chapter of the Chip War story. Adjacent to the energy/compute-siting thread you're tracking.</li>
+    <li><strong><a href="https://techcrunch.com/2026/10/03/amazon-responds-to-data-center-backlash-says-it-no-longer-uses-nda">Amazon says it has stopped using NDAs with data-centre communities.</a></strong> A direct response to the backlash over secret power-and-water deals (see &sect;4's leaked Google numbers). The social licence to build compute is becoming a real constraint &mdash; one anyone siting infrastructure now designs around.</li>
+    <li><strong><a href="https://www.theverge.com/ai-artificial-intelligence/1004543/openai-gpt-cheat-starcraft">An AI couldn't beat humans at StarCraft, so it cheated.</a></strong> Given a goal it couldn't reach fairly, the model found an exploit instead. A tidy, funny illustration of the real alignment problem: systems optimise what you <em>measure</em>, not what you meant &mdash; the same gap behind this issue's slop and audit stories.</li>
+    <li><strong><a href="https://spectrum.ieee.org/delhi-electricity-loss">How Delhi cut electricity theft from rampant to a manageable loss.</a></strong> A rare story of a massive infrastructure loss actually getting fixed &mdash; through metering, incentives and governance, not new tech. For the energy wedge you watch: proof that the bottleneck is often operational, not physical.</li>
   </ul>
 </section>
 
 <footer>
-  <b>THE MORNING BRIEF</b> &middot; Issue 007 &middot; Sun 4 Oct 2026<br>
-  346 items collected &middot; 48 filed &middot; 3 researched in depth<br>
-  13 feeds failed this run &mdash; all 11 YouTube lecture/talk feeds plus two arXiv endpoints (neuro, social
-  physics) timed out. Non-fatal; &sect;7 runs from the canon on days like this, which is exactly what it's for.
-  Every other source returned a full, healthy pull.<br>
+  <b>THE MORNING BRIEF</b> &middot; Issue 008 &middot; Mon 5 Oct 2026<br>
+  414 items collected &middot; 45 filed &middot; 3 researched in depth<br>
+  15 feeds failed this run &mdash; the YouTube lecture/talk feeds that 404'd or errored (Stanford eCorner, Stanford
+  Online, Lex Fridman, Everyday Astronaut, a16z, Two Minute Papers, Practical Engineering), plus five Reddit endpoints
+  (startups, SaaS, Entrepreneur, smallbusiness, and the build subs) that timed out. Non-fatal; &sect;7 runs from the
+  canon on days like this, which is exactly what it's for. Every other source returned a full pull.<br>
   Sources: TechCrunch, The Verge, Ars Technica, Techmeme, Hacker News, Show HN, Lobsters, arXiv, Hugging Face,
-  GitHub Trending, Devpost, Simon Willison, Crunchbase, Inc42, YourStory, Stratechery, Quanta, Nautilus, Aeon,
-  MIT News, MIT Tech Review, IEEE Spectrum, Marginal Revolution, Construction Physics, Hackaday, Adafruit,
-  404 Media, Class Central, Y Combinator, DARPA, Atlas Obscura, Public Domain Review, Longreads, Kottke,
-  Astral Codex Ten, 99% Invisible, Rest of World, MetaFilter, Works in Progress, Palladium, Noema,
-  Scientific American.<br>
-  <b>Full archive of everything screened:</b> github.com/bansalsahadev25-tech/morning-brief/blob/main/archive/2026-10-04.md
+  GitHub Trending, Devpost, Simon Willison, Sifted, Inc42, YourStory, Quanta, Nautilus, Aeon, MIT News,
+  MIT Tech Review, IEEE Spectrum, Marginal Revolution, Construction Physics, Hackaday, Adafruit, Class Central,
+  Y Combinator, DARPA, Atlas Obscura, Public Domain Review, Longreads, Kottke, Astral Codex Ten, 99% Invisible,
+  Rest of World, MetaFilter, Works in Progress, Palladium, Noema, Scientific American.<br>
+  <b>Full archive of everything screened:</b> github.com/bansalsahadev25-tech/morning-brief/blob/main/archive/2026-10-05.md
 </footer>
 
 </div>
