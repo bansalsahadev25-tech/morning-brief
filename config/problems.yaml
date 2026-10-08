@@ -22,10 +22,17 @@
 # ======================================================================
 
 meta:
-  last_refreshed: 2026-10-02
+  last_refreshed: 2026-10-08
   refresh_when: "YC RFS changes, XPRIZE opens/closes a prize, ARIA posts a
                  new opportunity space, or a graded problem gets solved."
   changelog:
+    - "2026-10-08: Added `crypto-agility` (red). AI systems began making real
+       mathematical progress this week (OpenAI's math documents, Terence Tao's
+       'Math 2.0'), and multiple named figures — Vitalik Buterin, Scott Aaronson —
+       started treating AI-accelerated math as a live threat to the cryptography
+       the internet's trust runs on. A theoretical computer scientist reported AI
+       labs have quietly begun probing whether their models can break cryptography.
+       Filed as a standing red problem, not a daily headline."
     - "2026-10-02: YC published its Fall 2026 RFS. New categories vs the summer
        list include 'The Future of American Defense' (authored by the U.S.
        Secretary of the Army, Daniel P. Driscoll), 'Data for the Real World',
@@ -258,6 +265,41 @@ problems:
       - "Read 'The Future of American Defense' on the YC RFS page — it is a funded problem statement signed by the buyer."
       - "Reframe your tiltrotor build log as a defense-autonomy demo, not a hobby: what can it sense, carry, or coordinate? Study what Anduril's Lattice and Neros actually ship to see the real bar."
       - "Listen to DARPA's Vertical Lift Challenger recap (Ep 97) for why the VTOL prize stayed unclaimed — the unsolved parts are your opening. Then apply to one US defense-tech internship or hackathon this cycle; you qualify, and most applicants don't."
+
+  - id: crypto-agility
+    grade: red
+    title: AI-accelerated math is coming for the encryption the internet runs on
+    problem: >
+      The public-key cryptography protecting banking, messaging and identity rests
+      on a bet that certain math problems stay hard to solve. AI systems have now
+      begun making genuine mathematical progress, and researchers are openly asking
+      whether models will shorten the path to breaking today's cryptography. The
+      deeper problem underneath: almost no system in production can swap its
+      cryptographic primitives quickly ("crypto-agility"), so a break would not be
+      a patch — it would be a multi-year migration nobody has rehearsed.
+    who_says: >
+      Vitalik Buterin ("we should take the risks to cryptography from AI-accelerated
+      math seriously", floating a "bunker mode"); a theoretical computer scientist,
+      citing sources, that AI labs have quietly started probing whether their models
+      can break cryptography; Scott Aaronson ("The Mathocalypse") — set against
+      OpenAI's and Terence Tao's claims of real AI mathematical progress.
+    source: https://www.techmeme.com/261008/p5#a261008p5
+    why_open: >
+      It needs frontier cryptography, standards bodies and coordinated global
+      migration at once. Post-quantum standards exist on paper; getting the world
+      to adopt crypto-agility before a break rather than after is a decade-long
+      coordination problem, not a product.
+    who_is_trying: "NIST (post-quantum standards), Cloudflare, Google, Apple, PQShield"
+    your_angle: >
+      Red, and honestly so — a standards-and-PhD problem, not a weekend build. File
+      it to recognise a narrow, boring slice if one appears: tooling that inventories
+      which cryptographic primitives a codebase actually depends on is the unglamorous
+      first step of any migration, and that part is just software. Learn the
+      vocabulary; do not start here.
+    research_path:
+      - "Read Scott Aaronson's 'The Mathocalypse' for the honest state of the threat."
+      - "Skim NIST's post-quantum cryptography standards to see what 'the answer' already looks like on paper."
+      - "Notice the cheap adjacent slice: crypto-agility tooling — 'what am I even using, and where' — is software even when the cryptography is not."
 
 feeds:
   note: >
