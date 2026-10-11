@@ -22,10 +22,17 @@
 # ======================================================================
 
 meta:
-  last_refreshed: 2026-10-08
+  last_refreshed: 2026-10-11
   refresh_when: "YC RFS changes, XPRIZE opens/closes a prize, ARIA posts a
                  new opportunity space, or a graded problem gets solved."
   changelog:
+    - "2026-10-11: Added `passive-ranging` (red) from a new DARPA item this run —
+       the CIDAR challenge, 'pushing the limits of passive ranging' (locating and
+       ranging targets without emitting anything). Filed red as a company (defense,
+       hardware, clearance) but noted because the on-ramp — GPS-denied / emitter-less
+       positioning in simulation — sits one domain from the reader's tiltrotor and
+       from yesterday's Xona jam-proof-navigation thread. DARPA's Vertical Lift
+       Challenger (Ep 97) also live this run, reinforcing `american-defense`."
     - "2026-10-08: Added `crypto-agility` (red). AI systems began making real
        mathematical progress this week (OpenAI's math documents, Terence Tao's
        'Math 2.0'), and multiple named figures — Vitalik Buterin, Scott Aaronson —
@@ -300,6 +307,35 @@ problems:
       - "Read Scott Aaronson's 'The Mathocalypse' for the honest state of the threat."
       - "Skim NIST's post-quantum cryptography standards to see what 'the answer' already looks like on paper."
       - "Notice the cheap adjacent slice: crypto-agility tooling — 'what am I even using, and where' — is software even when the cryptography is not."
+
+  - id: passive-ranging
+    grade: red
+    title: Finding and ranging a target without emitting a thing
+    problem: >
+      Radar and lidar work by shouting — they emit a signal and time the echo. That
+      emission gives your position away and can be jammed. The hard problem DARPA just
+      put money behind is doing it silently: locating and measuring the distance to
+      objects using only what the world already radiates, no active emission at all.
+      It is the sensing analogue of GPS-denial — operate when you cannot, or dare not,
+      broadcast.
+    who_says: >
+      DARPA, via the CIDAR challenge — "pushes the limits of passive ranging" (Oct 2026).
+    source: https://www.darpa.mil/news/2026/cidar-challenge-pushes-limits-passive-ranging
+    why_open: >
+      Passive-only ranging is an underdetermined physics problem: without a known emitted
+      pulse you are inferring depth and distance from faint, ambiguous cues, which needs
+      hard sensor fusion and estimation most teams cannot do well. It is a contest
+      precisely because nobody has a clean answer yet.
+    who_is_trying: "Defense primes and DARPA performers; adjacent to the LEO-PNT players (Xona, TrustPoint) attacking GPS-denial from the satellite side."
+    your_angle: >
+      Red as a company — defense, hardware, clearance, capital. But the ON-RAMP is the
+      same math your drone needs the day GPS drops or lies: emitter-less positioning and
+      monocular/passive depth estimation, provable in simulation on a laptop. File it;
+      the vocabulary is worth owning, the company is not yours to start.
+    research_path:
+      - "Read the DARPA CIDAR challenge page — what exactly they are scoring, and why passive-only is the constraint that makes it hard."
+      - "Study monocular depth estimation and passive ranging as a signals problem — the laptop-sized version of the same question."
+      - "Connect it to GPS-denied drone navigation (see the Xona thread): the positioning problem has an active-satellite answer AND a passive-sensing answer, and knowing both is the literacy."
 
 feeds:
   note: >
