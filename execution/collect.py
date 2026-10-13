@@ -81,7 +81,7 @@ def guard(fn):
 
 # News expires fast; ideas do not. A Quanta essay or a Stanford lecture is
 # worth surfacing a week later, a funding headline is not.
-WINDOW = {"learn": 10, "build": 7, "watch": 30, "deals": 14, "problems": 21, "wildcard": 21}
+WINDOW = {"learn": 10, "build": 7, "watch": 30, "deals": 14, "problems": 21, "wildcard": 21, "apps": 14}
 
 
 def rss(url, section, source, limit=25, days=None):
@@ -544,6 +544,33 @@ def hf_trending():
 
 
 @guard
+def app_signals():
+    """§A — what people actually pay for. Feeds the Remake Playbook.
+
+    Deliberately NOT startup news. These are places where small profitable
+    software gets discussed with real numbers attached, and where users
+    complain about tools they already pay for. A complaint from a paying
+    customer is the cheapest market research there is.
+    """
+    feeds([
+        ("https://microsaasidea.substack.com/feed", "Micro SaaS Idea"),
+        ("https://www.producthunt.com/feed",        "Product Hunt"),
+    ], "apps", limit=15)
+
+    for sub in ["SideProject", "microsaas", "SaaS", "shopify",
+                "EntrepreneurRideAlong", "indiehackers"]:
+        try:
+            r = requests.get(f"https://www.reddit.com/r/{sub}/top.rss",
+                             params={"t": "week"}, headers=HDRS, timeout=TIMEOUT)
+            d = feedparser.parse(r.content)
+            for e in d.entries[:10]:
+                add("apps", e.get("title", ""), e.get("link", ""), f"r/{sub}",
+                    text=e.get("summary", ""))
+        except Exception as ex:
+            errors.append(f"apps/{sub}: {type(ex).__name__}")
+
+
+@guard
 def wildcard():
     """§W — THE WILDCARD. Deliberately outside the tech wire.
 
@@ -609,7 +636,7 @@ COLLECTORS = [
     github_trending, hf_trending,
     # learning, watching, making
     science_and_ideas, youtube, makers, reddit_build, problem_sources,
-    wildcard,
+    wildcard, app_signals,
     # doors
     devpost, class_central,
 ]

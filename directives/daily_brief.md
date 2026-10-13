@@ -53,6 +53,21 @@ edit `config/problems.yaml`. It is plain text on purpose.
 
 ---
 
+## §A — THE REMAKE
+
+He does not need a new idea. He needs a proven one, rebuilt for someone
+specific, with better taste. `config/app_playbook.md` holds the method; §A
+produces exactly one evidenced candidate per issue.
+
+The governing fact: building stopped being the hard part, and distribution
+did not. So favour tools that sit inside a marketplace where buyers already
+shop with a card out — Shopify, Chrome Web Store, Figma, Notion, Slack —
+over standalone apps nobody will ever find.
+
+Never propose an idea without a linked complaint from a real paying user.
+
+---
+
 ## §W — THE WILDCARD, and the feedback loop
 
 Every item on the page carries a thumbs up / thumbs down. Clicks POST to a

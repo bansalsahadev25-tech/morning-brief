@@ -61,6 +61,23 @@ Then ~300–400 words per story in the SOP's labelled structure. Every factual
 claim carries a real link. Numbers or silence — never "significant growth".
 Say plainly when something is undisclosed.
 
+**4a. §A — THE REMAKE.** Read `config/app_playbook.md` and follow it exactly.
+One candidate per issue, never more, built from the `apps` section of the raw
+JSON plus anything in §3 that reads like a paying customer complaining.
+
+Required shape — and a candidate missing any line does not ship:
+THE INCUMBENT / THE COMPLAINT (a real linked quote from a real user) /
+WHICH REMAKE (one of the playbook's four, named) / THE BUYER (who pays, and
+roughly what they pay now) / WHY HIM / FIRST STEP (doable in a day).
+
+Hard rules: **no candidate without a linked complaint from a real user** — an
+idea with no evidence of demand is a daydream with formatting. Prefer things
+that live inside an app store with existing buyers (Shopify, Chrome, Figma,
+Notion, Slack, WordPress) over standalone apps, because distribution is the
+hard part and marketplaces solve it. Apply the playbook's kill-filters before
+proposing anything, and say which one a rejected idea failed if it is worth
+mentioning at all.
+
 **4b. §W — THE WILDCARD.** Six to eight items from the `wildcard` section
 of the raw JSON (Atlas Obscura, Public Domain Review, Longreads, Kottke,
 Astral Codex Ten, 99% Invisible, Rest of World, MetaFilter, Works in
