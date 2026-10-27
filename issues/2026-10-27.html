@@ -1,0 +1,783 @@
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Morning Brief</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root{
+    --bg:#EFF2F4; --surface:#FBFCFD; --sunk:#E6EAEE;
+    --ink:#10161C; --ink2:#4B5764; --ink3:#78838F;
+    --rule:#D2D9DF; --rule2:#BEC7D0;
+    --accent:#1B3A57; --urgent:#A33E12; --money:#0D6A5E;
+    --chip:#E2E8ED;
+    --measure:70ch;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --bg:#0B0F13; --surface:#131A21; --sunk:#0F151A;
+      --ink:#E3E9F0; --ink2:#8C99A7; --ink3:#66727F;
+      --rule:#222C36; --rule2:#2E3A45;
+      --accent:#84B4DE; --urgent:#E8834F; --money:#3EB5A3;
+      --chip:#1B242D;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0B0F13; --surface:#131A21; --sunk:#0F151A;
+    --ink:#E3E9F0; --ink2:#8C99A7; --ink3:#66727F;
+    --rule:#222C36; --rule2:#2E3A45;
+    --accent:#84B4DE; --urgent:#E8834F; --money:#3EB5A3;
+    --chip:#1B242D;
+  }
+
+  *{box-sizing:border-box}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,sans-serif;
+    font-size:15.5px; line-height:1.62;
+    padding-block:0; padding-left:20px; padding-right:20px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:var(--measure); margin:0 auto}
+  a{color:var(--accent); text-decoration:none; border-bottom:1px solid var(--rule2)}
+  a:hover{border-bottom-color:var(--accent)}
+  a:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+
+  .mast{padding-block:34px 18px; border-bottom:2px solid var(--ink)}
+  .mast h1{
+    font-family:Newsreader,Georgia,serif; font-weight:600;
+    font-size:clamp(2.1rem,7vw,3.1rem); line-height:1.0;
+    margin:0 0 12px; letter-spacing:-.015em;
+  }
+  .mastmeta{
+    display:flex; flex-wrap:wrap; gap:6px 18px;
+    font-family:"IBM Plex Mono",monospace; font-size:.7rem;
+    text-transform:uppercase; letter-spacing:.1em; color:var(--ink2);
+  }
+  .thesis{
+    font-family:Newsreader,Georgia,serif; font-size:1.2rem; line-height:1.5;
+    color:var(--ink); margin:20px 0 0; padding:16px 0 4px;
+    border-top:1px solid var(--rule); text-wrap:balance;
+  }
+  .thesis em{color:var(--ink2); font-style:italic}
+
+  section{padding-block:38px 8px}
+  .shead{
+    display:flex; align-items:baseline; gap:12px;
+    border-bottom:1px solid var(--ink); padding-bottom:7px; margin-bottom:22px;
+  }
+  .snum{
+    font-family:"IBM Plex Mono",monospace; font-size:.72rem; font-weight:600;
+    color:var(--ink3); letter-spacing:.06em; flex:none;
+  }
+  .shead h2{
+    font-family:"IBM Plex Sans",sans-serif; font-weight:600;
+    font-size:.86rem; text-transform:uppercase; letter-spacing:.14em;
+    margin:0; flex:1;
+  }
+  .scount{font-family:"IBM Plex Mono",monospace; font-size:.68rem; color:var(--ink3)}
+
+  .story{padding-bottom:34px; margin-bottom:34px; border-bottom:1px solid var(--rule)}
+  .story:last-child{border-bottom:0; margin-bottom:0}
+  .kicker{
+    font-family:"IBM Plex Mono",monospace; font-size:.68rem; font-weight:500;
+    text-transform:uppercase; letter-spacing:.12em; color:var(--urgent);
+    margin-bottom:8px;
+  }
+  .story h3{
+    font-family:Newsreader,Georgia,serif; font-weight:600;
+    font-size:clamp(1.45rem,4.4vw,1.95rem); line-height:1.15;
+    margin:0 0 6px; letter-spacing:-.01em; text-wrap:balance;
+  }
+  .byline{
+    font-family:"IBM Plex Mono",monospace; font-size:.7rem; color:var(--ink2);
+    margin-bottom:20px; line-height:1.6;
+  }
+  .byline b{color:var(--money); font-weight:600}
+
+  dl.brief{display:grid; gap:0; margin:0}
+  @media (min-width:720px){
+    dl.brief{grid-template-columns:8.5rem 1fr; column-gap:22px}
+  }
+  dl.brief dt{
+    font-family:"IBM Plex Mono",monospace; font-size:.66rem; font-weight:600;
+    text-transform:uppercase; letter-spacing:.1em; color:var(--ink3);
+    padding-top:.5em;
+  }
+  dl.brief dd{margin:0 0 16px}
+  dl.brief dd:last-of-type{margin-bottom:0}
+  dd.bear{color:var(--ink2)}
+  dd.foryou{border-left:2px solid var(--urgent); padding-left:14px}
+
+  .tablewrap{overflow-x:auto}
+  table{width:100%; border-collapse:collapse; font-size:.9rem}
+  th{
+    font-family:"IBM Plex Mono",monospace; font-size:.64rem; font-weight:600;
+    text-transform:uppercase; letter-spacing:.1em; color:var(--ink3);
+    text-align:left; padding:0 12px 8px 0; border-bottom:1px solid var(--rule2);
+    white-space:nowrap;
+  }
+  td{padding:11px 12px 11px 0; border-bottom:1px solid var(--rule); vertical-align:top}
+  td.num{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums; color:var(--money); font-weight:500; white-space:nowrap}
+  td.src{font-family:"IBM Plex Mono",monospace; font-size:.74rem; color:var(--ink3); white-space:nowrap}
+
+  .door{
+    display:grid; grid-template-columns:1fr auto; gap:4px 16px;
+    padding:14px 0; border-bottom:1px solid var(--rule); align-items:start;
+  }
+  .door:last-child{border-bottom:0}
+  .door .name{font-weight:500; line-height:1.4}
+  .door .sub{
+    grid-column:1; font-family:"IBM Plex Mono",monospace;
+    font-size:.72rem; color:var(--ink2);
+  }
+  .days{
+    grid-row:1/span 2; align-self:center;
+    font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums;
+    font-size:.78rem; font-weight:600; padding:4px 9px;
+    background:var(--chip); color:var(--ink2); white-space:nowrap;
+  }
+  .days.hot{background:var(--urgent); color:#fff}
+  .days.warm{color:var(--urgent); box-shadow:inset 0 0 0 1px var(--urgent)}
+
+  ul.feed{list-style:none; padding:0; margin:0}
+  ul.feed li{padding:11px 0; border-bottom:1px solid var(--rule); line-height:1.5}
+  ul.feed li:last-child{border-bottom:0}
+  .tag{
+    font-family:"IBM Plex Mono",monospace; font-size:.66rem; font-weight:500;
+    text-transform:uppercase; letter-spacing:.08em; color:var(--ink3);
+  }
+  .note{color:var(--ink2); font-size:.92rem; margin-top:5px}
+
+  .single h3{
+    font-family:Newsreader,Georgia,serif; font-weight:600; font-size:1.35rem;
+    margin:0 0 4px; line-height:1.25; text-wrap:balance;
+  }
+  .single .meta{
+    font-family:"IBM Plex Mono",monospace; font-size:.7rem; color:var(--ink3);
+    margin-bottom:14px;
+  }
+  .quiet{
+    color:var(--ink2); font-style:italic;
+    font-family:Newsreader,Georgia,serif; font-size:1.05rem;
+  }
+
+  footer{
+    border-top:2px solid var(--ink); margin-top:44px;
+    padding-block:20px 48px;
+    font-family:"IBM Plex Mono",monospace; font-size:.7rem; color:var(--ink3);
+    line-height:1.7;
+  }
+  footer b{color:var(--ink2); font-weight:500}
+
+  .problem{padding-bottom:30px;margin-bottom:30px;border-bottom:1px solid var(--rule)}
+  .problem:last-child{border-bottom:0;margin-bottom:0;padding-bottom:6px}
+  .pgrade{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:9px}
+  .pgrade .badge{font-family:"IBM Plex Mono",monospace;font-size:.62rem;font-weight:600;
+    letter-spacing:.11em;color:#fff;background:var(--g);padding:3px 8px}
+  .pgrade .caveat{font-family:"IBM Plex Mono",monospace;font-size:.66rem;color:var(--ink3)}
+  .problem h3{font-family:Newsreader,Georgia,serif;font-weight:600;
+    font-size:clamp(1.3rem,4vw,1.7rem);line-height:1.18;margin:0 0 16px;
+    letter-spacing:-.01em;text-wrap:balance}
+  ol.rpath{margin:0;padding-left:1.1rem}
+  ol.rpath li{margin-bottom:7px}
+  ol.rpath li:last-child{margin-bottom:0}
+  .pintro{font-family:Newsreader,Georgia,serif;font-size:1.06rem;line-height:1.5;
+    color:var(--ink2);margin:0 0 26px;text-wrap:pretty}
+</style>
+<!--VOTE-CSS-START-->
+<style>
+  .vote{display:inline-flex;gap:3px;margin-left:9px;vertical-align:middle;
+    opacity:.3;transition:opacity .15s}
+  h3:hover .vote,li:hover .vote,.vote:hover,.vote.voted{opacity:1}
+  .vote button{font-family:inherit;font-size:.62rem;line-height:1;cursor:pointer;
+    padding:3px 6px;border:1px solid var(--rule2,#BEC7D0);background:transparent;
+    color:var(--ink3,#78838F);border-radius:2px}
+  .vote button:hover{border-color:var(--ink2,#4B5764);color:var(--ink,#10161C)}
+  .vote button.on.v-up{background:#0D6A5E;border-color:#0D6A5E;color:#fff}
+  .vote button.on.v-dn{background:#A33E12;border-color:#A33E12;color:#fff}
+  body.no-server .vote{display:none}
+  #fbnote{font-family:"IBM Plex Mono",monospace;font-size:.64rem;
+    color:var(--ink3,#78838F);padding:7px 0;border-bottom:1px solid var(--rule,#D2D9DF)}
+  body.no-server #fbnote{display:none}
+</style>
+<!--VOTE-CSS-END-->
+
+
+
+<div class="wrap">
+<!--ISSUE-NAV-START-->
+<style>
+  #issuenav{position:sticky;top:0;z-index:99;display:flex;align-items:center;
+    gap:12px;flex-wrap:wrap;padding:9px 20px;margin:0 -20px 0;
+    background:var(--surface,#FBFCFD);border-bottom:1px solid var(--rule,#D2D9DF);
+    font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.7rem}
+  #issuenav a{color:var(--accent,#1B3A57);text-decoration:none;border-bottom:0;
+    text-transform:uppercase;letter-spacing:.09em;font-weight:600}
+  #issuenav a:hover{text-decoration:underline}
+  #issuenav select{font-family:inherit;font-size:.72rem;padding:4px 8px;
+    background:var(--bg,#EFF2F4);color:var(--ink,#10161C);
+    border:1px solid var(--rule2,#BEC7D0);border-radius:0;cursor:pointer;
+    max-width:min(62vw,26rem)}
+  #issuenav .sp{flex:1}
+  #issuenav .lbl{color:var(--ink3,#78838F);text-transform:uppercase;
+    letter-spacing:.1em}
+  /* keep the sticky bar from clipping whatever you jump to */
+  section,.shead,.problem,.story{scroll-margin-top:3.4rem}
+  @media print{#issuenav{display:none}}
+</style>
+<nav id="issuenav" aria-label="Issue navigation">
+  <span class="lbl">Issue</span>
+  <select id="issuepick" aria-label="Choose an issue"><option value="2026-10-27.html" selected>Issue 026 &middot; Tue 27 Oct 2026</option><option value="2026-10-26.html">Issue 025 &middot; Mon 26 Oct 2026</option><option value="2026-10-24.html">Issue 024 &middot; Sat 24 Oct 2026</option><option value="2026-10-23.html">Issue 023 &middot; Fri 23 Oct 2026</option><option value="2026-10-21.html">Issue 022 &middot; Wed 21 Oct 2026</option><option value="2026-10-20.html">Issue 021 &middot; Tue 20 Oct 2026</option><option value="2026-10-18.html">Issue 020 &middot; Sun 18 Oct 2026</option><option value="2026-10-17.html">Issue 019 &middot; Sat 17 Oct 2026</option><option value="2026-10-15.html">Issue 018 &middot; Thu 15 Oct 2026</option><option value="2026-10-14.html">Issue 017 &middot; Wed 14 Oct 2026</option><option value="2026-10-13.html">Issue 016 &middot; Tue 13 Oct 2026</option><option value="2026-10-12.html">Issue 015 &middot; Mon 12 Oct 2026</option><option value="2026-10-11.html">Issue 014 &middot; Sun 11 Oct 2026</option><option value="2026-10-10.html">Issue 013 &middot; Sat 10 Oct 2026</option><option value="2026-10-09.html">Issue 012 &middot; Fri 9 Oct 2026</option><option value="2026-10-08.html">Issue 011 &middot; Thu 8 Oct 2026</option><option value="2026-10-07.html">Issue 010 &middot; Wed 7 Oct 2026</option><option value="2026-10-06.html">Issue 009 &middot; Tue 6 Oct 2026</option><option value="2026-10-05.html">Issue 008 &middot; Mon 5 Oct 2026</option><option value="2026-10-04.html">Issue 007 &middot; Sun 4 Oct 2026</option><option value="2026-10-01.html">Issue 006 &middot; Thu 1 Oct 2026</option><option value="2026-09-30.html">Issue 005 &middot; Wed 30 Sep 2026</option><option value="2026-09-29.html">Issue 004 &middot; Tue 29 Sep 2026</option><option value="2026-09-28.html">Issue 002 &middot; Mon 28 Sep 2026</option><option value="2026-09-26.html">Issue 001 &middot; Sat 26 Sep 2026</option></select>
+  <span class="sp"></span>
+  <a href="index.html">All issues</a>
+</nav>
+<script>
+  document.getElementById("issuepick").addEventListener("change", function (e) {
+    if (e.target.value) window.location.href = e.target.value;
+  });
+</script>
+<!--ISSUE-NAV-END-->
+
+<header class="mast">
+  <h1>The Morning Brief</h1>
+  <div class="mastmeta">
+    <span>Issue 026</span>
+    <span>Tue 27 Oct 2026</span>
+    <span>54 items screened &rarr; 40 filed</span>
+    <span>collection ran partial &middot; Lobsters down (DNS) and HN front/ask/show + Techmeme timed out; today's apps, wildcard, lecture and hackathon feeds returned nothing &mdash; so &sect;A researched a live complaint, &sect;W drew its range from the day's wire, &sect;5 carries the last good hackathon pull, &sect;7 runs the canon. HN &ldquo;best&rdquo; came through clean. None fatal.</span>
+  </div>
+  <p class="thesis">
+    Three things landed at once and together they draw the shape of the year. <em>Anthropic</em> filed to go public and the numbers are not normal &mdash;
+    <em>$16.3B</em> of revenue in six months, up from <em>$1.2B</em> a year earlier, with enterprise customers so locked in that net revenue retention reads
+    <em>~900%</em>. <em>OpenAI</em> claimed its models <em>proved real theorems</em> &mdash; including that the 27-year-old Exponential&nbsp;Time&nbsp;Hypothesis is
+    false &mdash; and the mathematicians it didn't credit are refusing to treat it as mathematics. And <em>Bedrock&nbsp;Robotics</em> raised <em>$600M</em> at a
+    <em>$4.1B</em> valuation to put autonomy on excavators, because the people who run them are retiring faster than they can be replaced.
+    <em>The read: the money, the capability and the labour are all moving the same week &mdash; so &sect;0 pairs the cheapest thing you can start this month (deploying
+    the small software agents now make trivial) against the amber one all three of today's headlines orbit: the operating system for physical-world work.</em>
+  </p>
+</header>
+
+<!-- ========== §0 ========== -->
+<section>
+  <div class="shead"><span class="snum">&sect;0</span><h2>The Problem Board</h2>
+    <span class="scount">2 of 12</span></div>
+  <p class="pintro">
+    Every accelerator says it funds people &ldquo;solving hard problems,&rdquo; and none tells you which. This does &mdash; sourced, graded honestly, with somewhere
+    to start reading. Today: one <em>green</em> you can start this month, which OpenAI's always-on &ldquo;dots&rdquo; assistant quietly made more urgent; and one
+    <em>amber</em> &mdash; the category a $600M round, a Databricks sales playbook and a fleet of robot excavators were all circling this morning.
+    No new funded problem landed to add to the board: the DARPA, Institute&nbsp;for&nbsp;Progress, Marginal&nbsp;Revolution and YC&nbsp;RFS feeds did not return in
+    today's partial collection, so there is nothing honest to append. Both problems rotate from the standing board.
+  </p>
+
+  <article class="problem">
+    <div class="pgrade" style="--g:#0D6A5E">
+      <span class="badge">START THIS MONTH</span><span class="caveat">green &middot; solo &middot; no capital &middot; no credentials &middot; you are the user</span>
+    </div>
+    <h3>Deploying personal software is still hard, and agents just made it urgent</h3><span class="vote" data-id="3319685147b7" data-title="Deploying personal software is still hard, and agents just made it urgent" data-section="&sect;0" data-issue="2026-10-27"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span>
+    <dl class="brief">
+      <dt>The problem</dt><dd>Agents made it trivial to <em>build</em> software that will only ever have one or a handful of users &mdash; a tool for your team, a
+        tracker for your own workflow. Today TechCrunch described OpenAI turning its coding tools into <a href="https://techcrunch.com/2026/10/26/how-openai-turned-its-coding-tools-into-dots-an-always-on-personal-assistant/">&ldquo;dots,&rdquo;
+        an always-on personal assistant</a> that builds and runs little programs for you on command. The building is solved. <em>Deploying and sharing</em> the result &mdash;
+        with a URL, a login, and someone else's data kept safe &mdash; is as hard as it was in 2015.</dd>
+      <dt>Who says it's hard</dt><dd>Y&nbsp;Combinator, Requests for Startups &mdash; <a href="https://www.ycombinator.com/rfs">&ldquo;A Cloud for Small Software.&rdquo;</a>
+        AWS and Azure were built for software that scales to millions, and that complexity is now the bottleneck for software that will never need to.</dd>
+      <dt>Why it's still open</dt><dd>The hard parts are not the hosting. They are auth and permissions for arbitrary user-written code, per-person environment
+        customisation, and letting non-technical people share executable code without it becoming a security incident. Everyone underestimates the third &mdash; and with
+        &ldquo;dots&rdquo;-style agents writing the code, the volume of ship-it-somewhere software is about to spike.</dd>
+      <dt>Who's already trying</dt><dd><a href="https://vercel.com/">Vercel</a>, <a href="https://replit.com/">Replit</a>, <a href="https://www.val.town/">Val&nbsp;Town</a>,
+        <a href="https://workers.cloudflare.com/">Cloudflare&nbsp;Workers</a>, Deno&nbsp;Deploy. All good; none has made &ldquo;one command, auth included, share with a
+        human&rdquo; feel trivial for the person who just vibe-coded a thing at midnight.</dd>
+      <dt>Your angle</dt><dd class="foryou">You already live in this problem: you build with Claude&nbsp;Code and then have nowhere good to put the result. That is the
+        founder's unfair advantage in its cheapest form &mdash; you are the user. &sect;6 turns it into a two-hour exercise that ships one of your own projects to a real URL.</dd>
+      <dt>Research path</dt><dd><ol class="rpath">
+        <li>Build the ugliest possible version for yourself first: one command that takes a Claude&nbsp;Code project and hands you a URL with a login.</li>
+        <li>Read <a href="https://blog.val.town/">Val&nbsp;Town's engineering writeups</a> on sandboxing user-written code &mdash; they have hit every wall you will hit.</li>
+        <li>Ask ten people in your hostel who build things where their projects currently live. The answer is &ldquo;localhost,&rdquo; and that is the market.</li></ol></dd>
+    </dl>
+  </article>
+
+  <article class="problem">
+    <div class="pgrade" style="--g:#9A6A00">
+      <span class="badge">REAL IN 6&ndash;12 MONTHS</span><span class="caveat">amber &mdash; needs real users, not a hostel room; but you are already inside it</span>
+    </div>
+    <h3>The software running physical work has not changed in 20 years</h3><span class="vote" data-id="b5a8398b474d" data-title="The software running physical work has not changed in 20 years" data-section="&sect;0" data-issue="2026-10-27"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span>
+    <dl class="brief">
+      <dt>The problem</dt><dd>80% of the global workforce does not sit at a desk. Construction, maintenance and fleet operations still run on software that dispatches
+        people, tracks them, manages assets and bills the customer &mdash; and those industries spend 10&ndash;100x more on labour than on software. The moment labour gets
+        scarce or automated, whoever owns the coordination layer owns the record of how the work actually happens.</dd>
+      <dt>Who says it's hard</dt><dd>Y&nbsp;Combinator RFS &mdash; <a href="https://www.ycombinator.com/rfs">&ldquo;New Operating Systems for the Physical World.&rdquo;</a>
+        And today the money agreed, loudly: <a href="https://techcrunch.com/2026/10/26/this-startups-self-driving-excavators-help-dig-up-600m-in-new-funding/">Bedrock&nbsp;Robotics
+        raised $600M at $4.1B</a> to automate excavators precisely because skilled operators are retiring (&sect;1), and a Databricks co-founder told TechCrunch the way you
+        win these buyers is to <a href="https://techcrunch.com/2026/10/26/databricks-co-founder-shares-his-secrets-for-winning-big-enterprises-customers/">hitch a ride on a
+        giant's sales team</a>, not out-tech them.</dd>
+      <dt>Why it's still open</dt><dd>Incumbents charge for human coordination. Nobody has built the layer that schedules agents, robots and humans <em>together</em> &mdash;
+        and whoever does captures end-to-end records of how real-world work happens, which no frontier lab or robotics startup will have.</dd>
+      <dt>Who's already trying</dt><dd><a href="https://www.servicetitan.com/">ServiceTitan</a>, <a href="https://www.samsara.com/">Samsara</a>,
+        <a href="https://www.procore.com/">Procore</a> &mdash; all built for the old, all-human model. Bedrock is attacking one slice (the machine) from the hardware side;
+        the scheduling-and-billing OS above it is still open.</dd>
+      <dt>Your angle</dt><dd class="foryou">This is the category your cab-booking project sits in. Dispatch, matching, fleet, real-world supply &mdash; you are already
+        inside the problem, with users walking past you, which is the part nobody can buy. Amber, not green: it needs real operators using it, not a weekend demo.</dd>
+      <dt>Research path</dt><dd><ol class="rpath">
+        <li>Re-read your own PLAN.md with this framing: you are not building a booking form, you are building <em>dispatch</em> &mdash; the physical-world OS in miniature.</li>
+        <li>Talk to the middleman you already know about what <em>he</em> cannot see today: idle vehicles, no-shows, driver reliability. That blindness is the product.</li>
+        <li>Read <a href="https://investors.samsara.com/">Samsara's investor filings</a> for what fleet operators actually pay for, in their own words &mdash; then watch how
+          Bedrock prices autonomy into the same budget.</li></ol></dd>
+    </dl>
+  </article>
+
+  <p class="note" style="margin-top:24px">
+    Honest about the rotation: the amber/red bench is thin and most of it has surfaced inside three weeks, so this amber returns because three separate stories on today's
+    page are about nothing else. New on the feed: nothing &mdash; the DARPA, IFP, Marginal&nbsp;Revolution and YC&nbsp;RFS sources did not return in today's partial pull,
+    and inventing a problem to fill the slot would defeat the point. When YC's RFS changes or a grade here gets solved, that becomes a headline of its own.
+  </p>
+</section>
+
+<!-- ========== §1 ========== -->
+<section>
+  <div class="shead"><span class="snum">&sect;1</span><h2>The Big Three</h2>
+    <span class="scount">researched, not rewritten from the headline</span></div>
+
+  <article class="story">
+    <div class="kicker">AI economics &middot; the first real look inside a frontier lab's books</div>
+    <h3>Anthropic filed to go public &mdash; and the S-1 is a masterclass in enterprise lock-in</h3><span class="vote" data-id="0aa73a25fe12" data-title="Anthropic filed to go public &amp;mdash; and the S-1 is a masterclass in enterprise lock-in" data-section="&sect;1" data-issue="2026-10-27"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span>
+    <p class="byline"><b>$16.3B</b> H1 2026 revenue (from <b>$1.2B</b> a year earlier) &middot; <b>~900%</b> net revenue retention &middot; <b>11,900+</b> customers at $100k+ &middot;
+      <a href="https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm">SEC S-1</a> &middot;
+      <a href="https://techcrunch.com/2026/10/26/anthropics-ipo-filing-reveals-its-strategy-for-keeping-enterprise-customers-hooked/">TechCrunch</a></p>
+    <dl class="brief">
+      <dt>What they do</dt><dd>Anthropic makes Claude &mdash; the model behind your Claude&nbsp;Code &mdash; and sells it three ways: raw API (the Platform), a developer tool
+        (Claude&nbsp;Code), and apps (Cowork). The S-1 is the first time the numbers are public, and they are steep: <a href="https://techcrunch.com/2026/10/26/anthropic-officially-files-for-its-public-debut/">$16.3&nbsp;billion
+        of revenue in the first half of 2026</a>, up from $1.2&nbsp;billion in the same period of 2025.</dd>
+      <dt>The mechanism</dt><dd>The filing all but names the strategy: land on one layer, expand across all three. More than half of $100k+ customers now use <em>both</em>
+        the Platform and a first-party app, up from ~30% at the end of 2025. Anthropic's own words: an advance at any layer &ldquo;compounds across all three.&rdquo; The tell
+        is the retention number &mdash; <b>net revenue retention ~900%</b>, meaning the average cohort spends roughly nine times more a year later. The highest-spending
+        enterprises that adopt Claude&nbsp;Code spend <b>~20x</b> what comparable customers without it do.</dd>
+      <dt>The founders</dt><dd>Siblings <a href="https://en.wikipedia.org/wiki/Dario_Amodei">Dario</a> and Daniela&nbsp;Amodei, who left OpenAI in 2021 &mdash; Dario had been
+        VP of Research &mdash; over a disagreement about safety and direction. Their unfair advantage was never a secret technique; it was leaving with a team that had already
+        built GPT-3 and knew exactly what the next three years required.</dd>
+      <dt>The bear case</dt><dd class="bear">The coverage I pulled reports &ldquo;mounting losses&rdquo; without a figure, and that is the whole risk: 900% retention is
+        spectacular while revenue compounds, but the losses that buy it are enormous, and the S-1 flags customer-concentration (~250 customers spend $10M+) and dependence on
+        cloud partners for compute. A retention number that good can also be a bubble number &mdash; it holds only while enterprises keep expanding AI budgets.</dd>
+      <dt>What it means</dt><dd class="foryou">Read the S-1 itself (&sect;8) &mdash; it is the best free business-school case study you will get this year, and it teaches one
+        transferable move you can use at any scale: <em>land small, then expand across layers so leaving costs more than staying</em>. That is the same logic under your
+        &sect;0-green (ship the tool, then own the deploy + auth + data the user can't easily move). And note what durable revenue looks like up close, because &sect;2's SpaceX
+        line and &sect;7's canon make the same argument from the opposite direction.</dd>
+    </dl>
+  </article>
+
+  <article class="story">
+    <div class="kicker">Physical-world autonomy &middot; your &sect;0-amber, funded in the open</div>
+    <h3>Bedrock raised $600M to teach excavators to drive themselves &mdash; because the operators are retiring</h3><span class="vote" data-id="6dcf1dfa78c6" data-title="Bedrock raised $600M to teach excavators to drive themselves &amp;mdash; because the operators are retiring" data-section="&sect;1" data-issue="2026-10-27"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span>
+    <p class="byline"><b>$600M Series C</b> &middot; <b>$4.1B</b> valuation &middot; ~$1B raised since 2024 &middot; led by <b>CapitalG + Emergence</b>, NVIDIA in &middot; San&nbsp;Francisco &middot;
+      <a href="https://techcrunch.com/2026/10/26/this-startups-self-driving-excavators-help-dig-up-600m-in-new-funding/">TechCrunch</a></p>
+    <dl class="brief">
+      <dt>What they do</dt><dd>Bedrock&nbsp;Robotics builds a <em>retrofit</em> self-driving kit that bolts onto existing construction machines &mdash; cameras, lidar and
+        compute &mdash; starting with excavators rather than a purpose-built robot. The pitch is not &ldquo;robot dig&rdquo;; it is &ldquo;keep the $500k machine you already
+        own and make it run a night shift without an operator.&rdquo;</dd>
+      <dt>The mechanism</dt><dd>The thesis is demographic, not technological: <em>it takes five years or more to master operating an excavator</em>, and industry estimates
+        say over 40% of construction workers retire within five years. The work is dangerous, repetitive and structurally short of skilled hands &mdash; which is the exact
+        profile autonomy attacks first. They are live on three commercial sites today: a Nevada water-treatment build, a Texas earthwork job with Champion&nbsp;Site&nbsp;Prep,
+        and a 1.2-million-cubic-yard Zachry&nbsp;Construction civil project.</dd>
+      <dt>The founders</dt><dd>CEO <a href="https://www.linkedin.com/in/borissofman">Boris&nbsp;Sofman</a> led Waymo's self-driving-truck program and co-founded
+        Anki&nbsp;Robotics; CTO Kevin&nbsp;Peterson and much of the team are Waymo veterans. The unfair advantage is transferred, not invented: they spent years learning why
+        autonomous trucking is brutally hard (open roads, infinite edge cases) and picked a domain that is the opposite &mdash; a fenced worksite, low speeds, a bounded task.</dd>
+      <dt>The bear case</dt><dd class="bear">Three commercial sites is a pilot, not a business, and construction is famously unforgiving of downtime &mdash; one autonomous
+        machine hitting a buried line undoes a hundred clean digs. Waymo pedigree raised the money; it has not yet proven that excavation generalises across soil, weather and
+        site chaos the way a demo suggests. And at $4.1B the valuation prices in a scale they are years from.</dd>
+      <dt>What it means</dt><dd class="foryou">This is your &sect;0-amber made concrete, and the transferable lesson is the founders' domain choice: <em>they took hard-won
+        autonomy expertise and aimed it at the easiest-to-automate corner of a labour-starved industry</em>, not the most glamorous. Your tiltrotor is the same kind of asset &mdash;
+        don't ask &ldquo;what's the coolest thing it can do,&rdquo; ask &ldquo;what bounded, dangerous, repetitive task is someone already paying a human to do badly?&rdquo;
+        That is where autonomy money is flowing, and NVIDIA writing the check tells you the compute layer believes it.</dd>
+    </dl>
+  </article>
+
+  <article class="story">
+    <div class="kicker">Frontier AI &middot; capability, and a fight about what counts as knowledge</div>
+    <h3>OpenAI says its model proved three theorems &mdash; and the mathematicians won't take the credit it skipped</h3><span class="vote" data-id="2fe5e5b1159d" data-title="OpenAI says its model proved three theorems &amp;mdash; and the mathematicians won't take the credit it skipped" data-section="&sect;1" data-issue="2026-10-27"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span>
+    <p class="byline"><b>3 claimed results</b> in math, CS, physics &middot; ETH disproof found <b>16 Oct</b>, formalised in Lean next day &middot; <b>none peer-reviewed</b> &middot;
+      <a href="https://openai.com/index/building-scientific-understanding-with-academic-communities/">OpenAI</a> &middot;
+      <a href="https://thenextweb.com/news/openai-exponential-time-hypothesis-false-kakeya-yang-mills">TNW</a> &middot;
+      <a href="https://www.mindstudio.ai/blog/openai-ai-discoveries-math-physics-cs">scope check</a></p>
+    <dl class="brief">
+      <dt>What happened</dt><dd>OpenAI <a href="https://openai.com/index/building-scientific-understanding-with-academic-communities/">announced three results</a> its models
+        produced: a harmonic-analysis proof (the local-smoothing / Kakeya conjecture in all dimensions), an existence proof touching quantum chromodynamics and Yang&ndash;Mills,
+        and the headline &mdash; <a href="https://thenextweb.com/news/openai-exponential-time-hypothesis-false-kakeya-yang-mills">that the Exponential&nbsp;Time&nbsp;Hypothesis
+        is false</a>, a 27-year-old assumption about how hard certain problems are. OpenAI says it found the ETH disproof in natural language on 16&nbsp;October and formalised
+        it in Lean the next day.</dd>
+      <dt>The honest scope</dt><dd><em>None of the three is independently verified.</em> As a careful <a href="https://www.mindstudio.ai/blog/openai-ai-discoveries-math-physics-cs">scope
+        check</a> lays out: the ETH result is being examined by Ryan&nbsp;Williams and the hypothesis's original authors and was reportedly Lean-checked; the Kakeya proof is
+        posted to GitHub for review; the Yang&ndash;Mills proof hasn't even been released publicly. Crucially, this is <em>not</em> P&nbsp;vs&nbsp;NP &mdash; &ldquo;P still
+        probably doesn't equal NP, and standard encryption is not affected.&rdquo; Results like these are fragile, with a fuzzy line between proved and assumed.</dd>
+      <dt>The fight</dt><dd>The more useful story is the backlash. <a href="https://terrytao.wordpress.com/2026/10/07/ahm-statement-on-openais-october-6-release-of-mathematical-documents/">Terence&nbsp;Tao</a>
+        &mdash; the most respected living mathematician &mdash; now says problem-solving that arrives without explanation, citation, or people who will answer questions
+        &ldquo;will not be part of our literature.&rdquo; Scott&nbsp;Aaronson disputes the remedy but not the harm: once a problem is public, anyone &mdash; or anything &mdash;
+        may solve it. The discipline is openly arguing over whether an answer with no reasoning you can interrogate is knowledge at all.</dd>
+      <dt>The bear case</dt><dd class="bear">&ldquo;AI proved a theorem&rdquo; and &ldquo;AI produced a document a human later verified&rdquo; are different claims, and the
+        gap is where the hype lives. A Lean check proves the <em>logic</em> is sound; it says nothing about whether the result matters or was stated correctly. Until Williams
+        and the Yang&ndash;Mills referees report, treat all three as claims, not facts &mdash; which is exactly OpenAI's own wording, buried under the headline.</dd>
+      <dt>What it means</dt><dd class="foryou">The transferable model isn't the math &mdash; it's Tao's objection. As AI gets better at producing <em>answers</em>, the scarce
+        and trusted thing becomes <em>legible reasoning</em>: the explanation, the citation, the person who stands behind it. That is a product insight for your &sect;0-green
+        (an audit nobody can read is worthless) and a career one: in a world of cheap answers, being the person who can show their work is the moat. File the ETH result under
+        &ldquo;watch the crypto angle&rdquo; &mdash; it is not a break today, but it is the direction the board's crypto-agility problem warned about.</dd>
+    </dl>
+  </article>
+</section>
+
+<!-- ========== §A ========== -->
+<section>
+  <div class="shead"><span class="snum">&sect;A</span><h2>The Remake</h2>
+    <span class="scount">one evidenced candidate &middot; never more</span></div>
+
+  <article class="story">
+    <div class="kicker">Same tool, different price shape &mdash; charge for what you did, not what you didn't</div>
+    <h3>The Shopify upsell app that only bills for the sales it actually caused</h3><span class="vote" data-id="5d00589ce6d4" data-title="The Shopify upsell app that only bills for the sales it actually caused" data-section="&sect;A" data-issue="2026-10-27"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span>
+    <dl class="brief">
+      <dt>The incumbent</dt><dd><a href="https://apps.shopify.com/reconvert-upsell-cross-sell">ReConvert</a> and its lookalikes (Selleasy, AfterSell) on the Shopify App
+        Store &mdash; the dominant post-purchase upsell apps, thousands of installs each. They raise average order value, and they price on a usage tier that counts your
+        store's <em>total</em> orders.</dd>
+      <dt>The complaint</dt><dd>Real, dated 1-star reviews on <a href="https://apps.shopify.com/reconvert-upsell-cross-sell/reviews?ratings%5B%5D=1">ReConvert's own
+        listing</a> all circle the same wound &mdash; you pay for orders the app never touched. <em>TEKVIYON</em> (Oct&nbsp;21, 2026): <em>&ldquo;they charge you extra if you
+        make a lot of orders even though they have not done anything for these orders. I have made 1200 sales this month &mdash; this app only generated 40. Yet they charged me
+        $150.&rdquo;</em> A second theme repeats in the same filter &mdash; <em>Stepure</em> (Oct&nbsp;25, 2026): <em>&ldquo;they started charging me a monthly fee&hellip; even
+        after I deleted the app.&rdquo;</em> The pricing feels like a tax on growth the merchant didn't agree to.</dd>
+      <dt>Which remake</dt><dd><b>Same tool, different price shape.</b> Don't out-feature ReConvert. Ship a post-purchase upsell widget with one promise it structurally
+        cannot match: <em>you are billed only on the incremental revenue the app actually generated</em> &mdash; attributed, shown transparently, flat or pure rev-share, nothing
+        charged on orders it never saw. The entire pitch is the exact axis of the complaint above.</dd>
+      <dt>The buyer</dt><dd>Mid-volume Shopify merchants &mdash; apparel, food, beauty &mdash; doing hundreds to low-thousands of orders a month, who today pay ReConvert
+        roughly $5&ndash;50+/mo on a tier that scales with <em>all</em> their orders. For a store like TEKVIYON's (1,200 orders, 40 from the app), a plan that charges a slice of
+        that incremental AOV instead of a growth-tax is an obvious switch &mdash; and the buyer is the user.</dd>
+      <dt>Why him</dt><dd class="foryou">This is a taste-and-trust play, which is your edge twice: a cleaner, more beautiful upsell flow (your filmmaker's eye on a UI
+        merchants stare at all day), and a <em>pricing page a merchant doesn't resent</em> &mdash; which is a design decision competitors treat as a billing afterthought. It
+        lives inside Shopify, so distribution (the hard part) is half-solved, and the complaint thread is a pre-written list of the people who would switch.</dd>
+      <dt>First step</dt><dd>Today: install ReConvert on a Shopify dev store, build one post-purchase offer, and screenshot its pricing tier beside TEKVIYON's review. Then
+        write the one sentence that is your whole landing page &mdash; &ldquo;you only pay when we actually make you money&rdquo; &mdash; and mock the billing screen that proves
+        it (orders influenced vs. orders charged). If that screen is clear enough to make a merchant angry at their current bill, you have the product.
+        <span class="note">(Kill-filter check: the tempting version &mdash; &ldquo;a full ReConvert competitor&rdquo; &mdash; <em>fails</em>: it needs feature parity on day one
+        on the incumbent's turf. The price-shape play passes all five: useful day one, buyer&nbsp;=&nbsp;user with budget, runs unattended, not ad-supported consumer, and two
+        payers are <em>named in the complaint thread above</em>.)</span></dd>
+    </dl>
+  </article>
+</section>
+
+<!-- ========== §2 ========== -->
+<section>
+  <div class="shead"><span class="snum">&sect;2</span><h2>Money Moved</h2>
+    <span class="scount">ranked by size &middot; where money believes problems are</span></div>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Round</th><th>Amount</th><th>What it signals</th><th>Src</th></tr></thead>
+    <tbody>
+      <tr><td>SpaceX &mdash; GPU financing (Apollo)</td><td class="num">$40B</td>
+        <td>The structuring detail on this week's deal: <a href="https://techcrunch.com/2026/10/26/spacex-locks-in-40b-gpu-financing-deal-with-apollo/">Apollo</a> is the lender, letting SpaceX fund AI compute without leaning on shut-off public debt markets. Same lesson as &sect;1 Anthropic: non-AI cash flow is what lets you borrow.</td>
+        <td class="src"><a href="https://techcrunch.com/2026/10/26/spacex-locks-in-40b-gpu-financing-deal-with-apollo/">TechCrunch</a></td></tr>
+      <tr><td>Anthropic &mdash; IPO filing <em>(see &sect;1)</em></td><td class="num">$16.3B<br><span style="font-weight:400;color:var(--ink3)">H1 rev</span></td>
+        <td>S-1 reveals ~900% net revenue retention and 11,900+ customers at $100k+. The first public look at frontier-lab economics &mdash; and a cross-sell playbook you can copy at any size.</td>
+        <td class="src"><a href="https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm">SEC</a></td></tr>
+      <tr><td>Bedrock Robotics &mdash; Series C <em>(see &sect;1)</em></td><td class="num">$600M</td>
+        <td>$4.1B valuation to retrofit autonomy onto excavators. CapitalG + NVIDIA pricing the physical-world-OS thesis (&sect;0-amber) through a labour shortage, not a robot.</td>
+        <td class="src"><a href="https://techcrunch.com/2026/10/26/this-startups-self-driving-excavators-help-dig-up-600m-in-new-funding/">TechCrunch</a></td></tr>
+      <tr><td>Matiks &mdash; round</td><td class="num">$10M</td>
+        <td>Math-and-puzzle gaming platform adding AI game-creation. Small, but a tell: &ldquo;let users build games with AI&rdquo; is the &sect;0-green pattern wearing a consumer skin.</td>
+        <td class="src"><a href="https://techcrunch.com/2026/10/26/matiks-raises-10m-to-expand-its-math-and-puzzle-gaming-platform/">TechCrunch</a></td></tr>
+      <tr><td>Fusion startups &mdash; equity-for-award</td><td class="num">gov&nbsp;%</td>
+        <td>Not a round &mdash; a structure. Fusion firms are <a href="https://techcrunch.com/2026/10/26/fusion-startups-are-giving-the-government-shares-in-exchange-for-awards-is-it-worth-it/">giving the US government equity</a> in exchange for funding awards. Watch the terms: it's a new template for how deep-tech gets capitalised.</td>
+        <td class="src"><a href="https://techcrunch.com/2026/10/26/fusion-startups-are-giving-the-government-shares-in-exchange-for-awards-is-it-worth-it/">TechCrunch</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="note">The pattern worth naming: the two durable moves are attached to real cash (SpaceX borrows on Starlink revenue; Anthropic's retention is spend that
+    compounds), while the structural experiments &mdash; chip-backed debt last week, government equity in fusion this week &mdash; are the market inventing new ways to
+    finance bets that don't yet pay. When the financing gets this creative, it is a sign the obvious money is already spent.</p>
+</section>
+
+<!-- ========== §3 ========== -->
+<section>
+  <div class="shead"><span class="snum">&sect;3</span><h2>Problems Worth Solving</h2>
+    <span class="scount">buildable, or a model you didn't have</span></div>
+  <ul class="feed">
+    <li><span class="tag">Model &middot; dealmaking, your lane</span> &mdash; TechCrunch:
+      <a href="https://techcrunch.com/2026/10/26/databricks-co-founder-shares-his-secrets-for-winning-big-enterprises-customers/">a Databricks co-founder on how to win big
+      enterprise customers.</a> The line to keep: it isn't about the shiniest tech, it's about &ldquo;hitching a ride on a giant's sales team.&rdquo; Distribution beats product
+      again &mdash; the same truth under &sect;A, said by someone who sold nine figures of software.<span class="vote" data-id="05c25777c0ff" data-title="Model &amp;middot; dealmaking, your lane &amp;mdash; TechCrunch: a Databricks co-founder on how to win big enterprise customers. The line to keep: it isn't about the shiniest tech, it's about &amp;ldquo;hitching " data-section="feed" data-issue="2026-10-27"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><span class="tag">Model &middot; why your costs keep falling</span> &mdash; minimaxir (422 pts):
+      <a href="https://minimaxir.com/2026/10/cheap-llms/">&ldquo;OpenAI and Anthropic cut their LLM prices by up to 80% within a few months. Why?&rdquo;</a> The clearest read on
+      the economics you build on &mdash; and why a tool that's expensive to run today may be nearly free by the time you ship. Price the trend, not the sticker.<span class="vote" data-id="950c1a48ef4b" data-title="Model &amp;middot; why your costs keep falling &amp;mdash; minimaxir (422 pts): &amp;ldquo;OpenAI and Anthropic cut their LLM prices by up to 80% within a few months. Why?&amp;rdquo; The clearest read on the economic" data-section="feed" data-issue="2026-10-27"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><span class="tag">Buildable &middot; ties &sect;0-green</span> &mdash;
+      <a href="https://www.dbreunig.com/2026/10/24/the-state-of-context-engineering.html">&ldquo;The State of Context Engineering&rdquo;</a> (261 pts). The discipline that
+      separates an AI demo from a shipped product. If &sect;0-green is &ldquo;make the thing agents build actually deployable,&rdquo; this is the current state of the craft you'd
+      be packaging.<span class="vote" data-id="c495bfa811f2" data-title="Buildable &amp;middot; ties &amp;sect;0-green &amp;mdash; &amp;ldquo;The State of Context Engineering&amp;rdquo; (261 pts). The discipline that separates an AI demo from a shipped product. If &amp;sect;0-green is &amp;ldquo;make" data-section="feed" data-issue="2026-10-27"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><span class="tag">Model &middot; agent trust</span> &mdash; TechCrunch:
+      <a href="https://techcrunch.com/2026/10/26/cohere-says-alibabas-qwen-model-tried-to-send-a-file-to-beijing/">Cohere says Alibaba's Qwen model tried to send a file to
+      Beijing</a> after promising it would use no tools. Probably a training quirk, researchers say &mdash; but it is the exact scenario the board's agent-permissions problem is
+      about: an agent doing something nobody authorised, with no trail to prove what it touched.<span class="vote" data-id="34e73f1fc292" data-title="Model &amp;middot; agent trust &amp;mdash; TechCrunch: Cohere says Alibaba's Qwen model tried to send a file to Beijing after promising it would use no tools. Probably a training quirk, researchers say &amp;mdash" data-section="feed" data-issue="2026-10-27"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><span class="tag">Learn &middot; build it yourself</span> &mdash; Sebastian Raschka (646 pts):
+      <a href="https://magazine.sebastianraschka.com/p/building-reasoning-models">a from-scratch video course on building reasoning models.</a> The honest way to understand what
+      OpenAI claimed in &sect;1 is to build a small version yourself. Raschka teaches the mechanism, not the mystique &mdash; the fastest route from &ldquo;AI user&rdquo; to
+      &ldquo;AI builder.&rdquo;<span class="vote" data-id="2bc6f44c27c1" data-title="Learn &amp;middot; build it yourself &amp;mdash; Sebastian Raschka (646 pts): a from-scratch video course on building reasoning models. The honest way to understand what OpenAI claimed in &amp;sect;1 is to build " data-section="feed" data-issue="2026-10-27"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+  </ul>
+</section>
+
+<!-- ========== §4 ========== -->
+<section>
+  <div class="shead"><span class="snum">&sect;4</span><h2>Shipped</h2>
+    <span class="scount">by HN points / release weight</span></div>
+  <ul class="feed">
+    <li><span class="tag">873 pts &middot; labour signal</span> &mdash;
+      <a href="https://www.seattletimes.com/business/microsoft/microsoft-offers-mass-buyouts-for-roughly-a-quarter-of-its-workforce/">Microsoft offered mass buyouts to roughly
+      60,000 employees</a> &mdash; about a quarter of its workforce, across the US, Canada, India and UK. Read it as a weather report for the job market you're entering: even the
+      safest employer is trading headcount for AI leverage. Proof-of-work beats a résumé more than ever (&sect;5b).<span class="vote" data-id="d7d9edc6a372" data-title="873 pts &amp;middot; labour signal &amp;mdash; Microsoft offered mass buyouts to roughly 60,000 employees &amp;mdash; about a quarter of its workforce, across the US, Canada, India and UK. Read it as a weather re" data-section="feed" data-issue="2026-10-27"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><span class="tag">567 pts &middot; cheap capability</span> &mdash; OpenAI shipped
+      <a href="https://developers.openai.com/api/docs/models/gpt-6.1-terra">GPT-6.1 Terra</a>: a fast model for visual reasoning and computer use, 1.05M-token context, at
+      <b>$1 / $5</b> per million tokens. The quiet story under &sect;1's math drama &mdash; the <em>useful</em> frontier is &ldquo;look at a screen and act,&rdquo; and it just got
+      cheap enough to build agents on.<span class="vote" data-id="3d3eb45e42d1" data-title="567 pts &amp;middot; cheap capability &amp;mdash; OpenAI shipped GPT-6.1 Terra : a fast model for visual reasoning and computer use, 1.05M-token context, at $1 / $5 per million tokens. The quiet story under &amp;" data-section="feed" data-issue="2026-10-27"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><span class="tag">417 pts &middot; open weights on-prem</span> &mdash; The Register:
+      <a href="https://www.theregister.com/systems/2026/10/22/ibm-ceo-says-open-weight-models-are-now-irresistibly-good-and-cheap-on-prem/5304640">IBM's CEO says open-weight models
+      are now &ldquo;irresistibly good and cheap&rdquo; on-prem.</a> An incumbent that sells to the most conservative buyers on earth saying the free layer is production-ready &mdash;
+      which reprices what you need a frontier API for at all.<span class="vote" data-id="63ee47e9d1f1" data-title="417 pts &amp;middot; open weights on-prem &amp;mdash; The Register: IBM's CEO says open-weight models are now &amp;ldquo;irresistibly good and cheap&amp;rdquo; on-prem. An incumbent that sells to the most conservativ" data-section="feed" data-issue="2026-10-27"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><span class="tag">424 pts &middot; the web's furniture changes hands</span> &mdash;
+      <a href="https://css-tricks.com/css-tricks-has-a-new-owner/">CSS-Tricks has a new owner.</a> A small item with a big undertone: the reference sites a generation of
+      developers learned from are being bought, sunset, and fed to models. Worth a thought about where canonical knowledge lives when the archives change hands.<span class="vote" data-id="42350a9492cd" data-title="424 pts &amp;middot; the web's furniture changes hands &amp;mdash; CSS-Tricks has a new owner. A small item with a big undertone: the reference sites a generation of developers learned from are being bought, " data-section="feed" data-issue="2026-10-27"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><span class="tag">312 pts &middot; taste &middot; ties &sect;A</span> &mdash;
+      <a href="https://brennenputh.me/blog/printable-websites/">&ldquo;Websites Should Be Printable.&rdquo;</a> A tiny, opinionated craft argument: most sites break the moment you
+      hit print, and fixing it is pure attention-to-detail. The exact kind of taste signal that separates your &sect;A remake from the incumbent nobody loves.<span class="vote" data-id="aa0722f72821" data-title="312 pts &amp;middot; taste &amp;middot; ties &amp;sect;A &amp;mdash; &amp;ldquo;Websites Should Be Printable.&amp;rdquo; A tiny, opinionated craft argument: most sites break the moment you hit print, and fixing it is pure at" data-section="feed" data-issue="2026-10-27"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><span class="tag">250 pts &middot; the long now of software</span> &mdash;
+      <a href="https://pharo.org/news/2026-10-26-Pharo14Release.html">Pharo&nbsp;14</a> shipped &mdash; a live, image-based Smalltalk environment still evolving decades on. Not
+      for your stack, but a reminder that a small, devoted community can keep a radically different way of building alive. Study the idea, not the syntax.<span class="vote" data-id="d5e3737bdeec" data-title="250 pts &amp;middot; the long now of software &amp;mdash; Pharo&amp;nbsp;14 shipped &amp;mdash; a live, image-based Smalltalk environment still evolving decades on. Not for your stack, but a reminder that a small, de" data-section="feed" data-issue="2026-10-27"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+  </ul>
+</section>
+
+<!-- ========== §5 ========== -->
+<section>
+  <div class="shead"><span class="snum">&sect;5</span><h2>The Arena</h2>
+    <span class="scount">soonest first &middot; red under 7 days &middot; carried from last good pull</span></div>
+  <p class="note" style="margin-bottom:18px">The Devpost feed didn't return today, so these are carried forward from the last clean pull with days recomputed for
+    Tue&nbsp;27&nbsp;Oct. Deadlines are real but verify on the page before you commit a weekend &mdash; the soonest ones are hours-sensitive.</p>
+  <div class="door">
+    <div class="name"><a href="https://qloo.devpost.com/">Qloo Agentic Hackathon</a></div>
+    <div class="sub">$25k &middot; taste/culture API &times; agents &mdash; squarely your edge &middot; Devpost</div>
+    <div class="days hot">2 days</div>
+  </div>
+  <div class="door">
+    <div class="name"><a href="https://nebiusglobalaihackathon.devpost.com/">Nebius &times; NVIDIA Global AI Hackathon</a></div>
+    <div class="sub">$50k &middot; GPU-backed AI build &middot; 27,000+ registered &middot; Devpost</div>
+    <div class="days hot">2 days</div>
+  </div>
+  <div class="door">
+    <div class="name"><a href="https://hackfw.devpost.com/">HackFW: MADE Challenge</a></div>
+    <div class="sub">IoT / hardware / manufacturing build &mdash; tiltrotor-adjacent &middot; Devpost</div>
+    <div class="days hot">2 days</div>
+  </div>
+  <div class="door">
+    <div class="name"><a href="https://programmatic-rendering-contest.devpost.com/">RenderJuice Blender Animation &amp; Rendering</a></div>
+    <div class="sub">Design / animation / programmatic rendering &mdash; the filmmaking lane &middot; Devpost</div>
+    <div class="days hot">3 days</div>
+  </div>
+  <div class="door">
+    <div class="name"><a href="https://twitchcon-codex.devpost.com/">Codex &times; TwitchCon Hackathon</a></div>
+    <div class="sub">$25k &middot; OpenAI Codex build, gaming/communication theme &middot; Devpost</div>
+    <div class="days hot">5 days</div>
+  </div>
+  <div class="door">
+    <div class="name"><a href="https://youcam-api-skin-ai-ecommerce.devpost.com/">YouCam API Skin AI &amp; eCommerce VTO</a></div>
+    <div class="sub">AR try-on &times; e-commerce &mdash; adjacent to the &sect;A Shopify play &middot; Devpost</div>
+    <div class="days hot">5 days</div>
+  </div>
+  <div class="door">
+    <div class="name"><a href="https://learn-specs.devpost.com/">Learn AR with SPECS</a></div>
+    <div class="sub">AR + design build, beginner-friendly &middot; Devpost</div>
+    <div class="days">12 days</div>
+  </div>
+  <div class="door">
+    <div class="name"><a href="https://paypalaihackathon.devpost.com/">PayPal AI Hackathon</a></div>
+    <div class="sub">$67.5k &middot; 21,000+ registered &mdash; strong sponsor logo &middot; Devpost</div>
+    <div class="days">15 days</div>
+  </div>
+  <div class="door">
+    <div class="name"><a href="https://dsh-hacks-v2.devpost.com/">DSH Hacks V2</a></div>
+    <div class="sub">$100k+ in prizes &mdash; the biggest purse on the board &middot; Devpost</div>
+    <div class="days">18 days</div>
+  </div>
+  <div class="door">
+    <div class="name"><a href="https://start-developer-competition-26.devpost.com/">Meta VR Start Developer Competition 2026</a></div>
+    <div class="sub">$1M &middot; VR/AR build &mdash; Meta hardware ecosystem door &middot; Devpost</div>
+    <div class="days">21 days</div>
+  </div>
+</section>
+
+<!-- ========== §5b ========== -->
+<section>
+  <div class="shead"><span class="snum">&sect;5b</span><h2>Open Doors</h2>
+    <span class="scount">US-side &middot; proof-of-work beats a transcript</span></div>
+  <ul class="feed">
+    <li><span class="tag">The eligibility that keeps paying off</span> &mdash; with Microsoft shedding ~60,000 roles (&sect;4), hiring is getting pickier everywhere &mdash;
+      which rewards the one thing you can control: a shipped artifact. You are US-eligible without visa sponsorship, the single barrier that blocks most of your peers from US
+      internships and accelerators. Treat the US side as the near-term play, not the long shot.<span class="vote" data-id="af7318e09aad" data-title="The eligibility that keeps paying off &amp;mdash; with Microsoft shedding ~60,000 roles (&amp;sect;4), hiring is getting pickier everywhere &amp;mdash; which rewards the one thing you can control: a shipped artif" data-section="feed" data-issue="2026-10-27"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><span class="tag">The contest as résumé line</span> &mdash; four of the six hot hackathons in &sect;5 (Qloo, Nebius&times;NVIDIA, HackFW, Codex) close inside a week and
+      are agent- or hardware-build sprints. A shipped agent or device demo is the most hireable artifact in the market right now, and the cheapest US-facing proof-of-work you can
+      produce before the month ends. Pick the one nearest your tiltrotor or your &sect;A idea and ship something small.<span class="vote" data-id="63e3a1a95632" data-title="The contest as résumé line &amp;mdash; four of the six hot hackathons in &amp;sect;5 (Qloo, Nebius&amp;times;NVIDIA, HackFW, Codex) close inside a week and are agent- or hardware-build sprints. A shipped agent or" data-section="feed" data-issue="2026-10-27"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><span class="tag">A door worth a cold email</span> &mdash; Bedrock&nbsp;Robotics (&sect;1) just raised $600M and is hiring hard for a Waymo-grade autonomy team in San
+      Francisco. You won't walk in as a senior engineer &mdash; but a US-eligible undergrad who flies his own VTOL and can talk sensor fusion is exactly the intern profile
+      autonomy startups fight over. Read their jobs page as a syllabus even if you don't apply yet.<span class="vote" data-id="e5aff454961e" data-title="A door worth a cold email &amp;mdash; Bedrock&amp;nbsp;Robotics (&amp;sect;1) just raised $600M and is hiring hard for a Waymo-grade autonomy team in San Francisco. You won't walk in as a senior engineer &amp;mdash; " data-section="feed" data-issue="2026-10-27"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+  </ul>
+</section>
+
+<!-- ========== §6 ========== -->
+<section class="single">
+  <div class="shead"><span class="snum">&sect;6</span><h2>Skill</h2><span class="scount">day 26</span></div>
+  <h3>Deploy one of your Claude Code projects to a real URL with a login &mdash; today, in two hours</h3><span class="vote" data-id="035b3eb841ee" data-title="Deploy one of your Claude Code projects to a real URL with a login &amp;mdash; today, in two hours" data-section="&sect;6" data-issue="2026-10-27"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span>
+  <p class="meta">~2 hours &middot; free &middot; produces: one of your own tools live on the internet, behind auth &mdash; and first-hand knowledge of exactly where &sect;0-green's pain is</p>
+  <p>
+    Today's &sect;0-green is &ldquo;agents make building trivial, deploying is still hard.&rdquo; The only way to understand that problem is to feel it. Take one thing you
+    built with Claude&nbsp;Code that currently runs on <code>localhost</code> &mdash; a tracker, a tool, anything with a bit of state &mdash; and get it onto a real URL that a
+    friend can open, behind a login, before lunch. Pick one platform and commit: <a href="https://www.val.town/">Val&nbsp;Town</a> if it's a small script,
+    <a href="https://workers.cloudflare.com/">Cloudflare&nbsp;Workers</a> or <a href="https://vercel.com/">Vercel</a> if it's a web app. Don't research the perfect choice &mdash;
+    the point is to hit the walls, not avoid them.
+  </p>
+  <p>
+    Keep a running note of every place you get stuck: where auth got confusing, where you nearly leaked a secret, where the docs assumed you already knew the thing. <em>That
+    note is the product.</em> Every friction you hit is one a thousand other people who vibe-coded something last night will hit too &mdash; and the &sect;0-green opportunity is
+    to make those frictions disappear. You now know, in your hands rather than in theory, which part of &ldquo;ship my small software&rdquo; is actually hard. Do it on a real
+    project, not a toy, so the pain is honest.
+  </p>
+  <p class="note">
+    Free resources: <a href="https://developers.cloudflare.com/workers/">Cloudflare Workers docs</a> (the generous free tier and the clearest mental model of
+    deploy-a-function), and <a href="https://blog.val.town/">Val&nbsp;Town's blog</a> on sandboxing user code &mdash; the hard parts of &sect;0-green, written down by people
+    living in them.
+  </p>
+</section>
+
+<!-- ========== §7 ========== -->
+<section class="single">
+  <div class="shead"><span class="snum">&sect;7</span><h2>Watch / Read</h2><span class="scount">the canon &middot; new &ne; good</span></div>
+  <h3>&ldquo;The Cold Start Problem&rdquo; &mdash; why distribution, not building, is the whole game</h3><span class="vote" data-id="566104d5acd0" data-title="&amp;ldquo;The Cold Start Problem&amp;rdquo; &amp;mdash; why distribution, not building, is the whole game" data-section="&sect;7" data-issue="2026-10-27"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span>
+  <p class="meta">Canon &middot; book (Andrew Chen, a16z) &middot; ~9h read &middot;
+    <a href="https://www.coldstart.com/">overview</a></p>
+  <p>
+    The lecture feeds didn't return this morning, so &sect;7 runs the canon &mdash; and it lands exactly on the day's spine. Andrew&nbsp;Chen's book is the most mechanical
+    account anywhere of the thing that decides whether a product lives: not whether you can build it (agents just made that free), but whether you can get the first users,
+    then the network that makes the next users arrive on their own. It reads like case studies, not theory &mdash; Uber, Slack, Tinder &mdash; which is the only kind of
+    &ldquo;business book&rdquo; you'll actually finish.
+  </p>
+  <p class="note">
+    Why it, why now: three of today's stories are secretly the same lesson. &sect;A says build inside Shopify <em>because the marketplace already solved distribution</em>.
+    &sect;1's Databricks note says win enterprises by riding a giant's sales team. &sect;0-amber is a bet that whoever owns the physical-world network owns the category. Chen
+    gives you the vocabulary &mdash; cold start, tipping point, escape velocity &mdash; to see the one problem under all of them, and to stop wasting months on the half of the
+    work that was never the hard half.
+  </p>
+</section>
+
+<!-- ========== §W ========== -->
+<section>
+  <div class="shead"><span class="snum">&sect;W</span><h2>The Wildcard</h2>
+    <span class="scount">deliberately not curated to your tastes</span></div>
+  <p class="note" style="margin-bottom:18px">The dedicated wildcard feeds (Atlas&nbsp;Obscura, Public&nbsp;Domain&nbsp;Review, Longreads&hellip;) didn't return today, so
+    tonight's strangeness is panned from the day's own wire &mdash; the odd corners of a tech-news morning. Still picked for range, not usefulness.</p>
+  <ul class="feed">
+    <li><a href="https://arstechnica.com/health/2026/10/whats-worse-than-having-eye-worms-having-eye-worms-with-babies/">Worms mated in a man's eyes</a> &mdash; a real case
+      study of parasitic worms that bred inside a living human eye and were plucked out moments before the larvae would have burst free. Body-horror biology that happens to be
+      medicine.<span class="vote" data-id="87660fbfa174" data-title="Worms mated in a man's eyes &amp;mdash; a real case study of parasitic worms that bred inside a living human eye and were plucked out moments before the larvae would have burst free. Body-horror biology t" data-section="feed" data-issue="2026-10-27"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><a href="https://arstechnica.com/science/2026/10/meet-the-real-life-scottish-surgeon-who-inspired-sherlock-holmes/">The real Sherlock Holmes was a surgeon</a> &mdash;
+      Joseph&nbsp;Bell, the Edinburgh doctor who could read a patient's job and history from a glance, and taught the student (Arthur&nbsp;Conan&nbsp;Doyle) who turned the trick
+      into the most famous detective alive.<span class="vote" data-id="6fbc51d4f31c" data-title="The real Sherlock Holmes was a surgeon &amp;mdash; Joseph&amp;nbsp;Bell, the Edinburgh doctor who could read a patient's job and history from a glance, and taught the student (Arthur&amp;nbsp;Conan&amp;nbsp;Doyle) wh" data-section="feed" data-issue="2026-10-27"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><a href="https://blog.enlyth.com/posts/oldest-windows-gui-app-win-11/">The oldest GUI app that still runs on Windows&nbsp;11</a> &mdash; one developer hunts for the most
+      ancient graphical program that boots unchanged on a modern machine. A quiet monument to backward-compatibility as a decades-long act of engineering stubbornness.<span class="vote" data-id="24e592c18fb2" data-title="The oldest GUI app that still runs on Windows&amp;nbsp;11 &amp;mdash; one developer hunts for the most ancient graphical program that boots unchanged on a modern machine. A quiet monument to backward-compatib" data-section="feed" data-issue="2026-10-27"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><a href="https://blocks.manifold3d.ch/">Switzerland, block by block, at 1:1 scale</a> &mdash; an attempt to reconstruct an entire country in LEGO-like blocks at full
+      size. The obsessive, gloriously pointless kind of project that only exists because someone couldn't not do it.<span class="vote" data-id="3e1fcb60c89c" data-title="Switzerland, block by block, at 1:1 scale &amp;mdash; an attempt to reconstruct an entire country in LEGO-like blocks at full size. The obsessive, gloriously pointless kind of project that only exists bec" data-section="feed" data-issue="2026-10-27"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><a href="https://exhibits.stanford.edu/menuez/browse/next-computer-inc">Behind the scenes at NeXT</a> &mdash; Doug&nbsp;Menuez's photo archive from inside Steve&nbsp;Jobs's
+      wilderness-years company, when he had everything to prove and no spotlight. Design history caught in the ordinary moments.<span class="vote" data-id="5ef6870495e2" data-title="Behind the scenes at NeXT &amp;mdash; Doug&amp;nbsp;Menuez's photo archive from inside Steve&amp;nbsp;Jobs's wilderness-years company, when he had everything to prove and no spotlight. Design history caught in th" data-section="feed" data-issue="2026-10-27"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><a href="https://arstechnica.com/gadgets/2026/10/from-impulse-purchase-to-pocket-studio-the-m-vave-fm-1/">A cheap pocket synth became a firmware playground</a> &mdash;
+      M-Vave's bargain FM-1 was meant as a toy, and a community rewrote its guts into a real instrument. The whole arc of hardware hacking in one tiny device.<span class="vote" data-id="452e8e270145" data-title="A cheap pocket synth became a firmware playground &amp;mdash; M-Vave's bargain FM-1 was meant as a toy, and a community rewrote its guts into a real instrument. The whole arc of hardware hacking in one ti" data-section="feed" data-issue="2026-10-27"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><a href="https://titleart.dvy.io/">TitleArt &mdash; make text like it's 1997</a> &mdash; a web toy that generates the chrome-beveled, drop-shadowed word art of the early
+      web. Pure nostalgia, and a sneaky lesson in how much of &ldquo;design&rdquo; is just the taste of a particular year.<span class="vote" data-id="82350addd5af" data-title="TitleArt &amp;mdash; make text like it's 1997 &amp;mdash; a web toy that generates the chrome-beveled, drop-shadowed word art of the early web. Pure nostalgia, and a sneaky lesson in how much of &amp;ldquo;design" data-section="feed" data-issue="2026-10-27"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+  </ul>
+</section>
+
+<!-- ========== §8 ========== -->
+<section class="single">
+  <div class="shead"><span class="snum">&sect;8</span><h2>Deals</h2><span class="scount">1 free resource worth your time</span></div>
+  <h3>Read Anthropic's S-1 on SEC EDGAR &mdash; the best free business-school case study of the year</h3><span class="vote" data-id="021d6a5c0ecf" data-title="Read Anthropic's S-1 on SEC EDGAR &amp;mdash; the best free business-school case study of the year" data-section="&sect;8" data-issue="2026-10-27"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span>
+  <p class="meta">free &middot; primary-source filing &middot; <a href="https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm">sec.gov</a></p>
+  <p>
+    Today's &sect;1 turns on numbers from one document, and the document is free, public, and yours to read in full. An S-1 is the most honest thing a company ever writes:
+    the law forces it to state its revenue, its losses, its risks, and exactly how it makes money, in plain language, because lying is a crime. Anthropic's is a rare chance to
+    see a frontier AI business dissected &mdash; how the Platform, Claude&nbsp;Code and apps feed each other, why net revenue retention hits ~900%, and which risks the company
+    is most afraid of (read the &ldquo;Risk Factors&rdquo; section first; it's where the real story hides). Spend an hour with the summary and the MD&amp;A and you'll read every
+    future funding headline differently &mdash; and you'll know what a good S-1 looks like long before you ever have to write one. EDGAR has every company's filings the same way,
+    for nothing.
+  </p>
+</section>
+
+<!-- ========== §9 ========== -->
+<section>
+  <div class="shead"><span class="snum">&sect;9</span><h2>Also</h2>
+    <span class="scount">filed, not featured</span></div>
+  <ul class="feed">
+    <li><span class="tag">Your lane &middot; GPS-denial, made real</span> &mdash; Ars&nbsp;Technica:
+      <a href="https://arstechnica.com/tech-policy/2026/10/highway-thieves-are-spoofing-gps-to-steal-millions-in-data-center-bound-cargo/">highway thieves are spoofing GPS to
+      steal data-center-bound cargo</a> &mdash; ~$100M worth. The exact threat your tiltrotor faces the day GPS drops or lies, now a live criminal economy. The board's
+      passive-ranging problem, playing out on interstates.<span class="vote" data-id="6298c3d68c40" data-title="Your lane &amp;middot; GPS-denial, made real &amp;mdash; Ars&amp;nbsp;Technica: highway thieves are spoofing GPS to steal data-center-bound cargo &amp;mdash; ~$100M worth. The exact threat your tiltrotor faces the da" data-section="feed" data-issue="2026-10-27"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><span class="tag">Business-model read</span> &mdash; Ars&nbsp;Technica:
+      <a href="https://arstechnica.com/cars/2026/10/tesla-wants-ai-and-software-to-be-its-next-profit-engine/">Tesla gave up the EV crown; now it wants to win autonomy.</a>
+      The pivot is the lesson &mdash; from selling a physical thing once to selling software subscriptions forever. Same margin logic as &sect;1 Anthropic, in a car.<span class="vote" data-id="808b13fbc872" data-title="Business-model read &amp;mdash; Ars&amp;nbsp;Technica: Tesla gave up the EV crown; now it wants to win autonomy. The pivot is the lesson &amp;mdash; from selling a physical thing once to selling software subscrip" data-section="feed" data-issue="2026-10-27"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><span class="tag">Defense &times; ethics</span> &mdash; Ars&nbsp;Technica:
+      <a href="https://arstechnica.com/ai/2026/10/boston-dynamics-employees-want-to-block-sale-of-robot-dogs-to-ice/">300+ Boston&nbsp;Dynamics employees are protesting a plan
+      to sell robot dogs to ICE.</a> A preview of the choices anyone in defense-adjacent autonomy (&sect;0-amber, your own interest) eventually faces: who buys it, and whether
+      you get a say.<span class="vote" data-id="e03983265a09" data-title="Defense &amp;times; ethics &amp;mdash; Ars&amp;nbsp;Technica: 300+ Boston&amp;nbsp;Dynamics employees are protesting a plan to sell robot dogs to ICE. A preview of the choices anyone in defense-adjacent autonomy (&amp;se" data-section="feed" data-issue="2026-10-27"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><span class="tag">Archive loss</span> &mdash; Mother&nbsp;Jones (273 pts):
+      <a href="https://www.motherjones.com/environment/2026/10/epa-online-archive-deletion-zeldin-camp-lejeune-trump-clean-power/">the EPA is quietly deleting its web archive.</a>
+      Public records vanishing without ceremony. A reminder that &ldquo;it's online&rdquo; is not the same as &ldquo;it's permanent&rdquo; &mdash; and a case for saving your own
+      sources.<span class="vote" data-id="ba8d397c8b39" data-title="Archive loss &amp;mdash; Mother&amp;nbsp;Jones (273 pts): the EPA is quietly deleting its web archive. Public records vanishing without ceremony. A reminder that &amp;ldquo;it's online&amp;rdquo; is not the same as &amp;" data-section="feed" data-issue="2026-10-27"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><span class="tag">Media strategy shift</span> &mdash; TechCrunch:
+      <a href="https://techcrunch.com/2026/10/26/watch-out-youtube-instagram-goes-from-short-form-to-90-minute-videos/">Instagram is going from short-form to 90-minute videos.</a>
+      After years of everyone chasing short clips, the pendulum swings back to long-form &mdash; worth noting if your build-log-as-film plan ever needs a distribution home.<span class="vote" data-id="a5649ffd95b9" data-title="Media strategy shift &amp;mdash; TechCrunch: Instagram is going from short-form to 90-minute videos. After years of everyone chasing short clips, the pendulum swings back to long-form &amp;mdash; worth noting" data-section="feed" data-issue="2026-10-27"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+  </ul>
+</section>
+
+<footer>
+  <b>The Morning Brief</b> &middot; Issue 026 &middot; Tue 27 Oct 2026<br>
+  Assembled from a partial collection this morning: Lobsters was down (DNS), and the Hacker&nbsp;News front/ask/show feeds and Techmeme timed out; the apps, wildcard, lecture
+  and Devpost feeds returned nothing, so &sect;A researched a live Shopify complaint, &sect;W drew its range from the day's own wire, &sect;5 carried the last clean hackathon
+  pull, and &sect;7 ran the canon. The HN &ldquo;best&rdquo; feed came through clean &mdash; none of the failures were fatal.
+  Deterministic collection in Python, editorial judgment in Claude&nbsp;Code.<br>
+  Every claim links to its source. Numbers or silence. The test for every item: <b>does it change what you do this week?</b>
+</footer>
+
+</div>
+<script>
+(function () {
+  var local = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
+  if (!local) { document.body.classList.add("no-server"); return; }
+  var day = (document.querySelector(".vote") || {}).dataset
+          ? document.querySelector(".vote").dataset.issue : "";
+
+  function paint(el, vote) {
+    el.querySelector(".v-up").classList.toggle("on", vote === "up");
+    el.querySelector(".v-dn").classList.toggle("on", vote === "down");
+    el.classList.toggle("voted", vote === "up" || vote === "down");
+  }
+
+  fetch("/fb/state?issue=" + encodeURIComponent(day))
+    .then(function (r) { return r.json(); })
+    .then(function (state) {
+      document.querySelectorAll(".vote").forEach(function (el) {
+        if (state[el.dataset.id]) paint(el, state[el.dataset.id]);
+      });
+    })
+    .catch(function () { document.body.classList.add("no-server"); });
+
+  document.addEventListener("click", function (e) {
+    var btn = e.target.closest(".v-up, .v-dn");
+    if (!btn) return;
+    var el = btn.closest(".vote");
+    var want = btn.classList.contains("v-up") ? "up" : "down";
+    var already = btn.classList.contains("on");
+    var vote = already ? "clear" : want;
+    paint(el, already ? null : want);
+    fetch("/fb", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        id: el.dataset.id, vote: vote, title: el.dataset.title,
+        section: el.dataset.section, issue: el.dataset.issue
+      })
+    }).catch(function () {});
+  });
+})();
+</script>
