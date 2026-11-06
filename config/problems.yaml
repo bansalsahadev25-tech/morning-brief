@@ -22,10 +22,23 @@
 # ======================================================================
 
 meta:
-  last_refreshed: 2026-10-11
+  last_refreshed: 2026-11-06
   refresh_when: "YC RFS changes, XPRIZE opens/closes a prize, ARIA posts a
                  new opportunity space, or a graded problem gets solved."
   changelog:
+    - "2026-11-06: YC replaced its RFS with a WINTER 2026/27 list — eleven new
+       categories, almost none carried over from the Fall list. New: Startups in a
+       World of Abundant Space Access; The $15-an-Hour Expert (Brad Flora); Robots
+       Made in America (Diana Hu); LLMs That Write Well (Jared Friedman); Plaid for
+       Government Benefits; Wall Street for the Physical Buildout; Vertical Foundation
+       Models; AI for City Hall; Data Center Supply Chain; AI for the Air-Gapped
+       Economy (Brad Flora); Own Your Intelligence (Jon Xu). Dropped from the live
+       page: American Defense, A Cloud for Small Software, New OS for the Physical
+       World, Proof-of-Human, AI for the Aging Population, API change propagation,
+       Bringing Compute to the Oceans. Those problems remain on THIS board (they are
+       still real) but their `who_says` YC-RFS link no longer resolves to them — re-source
+       before surfacing. Added `fifteen-dollar-expert` (green) below from the new list,
+       and re-sourced `compute-power-siting` to the live 'Data Center Supply Chain' entry."
     - "2026-10-11: Added `passive-ranging` (red) from a new DARPA item this run —
        the CIDAR challenge, 'pushing the limits of passive ranging' (locating and
        ranging targets without emitting anything). Filed red as a company (defense,
@@ -336,6 +349,36 @@ problems:
       - "Read the DARPA CIDAR challenge page — what exactly they are scoring, and why passive-only is the constraint that makes it hard."
       - "Study monocular depth estimation and passive ranging as a signals problem — the laptop-sized version of the same question."
       - "Connect it to GPS-denied drone navigation (see the Xona thread): the positioning problem has an active-satellite answer AND a passive-sensing answer, and knowing both is the literacy."
+
+  - id: fifteen-dollar-expert
+    grade: green
+    title: Turn an ordinary worker into a $200-an-hour expert, in one narrow vertical
+    problem: >
+      Whole professions gate high-value work behind a credential — M&A analysis,
+      supply-chain optimisation, insurance underwriting, tax, paralegal work. The
+      expertise is mostly a repeatable process plus a handful of judgment calls a
+      model can now carry. Nobody has packaged it so a talented person WITHOUT the
+      credential can produce the finished deliverable and get paid. The opportunity
+      is not "a chatbot for lawyers" — it is making a $15-an-hour operator ship a
+      $200-an-hour artifact in one specific vertical.
+    who_says: "Y Combinator, Requests for Startups (Winter 2027) — 'The $15-an-Hour Expert', by partner Brad Flora."
+    source: https://www.ycombinator.com/rfs
+    why_open: >
+      The hard part is not the model. It is encoding one expert's actual workflow
+      (the checklist, the edge cases, the never-do-X rules) and earning enough trust
+      that a buyer lets an unaccredited operator plus an agent do work that used to
+      need a licence. Generic assistants do the conversation, not the deliverable.
+      The winner nails one vertical end-to-end before touching a second.
+    who_is_trying: "Horizontal labs point this way — Harvey (law), Sierra (support) — but the 'turn a layperson into the expert' framing is new and vertical-by-vertical wide open. Adjacent YC Winter-2027 entries 'Vertical Foundation Models' and 'Own Your Intelligence' say the same from the model side."
+    your_angle: >
+      Pure software, zero capital, and he already directs AI to do work above his
+      formal training every day — he IS the $15 expert the RFS describes. Pick the one
+      vertical he can observe (a freelancer's bookkeeping, a small agency's reporting,
+      a family business) and build the deliverable, not the chat.
+    research_path:
+      - "Read the RFS entry and pick ONE vertical where he can watch a real expert work for an hour — the watching is the moat, not the model."
+      - "Write the expert's process as a literal checklist with the judgment calls marked; build an agent that produces the finished artifact, then have the expert red-line it."
+      - "Charge one person for one deliverable this month. The gap between 'the agent drafted it' and 'a buyer paid for it' is the whole company — find it with a $50 invoice, not a deck."
 
 feeds:
   note: >
