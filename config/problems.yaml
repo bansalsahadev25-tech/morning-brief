@@ -199,8 +199,13 @@ problems:
       Every trust signal we have — a face, a voice — was built for a world
       where faking a human was expensive. That world is gone. Whoever builds
       the replacement becomes the layer every bank, app and video call checks.
-    who_says: "Y Combinator RFS"
-    source: https://www.ycombinator.com/rfs
+    who_says: >
+      Re-sourced 2026-11-07: the YC RFS "Proof-of-Human" entry was dropped in the
+      Winter 2027 reset. The live evidence is now the DOJ indictment of three people
+      for AI-impersonating CEOs and attorneys in a ~$1M fraud (Nov 2026), Mark Cuban's
+      claim that Facebook knowingly runs AI deepfake scam ads tied to $16B fraud
+      revenue, and C2PA as the standards attempt.
+    source: https://c2pa.org/
     why_open: "Needs cryptographic standards, regulators and distribution deals simultaneously."
     who_is_trying: Worldcoin, Persona, Clear, Apple/Google device attestation
     your_angle: >
