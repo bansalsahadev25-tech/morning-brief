@@ -1,0 +1,814 @@
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Morning Brief</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root{
+    --bg:#EFF2F4; --surface:#FBFCFD; --sunk:#E6EAEE;
+    --ink:#10161C; --ink2:#4B5764; --ink3:#78838F;
+    --rule:#D2D9DF; --rule2:#BEC7D0;
+    --accent:#1B3A57; --urgent:#A33E12; --money:#0D6A5E;
+    --chip:#E2E8ED;
+    --measure:70ch;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --bg:#0B0F13; --surface:#131A21; --sunk:#0F151A;
+      --ink:#E3E9F0; --ink2:#8C99A7; --ink3:#66727F;
+      --rule:#222C36; --rule2:#2E3A45;
+      --accent:#84B4DE; --urgent:#E8834F; --money:#3EB5A3;
+      --chip:#1B242D;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0B0F13; --surface:#131A21; --sunk:#0F151A;
+    --ink:#E3E9F0; --ink2:#8C99A7; --ink3:#66727F;
+    --rule:#222C36; --rule2:#2E3A45;
+    --accent:#84B4DE; --urgent:#E8834F; --money:#3EB5A3;
+    --chip:#1B242D;
+  }
+
+  *{box-sizing:border-box}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,sans-serif;
+    font-size:15.5px; line-height:1.62;
+    padding-block:0; padding-left:20px; padding-right:20px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:var(--measure); margin:0 auto}
+  a{color:var(--accent); text-decoration:none; border-bottom:1px solid var(--rule2)}
+  a:hover{border-bottom-color:var(--accent)}
+  a:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+
+  .mast{padding-block:34px 18px; border-bottom:2px solid var(--ink)}
+  .mast h1{
+    font-family:Newsreader,Georgia,serif; font-weight:600;
+    font-size:clamp(2.1rem,7vw,3.1rem); line-height:1.0;
+    margin:0 0 12px; letter-spacing:-.015em;
+  }
+  .mastmeta{
+    display:flex; flex-wrap:wrap; gap:6px 18px;
+    font-family:"IBM Plex Mono",monospace; font-size:.7rem;
+    text-transform:uppercase; letter-spacing:.1em; color:var(--ink2);
+  }
+  .thesis{
+    font-family:Newsreader,Georgia,serif; font-size:1.2rem; line-height:1.5;
+    color:var(--ink); margin:20px 0 0; padding:16px 0 4px;
+    border-top:1px solid var(--rule); text-wrap:balance;
+  }
+  .thesis em{color:var(--ink2); font-style:italic}
+
+  section{padding-block:38px 8px}
+  .shead{
+    display:flex; align-items:baseline; gap:12px;
+    border-bottom:1px solid var(--ink); padding-bottom:7px; margin-bottom:22px;
+  }
+  .snum{
+    font-family:"IBM Plex Mono",monospace; font-size:.72rem; font-weight:600;
+    color:var(--ink3); letter-spacing:.06em; flex:none;
+  }
+  .shead h2{
+    font-family:"IBM Plex Sans",sans-serif; font-weight:600;
+    font-size:.86rem; text-transform:uppercase; letter-spacing:.14em;
+    margin:0; flex:1;
+  }
+  .scount{font-family:"IBM Plex Mono",monospace; font-size:.68rem; color:var(--ink3)}
+
+  .story{padding-bottom:34px; margin-bottom:34px; border-bottom:1px solid var(--rule)}
+  .story:last-child{border-bottom:0; margin-bottom:0}
+  .kicker{
+    font-family:"IBM Plex Mono",monospace; font-size:.68rem; font-weight:500;
+    text-transform:uppercase; letter-spacing:.12em; color:var(--urgent);
+    margin-bottom:8px;
+  }
+  .story h3{
+    font-family:Newsreader,Georgia,serif; font-weight:600;
+    font-size:clamp(1.45rem,4.4vw,1.95rem); line-height:1.15;
+    margin:0 0 6px; letter-spacing:-.01em; text-wrap:balance;
+  }
+  .byline{
+    font-family:"IBM Plex Mono",monospace; font-size:.7rem; color:var(--ink2);
+    margin-bottom:20px; line-height:1.6;
+  }
+  .byline b{color:var(--money); font-weight:600}
+
+  dl.brief{display:grid; gap:0; margin:0}
+  @media (min-width:720px){
+    dl.brief{grid-template-columns:8.5rem 1fr; column-gap:22px}
+  }
+  dl.brief dt{
+    font-family:"IBM Plex Mono",monospace; font-size:.66rem; font-weight:600;
+    text-transform:uppercase; letter-spacing:.1em; color:var(--ink3);
+    padding-top:.5em;
+  }
+  dl.brief dd{margin:0 0 16px}
+  dl.brief dd:last-of-type{margin-bottom:0}
+  dd.bear{color:var(--ink2)}
+  dd.foryou{border-left:2px solid var(--urgent); padding-left:14px}
+
+  .tablewrap{overflow-x:auto}
+  table{width:100%; border-collapse:collapse; font-size:.9rem}
+  th{
+    font-family:"IBM Plex Mono",monospace; font-size:.64rem; font-weight:600;
+    text-transform:uppercase; letter-spacing:.1em; color:var(--ink3);
+    text-align:left; padding:0 12px 8px 0; border-bottom:1px solid var(--rule2);
+    white-space:nowrap;
+  }
+  td{padding:11px 12px 11px 0; border-bottom:1px solid var(--rule); vertical-align:top}
+  td.num{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums; color:var(--money); font-weight:500; white-space:nowrap}
+  td.src{font-family:"IBM Plex Mono",monospace; font-size:.74rem; color:var(--ink3); white-space:nowrap}
+
+  .door{
+    display:grid; grid-template-columns:1fr auto; gap:4px 16px;
+    padding:14px 0; border-bottom:1px solid var(--rule); align-items:start;
+  }
+  .door:last-child{border-bottom:0}
+  .door .name{font-weight:500; line-height:1.4}
+  .door .sub{
+    grid-column:1; font-family:"IBM Plex Mono",monospace;
+    font-size:.72rem; color:var(--ink2);
+  }
+  .days{
+    grid-row:1/span 2; align-self:center;
+    font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums;
+    font-size:.78rem; font-weight:600; padding:4px 9px;
+    background:var(--chip); color:var(--ink2); white-space:nowrap;
+  }
+  .days.hot{background:var(--urgent); color:#fff}
+  .days.warm{color:var(--urgent); box-shadow:inset 0 0 0 1px var(--urgent)}
+
+  ul.feed{list-style:none; padding:0; margin:0}
+  ul.feed li{padding:11px 0; border-bottom:1px solid var(--rule); line-height:1.5}
+  ul.feed li:last-child{border-bottom:0}
+  .tag{
+    font-family:"IBM Plex Mono",monospace; font-size:.66rem; font-weight:500;
+    text-transform:uppercase; letter-spacing:.08em; color:var(--ink3);
+  }
+  .note{color:var(--ink2); font-size:.92rem; margin-top:5px}
+
+  .single h3{
+    font-family:Newsreader,Georgia,serif; font-weight:600; font-size:1.35rem;
+    margin:0 0 4px; line-height:1.25; text-wrap:balance;
+  }
+  .single .meta{
+    font-family:"IBM Plex Mono",monospace; font-size:.7rem; color:var(--ink3);
+    margin-bottom:14px;
+  }
+  .quiet{
+    color:var(--ink2); font-style:italic;
+    font-family:Newsreader,Georgia,serif; font-size:1.05rem;
+  }
+
+  footer{
+    border-top:2px solid var(--ink); margin-top:44px;
+    padding-block:20px 48px;
+    font-family:"IBM Plex Mono",monospace; font-size:.7rem; color:var(--ink3);
+    line-height:1.7;
+  }
+  footer b{color:var(--ink2); font-weight:500}
+
+  .problem{padding-bottom:30px;margin-bottom:30px;border-bottom:1px solid var(--rule)}
+  .problem:last-child{border-bottom:0;margin-bottom:0;padding-bottom:6px}
+  .pgrade{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:9px}
+  .pgrade .badge{font-family:"IBM Plex Mono",monospace;font-size:.62rem;font-weight:600;
+    letter-spacing:.11em;color:#fff;background:var(--g);padding:3px 8px}
+  .pgrade .caveat{font-family:"IBM Plex Mono",monospace;font-size:.66rem;color:var(--ink3)}
+  .problem h3{font-family:Newsreader,Georgia,serif;font-weight:600;
+    font-size:clamp(1.3rem,4vw,1.7rem);line-height:1.18;margin:0 0 16px;
+    letter-spacing:-.01em;text-wrap:balance}
+  ol.rpath{margin:0;padding-left:1.1rem}
+  ol.rpath li{margin-bottom:7px}
+  ol.rpath li:last-child{margin-bottom:0}
+  .pintro{font-family:Newsreader,Georgia,serif;font-size:1.06rem;line-height:1.5;
+    color:var(--ink2);margin:0 0 26px;text-wrap:pretty}
+  .rfs{background:var(--sunk);border-left:3px solid var(--accent);
+    padding:16px 18px;margin:0 0 30px}
+  .rfs .lbl{font-family:"IBM Plex Mono",monospace;font-size:.62rem;font-weight:600;
+    letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+  .rfs h3{font-family:Newsreader,Georgia,serif;font-weight:600;font-size:1.25rem;
+    line-height:1.2;margin:0 0 10px;text-wrap:balance}
+  .rfs ol{margin:10px 0 0;padding-left:1.2rem;columns:2;column-gap:26px;
+    font-size:.9rem;line-height:1.45}
+  @media (max-width:560px){.rfs ol{columns:1}}
+  .rfs ol li{margin-bottom:4px}
+  .rfs ol li::marker{font-family:"IBM Plex Mono",monospace;color:var(--ink3);font-size:.8rem}
+</style>
+<!--VOTE-CSS-START-->
+<style>
+  .vote{display:inline-flex;gap:3px;margin-left:9px;vertical-align:middle;
+    opacity:.3;transition:opacity .15s}
+  h3:hover .vote,li:hover .vote,.vote:hover,.vote.voted{opacity:1}
+  .vote button{font-family:inherit;font-size:.62rem;line-height:1;cursor:pointer;
+    padding:3px 6px;border:1px solid var(--rule2,#BEC7D0);background:transparent;
+    color:var(--ink3,#78838F);border-radius:2px}
+  .vote button:hover{border-color:var(--ink2,#4B5764);color:var(--ink,#10161C)}
+  .vote button.on.v-up{background:#0D6A5E;border-color:#0D6A5E;color:#fff}
+  .vote button.on.v-dn{background:#A33E12;border-color:#A33E12;color:#fff}
+  body.no-server .vote{display:none}
+  #fbnote{font-family:"IBM Plex Mono",monospace;font-size:.64rem;
+    color:var(--ink3,#78838F);padding:7px 0;border-bottom:1px solid var(--rule,#D2D9DF)}
+  body.no-server #fbnote{display:none}
+</style>
+<!--VOTE-CSS-END-->
+
+
+
+<div class="wrap">
+<!--ISSUE-NAV-START-->
+<style>
+  #issuenav{position:sticky;top:0;z-index:99;display:flex;align-items:center;
+    gap:12px;flex-wrap:wrap;padding:9px 20px;margin:0 -20px 0;
+    background:var(--surface,#FBFCFD);border-bottom:1px solid var(--rule,#D2D9DF);
+    font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.7rem}
+  #issuenav a{color:var(--accent,#1B3A57);text-decoration:none;border-bottom:0;
+    text-transform:uppercase;letter-spacing:.09em;font-weight:600}
+  #issuenav a:hover{text-decoration:underline}
+  #issuenav select{font-family:inherit;font-size:.72rem;padding:4px 8px;
+    background:var(--bg,#EFF2F4);color:var(--ink,#10161C);
+    border:1px solid var(--rule2,#BEC7D0);border-radius:0;cursor:pointer;
+    max-width:min(62vw,26rem)}
+  #issuenav .sp{flex:1}
+  #issuenav .lbl{color:var(--ink3,#78838F);text-transform:uppercase;
+    letter-spacing:.1em}
+  /* keep the sticky bar from clipping whatever you jump to */
+  section,.shead,.problem,.story{scroll-margin-top:3.4rem}
+  @media print{#issuenav{display:none}}
+</style>
+<nav id="issuenav" aria-label="Issue navigation">
+  <span class="lbl">Issue</span>
+  <select id="issuepick" aria-label="Choose an issue"><option value="2026-11-08.html" selected>Issue 030 &middot; Sun 8 Nov 2026</option><option value="2026-11-07.html">Issue 029 &middot; Sat 7 Nov 2026</option><option value="2026-11-06.html">Issue 028 &middot; Fri 6 Nov 2026</option><option value="2026-10-28.html">Issue 027 &middot; Wed 28 Oct 2026</option><option value="2026-10-27.html">Issue 026 &middot; Tue 27 Oct 2026</option><option value="2026-10-26.html">Issue 025 &middot; Mon 26 Oct 2026</option><option value="2026-10-24.html">Issue 024 &middot; Sat 24 Oct 2026</option><option value="2026-10-23.html">Issue 023 &middot; Fri 23 Oct 2026</option><option value="2026-10-21.html">Issue 022 &middot; Wed 21 Oct 2026</option><option value="2026-10-20.html">Issue 021 &middot; Tue 20 Oct 2026</option><option value="2026-10-18.html">Issue 020 &middot; Sun 18 Oct 2026</option><option value="2026-10-17.html">Issue 019 &middot; Sat 17 Oct 2026</option><option value="2026-10-15.html">Issue 018 &middot; Thu 15 Oct 2026</option><option value="2026-10-14.html">Issue 017 &middot; Wed 14 Oct 2026</option><option value="2026-10-13.html">Issue 016 &middot; Tue 13 Oct 2026</option><option value="2026-10-12.html">Issue 015 &middot; Mon 12 Oct 2026</option><option value="2026-10-11.html">Issue 014 &middot; Sun 11 Oct 2026</option><option value="2026-10-10.html">Issue 013 &middot; Sat 10 Oct 2026</option><option value="2026-10-09.html">Issue 012 &middot; Fri 9 Oct 2026</option><option value="2026-10-08.html">Issue 011 &middot; Thu 8 Oct 2026</option><option value="2026-10-07.html">Issue 010 &middot; Wed 7 Oct 2026</option><option value="2026-10-06.html">Issue 009 &middot; Tue 6 Oct 2026</option><option value="2026-10-05.html">Issue 008 &middot; Mon 5 Oct 2026</option><option value="2026-10-04.html">Issue 007 &middot; Sun 4 Oct 2026</option><option value="2026-10-01.html">Issue 006 &middot; Thu 1 Oct 2026</option><option value="2026-09-30.html">Issue 005 &middot; Wed 30 Sep 2026</option><option value="2026-09-29.html">Issue 004 &middot; Tue 29 Sep 2026</option><option value="2026-09-28.html">Issue 002 &middot; Mon 28 Sep 2026</option><option value="2026-09-26.html">Issue 001 &middot; Sat 26 Sep 2026</option></select>
+  <span class="sp"></span>
+  <a href="index.html">All issues</a>
+</nav>
+<script>
+  document.getElementById("issuepick").addEventListener("change", function (e) {
+    if (e.target.value) window.location.href = e.target.value;
+  });
+</script>
+<!--ISSUE-NAV-END-->
+
+<header class="mast">
+  <h1>The Morning Brief</h1>
+  <div class="mastmeta">
+    <span>Issue 030</span>
+    <span>Sun 8 Nov 2026</span>
+    <span>349 items screened &rarr; 47 filed</span>
+    <span>Funding, apps, Product&nbsp;Hunt, HN, Lobsters, Techmeme and the full learn and wildcard sets returned clean. Standing gaps: all 14 lecture channels (YouTube) 404'd or timed out again, so &sect;7 runs the canon; DARPA, Marginal&nbsp;Revolution, Atlas&nbsp;Obscura, Kottke, The&nbsp;Diff, Palladium and the three arXiv-economics/neuro feeds all timed out or dropped their connection; Devpost timed out mid-pull (13 live hackathons still returned, used below).</span>
+  </div>
+  <p class="thesis">
+    The data-center power wall stopped being a thesis this week and became a dated event with votes and money attached. <em>Texas &mdash; the epicentre of the AI build-out &mdash; swung
+    to a data-center moratorium</em>: Democrats took the statehouse for the first time in 24 years on a platform of halting permits, with two mega-projects totalling ~8,200&nbsp;MW
+    (one of them Anthropic's) now in doubt. The same days, <em>Crusoe dumped a troubled 10-gigawatt Wyoming site to Google</em>, which is committing $17B to rebuild it, and the
+    <em>Pentagon lent a battery-materials startup $250M to re-shore a supply chain</em>. A bipartisan permitting bill hits the Senate floor tomorrow. <em>The read: the scarce
+    things are now power, physical supply, and provenance &mdash; not another model.</em> Which is also why the morning's security story landed where it did: Claude&nbsp;Code's
+    &ldquo;Don't&nbsp;Ask&nbsp;Again&rdquo; spilled real passwords across 1,122 public repos &mdash; the tools you build with, leaking the keys you hold.
+  </p>
+</header>
+
+<!-- ========== §0 ========== -->
+<section>
+  <div class="shead"><span class="snum">&sect;0</span><h2>The Problem Board</h2>
+    <span class="scount">2 of 12</span></div>
+  <p class="pintro">
+    Every accelerator says it funds people &ldquo;solving hard problems,&rdquo; and none tells you which. This does &mdash; sourced, graded honestly, with somewhere to start reading.
+    Today: one green you live inside every time you finish building something, and one amber a cabinet secretary signed his name to and the Pentagon just wrote a cheque against.
+    No new <em>funded</em> problem landed to append &mdash; the Institute&nbsp;for&nbsp;Progress ran a policy essay (a bottleneck, but no door), DARPA and Marginal&nbsp;Revolution
+    both timed out, and YC's RFS is unchanged since Friday's Winter&nbsp;2027 reset. So both rotate from the standing board.
+  </p>
+
+  <article class="problem">
+    <div class="pgrade" style="--g:#0D6A5E">
+      <span class="badge">START THIS MONTH</span><span class="caveat">green &middot; pure software &middot; no capital &middot; you are the user: you build with Claude&nbsp;Code and then have nowhere good to put the result</span>
+    </div>
+    <h3>You can build software in a weekend now &mdash; and still have nowhere to put it</h3><span class="vote" data-id="1b604f5f62d3" data-title="You can build software in a weekend now &amp;mdash; and still have nowhere to put it" data-section="&sect;0" data-issue="2026-11-08"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span>
+    <dl class="brief">
+      <dt>The problem</dt><dd>Agents made it trivial to <em>build</em> software that will only ever have one or a handful of users &mdash; a tool for your team, a tracker for your own
+        workflow. Deploying and sharing it is still as hard as it was in 2015. AWS and Azure were designed for software that scales to millions, and that complexity is now the
+        bottleneck: auth, permissions for arbitrary user-written code, and &mdash; the part everyone underestimates &mdash; letting a non-technical person run your code without it
+        becoming a security incident.</dd>
+      <dt>Who says it's hard</dt><dd>Y&nbsp;Combinator carried this as <a href="https://www.ycombinator.com/rfs">&ldquo;A&nbsp;Cloud for Small&nbsp;Software&rdquo;</a> in its RFS, and
+        the wire keeps re-proving it. This morning two items framed the whole problem by accident: a <b>444-pt</b> HN post on <a href="https://blog.bosscher.ch/posts/openstick/">running
+        a homelab on a $10 USB stick</a> (people are so starved for a place to run their own small software they are repurposing Android dongles), and the day's security headline
+        (&sect;1) &mdash; <a href="https://thehackernews.com/2026/11/claude-codes-dont-ask-again-file.html">Claude&nbsp;Code leaking secrets into 1,122 public repos</a> &mdash; which is
+        partly a story about people with nowhere safe to put the thing they just built.</dd>
+      <dt>Why it's still open</dt><dd>The hard parts are not the hosting. They are auth and permissions for arbitrary user-written code, per-person environment customisation, and
+        sharing executable code with someone non-technical safely. The platforms that try (see &sect;8's Coolify, &sect;4's one-VM-per-project tools) mostly solve step one and leave
+        the last mile &mdash; &ldquo;give this URL to my client and let them log in&rdquo; &mdash; to you.</dd>
+      <dt>Who's already trying</dt><dd>Vercel, Replit, <a href="https://www.val.town/">Val&nbsp;Town</a>, Cloudflare&nbsp;Workers, Deno&nbsp;Deploy on the hosted side; Coolify and
+        Dokploy on the self-host side. All aimed at developers who already know what a container is. Nobody owns the bottom: the person who built one thing with an agent and just
+        wants it live, with a login, for five people.</dd>
+      <dt>Your angle</dt><dd class="foryou">You are the user in its cheapest form &mdash; you build with Claude&nbsp;Code and then stall at &ldquo;now what.&rdquo; That is the unfair
+        advantage the RFS is describing: you feel the gap the moment you close the laptop. &sect;6 turns the first inch of this into a one-afternoon exercise, and &sect;8 hands you the
+        open-source platform to build the ugly version on top of.</dd>
+      <dt>Research path</dt><dd><ol class="rpath">
+        <li>Build the ugliest possible version <em>for yourself</em> first: one command that takes a Claude&nbsp;Code project and gives you back a URL with a login. Use Coolify (&sect;8) as the engine so you are only solving the last mile.</li>
+        <li>Read <a href="https://blog.val.town/">Val&nbsp;Town's engineering writeups</a> on sandboxing user-written code &mdash; they have hit every wall you will hit, in public.</li>
+        <li>Then ask ten people in your hostel who build things where their projects currently live. The honest answer is &ldquo;localhost,&rdquo; and that answer <em>is</em> the market.</li></ol></dd>
+    </dl>
+  </article>
+
+  <article class="problem">
+    <div class="pgrade" style="--g:#B4731A">
+      <span class="badge">REAL IN 6&ndash;12 MONTHS</span><span class="caveat">amber &mdash; the company needs clearance, capital and ITAR; the on-ramp (autonomy software, a flyable VTOL) does not</span>
+    </div>
+    <h3>The U.S. Army asked founders, by name, to rebuild how it fights &mdash; and this week the money started moving</h3><span class="vote" data-id="8262dd08afdd" data-title="The U.S. Army asked founders, by name, to rebuild how it fights &amp;mdash; and this week the money started moving" data-section="&sect;0" data-issue="2026-11-08"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span>
+    <dl class="brief">
+      <dt>The problem</dt><dd>YC's RFS carries a category written by the sitting U.S. Secretary of the Army: &ldquo;We need cutting-edge drones, resilient logistics, and advanced
+        manufacturing.&rdquo; The old defense model &mdash; a few primes, ten-year procurement, exquisite hardware &mdash; cannot produce the cheap, attritable, autonomous systems
+        modern conflict actually consumes. The gap between what the Pentagon buys and what it needs is now a funded request.</dd>
+      <dt>Who says it's hard</dt><dd><a href="https://www.ycombinator.com/rfs">Y&nbsp;Combinator's RFS &mdash; &ldquo;The Future of American Defense,&rdquo; by Daniel&nbsp;P.&nbsp;Driscoll,
+        U.S.&nbsp;Secretary of the Army.</a> And the money is now visibly behind it: the week's <a href="https://news.crunchbase.com/venture/biggest-startup-rounds-ai-defense-space-tech-shield-zipline/">biggest
+        rounds were led by defense and space (Shield&nbsp;AI, Zipline)</a>, and the <a href="https://techcrunch.com/2026/11/06/pentagon-offers-battery-startup-6k-250m-loan-to-build-u-s-factory/">Pentagon
+        just offered a battery-materials startup a $250M loan</a> to re-shore the supply chain under all of it (full read in &sect;1).</dd>
+      <dt>Why it's still open</dt><dd>The hard parts are not the drone. They are ITAR, security clearance, capital intensity, and a procurement system built to reject newcomers.
+        Anduril spent years and billions proving a startup could sell to the DoD at all. But the autonomy and coordination <em>software</em> is moving faster than the hardware and the
+        paperwork &mdash; which is where a small team lives.</dd>
+      <dt>Who's already trying</dt><dd>Anduril, Shield&nbsp;AI, Skydio, Neros, Saronic &mdash; all post-seed, most capital-heavy. The hardware tier is crowded and expensive; the
+        simulation-and-autonomy tier is not.</dd>
+      <dt>Your angle</dt><dd class="foryou">Amber, not red, for one specific reason: you are <b>US-eligible without visa sponsorship</b> &mdash; the single barrier that blocks most of
+        your peers from this entire market &mdash; and you already design and fly a two-rotor VTOL. The <em>company</em> is red (clearance, capital, ITAR). The <em>on-ramp</em> is not:
+        autonomy software, swarm coordination in simulation, and a drone you can already demonstrate. You are one domain away from a problem a cabinet secretary put his name on, in the
+        same week the cheques started clearing.</dd>
+      <dt>Research path</dt><dd><ol class="rpath">
+        <li>Read &ldquo;The&nbsp;Future&nbsp;of&nbsp;American&nbsp;Defense&rdquo; on the <a href="https://www.ycombinator.com/rfs">YC&nbsp;RFS</a> page &mdash; it is a funded problem statement signed by the buyer.</li>
+        <li>Reframe your tiltrotor build log as a defense-autonomy demo, not a hobby: what can it sense, carry, or coordinate? Study what Anduril's Lattice and Neros actually ship to see the real bar.</li>
+        <li>Apply to one US defense-tech internship or hackathon this cycle (&sect;5 has hardware-adjacent ones). You qualify, and most applicants don't &mdash; that asymmetry is the whole move.</li></ol></dd>
+    </dl>
+  </article>
+
+  <p class="note" style="margin-top:24px">
+    On the rotation: the green (<code>small-software-cloud</code>) is standing and has not led &sect;0 recently &mdash; re-surfaced because two unrelated items this morning (the $10
+    homelab and the Claude&nbsp;Code leak) both turned out to be symptoms of it. The amber (<code>american-defense</code>) last appeared in &sect;0 on 9&nbsp;Oct, comfortably outside
+    the 21-day window, and the Pentagon/6K loan plus the defense-led funding week make this the right week to re-surface it. No DARPA, IFP or MR item today rose to a new <em>funded</em>
+    hard problem worth its own slot.
+  </p>
+</section>
+
+<!-- ========== §1 ========== -->
+<section>
+  <div class="shead"><span class="snum">&sect;1</span><h2>The Big Three</h2>
+    <span class="scount">researched, not rewritten from the headline</span></div>
+
+  <article class="story">
+    <div class="kicker">Do this before lunch &middot; your own tools leaked the keys you hold</div>
+    <h3>Claude Code's &ldquo;Don't Ask Again&rdquo; wrote real passwords into 1,122 public GitHub repos</h3><span class="vote" data-id="40ebf3db8c56" data-title="Claude Code's &amp;ldquo;Don't Ask Again&amp;rdquo; wrote real passwords into 1,122 public GitHub repos" data-section="&sect;1" data-issue="2026-11-08"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span>
+    <p class="byline"><b>1,122</b> public repos with a live secret in <code>.claude/settings.local.json</code> &middot; <b>104,185</b> copies scanned &middot; <b>1,379</b> credentials on default branches, <b>2,539</b> once you count forks, deleted history and chat logs &middot; found by <b>Apiiro</b> &middot;
+      <a href="https://thehackernews.com/2026/11/claude-codes-dont-ask-again-file.html">The&nbsp;Hacker&nbsp;News</a> &middot;
+      <a href="https://apiiro.com/blog/coding-agents-leaking-secrets-github-dont-ask-again">Apiiro</a> &middot; HN&nbsp;262&nbsp;pts</p>
+    <dl class="brief">
+      <dt>What happened</dt><dd>When Claude&nbsp;Code asks permission to run a command and you click <em>&ldquo;Yes, and don't ask again,&rdquo;</em> it saves the full approved command
+        to <code>.claude/settings.local.json</code> in your project. If that command contained a real database password, API key or token &mdash; because you pasted it inline &mdash;
+        the secret is now written to a file, and that file gets committed and pushed to GitHub like any other. Apiiro scanned 104,185 public copies of it and found <b>1,122</b> (~1.1%)
+        holding at least one live secret.</dd>
+      <dt>The tech</dt><dd>The breakdown is <b>379 database passwords, 43 SSH logins, 42 Git/npm tokens, 23 AWS keys</b> on default branches. Older deleted versions add 734 more across
+        509 repos; forks spread them further. The sharp finding: of <b>16 coding agents</b> whose docs Apiiro compared, Claude&nbsp;Code is <em>the only one</em> that saves the full
+        approved command to a project file by default. The design choice &mdash; make approvals persistent and legible &mdash; is also the leak.</dd>
+      <dt>Why it matters</dt><dd>This is the &sect;0-green and the agent-provenance problem in one incident: software built fast, by people running agents on machines that hold their
+        keys, with no habit yet for where secrets live. It is not an exotic exploit. It is the default button, the default file, and <code>git&nbsp;push</code>. Which means the fix is
+        a habit, not a product &mdash; and habits are exactly what a whole generation of new builders hasn't formed.</dd>
+      <dt>The bear case</dt><dd class="bear">For Anthropic, this is embarrassing but bounded: the file is gitignored in recent setups, and the real failure is users pasting secrets
+        inline rather than using env vars. For <em>you</em>, there is no bear case &mdash; only a two-minute check you should run today (&sect;6).</dd>
+      <dt>What it means</dt><dd class="foryou">Three moves. First, defensive and immediate: run the &sect;6 scan on every repo you own before you read further &mdash; you build with
+        Claude&nbsp;Code, so you are in the exact population this hit. Second, read it as the clearest possible proof of the &sect;0-green thesis: the hard part of personal software is
+        not building it, it is handling it safely afterward, and nobody has made that easy for non-experts. Third, note the product-shaped gap underneath &mdash; a dead-simple
+        &ldquo;did I just commit a secret?&rdquo; guardrail for the agent-coding crowd, which &sect;4's CloneGuard-style tools gesture at but none owns for this audience.</dd>
+    </dl>
+  </article>
+
+  <article class="story">
+    <div class="kicker">Your &sect;0 amber, funded &middot; a US-eligible deep-tech lane with government money behind it</div>
+    <h3>The Pentagon is lending a 12-year-old plasma startup $250M to take battery materials back from China</h3><span class="vote" data-id="083fd22982df" data-title="The Pentagon is lending a 12-year-old plasma startup $250M to take battery materials back from China" data-section="&sect;1" data-issue="2026-11-08"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span>
+    <p class="byline"><b>$250M</b> conditional DoD loan &middot; target <b>6K&nbsp;Energy</b> (North&nbsp;Andover,&nbsp;MA) &middot; founded <b>2007</b> as Amastan, renamed 2019 &middot; new <b>cathode-materials</b> factory in Tennessee &middot; prior: a <b>$50M</b> DOE grant (2023) cancelled in 2025 &middot;
+      <a href="https://techcrunch.com/2026/11/06/pentagon-offers-battery-startup-6k-250m-loan-to-build-u-s-factory/">TechCrunch</a> &middot;
+      <a href="https://news.mit.edu/2025/6K-cleans-critical-minerals-using-microwave-plasma-0207">MIT&nbsp;News</a></p>
+    <dl class="brief">
+      <dt>What they do</dt><dd>6K makes <em>cathode active material</em> &mdash; the single most expensive, most China-dependent component in a lithium battery &mdash; using a
+        microwave-plasma process it calls UniMelt (&ldquo;uniform melt state&rdquo;). It heats metals into a plasma and deposits them directly, collapsing a conventional multi-day,
+        multi-step chemical plant into seconds and far less waste. The $250M builds a Tennessee factory to make LFP cathode domestically.</dd>
+      <dt>The tech</dt><dd>The hard part is that cathode production is normally a dirty, slow, water-and-solvent-heavy chemical process, and almost all of it happens in China. 6K's bet is
+        that a plasma reactor does the same job faster, cleaner and on US soil &mdash; which is only valuable <em>because</em> the supply chain is a national-security problem, not just a
+        cost one. That is why the lender is the Pentagon, not a bank.</dd>
+      <dt>The founders</dt><dd>The unfair advantage is one person's lab. <a href="https://news.mit.edu/2025/6K-cleans-critical-minerals-using-microwave-plasma-0207">Kamal&nbsp;Hadidi</a>
+        spent <b>13 years (1994&ndash;2007) at MIT's Plasma&nbsp;Science&nbsp;and&nbsp;Fusion&nbsp;Center</b> developing microwave plasmas for hydrogen, fuel reforming and nanomaterials,
+        then spun his own technique out as Amastan in 2007. CEO <b>Aaron&nbsp;Bent</b> (ex-GMZ&nbsp;Energy) runs the commercial side. This is the purest form of the pattern worth
+        internalising: a founder with <em>unusual access to a hard technology</em> &mdash; here, a decade inside one of the few labs on earth doing this &mdash; who then spent fifteen
+        more years turning it into a factory.</dd>
+      <dt>Where the idea came from</dt><dd>Hadidi's MIT years gave him first-hand sight of what microwave plasma could make that conventional chemistry could not. The company is the
+        long merge of that lab access with a market that only recently became urgent: once &ldquo;made in China&rdquo; became a liability for batteries, a cleaner domestic process
+        stopped being a science project and became a Pentagon line item.</dd>
+      <dt>The bear case</dt><dd class="bear">Twelve years in and the factory still isn't built: the original 2024 opening slipped, the 2023 DOE grant was cancelled in 2025, and the
+        company had to re-apply for support. Deep-tech manufacturing is brutally slow and capital-hungry, and a conditional loan is not a cheque cleared. Plasma-made cathode also has to
+        beat Chinese LFP on <em>price</em>, not just provenance &mdash; and &sect;9's sodium-ion news is a reminder the chemistry under it can shift.</dd>
+      <dt>What it means</dt><dd class="foryou">This is your &sect;0-amber lane with the money turned on, and it carries two lessons you can act on. First, the <em>door</em>: deep-tech
+        manufacturing re-shoring is a US-government priority with federal financing behind it, and you are eligible for that world when most of your peers are not &mdash; read 6K's and
+        the DoD's manufacturing-innovation careers pages as a map of who's hiring. Second, the <em>model</em>: Hadidi is the clearest case study of the only durable startup origin &mdash;
+        own a hard thing almost nobody else can do, then wait for the world to need it. Your version is the tiltrotor sub-system you understand better than anyone in your cohort.</dd>
+    </dl>
+  </article>
+
+  <article class="story">
+    <div class="kicker">The fact that reprices the next six months &middot; your energy-wedge thread, at its deadline</div>
+    <h3>The AI power wall just became political: Texas moved to ban data centers the same week a $17B one changed hands</h3><span class="vote" data-id="4ae0be0fa010" data-title="The AI power wall just became political: Texas moved to ban data centers the same week a $17B one changed hands" data-section="&sect;1" data-issue="2026-11-08"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span>
+    <p class="byline"><b>Texas</b>: Democrats took the statehouse (first time in 24 yrs) on a data-center-moratorium platform; Gov.&nbsp;Abbott had already ordered permits halted in Sept &middot; at risk: <b>Stargate&nbsp;Frontier</b> (1,820&nbsp;MW) + <b>Nexus&nbsp;Hubbard</b> (6,400&nbsp;MW, for Anthropic) &middot; <b>Google</b> bought Crusoe's troubled <b>10&nbsp;GW</b> Wyoming site, committing <b>$17B</b> &middot; permitting bill (<b>BAAJA</b>) hits the Senate <b>9&nbsp;Nov</b> &middot;
+      <a href="https://www.technologyreview.com/2026/11/04/1148043/texas-was-the-new-epicenter-of-the-ai-data-center-buildout-that-might-be-kaput/">MIT&nbsp;Tech&nbsp;Review</a> &middot;
+      <a href="https://techcrunch.com/2026/11/06/crusoe-sells-troubled-wyoming-data-center-project-to-google/">TechCrunch</a></p>
+    <dl class="brief">
+      <dt>What happened</dt><dd>Three things in one week. Texas &mdash; the epicentre of the AI build-out &mdash; swung politically: Democrats took the state House for the first time in
+        24 years, the new governor campaigned on a data-center moratorium, and Abbott had already directed regulators to <em>halt data-center permits</em> in September. Two mega-projects
+        hang on it: Stargate&nbsp;Frontier (1,820&nbsp;MW) and Nexus&nbsp;Hubbard (6,400&nbsp;MW, intended for Anthropic). Meanwhile Crusoe offloaded a troubled 10&nbsp;GW Wyoming site to
+        Google, which is committing $17B to finish it. And a bipartisan permitting bill reaches the Senate floor tomorrow.</dd>
+      <dt>The mechanism</dt><dd>Read it precisely: the constraint was never chips, it is <em>power, land and local consent</em>, and all three just got harder at once. Voters nationwide
+        backed electricity-bill protections and data-center bans in the midterms; <a href="https://www.technologyreview.com/2026/11/04/1148043/texas-was-the-new-epicenter-of-the-ai-data-center-buildout-that-might-be-kaput/">MIT&nbsp;TR
+        reports banks are already getting pickier</a> about which projects they back. The <a href="https://www.technologyreview.com/2026/11/05/1148062/permitting-reform/">permitting bill
+        (BAAJA)</a> is the counter-move &mdash; it narrows which projects need federal review and could, backers claim, unlock 350&nbsp;GW of clean energy &mdash; but its fate is now
+        tangled in the same election result.</dd>
+      <dt>Why it matters</dt><dd>This is the fact that changes how you read the next six months: the AI build-out's binding constraint is now a <em>political</em> object, resolved in
+        statehouses and the Senate, not just in Nvidia's fab allocation. Capital is stranding on sites that can't get power or permits (Crusoe's Wyoming write-down is the tell), which
+        is exactly the signal the &sect;0-red &ldquo;compute-power-siting&rdquo; problem has been waiting for.</dd>
+      <dt>The bear case</dt><dd class="bear">Implementation is messy: Texas power sits across city, county and state authorities, construction unions backed some winning Democrats, and a
+        moratorium is easier to campaign on than to enforce. And a permitting bill could still pass and reopen the floodgates. One week of political motion is a crack to watch, not a
+        settled outcome.</dd>
+      <dt>What it means</dt><dd class="foryou">A decision, honestly. Your profile has carried the energy/subsurface wedge on probation &ldquo;until ~early&nbsp;November 2026&rdquo; &mdash;
+        that is now. The verdict: <em>keep it.</em> This is the week it stopped being a vibe and became dated, sourced events with votes and $17B attached. But keep it the way it's graded
+        &mdash; <b>red as a company</b> (permitting, capital, physics are not a hostel-room build), <b>live as a literacy</b>. The move for you is not to start an energy company; it is to
+        be the person in any room who can explain <em>why</em> the AI build-out is now bottlenecked on megawatts and local politics, because your field of study sits one domain from the
+        subsurface instrumentation and grid-siting data this whole fight runs on. Read the BAAJA result tomorrow; that vote is the single highest-signal data point of your month.</dd>
+    </dl>
+  </article>
+</section>
+
+<!-- ========== §A ========== -->
+<section>
+  <div class="shead"><span class="snum">&sect;A</span><h2>The Remake</h2>
+    <span class="scount">one evidenced candidate &middot; never more</span></div>
+
+  <article class="story">
+    <div class="kicker">Same tool, one audience &mdash; the proofing app built only for custom-print merchants</div>
+    <h3>A Shopify proof-approval app for print-on-demand sellers, where &ldquo;which version did they approve?&rdquo; can never happen</h3><span class="vote" data-id="705cd0899402" data-title="A Shopify proof-approval app for print-on-demand sellers, where &amp;ldquo;which version did they approve?&amp;rdquo; can never happen" data-section="&sect;A" data-issue="2026-11-08"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span>
+    <dl class="brief">
+      <dt>The incumbent</dt><dd>The incumbent is mostly <em>email and DMs</em> &mdash; and, for the few who graduate off it, generic proofing tools like
+        <a href="https://apps.shopify.com/approval-studio-integration">Approval&nbsp;Studio&nbsp;Integration</a> on the Shopify&nbsp;App&nbsp;Store, which is built for design agencies
+        broadly, not for a custom-apparel store taking personalised orders through Printful or Printify. The default workflow for most custom-print merchants is a thread of messages and
+        attachments with no system of record.</dd>
+      <dt>The complaint</dt><dd>A custom-order merchant, in their own words on the Shopify forum: <em>&ldquo;Messages can become difficult to track, especially when there have been
+        several revisions, and there can sometimes be confusion later about which version was actually approved.&rdquo;</em>
+        (<a href="https://community.shopify.com/t/how-do-you-handle-proof-approval-for-personalised-custom-orders/689567">Shopify&nbsp;Community thread</a>.) It is not a one-off: this
+        morning's r/shopify carried the same question again &mdash; <a href="https://www.reddit.com/r/shopify/comments/1xncrem/how_do_you_handle_custom_tshirt_design_approvals_before_production/">&ldquo;How
+        Do You Handle Custom T-Shirt Design Approvals Before Production?&rdquo;</a> The pain is a disputed order: the customer swears they approved a different version, and the merchant
+        has no timestamped proof, so they eat the reprint.</dd>
+      <dt>Which remake</dt><dd><b>Same tool, one audience.</b> Don't build a general proofing suite &mdash; build the one that knows what a print order is. It attaches to the Shopify
+        order, shows the customer the exact mockup, captures a one-click, timestamped &ldquo;I approve this version,&rdquo; locks the file, and writes an immutable approval record on the
+        order itself. The narrowness is the product: copy, defaults and integrations (Printful/Printify) that make a custom-apparel seller feel the app was built for them, because it was.</dd>
+      <dt>The buyer</dt><dd>Shopify merchants selling personalised or custom-print products &mdash; apparel, mugs, signage, invitations. They already lose money on reprints and chargebacks
+        from approval disputes, and the ones who've felt it already pay for proofing tools, so budget is proven. Distribution is the Shopify App&nbsp;Store, where they shop with a company
+        card and the charge rides on their Shopify invoice.</dd>
+      <dt>Why him</dt><dd class="foryou">The whole product is a design-and-trust artifact, which is your edge: the customer-facing approval screen has to look reassuring enough that a
+        buyer clicks &ldquo;approve&rdquo; with confidence, and most B2B proofing tools look like a tax form. A filmmaker's eye on the one screen that matters is a real moat here, not a
+        nicety. You also feel the buyer's exact anxiety &mdash; shipping something you're not sure was signed off is the same dread as &sect;1's &ldquo;did I just commit a secret?&rdquo;</dd>
+      <dt>First step</dt><dd>Today, don't build &mdash; interview. Spin up a free Shopify development store, install Approval&nbsp;Studio and one POD app (Printful), and run yourself through
+        a custom order as both merchant and customer. Then DM five custom-apparel sellers from the two linked threads and ask one question: <em>&ldquo;what does an approval dispute cost
+        you, in reprints, per month?&rdquo;</em> That number is your pricing.
+        <span class="note">(Kill-filter check: useful on first install (the next custom order gets a clean approval record); buyer&nbsp;=&nbsp;user with proven budget; runs unattended
+        once wired to the order flow; not ad-supported consumer; and three named payers are describing the exact pain in the linked threads. The trap &mdash; &ldquo;a full creative-agency
+        proofing platform&rdquo; &mdash; <em>fails</em> the one-audience rule: it becomes Approval&nbsp;Studio again, and loses the reason a t-shirt seller would pick you.)</span></dd>
+    </dl>
+  </article>
+</section>
+
+<!-- ========== §2 ========== -->
+<section>
+  <div class="shead"><span class="snum">&sect;2</span><h2>Money Moved</h2>
+    <span class="scount">ranked by size &middot; where money believes problems are</span></div>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Round / deal</th><th>Amount</th><th>What it signals</th><th>Src</th></tr></thead>
+    <tbody>
+      <tr><td>Google &rarr; Wyoming site <em>(see &sect;1)</em></td><td class="num">$17B</td>
+        <td>Google's <a href="https://techcrunch.com/2026/11/06/crusoe-sells-troubled-wyoming-data-center-project-to-google/">build-out commitment</a> after taking the troubled 10&nbsp;GW campus off Crusoe. The power/siting crunch, now a distressed-asset handoff between giants.</td>
+        <td class="src"><a href="https://techcrunch.com/2026/11/06/crusoe-sells-troubled-wyoming-data-center-project-to-google/">TechCrunch</a></td></tr>
+      <tr><td>OpenAI &mdash; round</td><td class="num">~$11B</td>
+        <td>Closed at a <a href="https://techcrunch.com/2026/11/06/openai-reportedly-raises-an-additional-11-billion-at-a-1-25-trillion-valuation/">$1.25T valuation</a>, below its own $1.4T target. Still the largest single raise, into a visibly cooling AI tape.</td>
+        <td class="src"><a href="https://techcrunch.com/2026/11/06/openai-reportedly-raises-an-additional-11-billion-at-a-1-25-trillion-valuation/">TechCrunch</a></td></tr>
+      <tr><td>Defense + space &mdash; week's top rounds</td><td class="num">big</td>
+        <td>The <a href="https://news.crunchbase.com/venture/biggest-startup-rounds-ai-defense-space-tech-shield-zipline/">week's biggest rounds were led by Shield&nbsp;AI and Zipline</a> &mdash; AI, defense and space. The &sect;0-amber lane, where the capital actually went.</td>
+        <td class="src"><a href="https://news.crunchbase.com/venture/biggest-startup-rounds-ai-defense-space-tech-shield-zipline/">Crunchbase</a></td></tr>
+      <tr><td>Pentagon &rarr; 6K&nbsp;Energy <em>(see &sect;1)</em></td><td class="num">$250M</td>
+        <td>A <a href="https://techcrunch.com/2026/11/06/pentagon-offers-battery-startup-6k-250m-loan-to-build-u-s-factory/">federal loan to re-shore battery-cathode production</a>. The state financing domestic hard-tech manufacturing directly &mdash; the supply chain under the robots, funded.</td>
+        <td class="src"><a href="https://techcrunch.com/2026/11/06/pentagon-offers-battery-startup-6k-250m-loan-to-build-u-s-factory/">TechCrunch</a></td></tr>
+      <tr><td>India &mdash; weekly total</td><td class="num">$255M</td>
+        <td>From <a href="https://inc42.com/buzz/from-giva-to-eloelo-group-indian-startups-raised-255-mn-this-week/">GIVA to EloElo, Indian startups raised $255M this week</a>; OYO parent PRISM's profit rose 17% YoY. The same &ldquo;build the physical economy&rdquo; thesis, one country over.</td>
+        <td class="src"><a href="https://inc42.com/buzz/from-giva-to-eloelo-group-indian-startups-raised-255-mn-this-week/">Inc42</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="note">The through-line of the whole table: this week's biggest cheques went to <em>atoms and the power under them</em> (Google's data-center build, 6K's factory, the
+    defense/space rounds) &mdash; not to another model. One structural footnote from the ecosystem: Sequoia is <a href="https://techcrunch.com/2026/11/06/sequoia-shutting-down-its-scouts-program-marks-the-end-of-an-era/">shutting
+    down its Scouts program</a>, the model that seeded a generation of angel-investor founders. A quiet signal that the early-stage game that defined the last decade is being rewritten.</p>
+</section>
+
+<!-- ========== §3 ========== -->
+<section>
+  <div class="shead"><span class="snum">&sect;3</span><h2>Problems Worth Solving</h2>
+    <span class="scount">buildable, or a model you didn't have</span></div>
+  <ul class="feed">
+    <li><span class="tag">Buildable &middot; the tokenizer tax</span> &mdash; Rest&nbsp;of&nbsp;World:
+      <a href="https://restofworld.org/2026/ai-tokenizer-tax-non-english-languages-cost-inequity/">AI models cost more when you don't use English.</a> Because tokenizers were trained
+      English-first, the same sentence in Hindi or Telugu can cost several times more tokens &mdash; so non-English users pay more for worse latency. That is a concrete, measurable,
+      buildable problem (efficient multilingual tokenization, or a cost-aware routing layer) sitting in a market of billions, and one you can observe directly in a way US founders can't.<span class="vote" data-id="ef0736bacecb" data-title="Buildable &amp;middot; the tokenizer tax &amp;mdash; Rest&amp;nbsp;of&amp;nbsp;World: AI models cost more when you don't use English. Because tokenizers were trained English-first, the same sentence in Hindi or Telug" data-section="feed" data-issue="2026-11-08"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><span class="tag">A model &middot; the ecosystem is the bottleneck</span> &mdash; r/startups:
+      <a href="https://www.reddit.com/r/startups/comments/1xq8u4w/how_many_100m_deeptech_companies_never_get_built/">how many $100M deep-tech companies never get built because the startup
+      ecosystem is broken?</a> A sharp argument that VC's software-shaped expectations (fast exits, low capital) systematically starve hard-tech companies that need patience and atoms &mdash;
+      which is exactly why the Pentagon, not a VC, is funding 6K (&sect;1). Read it as the demand-side case for everything on today's board.<span class="vote" data-id="57eec2c81718" data-title="A model &amp;middot; the ecosystem is the bottleneck &amp;mdash; r/startups: how many $100M deep-tech companies never get built because the startup ecosystem is broken? A sharp argument that VC's software-sha" data-section="feed" data-issue="2026-11-08"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><span class="tag">Design process &middot; your lane</span> &mdash; MIT&nbsp;News:
+      <a href="https://news.mit.edu/2026/fabric-molds-could-bring-material-saving-concrete-beams-within-reach-1106">fabric molds could bring material-saving concrete beams within reach.</a>
+      Pour concrete into a tensioned fabric form and it takes the shape the <em>forces</em> want &mdash; less material, stronger beam. Pure &ldquo;why is the part shaped that way&rdquo;
+      reasoning, the thing your profile says you love: the geometry is an argument about load, not decoration.<span class="vote" data-id="70847c72840a" data-title="Design process &amp;middot; your lane &amp;mdash; MIT&amp;nbsp;News: fabric molds could bring material-saving concrete beams within reach. Pour concrete into a tensioned fabric form and it takes the shape the for" data-section="feed" data-issue="2026-11-08"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><span class="tag">Policy model &middot; the grader's view</span> &mdash; Institute&nbsp;for&nbsp;Progress:
+      <a href="https://ifp.org/how-to-increase-americas-ai-lead-over-china/">how to increase America's AI lead over China.</a> IFP writes about national bottlenecks for the people who fund
+      solving them. Read it as a map of where state money and attention are about to flow &mdash; compute, energy, talent &mdash; which is the same map as &sect;1's power-wall story,
+      drawn from the policy side.<span class="vote" data-id="ad005f1492f6" data-title="Policy model &amp;middot; the grader's view &amp;mdash; Institute&amp;nbsp;for&amp;nbsp;Progress: how to increase America's AI lead over China. IFP writes about national bottlenecks for the people who fund solving th" data-section="feed" data-issue="2026-11-08"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><span class="tag">A model &middot; cheaper atoms</span> &mdash; pv-magazine:
+      <a href="https://www.pv-magazine.com/2026/11/06/sodium-ion-batteries-approach-cost-parity-with-lfp-with-70-gwh-covered-by-supply-agreements/">sodium-ion batteries approach cost parity
+      with LFP</a>, with 70&nbsp;GWh already under supply agreements. A no-lithium chemistry crossing the line from lab curiosity to supply contracts &mdash; relevant to every
+      energy-storage bet on this page, and a live reminder (see &sect;1's bear case) that the chemistry under 6K's whole thesis can move.<span class="vote" data-id="e88f94cb37fc" data-title="A model &amp;middot; cheaper atoms &amp;mdash; pv-magazine: sodium-ion batteries approach cost parity with LFP , with 70&amp;nbsp;GWh already under supply agreements. A no-lithium chemistry crossing the line from" data-section="feed" data-issue="2026-11-08"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+  </ul>
+</section>
+
+<!-- ========== §4 ========== -->
+<section>
+  <div class="shead"><span class="snum">&sect;4</span><h2>Shipped</h2>
+    <span class="scount">by HN points / release weight</span></div>
+  <ul class="feed">
+    <li><span class="tag">644 pts &middot; on-device, undocumented</span> &mdash;
+      <a href="https://8rank.ai/game/apple-intelligence-personal-knowledge-graph">every Mac ships with an undocumented &ldquo;family member&rdquo; classifier.</a> Someone found that
+      Apple&nbsp;Intelligence quietly builds a personal knowledge graph &mdash; inferring who in your photos is family &mdash; on-device and without telling you. The exact &sect;0/&sect;1
+      provenance question in consumer form: software is now <em>inferring and storing</em> things about you with no log and no consent screen. Read it to feel why &ldquo;what did it
+      touch?&rdquo; is becoming the defining question of the era.<span class="vote" data-id="38fab75b8e1e" data-title="644 pts &amp;middot; on-device, undocumented &amp;mdash; every Mac ships with an undocumented &amp;ldquo;family member&amp;rdquo; classifier. Someone found that Apple&amp;nbsp;Intelligence quietly builds a personal knowl" data-section="feed" data-issue="2026-11-08"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><span class="tag">444 pts &middot; ties the &sect;0-green</span> &mdash;
+      <a href="https://blog.bosscher.ch/posts/openstick/">what I run on my $10 OpenStick homelab.</a> A repurposed Android USB dongle running a full personal server stack. It is a
+      perfect symptom of today's &sect;0-green: people are so starved for a cheap, private place to run their own small software that they are hacking $10 modems into servers. Read it
+      as market research &mdash; this is the demand, improvising.<span class="vote" data-id="b1f322f8515f" data-title="444 pts &amp;middot; ties the &amp;sect;0-green &amp;mdash; what I run on my $10 OpenStick homelab. A repurposed Android USB dongle running a full personal server stack. It is a perfect symptom of today's &amp;sect;0" data-section="feed" data-issue="2026-11-08"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><span class="tag">424 pts &middot; a signal about the field</span> &mdash;
+      <a href="https://hunch.net/?p=13764006">the end of Microsoft Research's AI Frontiers group.</a> A major industrial-research lab winding down a frontier-AI group, written up by an
+      insider. Read alongside the &sect;2 money cooling: when the biggest players start consolidating research, it tells you where they think the returns have stopped &mdash; a quiet
+      counter-signal to the &ldquo;AI accelerating forever&rdquo; story.<span class="vote" data-id="4567aae46e85" data-title="424 pts &amp;middot; a signal about the field &amp;mdash; the end of Microsoft Research's AI Frontiers group. A major industrial-research lab winding down a frontier-AI group, written up by an insider. Read a" data-section="feed" data-issue="2026-11-08"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><span class="tag">258 pts &middot; a build-quality lesson</span> &mdash;
+      <a href="https://www.windowslatest.com/2026/11/06/every-windows-11-app-should-kill-electron-and-discord-just-showed-why-no-starting-screen-and-70-less-ram-even-with-two-accounts-signed-in/">Discord's
+      native rewrite uses 70% less RAM than its Electron version.</a> A concrete datapoint in the &ldquo;ship fast with web tech vs. build it properly&rdquo; debate: the easy path
+      (Electron) cost users most of their memory, and doing it right won real performance. A useful calibration for anyone (you) choosing how to build.<span class="vote" data-id="2faa7aaf560c" data-title="258 pts &amp;middot; a build-quality lesson &amp;mdash; Discord's native rewrite uses 70% less RAM than its Electron version. A concrete datapoint in the &amp;ldquo;ship fast with web tech vs. build it properly&amp;r" data-section="feed" data-issue="2026-11-08"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><span class="tag">235 pts &middot; ties the trust theme</span> &mdash;
+      <a href="https://maxxbench.unlap.ai/research/why-maxxbench/">MaxxBench: &ldquo;nice DeepSWE score &mdash; but is it true?&rdquo;</a> A benchmark built specifically to catch models (and
+      vendors) gaming other benchmarks. The same shift as the whole week's subtext: when claims are cheap, verification becomes the product. The scarce thing is proof, not the score.<span class="vote" data-id="051795e63c6d" data-title="235 pts &amp;middot; ties the trust theme &amp;mdash; MaxxBench: &amp;ldquo;nice DeepSWE score &amp;mdash; but is it true?&amp;rdquo; A benchmark built specifically to catch models (and vendors) gaming other benchmarks. " data-section="feed" data-issue="2026-11-08"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><span class="tag">207 pts &middot; Show HN &middot; ties &sect;0/&sect;1</span> &mdash;
+      <a href="https://github.com/hedgerow-dev/coldframe">Coldframe &mdash; a honeypot posing as a supermarket fridge controller.</a> A decoy that lures attackers probing industrial
+      systems and logs exactly what they try. Read the attacks it's built to catch as a free map of how the physical-world software layer actually gets attacked &mdash; the dark mirror
+      of the &ldquo;OS for physical work&rdquo; opportunity.<span class="vote" data-id="57a19324df22" data-title="207 pts &amp;middot; Show HN &amp;middot; ties &amp;sect;0/&amp;sect;1 &amp;mdash; Coldframe &amp;mdash; a honeypot posing as a supermarket fridge controller. A decoy that lures attackers probing industrial systems and logs " data-section="feed" data-issue="2026-11-08"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+  </ul>
+</section>
+
+<!-- ========== §5 ========== -->
+<section>
+  <div class="shead"><span class="snum">&sect;5</span><h2>The Arena</h2>
+    <span class="scount">soonest first &middot; red under 7 days</span></div>
+  <div class="door">
+    <div class="name"><a href="https://paypalaihackathon.devpost.com/">PayPal AI Hackathon</a></div>
+    <div class="sub">$67.5k &middot; build on PayPal's AI/payments stack &mdash; a strong sponsor logo for proof-of-work &middot; Devpost</div>
+    <div class="days hot">4 days</div>
+  </div>
+  <div class="door">
+    <div class="name"><a href="https://blockchain-stellar-ic.devpost.com/">Blockchain Innovation Challenge (Stellar)</a></div>
+    <div class="sub">payments on Stellar &mdash; narrow field, real purse &middot; Devpost</div>
+    <div class="days hot">5 days</div>
+  </div>
+  <div class="door">
+    <div class="name"><a href="https://scope-ai-thon-2026.devpost.com/">Scope-AI-Thon 2026 &mdash; patient deterioration</a></div>
+    <div class="sub">AI for detecting acute patient deterioration &mdash; health + ML, a clean portfolio piece &middot; Devpost</div>
+    <div class="days hot">6 days</div>
+  </div>
+  <div class="door">
+    <div class="name"><a href="https://dsh-hacks-v2.devpost.com/">DSH Hacks V2</a></div>
+    <div class="sub">$100k+ in prizes &mdash; big purse, beginner-friendly, broad brief &middot; Devpost</div>
+    <div class="days warm">7 days</div>
+  </div>
+  <div class="door">
+    <div class="name"><a href="https://ugreenhackathon.devpost.com/">UGREEN Hackathon 2026 on AI NAS</a></div>
+    <div class="sub">AI + storage hardware &mdash; hardware-adjacent, your lane; ties the &sect;0-green self-hosting thread &middot; Devpost</div>
+    <div class="days warm">8 days</div>
+  </div>
+  <div class="door">
+    <div class="name"><a href="https://start-developer-competition-26.devpost.com/">Meta VR Start Developer Competition 2026</a></div>
+    <div class="sub">build on Meta VR/AR hardware &mdash; the largest purse on the board &middot; Devpost</div>
+    <div class="days">10 days</div>
+  </div>
+  <div class="door">
+    <div class="name"><a href="https://hackthefashion-global26.devpost.com/">HackTheFashion Global'26</a></div>
+    <div class="sub">$45k &middot; AR/VR + AI, beginner-friendly &middot; Devpost</div>
+    <div class="days">17 days</div>
+  </div>
+  <div class="door">
+    <div class="name"><a href="https://kiroween.devpost.com/">Kiroween 2026</a></div>
+    <div class="sub">$100k &middot; open-ended AI build on Kiro, beginner-friendly &middot; Devpost</div>
+    <div class="days">26 days</div>
+  </div>
+  <div class="door">
+    <div class="name"><a href="https://qnx.devpost.com/">QNX Global Hackathon</a></div>
+    <div class="sub">build on QNX (embedded/automotive real-time OS) &mdash; closest thing here to your tiltrotor's control stack &middot; Devpost</div>
+    <div class="days">37 days</div>
+  </div>
+  <div class="door">
+    <div class="name"><a href="https://codegeist2026.devpost.com/">Codegeist 2026 (Atlassian)</a></div>
+    <div class="sub">$120k &middot; build on Atlassian's platform &mdash; warm B2B buyers &middot; Devpost</div>
+    <div class="days">44 days</div>
+  </div>
+  <p class="note" style="margin-top:14px">Devpost timed out mid-pull, so this is the 13 hackathons that returned before the cutoff, not necessarily the full board &mdash; treat
+    deadlines as confirmed, completeness as not. PayPal&nbsp;AI (4 days) and the UGREEN AI-NAS build (hardware, your lane) are the two most worth a weekend.</p>
+</section>
+
+<!-- ========== §5b ========== -->
+<section>
+  <div class="shead"><span class="snum">&sect;5b</span><h2>Open Doors</h2>
+    <span class="scount">US-side &middot; proof-of-work beats a transcript</span></div>
+  <ul class="feed">
+    <li><span class="tag">Your lane, with federal money behind it</span> &mdash; the <a href="https://techcrunch.com/2026/11/06/pentagon-offers-battery-startup-6k-250m-loan-to-build-u-s-factory/">Pentagon/6K
+      loan</a> (&sect;1) and the <a href="https://news.crunchbase.com/venture/biggest-startup-rounds-ai-defense-space-tech-shield-zipline/">defense/space-led funding week</a> mean US
+      deep-tech manufacturing and autonomy are hiring with government backing. You are US-eligible without visa sponsorship &mdash; the single barrier that blocks most of your peers from
+      this entire lane. Read 6K's, Anduril's and Shield&nbsp;AI's careers pages as a syllabus for the real stack; a US-eligible undergrad who designs and flies hardware is exactly the
+      intern profile these teams fight over.<span class="vote" data-id="6c6a0efb9032" data-title="Your lane, with federal money behind it &amp;mdash; the Pentagon/6K loan (&amp;sect;1) and the defense/space-led funding week mean US deep-tech manufacturing and autonomy are hiring with government backing. Y" data-section="feed" data-issue="2026-11-08"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><span class="tag">The RFS is still a door</span> &mdash; three of YC's eleven <a href="https://www.ycombinator.com/rfs">Winter&nbsp;2027 requests</a> are pure-software and
+      solo-startable (The&nbsp;$15-an-Hour&nbsp;Expert, LLMs&nbsp;That&nbsp;Write&nbsp;Well, Own&nbsp;Your&nbsp;Intelligence). A credible demo against any one of them is a warm application
+      to the best-known accelerator on earth &mdash; open to US founders without the sponsorship math that blocks your peers.<span class="vote" data-id="812db2687897" data-title="The RFS is still a door &amp;mdash; three of YC's eleven Winter&amp;nbsp;2027 requests are pure-software and solo-startable (The&amp;nbsp;$15-an-Hour&amp;nbsp;Expert, LLMs&amp;nbsp;That&amp;nbsp;Write&amp;nbsp;Well, Own&amp;nbsp;You" data-section="feed" data-issue="2026-11-08"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><span class="tag">A watch-this-week door</span> &mdash; the <a href="https://www.technologyreview.com/2026/11/05/1148062/permitting-reform/">BAAJA permitting bill</a> hits the Senate
+      tomorrow (&sect;1). Energy and data-center companies are staffing up policy, siting and grid-interconnection roles precisely because this is the bottleneck. You don't need to be a
+      lobbyist &mdash; but being the technical person who understands interconnection and permitting is a rare, hireable literacy, and your field of study is adjacent to it.<span class="vote" data-id="eaff59d2b404" data-title="A watch-this-week door &amp;mdash; the BAAJA permitting bill hits the Senate tomorrow (&amp;sect;1). Energy and data-center companies are staffing up policy, siting and grid-interconnection roles precisely be" data-section="feed" data-issue="2026-11-08"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+  </ul>
+</section>
+
+<!-- ========== §6 ========== -->
+<section class="single">
+  <div class="shead"><span class="snum">&sect;6</span><h2>Skill</h2><span class="scount">day 30</span></div>
+  <h3>Scan every repo you own for a leaked secret &mdash; in the next ten minutes, before you read on</h3><span class="vote" data-id="5279d04fd45e" data-title="Scan every repo you own for a leaked secret &amp;mdash; in the next ten minutes, before you read on" data-section="&sect;6" data-issue="2026-11-08"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span>
+  <p class="meta">~10&ndash;30 min &middot; free &middot; produces: certainty that you are not one of the 1,122, plus a reusable guardrail against ever becoming one</p>
+  <p>
+    Today's &sect;1 lead is that Claude&nbsp;Code's &ldquo;Don't&nbsp;Ask&nbsp;Again&rdquo; wrote real passwords into
+    <a href="https://thehackernews.com/2026/11/claude-codes-dont-ask-again-file.html">1,122 public repos</a>, and you build with Claude&nbsp;Code, so this is not abstract. The fix is
+    two tools and a habit. Install <a href="https://github.com/gitleaks/gitleaks">gitleaks</a> (one binary) and run <code>gitleaks detect</code> inside each repo you own &mdash; it scans
+    not just the current files but your whole git <em>history</em>, which is where a deleted-but-committed secret still lives. For a second opinion, point
+    <a href="https://github.com/trufflesecurity/trufflehog">TruffleHog</a> at your GitHub account; it verifies whether a found key is still <em>live</em>, which is the difference between
+    &ldquo;clean up later&rdquo; and &ldquo;rotate this now.&rdquo;
+  </p>
+  <p>
+    Two things come out of a single afternoon. One, you'll know for certain whether anything of yours is exposed &mdash; and if it is, the move is rotate the key first, scrub history
+    second, never the reverse. Two, you'll have felt the real shape of the &sect;0-green and &sect;1 problem from the inside: capturing what an agent or a person committed is easy; knowing
+    <em>which</em> of it is dangerous, and tying it back to who did it and whether it's still exploitable, is the hard, valuable part. Wire gitleaks into a pre-commit hook and you've built
+    the smallest honest version of the guardrail nobody ships for the vibe-coding crowd &mdash; the one &sect;1 says is a product-shaped hole.
+  </p>
+  <p class="note">
+    Free resources: <a href="https://github.com/gitleaks/gitleaks">gitleaks</a> and <a href="https://github.com/trufflesecurity/trufflehog">TruffleHog</a> (both free, both one command),
+    and GitHub's own <a href="https://docs.github.com/en/code-security/secret-scanning/about-secret-scanning">secret-scanning docs</a> for how to turn on push protection so the next leak
+    is blocked before it happens.
+  </p>
+</section>
+
+<!-- ========== §7 ========== -->
+<section class="single">
+  <div class="shead"><span class="snum">&sect;7</span><h2>Watch / Read</h2><span class="scount">the canon &middot; new &ne; good</span></div>
+  <h3>&ldquo;Who Is Michael Ovitz?&rdquo; &mdash; the real man Ari Gold is based on, on how to build leverage from nothing but relationships</h3><span class="vote" data-id="a0d4eaaee2be" data-title="&amp;ldquo;Who Is Michael Ovitz?&amp;rdquo; &amp;mdash; the real man Ari Gold is based on, on how to build leverage from nothing but relationships" data-section="&sect;7" data-issue="2026-11-08"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span>
+  <p class="meta">Canon &middot; memoir, ~14h audio / 480pp &middot; honest time cost, the one to read first in this track &middot;
+    <a href="https://www.penguinrandomhouse.com/books/551836/who-is-michael-ovitz-by-michael-ovitz/">Penguin&nbsp;Random&nbsp;House</a></p>
+  <p>
+    The lecture feeds 404'd again this morning (all 14 channels), so &sect;7 runs the canon &mdash; and since Friday's was a company history (Nvidia), today rotates to the
+    money-and-dealmaking track, which is the one your profile actually asks for. You binged Entourage and loved watching Ari work; Michael&nbsp;Ovitz is the man Ari is based on. He
+    co-founded CAA and turned Hollywood on its head with no assets but relationships and information &mdash; the purest case study there is of building leverage in a business where the
+    only capital is trust, taste and who owes you a favour. It reads like a thriller and it is, quietly, a manual.
+  </p>
+  <p class="note">
+    Why it, why now: today's whole issue is about where value sits when the obvious thing gets cheap &mdash; &sect;1 says it's moving to power, provenance and physical supply, &sect;A
+    says it's taste and a narrow audience, &sect;2 says it's atoms over models. Ovitz is the human version of the same lesson: when everyone can make a movie, the scarce thing is the
+    person who can assemble the people and close the deal. That is a skill you've told me you want, and most founders die for lack of it, not for lack of code. Fourteen hours is a real
+    cost; it is also the highest-leverage fourteen hours in this whole canon for someone who wants to found a company and not just build a product.
+  </p>
+</section>
+
+<!-- ========== §W ========== -->
+<section>
+  <div class="shead"><span class="snum">&sect;W</span><h2>The Wildcard</h2>
+    <span class="scount">deliberately not curated to your tastes</span></div>
+  <p class="note" style="margin-bottom:18px">The point of this section is to find interests you don't know you have, so it's picked for strangeness and range, never usefulness. Today:
+    Dürer's monument to the peasants he watched get slaughtered, floods read as omens in 17th-century Britain, a hawk that ate so many chickens it couldn't fly, a gold coin from a
+    shipwreck, a rare strike inside the AI supply chain, a book about what writing did to the human mind, and a billion years of Earth's history that simply went missing.</p>
+  <ul class="feed">
+    <li><a href="https://publicdomainreview.org/collection/monument-to-the-vanquished-peasants">Dürer's monument to the vanquished peasants (1525)</a> &mdash; after the German Peasants'
+      War, Dürer sketched a victory column topped not with a hero but with a defeated peasant, slumped and stabbed in the back. A great artist designing a monument that quietly mourns
+      the losing side &mdash; ambiguous, and still argued over 500 years later.<span class="vote" data-id="8d22a7dcce40" data-title="Dürer's monument to the vanquished peasants (1525) &amp;mdash; after the German Peasants' War, Dürer sketched a victory column topped not with a hero but with a defeated peasant, slumped and stabbed in th" data-section="feed" data-issue="2026-11-08"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><a href="https://publicdomainreview.org/essay/wonderful-weather">Floods and foreboding in 17th-century Britain</a> &mdash; before weather was data, a storm or a flood was a message:
+      divine, political, an omen to be read. A window into a whole cognition where nature was <em>trying to tell you something</em> &mdash; and a reminder of how recently we stopped
+      thinking that way.<span class="vote" data-id="efd0907a9c0d" data-title="Floods and foreboding in 17th-century Britain &amp;mdash; before weather was data, a storm or a flood was a message: divine, political, an omen to be read. A window into a whole cognition where nature was" data-section="feed" data-issue="2026-11-08"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><a href="https://www.metafilter.com/215085/This-hawk-gobbled-up-neighbourhood-chickens-until-she-got-too-fat-to-fly">The hawk that ate itself grounded</a> &mdash; a wild hawk feasted
+      on a neighbourhood's backyard chickens until it was too fat to take off. Funny, slightly grim, and a tidy little parable about abundance and consequence, feathers attached.<span class="vote" data-id="19041166265b" data-title="The hawk that ate itself grounded &amp;mdash; a wild hawk feasted on a neighbourhood's backyard chickens until it was too fat to take off. Funny, slightly grim, and a tidy little parable about abundance a" data-section="feed" data-issue="2026-11-08"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><a href="https://99percentinvisible.org/?p=48741">A coin from the Ship of Gold</a> &mdash; 99% Invisible on a single gold coin recovered from the SS&nbsp;Central&nbsp;America, lost
+      in 1857 with tons of Gold&nbsp;Rush bullion and later salvaged a mile deep. An object as a knot of greed, engineering and history &mdash; exactly the kind of thing that rewards a
+      designer's attention.<span class="vote" data-id="a8d69cd8f547" data-title="A coin from the Ship of Gold &amp;mdash; 99% Invisible on a single gold coin recovered from the SS&amp;nbsp;Central&amp;nbsp;America, lost in 1857 with tons of Gold&amp;nbsp;Rush bullion and later salvaged a mile dee" data-section="feed" data-issue="2026-11-08"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><a href="https://restofworld.org/2026/taiwan-labor-strike-ai-profits/">A rare strike in Taiwan, beneath the AI rush</a> &mdash; Rest&nbsp;of&nbsp;World on labour unrest in the
+      island that makes the world's chips, as record AI profits flow past the people on the line. The human underside of the supply chain every other story on this page depends on.<span class="vote" data-id="ed620ae8d34d" data-title="A rare strike in Taiwan, beneath the AI rush &amp;mdash; Rest&amp;nbsp;of&amp;nbsp;World on labour unrest in the island that makes the world's chips, as record AI profits flow past the people on the line. The hum" data-section="feed" data-issue="2026-11-08"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><a href="https://www.astralcodexten.com/p/your-book-review-orality-and-literacy">What writing did to the human mind</a> &mdash; a review of Walter Ong's <em>Orality and Literacy</em>,
+      on how the shift from spoken to written culture rewired how people think, remember and argue. Strange and load-bearing: it makes you notice that a technology for words reshaped
+      cognition itself &mdash; which is not a neutral thing to be reading in 2026.<span class="vote" data-id="f2931c1c7fb4" data-title="What writing did to the human mind &amp;mdash; a review of Walter Ong's Orality and Literacy , on how the shift from spoken to written culture rewired how people think, remember and argue. Strange and loa" data-section="feed" data-issue="2026-11-08"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><a href="https://www.404media.co/how-earth-lost-a-billion-years-of-its-history/">How Earth lost a billion years of its history</a> &mdash; across much of the planet, more than a
+      billion years of rock is simply <em>gone</em> from the record &mdash; the &ldquo;Great&nbsp;Unconformity.&rdquo; Geologists are still arguing about what erased it. A missing
+      chapter the size of a quarter of Earth's life, hiding in plain sight in every canyon wall.<span class="vote" data-id="7b02936238a6" data-title="How Earth lost a billion years of its history &amp;mdash; across much of the planet, more than a billion years of rock is simply gone from the record &amp;mdash; the &amp;ldquo;Great&amp;nbsp;Unconformity.&amp;rdquo; Geo" data-section="feed" data-issue="2026-11-08"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+  </ul>
+</section>
+
+<!-- ========== §8 ========== -->
+<section class="single">
+  <div class="shead"><span class="snum">&sect;8</span><h2>Deals</h2><span class="scount">1 free resource worth your time</span></div>
+  <h3>Coolify &mdash; the free, open-source answer to &ldquo;where does my Claude Code project actually live?&rdquo;</h3><span class="vote" data-id="bb06908c3f8f" data-title="Coolify &amp;mdash; the free, open-source answer to &amp;ldquo;where does my Claude Code project actually live?&amp;rdquo;" data-section="&sect;8" data-issue="2026-11-08"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span>
+  <p class="meta">free &middot; open-source, self-hostable &middot; the engine to build today's &sect;0-green on top of &middot; <a href="https://coolify.io/">coolify.io</a></p>
+  <p>
+    Coolify is a free, open-source, self-hostable platform that gives you Heroku/Netlify/Vercel-style deploys on a server you control &mdash; push a repo, get a running app with a URL,
+    HTTPS, databases and backups, no per-seat cloud bill. It belongs in today's issue because it's the cheapest honest answer to the &sect;0-green problem: the thing you built with an
+    agent needs somewhere to live that isn't localhost and isn't a $2,000/mo AWS maze. Point it at a $5 VPS (or the $10 OpenStick from &sect;4, if you're feeling it) and you have a
+    personal cloud by dinner. Read it two ways: as a tool you'll actually use this week, and as a <em>teardown</em> &mdash; Coolify solves hosting and HTTPS cleanly but still leaves the
+    hard last mile (auth, and safely sharing with a non-technical person) to you. That remaining gap is precisely the &sect;0-green opening. Spend an evening deploying one of your own
+    projects on it; you'll come out with a live URL and a much sharper sense of what the real unsolved part is.
+  </p>
+</section>
+
+<!-- ========== §9 ========== -->
+<section>
+  <div class="shead"><span class="snum">&sect;9</span><h2>Also</h2>
+    <span class="scount">filed, not featured</span></div>
+  <ul class="feed">
+    <li><span class="tag">The water wall &middot; ties &sect;1</span> &mdash; Rest&nbsp;of&nbsp;World:
+      <a href="https://restofworld.org/2026/ai-datacenters-water-resistance-global/">Big Tech's thirst for water is sparking a global resistance.</a> The same data-center backlash as
+      &sect;1's Texas story, but worldwide and over water, not just power &mdash; communities from Chile to Ireland fighting the cooling demand. The &ldquo;scarce input&rdquo; constraint is
+      broader than megawatts.<span class="vote" data-id="b30fb1856e72" data-title="The water wall &amp;middot; ties &amp;sect;1 &amp;mdash; Rest&amp;nbsp;of&amp;nbsp;World: Big Tech's thirst for water is sparking a global resistance. The same data-center backlash as &amp;sect;1's Texas story, but worldwide" data-section="feed" data-issue="2026-11-08"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><span class="tag">Chip geopolitics &middot; a spy story</span> &mdash; TechCrunch:
+      <a href="https://techcrunch.com/2026/11/07/chinese-exec-was-recruited-to-spy-on-nvidia-ceo-according-to-us-intelligence-memo/">a Megaspeed exec was recruited to spy on Nvidia's CEO</a>,
+      per a US intelligence memo. A reminder that the chip layer under the whole AI stack is now a live counter-intelligence theatre &mdash; the Chip&nbsp;War book in your canon, happening
+      in real time.<span class="vote" data-id="093229fc51d6" data-title="Chip geopolitics &amp;middot; a spy story &amp;mdash; TechCrunch: a Megaspeed exec was recruited to spy on Nvidia's CEO , per a US intelligence memo. A reminder that the chip layer under the whole AI stack is" data-section="feed" data-issue="2026-11-08"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><span class="tag">The acceleration case</span> &mdash; The&nbsp;Verge:
+      <a href="https://www.theverge.com/ai-artificial-intelligence/1029126/anthropic-metr-report-accelerating-ai-development">a new METR report on Anthropic automating its own AI
+      development is alarming researchers.</a> The counterweight to &sect;2's &ldquo;AI money is cooling&rdquo;: capability may be accelerating even as spend growth stalls. Hold both &mdash;
+      the two together are the actual debate, not either headline alone.<span class="vote" data-id="0b56c69a2f51" data-title="The acceleration case &amp;mdash; The&amp;nbsp;Verge: a new METR report on Anthropic automating its own AI development is alarming researchers. The counterweight to &amp;sect;2's &amp;ldquo;AI money is cooling&amp;rdquo;" data-section="feed" data-issue="2026-11-08"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><span class="tag">Infra that won't die</span> &mdash; Ars&nbsp;Technica:
+      <a href="https://arstechnica.com/tech-policy/2026/11/faa-to-finally-ditch-floppy-disks-in-what-it-calls-historic-tech-upgrade/">the FAA is finally ditching floppy disks</a> in air-traffic
+      control. The systems running the physical world are often decades old and barely documented &mdash; the &ldquo;OS for physical work&rdquo; problem, stated as a punchline. Someone
+      has to replace this, everywhere.<span class="vote" data-id="4c5c454a1c7e" data-title="Infra that won't die &amp;mdash; Ars&amp;nbsp;Technica: the FAA is finally ditching floppy disks in air-traffic control. The systems running the physical world are often decades old and barely documented &amp;mda" data-section="feed" data-issue="2026-11-08"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><span class="tag">For the weekend</span> &mdash; HN&nbsp;866&nbsp;pts:
+      <a href="https://nfsu2.xyz/">Need for Speed Underground 2, running in your browser.</a> The most-upvoted thing on HN today is a fan port of a 2004 racing game to the web. No lesson,
+      no angle &mdash; filed because sometimes the internet just rebuilds a beautiful old thing for free, and that's allowed to be the whole point.<span class="vote" data-id="6c45e78b48c6" data-title="For the weekend &amp;mdash; HN&amp;nbsp;866&amp;nbsp;pts: Need for Speed Underground 2, running in your browser. The most-upvoted thing on HN today is a fan port of a 2004 racing game to the web. No lesson, no an" data-section="feed" data-issue="2026-11-08"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+  </ul>
+</section>
+
+<footer>
+  <b>The Morning Brief</b> &middot; Issue 030 &middot; Sun 8 Nov 2026<br>
+  Assembled from this morning's collection: 349 items screened across the live sources. Funding, apps, Product&nbsp;Hunt, HN, Lobsters, Techmeme, and the full learn and wildcard sets
+  returned clean. Standing gaps: all 14 lecture channels (YouTube) 404'd or timed out, so &sect;7 runs the canon rather than a fresh talk; DARPA, Marginal&nbsp;Revolution, Atlas&nbsp;Obscura,
+  Kottke, The&nbsp;Diff, Palladium and the three arXiv-economics/neuroscience/social-physics feeds all timed out or dropped their connection; Devpost timed out mid-pull (13 live hackathons
+  still returned). Deterministic collection in Python, editorial judgment in Claude&nbsp;Code.<br>
+  Every claim links to its source. Numbers or silence. The test for every item: <b>does it change what you do this week?</b>
+</footer>
+
+</div>
+<script>
+(function () {
+  var local = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
+  if (!local) { document.body.classList.add("no-server"); return; }
+  var day = (document.querySelector(".vote") || {}).dataset
+          ? document.querySelector(".vote").dataset.issue : "";
+
+  function paint(el, vote) {
+    el.querySelector(".v-up").classList.toggle("on", vote === "up");
+    el.querySelector(".v-dn").classList.toggle("on", vote === "down");
+    el.classList.toggle("voted", vote === "up" || vote === "down");
+  }
+
+  fetch("/fb/state?issue=" + encodeURIComponent(day))
+    .then(function (r) { return r.json(); })
+    .then(function (state) {
+      document.querySelectorAll(".vote").forEach(function (el) {
+        if (state[el.dataset.id]) paint(el, state[el.dataset.id]);
+      });
+    })
+    .catch(function () { document.body.classList.add("no-server"); });
+
+  document.addEventListener("click", function (e) {
+    var btn = e.target.closest(".v-up, .v-dn");
+    if (!btn) return;
+    var el = btn.closest(".vote");
+    var want = btn.classList.contains("v-up") ? "up" : "down";
+    var already = btn.classList.contains("on");
+    var vote = already ? "clear" : want;
+    paint(el, already ? null : want);
+    fetch("/fb", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        id: el.dataset.id, vote: vote, title: el.dataset.title,
+        section: el.dataset.section, issue: el.dataset.issue
+      })
+    }).catch(function () {});
+  });
+})();
+</script>
