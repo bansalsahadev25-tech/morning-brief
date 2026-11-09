@@ -22,10 +22,19 @@
 # ======================================================================
 
 meta:
-  last_refreshed: 2026-11-06
+  last_refreshed: 2026-11-09
   refresh_when: "YC RFS changes, XPRIZE opens/closes a prize, ARIA posts a
                  new opportunity space, or a graded problem gets solved."
   changelog:
+    - "2026-11-09: Added `in-space-assembly` (red) from a new DARPA item this run —
+       NOM4D demonstrated automated in-space assembly (Caltech-led), the first time
+       a structure was robotically built in orbit-representative conditions rather than
+       folded and unfurled. Filed red as a company (orbit, capital, hardware) but kept
+       because it pairs with YC's Winter-2027 'Startups in a World of Abundant Space
+       Access' category — a funder-attached framing — and the reader lists space as a
+       core interest. The on-ramp (assembly planning, autonomy and simulation) is
+       software and sits one domain from his autonomy work. Both §0 slots today rotate
+       fresh: green `vibe-code-qa` (last led 26 Oct) and this new red."
     - "2026-11-06: YC replaced its RFS with a WINTER 2026/27 list — eleven new
        categories, almost none carried over from the Fall list. New: Startups in a
        World of Abundant Space Access; The $15-an-Hour Expert (Brad Flora); Robots
@@ -384,6 +393,43 @@ problems:
       - "Read the RFS entry and pick ONE vertical where he can watch a real expert work for an hour — the watching is the moat, not the model."
       - "Write the expert's process as a literal checklist with the judgment calls marked; build an agent that produces the finished artifact, then have the expert red-line it."
       - "Charge one person for one deliverable this month. The gap between 'the agent drafted it' and 'a buyer paid for it' is the whole company — find it with a $50 invoice, not a deck."
+
+  - id: in-space-assembly
+    grade: red
+    title: We still can't build anything large in space — we can only unfold it
+    problem: >
+      Every large structure in orbit today — antennas, solar arrays, telescope booms —
+      was folded on the ground and sprung open once, because nothing is actually
+      assembled in space. That caps everything at what fits, folded, inside a fairing.
+      Robotic in-space assembly and manufacturing would uncap it: kilometre-scale
+      antennas, real orbital infrastructure, structures too big to ever launch whole.
+      DARPA's NOM4D program just demonstrated automated assembly of a precision
+      structure in orbit-representative conditions — the first credible step from
+      "unfold once" to "build on site."
+    who_says: >
+      DARPA, via the NOM4D program (Novel Orbital and Moon Manufacturing, Materials
+      and Mass-efficient Design) — a Caltech-led demonstration of automated in-space
+      assembly (Nov 2026). Pairs with Y Combinator's Winter-2027 RFS category
+      "Startups in a World of Abundant Space Access," which argues cheap launch has
+      made orbit a place to build businesses, not just park satellites.
+    source: https://www.darpa.mil/news/2026/nom4d-program-demonstrates-automated-in-space-assembly
+    why_open: >
+      Assembly in vacuum, in microgravity, with no human hands and tight precision
+      tolerances is a brutal robotics-plus-materials problem — thermal distortion,
+      metrology without a fixed reference frame, autonomous manipulation with no
+      do-overs. It is a program at DARPA precisely because nobody has a clean,
+      cheap answer, and the capital to fly anything is enormous.
+    who_is_trying: "DARPA performers (Caltech, Northrop); adjacent commercial: Made In Space / Redwire (orbital manufacturing), Varda (in-space production), the launch layer (SpaceX) that makes any of it affordable."
+    your_angle: >
+      Red, honestly — orbit, capital, hardware, a decade. File it because space is on
+      your list and the on-ramp is the same literacy your drone work already builds:
+      autonomous manipulation, assembly planning, and metrology you can prototype in
+      simulation on a laptop. Own the vocabulary so you recognise the software slice if
+      one opens; do not try to start the company.
+    research_path:
+      - "Read the DARPA NOM4D demonstration writeup — what precisely they assembled, and which step (metrology, manipulation, materials) was the hard one."
+      - "Read YC's 'Startups in a World of Abundant Space Access' RFS entry for the funder-attached, software-shaped version of this frontier."
+      - "Study autonomous robotic assembly / pose estimation as a simulation problem — the laptop-sized version of the same question, and the exact skill your tiltrotor autonomy already touches."
 
 feeds:
   note: >
