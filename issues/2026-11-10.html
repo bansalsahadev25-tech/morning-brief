@@ -1,0 +1,624 @@
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Morning Brief</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root{
+    --bg:#EFF2F4; --surface:#FBFCFD; --sunk:#E6EAEE;
+    --ink:#10161C; --ink2:#4B5764; --ink3:#78838F;
+    --rule:#D2D9DF; --rule2:#BEC7D0;
+    --accent:#1B3A57; --urgent:#A33E12; --money:#0D6A5E;
+    --chip:#E2E8ED;
+    --measure:70ch;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --bg:#0B0F13; --surface:#131A21; --sunk:#0F151A;
+      --ink:#E3E9F0; --ink2:#8C99A7; --ink3:#66727F;
+      --rule:#222C36; --rule2:#2E3A45;
+      --accent:#84B4DE; --urgent:#E8834F; --money:#3EB5A3;
+      --chip:#1B242D;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0B0F13; --surface:#131A21; --sunk:#0F151A;
+    --ink:#E3E9F0; --ink2:#8C99A7; --ink3:#66727F;
+    --rule:#222C36; --rule2:#2E3A45;
+    --accent:#84B4DE; --urgent:#E8834F; --money:#3EB5A3;
+    --chip:#1B242D;
+  }
+
+  *{box-sizing:border-box}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,sans-serif;
+    font-size:15.5px; line-height:1.62;
+    padding-block:0; padding-left:20px; padding-right:20px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:var(--measure); margin:0 auto}
+  a{color:var(--accent); text-decoration:none; border-bottom:1px solid var(--rule2)}
+  a:hover{border-bottom-color:var(--accent)}
+  a:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+
+  .mast{padding-block:34px 18px; border-bottom:2px solid var(--ink)}
+  .mast h1{
+    font-family:Newsreader,Georgia,serif; font-weight:600;
+    font-size:clamp(2.1rem,7vw,3.1rem); line-height:1.0;
+    margin:0 0 12px; letter-spacing:-.015em;
+  }
+  .mastmeta{
+    display:flex; flex-wrap:wrap; gap:6px 18px;
+    font-family:"IBM Plex Mono",monospace; font-size:.7rem;
+    text-transform:uppercase; letter-spacing:.1em; color:var(--ink2);
+  }
+  .thesis{
+    font-family:Newsreader,Georgia,serif; font-size:1.2rem; line-height:1.5;
+    color:var(--ink); margin:20px 0 0; padding:16px 0 4px;
+    border-top:1px solid var(--rule); text-wrap:balance;
+  }
+  .thesis em{color:var(--ink2); font-style:italic}
+
+  section{padding-block:38px 8px}
+  .shead{
+    display:flex; align-items:baseline; gap:12px;
+    border-bottom:1px solid var(--ink); padding-bottom:7px; margin-bottom:22px;
+  }
+  .snum{
+    font-family:"IBM Plex Mono",monospace; font-size:.72rem; font-weight:600;
+    color:var(--ink3); letter-spacing:.06em; flex:none;
+  }
+  .shead h2{
+    font-family:"IBM Plex Sans",sans-serif; font-weight:600;
+    font-size:.86rem; text-transform:uppercase; letter-spacing:.14em;
+    margin:0; flex:1;
+  }
+  .scount{font-family:"IBM Plex Mono",monospace; font-size:.68rem; color:var(--ink3)}
+
+  .story{padding-bottom:34px; margin-bottom:34px; border-bottom:1px solid var(--rule)}
+  .story:last-child{border-bottom:0; margin-bottom:0}
+  .kicker{
+    font-family:"IBM Plex Mono",monospace; font-size:.68rem; font-weight:500;
+    text-transform:uppercase; letter-spacing:.12em; color:var(--urgent);
+    margin-bottom:8px;
+  }
+  .story h3{
+    font-family:Newsreader,Georgia,serif; font-weight:600;
+    font-size:clamp(1.45rem,4.4vw,1.95rem); line-height:1.15;
+    margin:0 0 6px; letter-spacing:-.01em; text-wrap:balance;
+  }
+  .byline{
+    font-family:"IBM Plex Mono",monospace; font-size:.7rem; color:var(--ink2);
+    margin-bottom:20px; line-height:1.6;
+  }
+  .byline b{color:var(--money); font-weight:600}
+
+  dl.brief{display:grid; gap:0; margin:0}
+  @media (min-width:720px){
+    dl.brief{grid-template-columns:8.5rem 1fr; column-gap:22px}
+  }
+  dl.brief dt{
+    font-family:"IBM Plex Mono",monospace; font-size:.66rem; font-weight:600;
+    text-transform:uppercase; letter-spacing:.1em; color:var(--ink3);
+    padding-top:.5em;
+  }
+  dl.brief dd{margin:0 0 16px}
+  dl.brief dd:last-of-type{margin-bottom:0}
+  dd.bear{color:var(--ink2)}
+  dd.foryou{border-left:2px solid var(--urgent); padding-left:14px}
+
+  .tablewrap{overflow-x:auto}
+  table{width:100%; border-collapse:collapse; font-size:.9rem}
+  th{
+    font-family:"IBM Plex Mono",monospace; font-size:.64rem; font-weight:600;
+    text-transform:uppercase; letter-spacing:.1em; color:var(--ink3);
+    text-align:left; padding:0 12px 8px 0; border-bottom:1px solid var(--rule2);
+    white-space:nowrap;
+  }
+  td{padding:11px 12px 11px 0; border-bottom:1px solid var(--rule); vertical-align:top}
+  td.num{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums; color:var(--money); font-weight:500; white-space:nowrap}
+  td.src{font-family:"IBM Plex Mono",monospace; font-size:.74rem; color:var(--ink3); white-space:nowrap}
+
+  .door{
+    display:grid; grid-template-columns:1fr auto; gap:4px 16px;
+    padding:14px 0; border-bottom:1px solid var(--rule); align-items:start;
+  }
+  .door:last-child{border-bottom:0}
+  .door .name{font-weight:500; line-height:1.4}
+  .door .sub{
+    grid-column:1; font-family:"IBM Plex Mono",monospace;
+    font-size:.72rem; color:var(--ink2);
+  }
+  .days{
+    grid-row:1/span 2; align-self:center;
+    font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums;
+    font-size:.78rem; font-weight:600; padding:4px 9px;
+    background:var(--chip); color:var(--ink2); white-space:nowrap;
+  }
+  .days.hot{background:var(--urgent); color:#fff}
+  .days.warm{color:var(--urgent); box-shadow:inset 0 0 0 1px var(--urgent)}
+
+  ul.feed{list-style:none; padding:0; margin:0}
+  ul.feed li{padding:11px 0; border-bottom:1px solid var(--rule); line-height:1.5}
+  ul.feed li:last-child{border-bottom:0}
+  .tag{
+    font-family:"IBM Plex Mono",monospace; font-size:.66rem; font-weight:500;
+    text-transform:uppercase; letter-spacing:.08em; color:var(--ink3);
+  }
+  .note{color:var(--ink2); font-size:.92rem; margin-top:5px}
+
+  .single h3{
+    font-family:Newsreader,Georgia,serif; font-weight:600; font-size:1.35rem;
+    margin:0 0 4px; line-height:1.25; text-wrap:balance;
+  }
+  .single .meta{
+    font-family:"IBM Plex Mono",monospace; font-size:.7rem; color:var(--ink3);
+    margin-bottom:14px;
+  }
+  .quiet{
+    color:var(--ink2); font-style:italic;
+    font-family:Newsreader,Georgia,serif; font-size:1.05rem;
+  }
+
+  footer{
+    border-top:2px solid var(--ink); margin-top:44px;
+    padding-block:20px 48px;
+    font-family:"IBM Plex Mono",monospace; font-size:.7rem; color:var(--ink3);
+    line-height:1.7;
+  }
+  footer b{color:var(--ink2); font-weight:500}
+
+  .problem{padding-bottom:30px;margin-bottom:30px;border-bottom:1px solid var(--rule)}
+  .problem:last-child{border-bottom:0;margin-bottom:0;padding-bottom:6px}
+  .pgrade{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:9px}
+  .pgrade .badge{font-family:"IBM Plex Mono",monospace;font-size:.62rem;font-weight:600;
+    letter-spacing:.11em;color:#fff;background:var(--g);padding:3px 8px}
+  .pgrade .caveat{font-family:"IBM Plex Mono",monospace;font-size:.66rem;color:var(--ink3)}
+  .problem h3{font-family:Newsreader,Georgia,serif;font-weight:600;
+    font-size:clamp(1.3rem,4vw,1.7rem);line-height:1.18;margin:0 0 16px;
+    letter-spacing:-.01em;text-wrap:balance}
+  ol.rpath{margin:0;padding-left:1.1rem}
+  ol.rpath li{margin-bottom:7px}
+  ol.rpath li:last-child{margin-bottom:0}
+  .pintro{font-family:Newsreader,Georgia,serif;font-size:1.06rem;line-height:1.5;
+    color:var(--ink2);margin:0 0 26px;text-wrap:pretty}
+  .rfs{background:var(--sunk);border-left:3px solid var(--accent);
+    padding:16px 18px;margin:0 0 30px}
+  .rfs .lbl{font-family:"IBM Plex Mono",monospace;font-size:.62rem;font-weight:600;
+    letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+  .rfs h3{font-family:Newsreader,Georgia,serif;font-weight:600;font-size:1.25rem;
+    line-height:1.2;margin:0 0 10px;text-wrap:balance}
+  .rfs ol{margin:10px 0 0;padding-left:1.2rem;columns:2;column-gap:26px;
+    font-size:.9rem;line-height:1.45}
+  @media (max-width:560px){.rfs ol{columns:1}}
+  .rfs ol li{margin-bottom:4px}
+  .rfs ol li::marker{font-family:"IBM Plex Mono",monospace;color:var(--ink3);font-size:.8rem}
+</style>
+<!--VOTE-CSS-START-->
+<style>
+  .vote{display:inline-flex;gap:3px;margin-left:9px;vertical-align:middle;
+    opacity:.3;transition:opacity .15s}
+  h3:hover .vote,li:hover .vote,.vote:hover,.vote.voted{opacity:1}
+  .vote button{font-family:inherit;font-size:.62rem;line-height:1;cursor:pointer;
+    padding:3px 6px;border:1px solid var(--rule2,#BEC7D0);background:transparent;
+    color:var(--ink3,#78838F);border-radius:2px}
+  .vote button:hover{border-color:var(--ink2,#4B5764);color:var(--ink,#10161C)}
+  .vote button.on.v-up{background:#0D6A5E;border-color:#0D6A5E;color:#fff}
+  .vote button.on.v-dn{background:#A33E12;border-color:#A33E12;color:#fff}
+  body.no-server .vote{display:none}
+  #fbnote{font-family:"IBM Plex Mono",monospace;font-size:.64rem;
+    color:var(--ink3,#78838F);padding:7px 0;border-bottom:1px solid var(--rule,#D2D9DF)}
+  body.no-server #fbnote{display:none}
+</style>
+<!--VOTE-CSS-END-->
+
+<div class="wrap">
+<!--ISSUE-NAV-START-->
+<style>
+  #issuenav{position:sticky;top:0;z-index:99;display:flex;align-items:center;
+    gap:12px;flex-wrap:wrap;padding:9px 20px;margin:0 -20px 0;
+    background:var(--surface,#FBFCFD);border-bottom:1px solid var(--rule,#D2D9DF);
+    font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.7rem}
+  #issuenav a{color:var(--accent,#1B3A57);text-decoration:none;border-bottom:0;
+    text-transform:uppercase;letter-spacing:.09em;font-weight:600}
+  #issuenav a:hover{text-decoration:underline}
+  #issuenav select{font-family:inherit;font-size:.72rem;padding:4px 8px;
+    background:var(--bg,#EFF2F4);color:var(--ink,#10161C);
+    border:1px solid var(--rule2,#BEC7D0);border-radius:0;cursor:pointer;
+    max-width:min(62vw,26rem)}
+  #issuenav .sp{flex:1}
+  #issuenav .lbl{color:var(--ink3,#78838F);text-transform:uppercase;
+    letter-spacing:.1em}
+  /* keep the sticky bar from clipping whatever you jump to */
+  section,.shead,.problem,.story{scroll-margin-top:3.4rem}
+  @media print{#issuenav{display:none}}
+</style>
+<nav id="issuenav" aria-label="Issue navigation">
+  <span class="lbl">Issue</span>
+  <select id="issuepick" aria-label="Choose an issue"><option value="2026-11-10.html" selected>Issue 032 &middot; Tue 10 Nov 2026</option><option value="2026-11-09.html">Issue 031 &middot; Mon 9 Nov 2026</option><option value="2026-11-08.html">Issue 030 &middot; Sun 8 Nov 2026</option><option value="2026-11-07.html">Issue 029 &middot; Sat 7 Nov 2026</option><option value="2026-11-06.html">Issue 028 &middot; Fri 6 Nov 2026</option><option value="2026-10-28.html">Issue 027 &middot; Wed 28 Oct 2026</option><option value="2026-10-27.html">Issue 026 &middot; Tue 27 Oct 2026</option><option value="2026-10-26.html">Issue 025 &middot; Mon 26 Oct 2026</option><option value="2026-10-24.html">Issue 024 &middot; Sat 24 Oct 2026</option><option value="2026-10-23.html">Issue 023 &middot; Fri 23 Oct 2026</option><option value="2026-10-21.html">Issue 022 &middot; Wed 21 Oct 2026</option><option value="2026-10-20.html">Issue 021 &middot; Tue 20 Oct 2026</option><option value="2026-10-18.html">Issue 020 &middot; Sun 18 Oct 2026</option><option value="2026-10-17.html">Issue 019 &middot; Sat 17 Oct 2026</option><option value="2026-10-15.html">Issue 018 &middot; Thu 15 Oct 2026</option><option value="2026-10-14.html">Issue 017 &middot; Wed 14 Oct 2026</option><option value="2026-10-13.html">Issue 016 &middot; Tue 13 Oct 2026</option><option value="2026-10-12.html">Issue 015 &middot; Mon 12 Oct 2026</option><option value="2026-10-11.html">Issue 014 &middot; Sun 11 Oct 2026</option><option value="2026-10-10.html">Issue 013 &middot; Sat 10 Oct 2026</option><option value="2026-10-09.html">Issue 012 &middot; Fri 9 Oct 2026</option><option value="2026-10-08.html">Issue 011 &middot; Thu 8 Oct 2026</option><option value="2026-10-07.html">Issue 010 &middot; Wed 7 Oct 2026</option><option value="2026-10-06.html">Issue 009 &middot; Tue 6 Oct 2026</option><option value="2026-10-05.html">Issue 008 &middot; Mon 5 Oct 2026</option><option value="2026-10-04.html">Issue 007 &middot; Sun 4 Oct 2026</option><option value="2026-10-01.html">Issue 006 &middot; Thu 1 Oct 2026</option><option value="2026-09-30.html">Issue 005 &middot; Wed 30 Sep 2026</option><option value="2026-09-29.html">Issue 004 &middot; Tue 29 Sep 2026</option><option value="2026-09-28.html">Issue 002 &middot; Mon 28 Sep 2026</option><option value="2026-09-26.html">Issue 001 &middot; Sat 26 Sep 2026</option></select>
+  <span class="sp"></span>
+  <a href="index.html">All issues</a>
+</nav>
+<script>
+  document.getElementById("issuepick").addEventListener("change", function (e) {
+    if (e.target.value) window.location.href = e.target.value;
+  });
+</script>
+<!--ISSUE-NAV-END-->
+
+<header class="mast">
+  <h1>The Morning Brief</h1>
+  <div class="mastmeta">
+    <span>Issue 032</span>
+    <span>Tue 10 Nov 2026</span>
+    <span>482 items screened &rarr; 46 filed</span>
+    <span>Clean run: HN, Lobsters, Techmeme, TechCrunch, The&nbsp;Verge, Product&nbsp;Hunt, DARPA, Sequoia, the Institute&nbsp;for&nbsp;Progress, Adafruit, IEEE&nbsp;Spectrum, Public&nbsp;Domain&nbsp;Review, all three arXiv econ/neuro/social feeds and the full learn and wildcard sets all returned. Standing gaps: the 13 lecture channels (Stanford, Acquired, Asianometry, 3Blue1Brown, Lex&nbsp;Fridman, a16z, Computerphile, Practical&nbsp;Engineering&hellip;) 404'd again, though Veritasium returned &mdash; &sect;7 still runs the canon by choice; OpenAI's lab feed timed out; and Devpost returned 21 live hackathons but blocked the deadline scrape, so &sect;5 day-counts are carried forward &plusmn;1.</span>
+  </div>
+  <p class="thesis">
+    AI's physical bill came due this week. The same days <em>Anthropic filed to go public at a trillion-plus</em>, it quietly spent <em>$3.4B buying 1.7&nbsp;GW of Caterpillar gas turbines</em> another buyer couldn't finance &mdash; because the turbine backlog now runs into the 2030s and the grid-connection queue is just as long. <em>Fervo's geothermal backlog hit $11.9B</em> on a single 396&nbsp;MW Google deal, and the much-discussed &ldquo;data-center backlash&rdquo; turned out, on inspection, to be a fight about electricity. <em>The read: the binding constraint on AI is no longer chips or models &mdash; it is power, and the land and permits to put it on.</em> That is your &sect;0 red, and your degree sits on the subsurface side of exactly that bottleneck. Underneath it, two quieter facts: Anthropic shipped <em>Fable&nbsp;5.2</em>, the highest-scoring model yet, days before pricing its IPO; and <em>Nominal, an AI platform for hardware testing, tripled to $3B in eight months</em> on defense demand &mdash; proof the money is now chasing the atoms, not another chatbot.
+  </p>
+</header>
+
+<!-- ========== §0 ========== -->
+<section>
+  <div class="shead"><span class="snum">&sect;0</span><h2>The Problem Board</h2>
+    <span class="scount">2 of 13</span></div>
+  <p class="pintro">
+    Every accelerator says it funds people &ldquo;solving hard problems,&rdquo; and none tells you which. This does &mdash; sourced, graded honestly, with somewhere to start reading.
+    Today: one green you can prototype this weekend, which the whole agentic-coding wire keeps making more urgent; and one red that the <em>entire front page</em> is circling &mdash; the power-and-land bottleneck under the AI build-out, which also happens to be the one problem on this board that sits next to your degree.
+  </p>
+
+  <article class="problem">
+    <div class="pgrade" style="--g:#0D6A5E">
+      <span class="badge">START THIS MONTH</span><span class="caveat">green &middot; pure software &middot; no capital &middot; you already understand agentic code editing from the inside</span>
+    </div>
+    <h3>API providers announce their breaking changes. Nobody applies them for you &mdash; even though the tools to now exist</h3><span class="vote" data-id="480aacddeeb9" data-title="API providers announce their breaking changes. Nobody applies them for you &amp;mdash; even though the tools to now exist" data-section="&sect;0" data-issue="2026-11-10"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span>
+    <dl class="brief">
+      <dt>The problem</dt><dd>When an API changes &mdash; Stripe deprecates a field, Twilio renames an endpoint &mdash; every customer hand-edits their own codebase to catch up. The provider writes a changelog; thousands of teams each do the same migration by hand, badly, late. The infrastructure to fix this now exists, because agentic coding tools proved companies <em>will</em> grant an external tool write access to their repo if the value is there. The layer that connects an API provider directly to its customers' code, and propagates a change as a reviewed pull request, does not.</dd>
+      <dt>Who says it's hard</dt><dd>Y&nbsp;Combinator's <a href="https://www.ycombinator.com/rfs">Requests for Startups</a> carried &ldquo;API change propagation,&rdquo; written by a founder who had worked with 50+ API vendors (the entry pre-dates the Winter-2027 reset, so re-source before you cite it in a pitch). The <em>enabling</em> condition is all over today's wire: <a href="https://www.producthunt.com/products/appwrite">MCP1 &mdash; &ldquo;one URL for every MCP server&rdquo;</a> shipped on Product&nbsp;Hunt, <a href="https://simonwillison.net/">Simon&nbsp;Willison</a> notes most of his project changes now arrive as agent-opened PRs, and Anthropic's <a href="https://www.thestateofai.com/news/goldman-sachs-claude-code-traders-bankers">Claude&nbsp;Code</a> is now inside banks. Two years ago nobody granted an external tool write access to their repo; that taboo is gone.</dd>
+      <dt>Why it's still open</dt><dd>The window opened recently enough that nobody has built the obvious thing. The hard part isn't the codemod &mdash; it's <em>trust</em>: earning the right to open a PR against a stranger's production repo, and being correct often enough that they merge it without re-reading every line. Renovate solved exactly this shape for dependency bumps; nobody has for API <em>semantics</em>.</dd>
+      <dt>Who's already trying</dt><dd>Greptile and Ellipsis (AI code review, not migration); Renovate (dependencies only, not API behaviour); the frontier coding agents (Claude&nbsp;Code, Devin) do it one repo at a time, driven by a human, not pushed by the provider. Nobody owns &ldquo;the provider ships the migration.&rdquo;</dd>
+      <dt>Your angle</dt><dd class="foryou">Pure software, no capital, and you already understand agentic code editing from the inside &mdash; you direct it daily. Narrow enough to prototype in a weekend against one noisy API, which is the only honest way to find out whether the PR gets merged or distrusted.</dd>
+      <dt>Research path</dt><dd><ol class="rpath">
+        <li>Pick one API with frequent breaking changes (<a href="https://docs.stripe.com/upgrades">Stripe</a>, Twilio) and read two years of its changelog &mdash; feel how much hand-work each entry implied.</li>
+        <li>Write the migration codemod for a <em>single</em> breaking change by hand, as a script that opens a PR. Feel the work before automating it.</li>
+        <li>Read <a href="https://docs.renovatebot.com/">Renovate's architecture docs</a> &mdash; how automated PRs against a stranger's repo actually earn enough trust to get merged. That trust, not the diff, is the company.</li></ol></dd>
+    </dl>
+  </article>
+
+  <article class="problem">
+    <div class="pgrade" style="--g:#9A2D1E">
+      <span class="badge">WATCH, DON'T START</span><span class="caveat">red &mdash; permitting, capital, physics; but it is the one red on this board that sits next to your field of study</span>
+    </div>
+    <h3>AI is running out of electricity and land, not chips &mdash; and today the whole front page proved it</h3><span class="vote" data-id="29103e0b4673" data-title="AI is running out of electricity and land, not chips &amp;mdash; and today the whole front page proved it" data-section="&sect;0" data-issue="2026-11-10"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span>
+    <dl class="brief">
+      <dt>The problem</dt><dd>A frontier data centre needs years of approval and hundreds of megawatts, and can still be killed by the town next door. The constraint on the AI build-out has quietly stopped being chips or models and become <em>power, and the land and permits to put it on</em>. Whoever can site, generate or free up megawatts faster than the queue is now holding the scarce thing.</dd>
+      <dt>Who says it's hard</dt><dd>The wire said it four ways in one morning. <a href="https://techcrunch.com/2026/11/09/anthropic-joins-ais-natural-gas-frenzy-buys-3-4b-worth-of-turbines/">Anthropic spent $3.4B on 1.7&nbsp;GW of gas turbines</a> because &ldquo;the backlog for natural-gas turbines stretches into the early 2030s, and grid-connection queues can be just as long.&rdquo; <a href="https://techcrunch.com/2026/11/09/fervo-now-has-12b-in-orders-for-its-geothermal-power-tech/">Fervo's backlog hit $11.9B</a> on a Google deal. MIT&nbsp;Technology&nbsp;Review concluded <a href="https://www.technologyreview.com/">the data-center backlash &ldquo;might really just be about electricity.&rdquo;</a> And Tyler&nbsp;Cowen &mdash; who runs Emergent&nbsp;Ventures, i.e. the grader &mdash; spent today's <a href="https://marginalrevolution.com/marginalrevolution/2026/11/end-the-state-veto-on-power-lines.html">Marginal&nbsp;Revolution arguing to end the state veto on power lines.</a></dd>
+      <dt>Why it's still open</dt><dd>Permitting, capital intensity, and physics &mdash; none of it is software. Transmission lines need a decade and fifty jurisdictions each with a veto; turbines and geothermal wells need balance sheets; superhot rock needs drilling no one has de-risked at scale. These are the slowest problems in the economy, which is exactly why solving a slice is worth so much.</dd>
+      <dt>Who's already trying</dt><dd>Fervo and Mazama (enhanced geothermal), Crusoe and Oklo (siting + nuclear), the hyperscalers now buying generation directly (Anthropic's turbines, Google's 396&nbsp;MW Fervo PPA). All capital-heavy, all hardware-first, all post-seed.</dd>
+      <dt>Your angle</dt><dd class="foryou">Red as a company &mdash; you are not drilling a well or stringing a transmission line. But this is the one red on the board where <em>your degree's subject matter is the bottleneck</em>: subsurface instrumentation, drilling data and reservoir modelling are underbuilt and sit right next to it. An honest note on the energy wedge I've run for weeks: today is the retire-or-keep date I set, and the wire just earned it a keep &mdash; Fervo did the <em>largest clean-energy IPO in history</em> in May and now has a $11.9B backlog, which is real, repeated funding signal, not a vibe. So it stays &mdash; as a literacy and watch thread, not a company to start.</dd>
+      <dt>Research path</dt><dd><ol class="rpath">
+        <li>Read <a href="https://techcrunch.com/2026/11/09/fervo-now-has-12b-in-orders-for-its-geothermal-power-tech/">Fervo's cost curve</a> ($7,000 &rarr; $5,500 &rarr; a $3,000/kW target) &mdash; that single falling number is the whole thesis of whether geothermal beats gas, and &sect;1 breaks it down.</li>
+        <li>Read <a href="https://marginalrevolution.com/marginalrevolution/2026/11/end-the-state-veto-on-power-lines.html">Cowen on power-line permitting</a> to learn why the hardest part is legal, not technical &mdash; the grader telling you where the money is going.</li>
+        <li>Chip&nbsp;War is in tonight's &sect;7 for the geopolitics of the same squeeze. Then watch the subsurface-data layer (well logs, fibre sensing) &mdash; the software slice of a hardware problem, the only part that is ever yours.</li></ol></dd>
+    </dl>
+  </article>
+
+  <p class="note" style="margin-top:24px">
+    On the rotation: the green (<code>api-change-propagation</code>) last led &sect;0 on 28&nbsp;Oct, the red (<code>compute-power-siting</code>) on 26&nbsp;Oct &mdash; both ~two weeks back, and with a 13-item board and one of each grade per day, a strict 21-day gap isn't arithmetically possible; I pick the least-recent that today's wire makes honest, and today the energy story <em>is</em> the issue. No new funded problem landed to append: DARPA ran a milestone (<a href="https://www.darpa.mil/news/2026/young-faculty-award-2027-topics-open-meet-2026-class">Young&nbsp;Faculty&nbsp;Award 2027 topics</a>, aimed at faculty) plus the already-filed NOM4D; the <a href="https://ifp.org/brain-cell-types/">Institute&nbsp;for&nbsp;Progress</a> ran a neuroscience essay (fascinating, no funded door); Marginal&nbsp;Revolution's power-lines piece is a <em>bottleneck</em> that feeds the red above, not a new problem; and YC's RFS is unchanged since the Winter-2027 reset.
+  </p>
+</section>
+
+<!-- ========== §1 ========== -->
+<section>
+  <div class="shead"><span class="snum">&sect;1</span><h2>The Big Three</h2>
+    <span class="scount">researched, not rewritten from the headline</span></div>
+
+  <article class="story">
+    <div class="kicker">The fact that reprices the next six months &middot; the AI build-out just started buying power plants</div>
+    <h3>Anthropic spent $3.4B on gas turbines nobody else could finance &mdash; days before it prices a trillion-dollar IPO</h3><span class="vote" data-id="3adda96925dc" data-title="Anthropic spent $3.4B on gas turbines nobody else could finance &amp;mdash; days before it prices a trillion-dollar IPO" data-section="&sect;1" data-issue="2026-11-10"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span>
+    <p class="byline"><b>$3.4B</b> for Caterpillar turbines producing up to <b>1.7&nbsp;GW</b> &middot; bought units <b>OnePWR</b> had ordered but couldn't finance, going direct to the manufacturer &middot; had been renting compute from xAI at <b>~$1.25B/month</b> through 2029 &middot; turbine backlog runs <b>into the early 2030s</b> &middot; IPO (ticker <b>ANT</b>) targeted for <b>Nov&nbsp;19&ndash;20</b>, valuation talk <b>$1.0&ndash;1.75T</b>, S-1/A price range still blank &middot;
+      <a href="https://techcrunch.com/2026/11/09/anthropic-joins-ais-natural-gas-frenzy-buys-3-4b-worth-of-turbines/">TechCrunch</a> &middot;
+      <a href="https://cryptobriefing.com/anthropic-nasdaq-ipo-november-valuation-range/">Crypto&nbsp;Briefing</a> &middot;
+      <a href="https://builtin.com/articles/anthropic-ipo-filing-s1">Built&nbsp;In (S-1)</a></p>
+    <dl class="brief">
+      <dt>What happened</dt><dd>Anthropic, which historically <em>rented</em> everything &mdash; famously paying xAI around $1.25B a month for compute &mdash; went out and bought $3.4B of natural-gas turbines outright. It didn't even buy them normally: it took over an order that equipment supplier OnePWR had placed but couldn't finance, and went straight to Caterpillar. This is a software company vertically integrating into electricity generation.</dd>
+      <dt>The mechanism</dt><dd>Read it as a scarcity trade, not an energy strategy. When the turbine backlog stretches into the 2030s and grid interconnection queues are measured in years, the megawatts themselves become the scarce asset &mdash; so you grab capacity someone else can't pay for, before a competitor does. It is the clearest signal yet that the <em>&sect;0-red constraint is binding right now</em>: the company with arguably the best models on earth is spending its pre-IPO balance sheet not on chips or talent, but on the right to plug in.</dd>
+      <dt>The bear case</dt><dd class="bear">One analyst projects natural-gas prices could more than triple in some markets by decade's end &mdash; in which case Anthropic just locked in an expensive, carbon-heavy hedge it may regret, during the exact window it is asking public markets for a trillion-plus. The IPO itself is contested: the S-1/A price range is still blank, bids have reportedly slipped from $1.75T toward ~$1.2T, and at least one analyst called it a test of &ldquo;investor gullibility.&rdquo; Buying power plants to win an AI race is either foresight or the top of the cycle, and you won't know which for two years.</dd>
+      <dt>What it means</dt><dd class="foryou">You don't act on this; you <em>re-weight</em> on it. Every &ldquo;AI is inevitable&rdquo; story you read for the next six months now has a physical denominator &mdash; turbines, wells, transmission &mdash; and the companies that free up or generate power are suddenly as strategic as the labs. Two doors fall out of it. One, your &sect;0-red and the energy wedge just got their loudest confirmation: the subsurface and grid-interconnection layers are where a technical person with your field can become literate while nobody is looking. Two, watch the <em>dealmaking</em> here, because your profile asks for it &mdash; this is a company using a balance sheet as a weapon to corner a scarce input. That move, not the model, is the lesson.</dd>
+    </dl>
+  </article>
+
+  <article class="story">
+    <div class="kicker">The energy wedge, with real numbers &middot; a drilling engineer turned the shale playbook on hot rock</div>
+    <h3>Fervo's geothermal backlog hit $11.9B &mdash; and its founder got there by being an oil-and-gas driller first</h3><span class="vote" data-id="b1e2ed75d50e" data-title="Fervo's geothermal backlog hit $11.9B &amp;mdash; and its founder got there by being an oil-and-gas driller first" data-section="&sect;1" data-issue="2026-11-10"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span>
+    <p class="byline"><b>$11.9B</b> contracted backlog, up from <b>$7.2B</b> last quarter &middot; new <b>396&nbsp;MW</b>, 15-year Google PPA (lifts binding PPAs 658&rarr;<b>1,054&nbsp;MW</b>) &middot; Cape&nbsp;Station, Utah resource now pegged at <b>8.4&nbsp;GW</b> (prior estimate 4&nbsp;GW) &middot; drilling cost <b>$7,000 &rarr; $5,500 &rarr; $3,000/kW</b> target &middot; first <b>100&nbsp;MW</b> already on the grid &middot; did the largest clean-energy IPO in history in May 2026 (<b>$1.9B</b>) &middot;
+      <a href="https://techcrunch.com/2026/11/09/fervo-now-has-12b-in-orders-for-its-geothermal-power-tech/">TechCrunch</a> &middot;
+      <a href="https://www.sec.gov/Archives/edgar/data/0001853868/000162828026071911/exhibit991earningsrelease1.htm">SEC 8-K</a> &middot;
+      <a href="https://trellis.net/article/meet-the-drilling-entrepreneur-unlocking-geothermal-power-for-google/">Trellis profile</a></p>
+    <dl class="brief">
+      <dt>What they do</dt><dd>Fervo builds <em>enhanced</em> geothermal power &mdash; not the rare spots where hot water sits near the surface, but anywhere hot rock exists deep down. They drill, fracture the rock to create a reservoir, circulate water through it, and sell the resulting round-the-clock electricity on long contracts. The news is the backlog: $11.9B of signed revenue, up from $7.2B a quarter ago, mostly on one 15-year, 396&nbsp;MW deal with Google.</dd>
+      <dt>The tech</dt><dd>The whole company is a falling number. Geothermal has always been physically possible and economically dead because drilling was too expensive. Fervo is dragging cost down a curve &mdash; $7,000/kW on its first Cape&nbsp;Station phase, $5,500 on the Google plant, a $3,000 target &mdash; by importing horizontal drilling and fracturing straight from shale. At $3,000/kW it beats a new gas plant outright; today it's still ~2x the cost of gas, carried by subsidies. That single curve is the entire thesis, and it is exactly the kind of primary-source number &sect;6 trains you to go dig out.</dd>
+      <dt>The founder</dt><dd>Tim&nbsp;Latimer was a <em>drilling engineer at BHP</em> in the Permian and Eagle Ford &mdash; he spent his twenties actually drilling oil-and-gas wells &mdash; before leaving in 2015 for a Stanford MBA/MS, where he started Fervo. The unfair advantage is almost too on-the-nose: the hardest part of geothermal is drilling, and he came from the one industry that had spent a trillion dollars getting good at it. He didn't invent a technology; he <em>carried</em> one across industries.</dd>
+      <dt>Where the idea came from</dt><dd>Precisely from that access. Latimer had watched the shale revolution make the impossible cheap through horizontal drilling and fracturing, and saw that the same toolkit, pointed at hot rock instead of hydrocarbons, was a clean-power company nobody with a climate background could see &mdash; because they'd never stood on a rig. The observation was &ldquo;my old job is the solution to this new problem,&rdquo; which is the most transferable pattern in this whole brief.</dd>
+      <dt>The bear case</dt><dd class="bear">It is still roughly twice the cost of gas without the subsidy, so the $3,000/kW target has to actually land; a contracted backlog is not cash, and a 2028 Google plant is a promise, not a kilowatt. The business is brutally capital-intensive, exposed to interest rates and to any cut in the production tax credit (arXiv economists are already modelling the PTC's distortions), and &ldquo;we'll drill cheaper next time&rdquo; is a sentence every drilling company has said.</dd>
+      <dt>What it means</dt><dd class="foryou">This is the energy wedge made concrete, and the reason it survived today's retire-or-keep date. The lesson isn't &ldquo;go start a geothermal company&rdquo; &mdash; it's red, and Latimer needed a decade and a rig. It's the <em>pattern</em>: he won by carrying deep, unfashionable domain access into a hot new field. Your degree's subject matter is that unfashionable access &mdash; subsurface, drilling data, reservoir behaviour &mdash; and it sits directly under the &sect;0-red bottleneck the whole front page is screaming about. You don't drill. You get literate in the data layer of the thing money is pouring into, the way Latimer was literate in rock.</dd>
+    </dl>
+  </article>
+
+  <article class="story">
+    <div class="kicker">Your deep-tech lane, funded &middot; the money is moving from chatbots to the atoms &mdash; and to defense</div>
+    <h3>Nominal tripled to $3B in eight months building the &ldquo;intelligence layer&rdquo; for hardware testing &mdash; run by an ex-submarine officer</h3><span class="vote" data-id="ae17f4c3860d" data-title="Nominal tripled to $3B in eight months building the &amp;ldquo;intelligence layer&amp;rdquo; for hardware testing &amp;mdash; run by an ex-submarine officer" data-section="&sect;1" data-issue="2026-11-10"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span>
+    <p class="byline"><b>$240M</b> Series&nbsp;C at a <b>$3B</b> valuation (led by Lightspeed, co-led by Insight; Lux, Sequoia, General&nbsp;Catalyst, Founders&nbsp;Fund in) &middot; tripled from a <b>$1B</b> Series&nbsp;B eight months ago &middot; <b>80</b> commercial + government customers &middot; <b>Anduril</b> (300+ engineers), <b>HII</b>, <b>Hermeus</b> named &middot; <b>$71.2M</b> Air&nbsp;Force STRATFI for Collaborative&nbsp;Combat&nbsp;Aircraft &middot; used by <b>5 of the 7</b> largest defense primes &middot;
+      <a href="https://techcrunch.com/2026/11/09/ai-hardware-startup-nominal-triples-valuation-to-3b-in-8-months/">TechCrunch</a> &middot;
+      <a href="https://nominal.io/blog/series-c-news">Nominal</a></p>
+    <dl class="brief">
+      <dt>What they do</dt><dd>Nominal is the software that sits under physical engineering &mdash; aircraft, reactors, defense hardware. When you test complex hardware you generate oceans of sensor and simulation data that end up fragmented across legacy tools, so engineers can't build on their own past work. Nominal unifies it and layers an AI agent (&ldquo;Analyst&rdquo;) on top that answers questions <em>grounded in the underlying evidence</em>, not vibes. Anduril says it turned 5&ndash;6-hour analyses into near-real-time.</dd>
+      <dt>The tech</dt><dd>The hard, unglamorous part is that this data is high-consequence and often <em>air-gapped</em> &mdash; it lives on classified or on-prem networks, not in somebody's cloud. Nominal runs cloud, on-prem, edge and air-gapped, and exposes itself through SQL, APIs and MCP so teams build their own workflows on top. That &ldquo;traceable answer grounded in evidence&rdquo; requirement is what separates a toy from a tool when a wrong number means a crashed aircraft, and it's why the defense primes trust it where a generic chatbot would be banned.</dd>
+      <dt>The founders</dt><dd>CEO Cameron&nbsp;McCord is a former U.S.&nbsp;Navy submarine officer and an <em>Anduril alum</em>; the company's $1B round eight months ago was led by Trae&nbsp;Stephens at Founders&nbsp;Fund &mdash; an Anduril co-founder. The unfair advantage is distribution-shaped: the founders came out of exactly the defense-hardware world they now sell into, so their first customers were people they already knew needed this, which is why five of the seven biggest primes are already on it.</dd>
+      <dt>Where the idea came from</dt><dd>From living the pain. A submarine officer and an Anduril engineer had both watched elite hardware teams drown in disconnected test data; the access was &ldquo;I have personally waited 6 hours for an analysis that should take seconds.&rdquo; AI didn't create the opportunity &mdash; it made the long-standing mess finally tractable, and insiders were the ones positioned to see it.</dd>
+      <dt>The bear case</dt><dd class="bear">Defense revenue is lumpy, political and slow; a $3B mark at 80 customers prices in a lot of future, and a valuation tripling in eight months is the kind of thing that looks brilliant or reckless only in hindsight. Horizontal data platforms get squeezed from both sides &mdash; the primes may build in-house, the frontier labs may push down &mdash; and &ldquo;air-gapped and grounded&rdquo; is a moat only until the big model vendors ship the same guarantees.</dd>
+      <dt>What it means</dt><dd class="foryou">This is your lane lighting up: deep tech, defense, and the design-and-test process you're drawn to, all funded in one round. Nominal <em>is</em> YC's &ldquo;AI for the Air-Gapped Economy&rdquo; RFS category with a $3B price tag. Two concrete pulls. One, read <a href="https://nominal.io/blog/series-c-news">their blog and careers page</a> as a syllabus for what the real hardware-test stack looks like &mdash; it is the grown-up version of logging your tiltrotor's flight data. Two, note the founder pattern repeating across all three of today's stories: McCord, Latimer, even Anthropic's operators won by carrying specific prior-world access into a new fight. You are being told, three times in one issue, what the unfair advantage actually is.</dd>
+    </dl>
+  </article>
+</section>
+
+<!-- ========== §A ========== -->
+<section>
+  <div class="shead"><span class="snum">&sect;A</span><h2>The Remake</h2>
+    <span class="scount">one evidenced candidate &middot; never more</span></div>
+
+  <article class="story">
+    <div class="kicker">Same tool, unbundled + one audience &mdash; the Shopify form that swears it will never silently eat an order</div>
+    <h3>A Shopify form app whose entire pitch is &ldquo;you will never lose a submission&rdquo; &mdash; for merchants whose forms <em>are</em> their orders</h3><span class="vote" data-id="1dababf3fb55" data-title="A Shopify form app whose entire pitch is &amp;ldquo;you will never lose a submission&amp;rdquo; &amp;mdash; for merchants whose forms are their orders" data-section="&sect;A" data-issue="2026-11-10"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span>
+    <dl class="brief">
+      <dt>The incumbent</dt><dd><a href="https://apps.shopify.com/form-builder-contact-form">Powerful Contact Form Builder</a> &mdash; one of the most-installed form apps on the Shopify App Store (<b>2,662</b> reviews, <b>4.9&nbsp;&#9733;</b>). It is not ugly and not bad; it is the default. Which is exactly why the <em>shape</em> of its 1-star complaints is the opening, not its quality.</dd>
+      <dt>The complaint</dt><dd>The negative reviews aren't about features &mdash; they're about <em>silent failure</em>. A merchant called Carpe, 1-star: <em>&ldquo;Quietly broke the integration that sent form submissions to our gmail &amp; no response from their support in 72 hours.&rdquo;</em> Another, iReliev: <em>&ldquo;absolutely the worst support. Numerous attempts for a little help and no effort at all. Super buggy.&rdquo;</em> A third: <em>&ldquo;it's worked fine but for some reason it has not been working right for the last month.&rdquo;</em> (<a href="https://apps.shopify.com/form-builder-contact-form/reviews?ratings%5B%5D=1">1-star reviews, verbatim</a>.) For a newsletter signup, a dropped submission is an annoyance. For a wholesale application or a quote request, it is a lost five-figure order the merchant never even knew arrived.</dd>
+      <dt>Which remake</dt><dd><b>Same tool, unbundled &mdash; and aimed at one audience.</b> Don't out-feature the builder. Strip it to the forms that carry money &mdash; B2B/wholesale account applications, quote and RFQ requests &mdash; and make the <em>product</em> delivery reliability: every submission double-written and confirmed, and an alert the instant a delivery fails, so a merchant can never silently stop receiving orders. The pitch is one sentence the incumbent's architecture and support model can't say: &ldquo;you will know within sixty seconds if a submission didn't reach you.&rdquo;</dd>
+      <dt>The buyer</dt><dd>Shopify B2B and wholesale merchants &mdash; the ones who already pay for apps and whose forms gate real revenue, not mailing lists. They currently tolerate a free/freemium contact-form app and discover it broke only when a customer phones asking why nobody replied. A $15&ndash;$29/mo app that guarantees delivery is a trivial yes for someone whose average order is four figures. Distribution is the <b>Shopify App Store</b>, where &ldquo;form&rdquo; is a top search and the install is one click &mdash; the whole reason to build here and not beside it.</dd>
+      <dt>Why him</dt><dd class="foryou">This is a trust-and-reliability artifact, which is your edge the same way yesterday's was &mdash; except the moat here is operational, not visual: most of these apps treat a form as fire-and-forget, and the insight that the <em>product is the guarantee, not the field types</em> is the judgment a competitor can't copy by shipping features. It also ships in a weekend: the form rendering is solved, the hard, valuable part is the delivery-confirmation loop, which is a small amount of code and a large amount of positioning.</dd>
+      <dt>First step</dt><dd>Today, build the thinnest proof: a single Shopify embedded form that, on submit, writes the lead two ways (e.g. email + a webhook) and emails <em>you</em> the moment either delivery fails. Then take it to three real buyers &mdash; post in the <a href="https://community.shopify.com/">Shopify Community</a> and r/shopify and ask B2B merchants one question: <em>&ldquo;has a form ever silently stopped sending you submissions, and how long before you noticed?&rdquo;</em> Their answer is both the market size and your exact landing-page copy.
+        <span class="note">(Kill-filter check: useful on first install (reliability from submission one); buyer&nbsp;=&nbsp;user with proven budget and a <em>revenue</em> reason to pay; runs unattended once set; flat subscription, not consumer-ad. The honest risk: forms is a crowded category with a beloved 4.9&#9733; incumbent &mdash; so this <em>only</em> works if you stay ruthlessly narrow on the B2B/delivery-guarantee wedge and never try to become a general form builder. Go broad and you're fighting 2,662 happy reviews, and lose.)</span></dd>
+    </dl>
+  </article>
+</section>
+
+<!-- ========== §2 ========== -->
+<section>
+  <div class="shead"><span class="snum">&sect;2</span><h2>Money Moved</h2>
+    <span class="scount">ranked by size &middot; where money believes problems are</span></div>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Round / deal</th><th>Amount</th><th>What it signals</th><th>Src</th></tr></thead>
+    <tbody>
+      <tr><td>Anthropic &rarr; IPO + Caterpillar turbines</td><td class="num">$3.4B</td>
+        <td>Covered in &sect;1: the lab buys <a href="https://techcrunch.com/2026/11/09/anthropic-joins-ais-natural-gas-frenzy-buys-3-4b-worth-of-turbines/">1.7&nbsp;GW of generation</a> while pricing a trillion-dollar IPO. The single loudest datapoint that the scarce asset is now power, not models.</td>
+        <td class="src"><a href="https://techcrunch.com/2026/11/09/anthropic-joins-ais-natural-gas-frenzy-buys-3-4b-worth-of-turbines/">TechCrunch</a></td></tr>
+      <tr><td>Nominal &rarr; Series C</td><td class="num">$240M</td>
+        <td>Covered in &sect;1. <a href="https://techcrunch.com/2026/11/09/ai-hardware-startup-nominal-triples-valuation-to-3b-in-8-months/">$3B valuation, tripled in 8 months</a>, on defense + hardware-test demand. Capital is chasing the atoms and the air-gapped economy.</td>
+        <td class="src"><a href="https://techcrunch.com/2026/11/09/ai-hardware-startup-nominal-triples-valuation-to-3b-in-8-months/">TechCrunch</a></td></tr>
+      <tr><td>Monzo &rarr; raise talks</td><td class="num">&pound;500M</td>
+        <td>The UK neobank is <a href="https://sifted.eu/articles/monzo-to-raise-up-to-500m/">reportedly in talks for up to &pound;500M</a>. Even in Europe's fintech funding drought, capital still finds the category winner &mdash; the losers just can't raise at all.</td>
+        <td class="src"><a href="https://sifted.eu/articles/monzo-to-raise-up-to-500m/">Sifted</a></td></tr>
+      <tr><td>Onodrim &rarr; European defence rollup</td><td class="num">$300M</td>
+        <td><a href="https://sifted.eu/articles/onodrim-300-european-defence-rollup/">$300M as European defence roll-ups heat up.</a> The same rearmament wave as YC's &ldquo;American Defense&rdquo; RFS, now with a European, acquisition-led shape &mdash; buying old defense firms, not just building new ones.</td>
+        <td class="src"><a href="https://sifted.eu/articles/onodrim-300-european-defence-rollup/">Sifted</a></td></tr>
+      <tr><td>MakeMyTrip (India arm) &rarr; IPO</td><td class="num">SEBI&nbsp;nod</td>
+        <td>The Nasdaq-listed travel company's <a href="https://yourstory.com/2026/11/makemytrip-india-arm-gets-sebi-nod-to-float-ipo">India arm cleared to float an IPO.</a> India's consumer-internet infrastructure quietly compounding into public-market scale, one market over.</td>
+        <td class="src"><a href="https://yourstory.com/2026/11/makemytrip-india-arm-gets-sebi-nod-to-float-ipo">YourStory</a></td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="note">Read the <em>composition</em>: the two biggest moves are both physical (Anthropic's turbines, and &mdash; off the round table but bigger than any of these &mdash; Fervo's $11.9B energy backlog in &sect;1), the sharpest theme is defense (Onodrim, Nominal), and the one pure-software winner still raising is a category-leading neobank. <a href="https://news.crunchbase.com/venture/series-a-2026-startup-capital-up-deals-steady/">Crunchbase confirms the shape</a>: US Series&nbsp;A capital is up to $42B this year, but deal counts are flat &mdash; more money, concentrated into fewer, more-proven companies. The era of a thin idea raising on a deck is over; the money wants atoms, defense, or a demonstrated moat.</p>
+</section>
+
+<!-- ========== §3 ========== -->
+<section>
+  <div class="shead"><span class="snum">&sect;3</span><h2>Problems Worth Solving</h2>
+    <span class="scount">buildable, or a model you didn't have</span></div>
+  <ul class="feed">
+    <li><span class="tag">The &sect;0-red, made explicit</span> &mdash; MIT&nbsp;Technology&nbsp;Review:
+      <a href="https://www.technologyreview.com/">the backlash about data centers &ldquo;might really just be about electricity.&rdquo;</a> The piece reframes every &ldquo;community opposes data center&rdquo; headline as what it actually is &mdash; a fight over megawatts, water and transmission. Read it as the demand-side map of today's power-siting problem: the places fighting hardest are the places where the grid is most strained, i.e. where the opportunity is largest.<span class="vote" data-id="87a9c3d8c0a3" data-title="The &amp;sect;0-red, made explicit &amp;mdash; MIT&amp;nbsp;Technology&amp;nbsp;Review: the backlash about data centers &amp;ldquo;might really just be about electricity.&amp;rdquo; The piece reframes every &amp;ldquo;community " data-section="feed" data-issue="2026-11-10"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><span class="tag">The grader's map &middot; policy model</span> &mdash; Marginal&nbsp;Revolution:
+      <a href="https://marginalrevolution.com/marginalrevolution/2026/11/end-the-state-veto-on-power-lines.html">&ldquo;End the State Veto on Power Lines.&rdquo;</a> Tyler&nbsp;Cowen &mdash; who runs the Emergent&nbsp;Ventures grant you keep hearing about &mdash; argues a natural-gas pipeline can cross state lines but a power line can't, and that this single legal asymmetry is throttling the whole energy build-out. When the grader writes about a bottleneck, it tells you where attention and money are about to flow.<span class="vote" data-id="0d90d56dee37" data-title="The grader's map &amp;middot; policy model &amp;mdash; Marginal&amp;nbsp;Revolution: &amp;ldquo;End the State Veto on Power Lines.&amp;rdquo; Tyler&amp;nbsp;Cowen &amp;mdash; who runs the Emergent&amp;nbsp;Ventures grant you keep he" data-section="feed" data-issue="2026-11-10"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><span class="tag">Design process &middot; your lane</span> &mdash; MIT&nbsp;News:
+      <a href="https://news.mit.edu/2026/ai-model-simulates-many-substances-sliding-sand-folding-proteins-1110">a single AI model that simulates sliding sand, folding proteins and more.</a> The &ldquo;WorldParticle&rdquo; system learns how matter moves, so one model spans materials that used to each need their own solver. This is the simulation literacy sitting under drones, geothermal reservoirs and in-space assembly alike &mdash; the &ldquo;why does this behave the way it does&rdquo; layer your profile is drawn to.<span class="vote" data-id="ae8a757cb707" data-title="Design process &amp;middot; your lane &amp;mdash; MIT&amp;nbsp;News: a single AI model that simulates sliding sand, folding proteins and more. The &amp;ldquo;WorldParticle&amp;rdquo; system learns how matter moves, so on" data-section="feed" data-issue="2026-11-10"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><span class="tag">Buildable &middot; the agent-permissions gap</span> &mdash; arXiv:
+      <a href="https://arxiv.org/list/cs.CR/recent">&ldquo;Least-Privilege Auditing of Agent Tool Calls with Intent Graphs.&rdquo;</a> A fresh paper on giving an AI agent exactly the authority its task needs and no more, with a reviewable record of what it touched &mdash; the research-grade version of a standing &sect;0 problem (nobody can prove what an agent actually did). The literacy here is the foundation under any &ldquo;what did my agent just do?&rdquo; tool.<span class="vote" data-id="580eda85d02b" data-title="Buildable &amp;middot; the agent-permissions gap &amp;mdash; arXiv: &amp;ldquo;Least-Privilege Auditing of Agent Tool Calls with Intent Graphs.&amp;rdquo; A fresh paper on giving an AI agent exactly the authority its" data-section="feed" data-issue="2026-11-10"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><span class="tag">A model &middot; distribution is still the whole game</span> &mdash; r/startups:
+      <a href="https://www.reddit.com/r/startups/">&ldquo;80 users, no one paying &mdash; what am I doing wrong?&rdquo;</a> A 19-year-old cyber-security student shipped a Windows app and hit the same wall everyone hits: building got easy, being <em>found</em> and <em>paid</em> did not. It's the recurring lesson under every &sect;A candidate &mdash; which is exactly why the playbook says build inside a marketplace where the buyers and their cards already are.<span class="vote" data-id="d0d82c872596" data-title="A model &amp;middot; distribution is still the whole game &amp;mdash; r/startups: &amp;ldquo;80 users, no one paying &amp;mdash; what am I doing wrong?&amp;rdquo; A 19-year-old cyber-security student shipped a Windows ap" data-section="feed" data-issue="2026-11-10"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><span class="tag">A frontier map</span> &mdash; Import&nbsp;AI&nbsp;480:
+      <a href="https://importai.net/">self-sustaining space economies, AI for scientific progress, and &ldquo;perfect hands&rdquo; for robots.</a> Jack&nbsp;Clark's weekly is the cheapest way to see which hard problems the frontier is actually moving toward before they're headlines &mdash; this issue's throughline (space, science, manipulation) overlaps three of your board's on-ramps.<span class="vote" data-id="8c0ac741fc0d" data-title="A frontier map &amp;mdash; Import&amp;nbsp;AI&amp;nbsp;480: self-sustaining space economies, AI for scientific progress, and &amp;ldquo;perfect hands&amp;rdquo; for robots. Jack&amp;nbsp;Clark's weekly is the cheapest way to" data-section="feed" data-issue="2026-11-10"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+  </ul>
+</section>
+
+<!-- ========== §4 ========== -->
+<section>
+  <div class="shead"><span class="snum">&sect;4</span><h2>Shipped</h2>
+    <span class="scount">by HN points / release weight</span></div>
+  <ul class="feed">
+    <li><span class="tag">Front page &middot; the trust theme, made personal</span> &mdash; HN (478 pts):
+      <a href="https://news.ycombinator.com/">Google Gemini routes personal Drive files and emails to human annotators.</a> The assistant you hand your documents to may hand them to a stranger for labelling. Read it as the consumer face of the whole provenance theme: the question isn't only &ldquo;can the model do it,&rdquo; it's &ldquo;who else sees what I gave it&rdquo; &mdash; and the gap between the two is where trust products get built.<span class="vote" data-id="c2b2204505d1" data-title="Front page &amp;middot; the trust theme, made personal &amp;mdash; HN (478 pts): Google Gemini routes personal Drive files and emails to human annotators. The assistant you hand your documents to may hand the" data-section="feed" data-issue="2026-11-10"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><span class="tag">The model under the IPO</span> &mdash; HN (318 pts):
+      <a href="https://news.ycombinator.com/">Claude Fable 5.2 and Mythos 5.2</a> shipped, with Fable scoring <b>65</b> on Artificial&nbsp;Analysis &mdash; the highest yet &mdash; days before Anthropic prices its IPO (&sect;1). Simon&nbsp;Willison already cut <a href="https://simonwillison.net/">llm-anthropic 0.31</a> for it. The product keeps improving under the financing drama; whether the trillion-dollar valuation needs it to is &sect;1's open question.<span class="vote" data-id="10d886c937e1" data-title="The model under the IPO &amp;mdash; HN (318 pts): Claude Fable 5.2 and Mythos 5.2 shipped, with Fable scoring 65 on Artificial&amp;nbsp;Analysis &amp;mdash; the highest yet &amp;mdash; days before Anthropic prices it" data-section="feed" data-issue="2026-11-10"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><span class="tag">Your chip lane &middot; the physical frontier</span> &mdash; HN (118 pts):
+      <a href="https://news.ycombinator.com/">The first 300&nbsp;mm power silicon-carbide (SiC) wafer.</a> SiC is the material making EVs, grid inverters and data-center power electronics more efficient; moving it from 200&nbsp;mm to 300&nbsp;mm wafers is the same cost-down-the-curve story as chips in general. Directly in the Chip&nbsp;War material you'll meet in &sect;7, and adjacent to the power electronics on any drone.<span class="vote" data-id="12a10ad56234" data-title="Your chip lane &amp;middot; the physical frontier &amp;mdash; HN (118 pts): The first 300&amp;nbsp;mm power silicon-carbide (SiC) wafer. SiC is the material making EVs, grid inverters and data-center power electr" data-section="feed" data-issue="2026-11-10"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><span class="tag">Your space lane &middot; buildable</span> &mdash; HN (263 pts):
+      <a href="https://news.ycombinator.com/">Show HN: every satellite that passed over any place this week, and the photos it took.</a> A solo dev stitched public satellite-pass and imagery data into &ldquo;what photographed my street.&rdquo; Worth it twice: as a genuinely delightful tool, and as a study in turning open space data into a product &mdash; the on-ramp to the space interest on your board.<span class="vote" data-id="61005918ff00" data-title="Your space lane &amp;middot; buildable &amp;mdash; HN (263 pts): Show HN: every satellite that passed over any place this week, and the photos it took. A solo dev stitched public satellite-pass and imagery da" data-section="feed" data-issue="2026-11-10"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><span class="tag">A public dataset that unlocks builds</span> &mdash; HN (541 pts):
+      <a href="https://news.ycombinator.com/">USPS now offers official ZIP Code boundary polygons.</a> A dataset people have hacked around for decades is suddenly official and free. Every &ldquo;near me,&rdquo; territory-mapping or logistics tool just got easier to build &mdash; the kind of quiet infrastructure release that spawns a hundred small products.<span class="vote" data-id="ea09adc2820a" data-title="A public dataset that unlocks builds &amp;mdash; HN (541 pts): USPS now offers official ZIP Code boundary polygons. A dataset people have hacked around for decades is suddenly official and free. Every &amp;ld" data-section="feed" data-issue="2026-11-10"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><span class="tag">For the joy of it &middot; your aero lane</span> &mdash; HN (895 pts, top of the board):
+      <a href="https://news.ycombinator.com/">Foldable Flight: the best paper airplanes.</a> The most-upvoted thing on HN today is a meticulous guide to folding aircraft that actually fly well &mdash; aerodynamics stripped to paper and creases. Filed because the instinct that makes you build a tiltrotor is the same one that finds this irresistible, and sometimes that's reason enough.<span class="vote" data-id="4e865d3d3ffe" data-title="For the joy of it &amp;middot; your aero lane &amp;mdash; HN (895 pts, top of the board): Foldable Flight: the best paper airplanes. The most-upvoted thing on HN today is a meticulous guide to folding aircraf" data-section="feed" data-issue="2026-11-10"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+  </ul>
+</section>
+
+<!-- ========== §5 ========== -->
+<section>
+  <div class="shead"><span class="snum">&sect;5</span><h2>The Arena</h2>
+    <span class="scount">soonest first &middot; red under 7 days</span></div>
+  <div class="door">
+    <div class="name"><a href="https://ugreenhackathon.devpost.com/">UGREEN Hackathon 2026 on AI NAS</a></div>
+    <div class="sub">$46k &middot; AI + storage hardware &mdash; the most hardware-adjacent thing on the board, your lane; ties the own-your-intelligence / self-hosting thread &middot; 1,936 registered &middot; Devpost</div>
+    <div class="days hot">6 days</div>
+  </div>
+  <div class="door">
+    <div class="name"><a href="https://start-developer-competition-26.devpost.com/">Meta VR Start Developer Competition 2026</a></div>
+    <div class="sub">$1M &mdash; largest purse on the board; build on Meta VR/AR hardware &middot; 5,632 registered &middot; Devpost</div>
+    <div class="days warm">8 days</div>
+  </div>
+  <div class="door">
+    <div class="name"><a href="https://kiroween.devpost.com/">Kiroween 2026</a></div>
+    <div class="sub">$100k &middot; open-ended AI build on Kiro, beginner-friendly &mdash; 11,110 registered, the most crowded field here &middot; Devpost</div>
+    <div class="days">24 days</div>
+  </div>
+  <div class="door">
+    <div class="name"><a href="https://qnx.devpost.com/">QNX Global Hackathon</a></div>
+    <div class="sub">$50k &middot; build on QNX (embedded / automotive real-time OS) &mdash; the closest thing here to your tiltrotor's flight-control stack &middot; Devpost</div>
+    <div class="days">35 days</div>
+  </div>
+  <div class="door">
+    <div class="name"><a href="https://codegeist2026.devpost.com/">Codegeist 2026 (Atlassian)</a></div>
+    <div class="sub">$120k &middot; build on Atlassian's platform &mdash; warm B2B buyers, a marketplace with a card out (see &sect;A's logic) &middot; Devpost</div>
+    <div class="days">42 days</div>
+  </div>
+  <div class="door">
+    <div class="name"><a href="https://aws-agentic-msp.devpost.com/">AWS MSP AI Hackathon</a></div>
+    <div class="sub">$64k &middot; agentic AI on AWS for managed-service providers &mdash; strong sponsor logo for proof-of-work; deadline unconfirmed on this pull &middot; Devpost</div>
+    <div class="days">date?</div>
+  </div>
+  <p class="note" style="margin-top:14px">Devpost returned the list but blocked the deadline scrape, so these day-counts are carried forward from yesterday's confirmed dates minus one &mdash; treat them as &plusmn;1 and re-check before you commit a weekend. <b>UGREEN is now red (6 days)</b> and is the one most worth your time &mdash; AI-on-NAS is hardware, your lane, and a smaller field. QNX (real-time embedded OS) is the other that maps to your actual build. New-but-unconfirmed this pull: <a href="https://icehacks.devpost.com/">IceHacks</a> ($17k) and <a href="https://scope-ai-thon-2026.devpost.com/">Scope-AI-Thon</a> (AI for detecting patient deterioration) &mdash; both returned without dates.</p>
+</section>
+
+<!-- ========== §5b ========== -->
+<section>
+  <div class="shead"><span class="snum">&sect;5b</span><h2>Open Doors</h2>
+    <span class="scount">US-side &middot; proof-of-work beats a transcript</span></div>
+  <ul class="feed">
+    <li><span class="tag">Your &sect;1 lane, hiring</span> &mdash; <a href="https://nominal.io/careers">Nominal</a> (today's $3B hardware-AI story) and the defense-autonomy teams around it (Anduril, Overland&nbsp;AI) are hiring into exactly the stack your profile points at &mdash; sensor data, test infrastructure, autonomy. Read Nominal's careers page as a syllabus for what the real hardware-test stack looks like; an undergrad who designs, flies and <em>logs the telemetry</em> of an autonomous aircraft can speak their language, and you're US-eligible without the visa math that blocks your peers.<span class="vote" data-id="4118c489ca7b" data-title="Your &amp;sect;1 lane, hiring &amp;mdash; Nominal (today's $3B hardware-AI story) and the defense-autonomy teams around it (Anduril, Overland&amp;nbsp;AI) are hiring into exactly the stack your profile points at " data-section="feed" data-issue="2026-11-10"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><span class="tag">A mirror worth acting on</span> &mdash; r/startups:
+      <a href="https://www.reddit.com/r/startups/">&ldquo;How do I land a startup internship this spring?&rdquo;</a> &mdash; a math-econ junior planning to take the semester off to work full-time. That's you-shaped. The answer the thread lands on is the brief's standing advice: a demonstrated project beats a resume, and US startups hire on proof-of-work. You already have the project; the move is to point it at a specific company and apply this cycle.<span class="vote" data-id="741a0095dd07" data-title="A mirror worth acting on &amp;mdash; r/startups: &amp;ldquo;How do I land a startup internship this spring?&amp;rdquo; &amp;mdash; a math-econ junior planning to take the semester off to work full-time. That's you-sh" data-section="feed" data-issue="2026-11-10"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><span class="tag">The RFS is a standing door</span> &mdash; three of YC's <a href="https://www.ycombinator.com/rfs">Winter&nbsp;2027 requests</a> are what today's stories map onto: <b>AI for the Air-Gapped Economy</b> (Nominal just raised $240M being exactly this), <b>Wall&nbsp;Street for the Physical Buildout</b> (financing Fervo-style energy and infrastructure), and <b>Data&nbsp;Center Supply&nbsp;Chain</b> (the &sect;0-red bottleneck). A credible demo against any one is a warm application to the best-known accelerator on earth, open to you without sponsorship.<span class="vote" data-id="7d7637bd0da7" data-title="The RFS is a standing door &amp;mdash; three of YC's Winter&amp;nbsp;2027 requests are what today's stories map onto: AI for the Air-Gapped Economy (Nominal just raised $240M being exactly this), Wall&amp;nbsp;St" data-section="feed" data-issue="2026-11-10"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+  </ul>
+</section>
+
+<!-- ========== §6 ========== -->
+<section class="single">
+  <div class="shead"><span class="snum">&sect;6</span><h2>Skill</h2><span class="scount">day 32</span></div>
+  <h3>Take one company from today's issue and pull the single number that proves its threshold was crossed &mdash; from the primary filing, not the headline</h3><span class="vote" data-id="f5f80b0b0ca2" data-title="Take one company from today's issue and pull the single number that proves its threshold was crossed &amp;mdash; from the primary filing, not the headline" data-section="&sect;6" data-issue="2026-11-10"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span>
+  <p class="meta">~1&ndash;2 hrs &middot; free &middot; produces: the habit this entire brief runs on, and literacy in reading a filing &mdash; the thing most people your age never learn to do</p>
+  <p>
+    This whole brief obeys one rule &mdash; <em>numbers or silence</em> &mdash; and today gives you the perfect training set. Pick one story: Fervo or Anthropic. Then go past the article to the source. For Fervo, open its <a href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001853868&type=8-K">8-K on SEC&nbsp;EDGAR</a> and find the one sentence that carries the thesis &mdash; the contracted-backlog figure ($11.9B, up from $7.2B) and the drilling cost curve ($7,000&nbsp;&rarr;&nbsp;$5,500&nbsp;&rarr;&nbsp;$3,000/kW). For Anthropic, open its <a href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&company=anthropic&type=S-1">S-1</a> and find what the headlines won't tell you: the actual revenue, the actual loss, the price range (still blank). Write down, in one line, the single number that would change your mind about the company if it moved &mdash; and where in the document you found it.
+  </p>
+  <p>
+    Two things come out of one afternoon. One, you'll see how much of the &ldquo;news&rdquo; is just a reporter paraphrasing a document you could have read yourself in ten minutes &mdash; and how often the most important number is the one <em>not</em> in the headline. Two, you build the exact muscle a founder needs when a VC, a competitor or your own pitch deck makes a claim: go to the primary source and find the number, or notice there isn't one. Do this for one company a week for a month and you'll read a cap table, an earnings release and a rival's announcement the way you now read a tweet.
+  </p>
+  <p class="note">
+    Free resource: <a href="https://www.sec.gov/edgar/search/">SEC&nbsp;EDGAR full-text search</a> (efts.sec.gov / edgar/search) &mdash; every public filing by every US company, searchable, free, no login. Pair it with the habit that once you've found a company's key number, you check it again each quarter: the <em>trend</em> in that one figure is worth more than any analyst's paragraph about it.
+  </p>
+</section>
+
+<!-- ========== §7 ========== -->
+<section class="single">
+  <div class="shead"><span class="snum">&sect;7</span><h2>Watch / Read</h2><span class="scount">the canon &middot; new &ne; good</span></div>
+  <h3>&ldquo;Chip War&rdquo; (Chris&nbsp;Miller) &mdash; the one book that makes today's whole front page legible</h3><span class="vote" data-id="601550ed17d5" data-title="&amp;ldquo;Chip War&amp;rdquo; (Chris&amp;nbsp;Miller) &amp;mdash; the one book that makes today's whole front page legible" data-section="&sect;7" data-issue="2026-11-10"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span>
+  <p class="meta">Canon &middot; book (audiobook ~16h, or read over a couple of weeks) &middot; honest time cost: real, but the highest-leverage literacy on the list &middot; technical-depth-disguised track</p>
+  <p>
+    The lecture channels (Stanford, Acquired, Asianometry and ten others) 404'd again this morning; Veritasium did return, so a fresh talk was available &mdash; but the canon exists precisely because new&nbsp;&ne;&nbsp;good, and today one canon pick fits the issue better than any new upload could. Chip&nbsp;War is the history of semiconductors told as geopolitics, and it reads like a thriller &mdash; which is the only reason it's on a list built for someone who declined lectures. It earns its slot tonight because the entire front page is secretly about it: today's <em>first 300&nbsp;mm SiC power wafer</em> (&sect;4), the <em>TPU&nbsp;8</em> launch, <a href="https://restofworld.org/">Chinese AI firms poaching Silicon&nbsp;Valley's top minds</a> (&sect;9), and <a href="https://www.palladiummag.com/">Palladium on &ldquo;the limits of AI as an economic weapon&rdquo;</a> &mdash; a world split between premium US models and cheap Chinese open weights &mdash; are all chapters of the same story Miller already told.
+  </p>
+  <p class="note">
+    Why it, why now: you've told me you want to be literate in deep tech without sitting through homework, and that you lead by understanding how things are made. Chip&nbsp;War leaves you able to read a chip-export headline, a Taiwan story or a data-center-power fight (today's &sect;0-red) as moves in one continuous game &mdash; which is exactly the frame the rest of this issue demands. It rotates across tracks from yesterday's fiction pick (The&nbsp;Social&nbsp;Network) into technical-depth-disguised, and it has not run in this slot in the last 60 days. One book; the single best thing on this list for someone who wants to found in deep tech, not just admire it.
+  </p>
+</section>
+
+<!-- ========== §W ========== -->
+<section>
+  <div class="shead"><span class="snum">&sect;W</span><h2>The Wildcard</h2>
+    <span class="scount">deliberately not curated to your tastes</span></div>
+  <p class="note" style="margin-bottom:18px">The point of this section is to find interests you don't know you have, so it's picked for strangeness and range, never usefulness. Today: the shipwreck that triggered the first global financial panic, the 1865 book that invented modern flat-earth, a YouTuber who found most videos carry inaudible audio you can be located by, lampposts built to look drunk, the physics of setting off a nuke in low orbit, the coin-flip trick that counts the whole internet, a quiet global revolt against Big&nbsp;Tech's thirst for water, and a brand-new whale species found inside a 9.5-million-year-old carcass.</p>
+  <ul class="feed">
+    <li><a href="https://99percentinvisible.org/">Coin from the Ship of Gold</a> (99% Invisible) &mdash; the SS&nbsp;Central&nbsp;America sank in 1857 carrying tons of California gold, and its loss helped trigger the first global financial panic. A single coin as the thread through shipwreck, greed and a bank run that crossed oceans before telegraph lines did.<span class="vote" data-id="88794f5971e2" data-title="Coin from the Ship of Gold (99% Invisible) &amp;mdash; the SS&amp;nbsp;Central&amp;nbsp;America sank in 1857 carrying tons of California gold, and its loss helped trigger the first global financial panic. A singl" data-section="feed" data-issue="2026-11-10"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><a href="https://publicdomainreview.org/collection/zetetic-astronomy/">&ldquo;Earth Not a Globe&rdquo;: Parallax's Zetetic Astronomy (1865)</a> (Public Domain Review) &mdash; the actual Victorian book, by a man calling himself &ldquo;Parallax,&rdquo; more or less responsible for reviving flat-earth theory into the modern age. A case study in how a confident, self-published idea can outrun the truth for 150 years.<span class="vote" data-id="75c2dd66e847" data-title="&amp;ldquo;Earth Not a Globe&amp;rdquo;: Parallax's Zetetic Astronomy (1865) (Public Domain Review) &amp;mdash; the actual Victorian book, by a man calling himself &amp;ldquo;Parallax,&amp;rdquo; more or less responsible" data-section="feed" data-issue="2026-11-10"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><a href="https://kottke.org/">Most videos contain inaudible audio that can be geolocated</a> (Kottke) &mdash; a YouTuber discovered that the electrical hum bleeding into most recordings carries a fingerprint precise enough to place where and when it was shot. Half OSINT magic trick, half privacy nightmare, entirely strange.<span class="vote" data-id="d33722a856d3" data-title="Most videos contain inaudible audio that can be geolocated (Kottke) &amp;mdash; a YouTuber discovered that the electrical hum bleeding into most recordings carries a fingerprint precise enough to place wh" data-section="feed" data-issue="2026-11-10"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><a href="https://www.atlasobscura.com/places/drunken-lampposts-halifax">Drunken Lampposts, Halifax</a> (Atlas Obscura) &mdash; a cluster of streetlights along the Nova&nbsp;Scotia waterfront deliberately installed tilting at angles, as if they'd had a few. Public design as a joke that's survived decades; the opposite of everything a product is &ldquo;supposed&rdquo; to be.<span class="vote" data-id="72877870738b" data-title="Drunken Lampposts, Halifax (Atlas Obscura) &amp;mdash; a cluster of streetlights along the Nova&amp;nbsp;Scotia waterfront deliberately installed tilting at angles, as if they'd had a few. Public design as a " data-section="feed" data-issue="2026-11-10"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><a href="https://arxiv.org/list/physics.soc-ph/recent">Effects of a Nuclear Detonation in Low Earth Orbit</a> (arXiv, social physics) &mdash; more than 13,000 satellites now orbit in LEO, and this paper models, soberly, what one nuclear blast up there would do to all of them. A quiet, unsettling look at how fragile the infrastructure over our heads has quietly become.<span class="vote" data-id="ec8571a0154b" data-title="Effects of a Nuclear Detonation in Low Earth Orbit (arXiv, social physics) &amp;mdash; more than 13,000 satellites now orbit in LEO, and this paper models, soberly, what one nuclear blast up there would d" data-section="feed" data-issue="2026-11-10"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><a href="https://www.scientificamerican.com/">The coin-flipping trick that counts the internet</a> (Scientific American) &mdash; how HyperLogLog, an algorithm that essentially flips imaginary coins, can count billions of distinct things using a sliver of memory. The kind of idea that's beautiful once you see it, and running invisibly behind half the systems you use.<span class="vote" data-id="822793e4f339" data-title="The coin-flipping trick that counts the internet (Scientific American) &amp;mdash; how HyperLogLog, an algorithm that essentially flips imaginary coins, can count billions of distinct things using a slive" data-section="feed" data-issue="2026-11-10"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><a href="https://restofworld.org/">Big Tech's thirst for water is sparking a global resistance</a> (Rest of World) &mdash; from Chile to Uruguay, communities are organising against the water that data centers drink. The quiet mirror of today's &sect;0-red: the fight over AI's physical footprint isn't only about electricity, and it isn't only happening where the headlines look.<span class="vote" data-id="14c4b025b1a9" data-title="Big Tech's thirst for water is sparking a global resistance (Rest of World) &amp;mdash; from Chile to Uruguay, communities are organising against the water that data centers drink. The quiet mirror of tod" data-section="feed" data-issue="2026-11-10"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><a href="https://nautil.us/">A new whale species, from a 9.5-million-year-old carcass</a> (Nautilus) &mdash; a beaked whale, previously unknown to science, identified from fossil remains surrounded by what the writer calls stars. A reminder that the catalogue of life is still full of blanks we're only now filling in.<span class="vote" data-id="e843cb81c691" data-title="A new whale species, from a 9.5-million-year-old carcass (Nautilus) &amp;mdash; a beaked whale, previously unknown to science, identified from fossil remains surrounded by what the writer calls stars. A r" data-section="feed" data-issue="2026-11-10"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+  </ul>
+</section>
+
+<!-- ========== §8 ========== -->
+<section class="single">
+  <div class="shead"><span class="snum">&sect;8</span><h2>Deals</h2><span class="scount">1 free resource worth your time</span></div>
+  <h3>Shopify Partners &mdash; a free, full dev store to build and test today's &sect;A candidate at zero cost</h3><span class="vote" data-id="49aebf0b6d9c" data-title="Shopify Partners &amp;mdash; a free, full dev store to build and test today's &amp;sect;A candidate at zero cost" data-section="&sect;8" data-issue="2026-11-10"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span>
+  <p class="meta">free &middot; unlimited development stores, no card &middot; the hands-on version of today's &sect;A &middot; <a href="https://www.shopify.com/partners">shopify.com/partners</a></p>
+  <p>
+    A <a href="https://www.shopify.com/partners">Shopify Partners</a> account is free and gives you unlimited <em>development stores</em> &mdash; fully functional Shopify shops you can build on, install your own app into, and test end-to-end without paying for a plan or launching anything. It belongs in today's issue because &sect;A's whole thesis is &ldquo;build where the buyers already shop with a card out,&rdquo; and this is the zero-cost way to actually stand inside that marketplace instead of theorising about it. Spin up a dev store tonight, drop in a trivial form, and watch where a submission goes and what happens when you break the integration on purpose &mdash; the exact failure the &sect;A complaint is about. You'll learn more about whether the delivery-guarantee wedge is real in one evening of poking at a live store than in a week of reading reviews. Read it two ways: a free sandbox for the specific idea above, and a teardown &mdash; the Shopify App Store is the clearest living example of the one rule this brief keeps repeating, that distribution, not building, is the scarce thing, and that the fastest way to get it is to stand next to someone else's checkout.
+  </p>
+</section>
+
+<!-- ========== §9 ========== -->
+<section>
+  <div class="shead"><span class="snum">&sect;9</span><h2>Also</h2>
+    <span class="scount">filed, not featured</span></div>
+  <ul class="feed">
+    <li><span class="tag">Ties the &sect;7 Chip&nbsp;War thread</span> &mdash; Rest&nbsp;of&nbsp;World:
+      <a href="https://restofworld.org/">Chinese AI firms want Silicon&nbsp;Valley's top minds &mdash; poaching them won't be easy.</a> MiniMax and Moonshot are opening US outposts, but pay gaps and prestige are working against them. The talent war is the human layer of the chip-and-model cold war you'll meet in &sect;7 &mdash; read it as the labour market pricing the geopolitics in real time.<span class="vote" data-id="2cc4753e4707" data-title="Ties the &amp;sect;7 Chip&amp;nbsp;War thread &amp;mdash; Rest&amp;nbsp;of&amp;nbsp;World: Chinese AI firms want Silicon&amp;nbsp;Valley's top minds &amp;mdash; poaching them won't be easy. MiniMax and Moonshot are opening US ou" data-section="feed" data-issue="2026-11-10"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><span class="tag">The role is changing under you</span> &mdash; HN (53 pts):
+      <a href="https://news.ycombinator.com/">On Being an Engineer in 2026.</a> A working engineer's honest account of how the job has shifted now that agents write much of the code &mdash; less typing, more judgment, review and taste. Relevant because it's the job you're walking toward, and it describes the exact skill gap (verifying machine-written code) your &sect;0-green is built around.<span class="vote" data-id="5c50fa90755a" data-title="The role is changing under you &amp;mdash; HN (53 pts): On Being an Engineer in 2026. A working engineer's honest account of how the job has shifted now that agents write much of the code &amp;mdash; less typ" data-section="feed" data-issue="2026-11-10"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><span class="tag">Cognition &middot; a model you didn't have</span> &mdash; Nautilus / Quanta:
+      <a href="https://nautil.us/">Do we think in pictures, words, or code?</a> A conversation with cognitive scientist Evelina&nbsp;Fedorenko on where thought and language actually diverge, paired with <a href="https://www.quantamagazine.org/">Quanta probing whether AI models know their own thoughts.</a> Two angles on the same deep question &mdash; what &ldquo;thinking&rdquo; even is &mdash; now that we've built machines that imitate it.<span class="vote" data-id="6548998953e9" data-title="Cognition &amp;middot; a model you didn't have &amp;mdash; Nautilus / Quanta: Do we think in pictures, words, or code? A conversation with cognitive scientist Evelina&amp;nbsp;Fedorenko on where thought and langu" data-section="feed" data-issue="2026-11-10"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><span class="tag">Physical-world robotics</span> &mdash; MIT&nbsp;Technology&nbsp;Review:
+      <a href="https://www.technologyreview.com/">&ldquo;I watched a humanoid robot clean my apartment.&rdquo;</a> A frank, non-hype first-person account of living with a home humanoid &mdash; what worked, what was theatre. A useful calibration against the &ldquo;robots made in America&rdquo; narrative: the hardware is closer than skeptics think and further than the demos suggest.<span class="vote" data-id="20114d3e5e4d" data-title="Physical-world robotics &amp;mdash; MIT&amp;nbsp;Technology&amp;nbsp;Review: &amp;ldquo;I watched a humanoid robot clean my apartment.&amp;rdquo; A frank, non-hype first-person account of living with a home humanoid &amp;mda" data-section="feed" data-issue="2026-11-10"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><span class="tag">Security &middot; the trust theme's dark side</span> &mdash; Lobsters:
+      <a href="https://lobste.rs/">Terminal2Shell: a critical flaw granting instant shell access on every major OS.</a> A reminder, under all the agent-and-provenance optimism, that the ground is still shifting: a single bug that hands an attacker control across operating systems is the kind of thing your &sect;0-green audience has no way to even detect.<span class="vote" data-id="099e23857c09" data-title="Security &amp;middot; the trust theme's dark side &amp;mdash; Lobsters: Terminal2Shell: a critical flaw granting instant shell access on every major OS. A reminder, under all the agent-and-provenance optimism" data-section="feed" data-issue="2026-11-10"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+  </ul>
+</section>
+
+<footer>
+  <b>The Morning Brief</b> &middot; Issue 032 &middot; Tue 10 Nov 2026<br>
+  Assembled from this morning's collection: 482 items screened across the live sources. HN, Lobsters, Techmeme, TechCrunch, The&nbsp;Verge, Product&nbsp;Hunt, DARPA, Sequoia, the Institute&nbsp;for&nbsp;Progress, Adafruit, IEEE&nbsp;Spectrum, Public&nbsp;Domain&nbsp;Review, all three arXiv econ/neuro/social feeds and the full learn and wildcard sets returned clean. Standing gaps: the 13 lecture channels (YouTube) 404'd again though Veritasium returned, so &sect;7 runs the canon by choice; OpenAI's lab feed timed out; and Devpost returned its hackathon list but blocked the deadline scrape, so &sect;5 day-counts are carried forward &plusmn;1. Deterministic collection in Python, editorial judgment in Claude&nbsp;Code.<br>
+  Every claim links to its source. Numbers or silence. The test for every item: <b>does it change what you do this week?</b>
+</footer>
+
+</div>
+<script>
+(function () {
+  var local = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
+  if (!local) { document.body.classList.add("no-server"); return; }
+  var day = (document.querySelector(".vote") || {}).dataset
+          ? document.querySelector(".vote").dataset.issue : "";
+
+  function paint(el, vote) {
+    el.querySelector(".v-up").classList.toggle("on", vote === "up");
+    el.querySelector(".v-dn").classList.toggle("on", vote === "down");
+    el.classList.toggle("voted", vote === "up" || vote === "down");
+  }
+
+  fetch("/fb/state?issue=" + encodeURIComponent(day))
+    .then(function (r) { return r.json(); })
+    .then(function (state) {
+      document.querySelectorAll(".vote").forEach(function (el) {
+        if (state[el.dataset.id]) paint(el, state[el.dataset.id]);
+      });
+    })
+    .catch(function () { document.body.classList.add("no-server"); });
+
+  document.addEventListener("click", function (e) {
+    var btn = e.target.closest(".v-up, .v-dn");
+    if (!btn) return;
+    var el = btn.closest(".vote");
+    var want = btn.classList.contains("v-up") ? "up" : "down";
+    var already = btn.classList.contains("on");
+    var vote = already ? "clear" : want;
+    paint(el, already ? null : want);
+    fetch("/fb", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        id: el.dataset.id, vote: vote, title: el.dataset.title,
+        section: el.dataset.section, issue: el.dataset.issue
+      })
+    }).catch(function () {});
+  });
+})();
+</script>
