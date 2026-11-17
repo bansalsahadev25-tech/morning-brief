@@ -26,6 +26,16 @@ meta:
   refresh_when: "YC RFS changes, XPRIZE opens/closes a prize, ARIA posts a
                  new opportunity space, or a graded problem gets solved."
   changelog:
+    - "2026-11-17: Added `autonomous-triage` (red) from a new DARPA item this run — the DARPA
+       Triage Challenge concluded its Finals (13 Nov 2026) at Disaster City, Texas: RoboScout
+       won the Systems competition ($1.5M), Disruptors won the Data competition ($1M). The task
+       is detecting physiological signatures of injury from STAND-OFF sensors on autonomous
+       platforms — triage without touching the casualty. Filed red as a company (defense,
+       hardware, clearance, capital) but kept because the on-ramp — passive, contactless
+       physiological sensing and multimodal perception on a drone — sits one domain from the
+       reader's tiltrotor autonomy and pairs with `passive-ranging` and `american-defense`.
+       §0 slots today: green `api-change-propagation` (never surfaced in the 21-day window) and
+       this new red. NOM4D (in-space-assembly) also appeared again this run — already filed."
     - "2026-11-09: Added `in-space-assembly` (red) from a new DARPA item this run —
        NOM4D demonstrated automated in-space assembly (Caltech-led), the first time
        a structure was robotically built in orbit-representative conditions rather than
@@ -430,6 +440,47 @@ problems:
       - "Read the DARPA NOM4D demonstration writeup — what precisely they assembled, and which step (metrology, manipulation, materials) was the hard one."
       - "Read YC's 'Startups in a World of Abundant Space Access' RFS entry for the funder-attached, software-shaped version of this frontier."
       - "Study autonomous robotic assembly / pose estimation as a simulation problem — the laptop-sized version of the same question, and the exact skill your tiltrotor autonomy already touches."
+
+  - id: autonomous-triage
+    grade: red
+    title: Deciding who to save first, from a distance, with no hands on the patient
+    problem: >
+      In a mass-casualty event — a tornado-struck market, a battlefield, a collapsed building —
+      the first and most consequential decision is triage: who is hurt worst, who to reach
+      first, who can wait. Today that needs a trained human to get close and touch each casualty.
+      The hard problem DARPA just funded is doing it remotely and automatically: an autonomous
+      platform that detects the physiological signatures of injury — breathing, bleeding,
+      consciousness — from STAND-OFF sensors, with no contact, in smoke and darkness, and ranks
+      casualties by severity before a human can get there. It extends the reach of first
+      responders into places too dangerous for them to enter.
+    who_says: >
+      DARPA, via the DARPA Triage Challenge — Finals concluded 13 Nov 2026 at Disaster City,
+      College Station, TX. RoboScout won the Systems competition ($1.5M); Disruptors won the
+      Data competition ($1M). DARPA Director Stephen Winchell noted human-machine teams
+      outperformed every other approach but no single team was strong across identification,
+      triage AND evacuation — the integration is unsolved.
+    source: https://www.darpa.mil/news/2026/triage-finals-winners
+    why_open: >
+      Contactless physiological sensing is an underdetermined inference problem — you are
+      estimating vital signs and injury from faint, ambiguous, remote cues (thermal, RF,
+      optical, acoustic) through smoke, motion and clutter, then making a life-or-death ranking
+      no do-over forgives. It is a challenge precisely because no team yet does identification,
+      assessment and evacuation well together. Same family of hard as `passive-ranging`:
+      sense-making from what the world radiates, not from what you emit.
+    who_is_trying: >
+      DARPA performers — RoboScout, DART, Disruptors, OCA-SENTINEL, UAS-DTU, Guardian Angel,
+      plus CMU's Team Chiron. Adjacent: battlefield-medicine and casualty-evac robotics, and
+      the autonomous-drone sensing stack generally.
+    your_angle: >
+      Red as a company — defense, clearance, hardware, capital, a decade. But the ON-RAMP is
+      the exact capability your tiltrotor needs anyway: passive, contactless perception and
+      on-board scene understanding from a flying platform, provable in simulation on a laptop.
+      Pairs with `american-defense` (you are US-eligible without sponsorship) and `passive-ranging`.
+      Own the vocabulary and the sensing math; do not try to start the company.
+    research_path:
+      - "Read the DARPA Triage Challenge Finals writeup — note exactly which stand-off signatures the Systems competition scored, and why no team was strong across all three stages."
+      - "Study remote/contactless vital-sign estimation (rPPG from video, thermal and RF respiration sensing) as a signals problem — the laptop-sized version of the same question."
+      - "Connect it to your drone: what could a camera + cheap sensors on your tiltrotor infer about a person below without landing? Prototype the perception, not the aircraft."
 
 feeds:
   note: >

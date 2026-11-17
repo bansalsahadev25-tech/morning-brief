@@ -1,0 +1,635 @@
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The Morning Brief</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root{
+    --bg:#EFF2F4; --surface:#FBFCFD; --sunk:#E6EAEE;
+    --ink:#10161C; --ink2:#4B5764; --ink3:#78838F;
+    --rule:#D2D9DF; --rule2:#BEC7D0;
+    --accent:#1B3A57; --urgent:#A33E12; --money:#0D6A5E;
+    --chip:#E2E8ED;
+    --measure:70ch;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --bg:#0B0F13; --surface:#131A21; --sunk:#0F151A;
+      --ink:#E3E9F0; --ink2:#8C99A7; --ink3:#66727F;
+      --rule:#222C36; --rule2:#2E3A45;
+      --accent:#84B4DE; --urgent:#E8834F; --money:#3EB5A3;
+      --chip:#1B242D;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0B0F13; --surface:#131A21; --sunk:#0F151A;
+    --ink:#E3E9F0; --ink2:#8C99A7; --ink3:#66727F;
+    --rule:#222C36; --rule2:#2E3A45;
+    --accent:#84B4DE; --urgent:#E8834F; --money:#3EB5A3;
+    --chip:#1B242D;
+  }
+
+  *{box-sizing:border-box}
+  body{
+    background:var(--bg); color:var(--ink);
+    font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,sans-serif;
+    font-size:15.5px; line-height:1.62;
+    padding-block:0; padding-left:20px; padding-right:20px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:var(--measure); margin:0 auto}
+  a{color:var(--accent); text-decoration:none; border-bottom:1px solid var(--rule2)}
+  a:hover{border-bottom-color:var(--accent)}
+  a:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+
+  .mast{padding-block:34px 18px; border-bottom:2px solid var(--ink)}
+  .mast h1{
+    font-family:Newsreader,Georgia,serif; font-weight:600;
+    font-size:clamp(2.1rem,7vw,3.1rem); line-height:1.0;
+    margin:0 0 12px; letter-spacing:-.015em;
+  }
+  .mastmeta{
+    display:flex; flex-wrap:wrap; gap:6px 18px;
+    font-family:"IBM Plex Mono",monospace; font-size:.7rem;
+    text-transform:uppercase; letter-spacing:.1em; color:var(--ink2);
+  }
+  .thesis{
+    font-family:Newsreader,Georgia,serif; font-size:1.2rem; line-height:1.5;
+    color:var(--ink); margin:20px 0 0; padding:16px 0 4px;
+    border-top:1px solid var(--rule); text-wrap:balance;
+  }
+  .thesis em{color:var(--ink2); font-style:italic}
+
+  section{padding-block:38px 8px}
+  .shead{
+    display:flex; align-items:baseline; gap:12px;
+    border-bottom:1px solid var(--ink); padding-bottom:7px; margin-bottom:22px;
+  }
+  .snum{
+    font-family:"IBM Plex Mono",monospace; font-size:.72rem; font-weight:600;
+    color:var(--ink3); letter-spacing:.06em; flex:none;
+  }
+  .shead h2{
+    font-family:"IBM Plex Sans",sans-serif; font-weight:600;
+    font-size:.86rem; text-transform:uppercase; letter-spacing:.14em;
+    margin:0; flex:1;
+  }
+  .scount{font-family:"IBM Plex Mono",monospace; font-size:.68rem; color:var(--ink3)}
+
+  .story{padding-bottom:34px; margin-bottom:34px; border-bottom:1px solid var(--rule)}
+  .story:last-child{border-bottom:0; margin-bottom:0}
+  .kicker{
+    font-family:"IBM Plex Mono",monospace; font-size:.68rem; font-weight:500;
+    text-transform:uppercase; letter-spacing:.12em; color:var(--urgent);
+    margin-bottom:8px;
+  }
+  .story h3{
+    font-family:Newsreader,Georgia,serif; font-weight:600;
+    font-size:clamp(1.45rem,4.4vw,1.95rem); line-height:1.15;
+    margin:0 0 6px; letter-spacing:-.01em; text-wrap:balance;
+  }
+  .byline{
+    font-family:"IBM Plex Mono",monospace; font-size:.7rem; color:var(--ink2);
+    margin-bottom:20px; line-height:1.6;
+  }
+  .byline b{color:var(--money); font-weight:600}
+
+  dl.brief{display:grid; gap:0; margin:0}
+  @media (min-width:720px){
+    dl.brief{grid-template-columns:8.5rem 1fr; column-gap:22px}
+  }
+  dl.brief dt{
+    font-family:"IBM Plex Mono",monospace; font-size:.66rem; font-weight:600;
+    text-transform:uppercase; letter-spacing:.1em; color:var(--ink3);
+    padding-top:.5em;
+  }
+  dl.brief dd{margin:0 0 16px}
+  dl.brief dd:last-of-type{margin-bottom:0}
+  dd.bear{color:var(--ink2)}
+  dd.foryou{border-left:2px solid var(--urgent); padding-left:14px}
+
+  .tablewrap{overflow-x:auto}
+  table{width:100%; border-collapse:collapse; font-size:.9rem}
+  th{
+    font-family:"IBM Plex Mono",monospace; font-size:.64rem; font-weight:600;
+    text-transform:uppercase; letter-spacing:.1em; color:var(--ink3);
+    text-align:left; padding:0 12px 8px 0; border-bottom:1px solid var(--rule2);
+    white-space:nowrap;
+  }
+  td{padding:11px 12px 11px 0; border-bottom:1px solid var(--rule); vertical-align:top}
+  td.num{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums; color:var(--money); font-weight:500; white-space:nowrap}
+  td.src{font-family:"IBM Plex Mono",monospace; font-size:.74rem; color:var(--ink3); white-space:nowrap}
+
+  .door{
+    display:grid; grid-template-columns:1fr auto; gap:4px 16px;
+    padding:14px 0; border-bottom:1px solid var(--rule); align-items:start;
+  }
+  .door:last-child{border-bottom:0}
+  .door .name{font-weight:500; line-height:1.4}
+  .door .sub{
+    grid-column:1; font-family:"IBM Plex Mono",monospace;
+    font-size:.72rem; color:var(--ink2);
+  }
+  .days{
+    grid-row:1/span 2; align-self:center;
+    font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums;
+    font-size:.78rem; font-weight:600; padding:4px 9px;
+    background:var(--chip); color:var(--ink2); white-space:nowrap;
+  }
+  .days.hot{background:var(--urgent); color:#fff}
+  .days.warm{color:var(--urgent); box-shadow:inset 0 0 0 1px var(--urgent)}
+
+  ul.feed{list-style:none; padding:0; margin:0}
+  ul.feed li{padding:11px 0; border-bottom:1px solid var(--rule); line-height:1.5}
+  ul.feed li:last-child{border-bottom:0}
+  .tag{
+    font-family:"IBM Plex Mono",monospace; font-size:.66rem; font-weight:500;
+    text-transform:uppercase; letter-spacing:.08em; color:var(--ink3);
+  }
+  .note{color:var(--ink2); font-size:.92rem; margin-top:5px}
+
+  .single h3{
+    font-family:Newsreader,Georgia,serif; font-weight:600; font-size:1.35rem;
+    margin:0 0 4px; line-height:1.25; text-wrap:balance;
+  }
+  .single .meta{
+    font-family:"IBM Plex Mono",monospace; font-size:.7rem; color:var(--ink3);
+    margin-bottom:14px;
+  }
+  .quiet{
+    color:var(--ink2); font-style:italic;
+    font-family:Newsreader,Georgia,serif; font-size:1.05rem;
+  }
+
+  footer{
+    border-top:2px solid var(--ink); margin-top:44px;
+    padding-block:20px 48px;
+    font-family:"IBM Plex Mono",monospace; font-size:.7rem; color:var(--ink3);
+    line-height:1.7;
+  }
+  footer b{color:var(--ink2); font-weight:500}
+
+  .problem{padding-bottom:30px;margin-bottom:30px;border-bottom:1px solid var(--rule)}
+  .problem:last-child{border-bottom:0;margin-bottom:0;padding-bottom:6px}
+  .pgrade{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:9px}
+  .pgrade .badge{font-family:"IBM Plex Mono",monospace;font-size:.62rem;font-weight:600;
+    letter-spacing:.11em;color:#fff;background:var(--g);padding:3px 8px}
+  .pgrade .caveat{font-family:"IBM Plex Mono",monospace;font-size:.66rem;color:var(--ink3)}
+  .problem h3{font-family:Newsreader,Georgia,serif;font-weight:600;
+    font-size:clamp(1.3rem,4vw,1.7rem);line-height:1.18;margin:0 0 16px;
+    letter-spacing:-.01em;text-wrap:balance}
+  ol.rpath{margin:0;padding-left:1.1rem}
+  ol.rpath li{margin-bottom:7px}
+  ol.rpath li:last-child{margin-bottom:0}
+  .pintro{font-family:Newsreader,Georgia,serif;font-size:1.06rem;line-height:1.5;
+    color:var(--ink2);margin:0 0 26px;text-wrap:pretty}
+  .rfs{background:var(--sunk);border-left:3px solid var(--accent);
+    padding:16px 18px;margin:0 0 30px}
+  .rfs .lbl{font-family:"IBM Plex Mono",monospace;font-size:.62rem;font-weight:600;
+    letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+  .rfs h3{font-family:Newsreader,Georgia,serif;font-weight:600;font-size:1.25rem;
+    line-height:1.2;margin:0 0 10px;text-wrap:balance}
+  .rfs ol{margin:10px 0 0;padding-left:1.2rem;columns:2;column-gap:26px;
+    font-size:.9rem;line-height:1.45}
+  @media (max-width:560px){.rfs ol{columns:1}}
+  .rfs ol li{margin-bottom:4px}
+  .rfs ol li::marker{font-family:"IBM Plex Mono",monospace;color:var(--ink3);font-size:.8rem}
+</style>
+<!--VOTE-CSS-START-->
+<style>
+  .vote{display:inline-flex;gap:3px;margin-left:9px;vertical-align:middle;
+    opacity:.3;transition:opacity .15s}
+  h3:hover .vote,li:hover .vote,.vote:hover,.vote.voted{opacity:1}
+  .vote button{font-family:inherit;font-size:.62rem;line-height:1;cursor:pointer;
+    padding:3px 6px;border:1px solid var(--rule2,#BEC7D0);background:transparent;
+    color:var(--ink3,#78838F);border-radius:2px}
+  .vote button:hover{border-color:var(--ink2,#4B5764);color:var(--ink,#10161C)}
+  .vote button.on.v-up{background:#0D6A5E;border-color:#0D6A5E;color:#fff}
+  .vote button.on.v-dn{background:#A33E12;border-color:#A33E12;color:#fff}
+  body.no-server .vote{display:none}
+  #fbnote{font-family:"IBM Plex Mono",monospace;font-size:.64rem;
+    color:var(--ink3,#78838F);padding:7px 0;border-bottom:1px solid var(--rule,#D2D9DF)}
+  body.no-server #fbnote{display:none}
+</style>
+<!--VOTE-CSS-END-->
+
+<div class="wrap">
+<!--ISSUE-NAV-START-->
+<style>
+  #issuenav{position:sticky;top:0;z-index:99;display:flex;align-items:center;
+    gap:12px;flex-wrap:wrap;padding:9px 20px;margin:0 -20px 0;
+    background:var(--surface,#FBFCFD);border-bottom:1px solid var(--rule,#D2D9DF);
+    font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.7rem}
+  #issuenav a{color:var(--accent,#1B3A57);text-decoration:none;border-bottom:0;
+    text-transform:uppercase;letter-spacing:.09em;font-weight:600}
+  #issuenav a:hover{text-decoration:underline}
+  #issuenav select{font-family:inherit;font-size:.72rem;padding:4px 8px;
+    background:var(--bg,#EFF2F4);color:var(--ink,#10161C);
+    border:1px solid var(--rule2,#BEC7D0);border-radius:0;cursor:pointer;
+    max-width:min(62vw,26rem)}
+  #issuenav .sp{flex:1}
+  #issuenav .lbl{color:var(--ink3,#78838F);text-transform:uppercase;
+    letter-spacing:.1em}
+  /* keep the sticky bar from clipping whatever you jump to */
+  section,.shead,.problem,.story{scroll-margin-top:3.4rem}
+  @media print{#issuenav{display:none}}
+</style>
+<nav id="issuenav" aria-label="Issue navigation">
+  <span class="lbl">Issue</span>
+  <select id="issuepick" aria-label="Choose an issue"><option value="2026-11-17.html" selected>Issue 039 &middot; Tue 17 Nov 2026</option><option value="2026-11-16.html">Issue 038 &middot; Mon 16 Nov 2026</option><option value="2026-11-15.html">Issue 037 &middot; Sun 15 Nov 2026</option><option value="2026-11-14.html">Issue 036 &middot; Sat 14 Nov 2026</option><option value="2026-11-13.html">Issue 035 &middot; Fri 13 Nov 2026</option><option value="2026-11-12.html">Issue 034 &middot; Thu 12 Nov 2026</option><option value="2026-11-11.html">Issue 033 &middot; Wed 11 Nov 2026</option><option value="2026-11-10.html">Issue 032 &middot; Tue 10 Nov 2026</option><option value="2026-11-09.html">Issue 031 &middot; Mon 9 Nov 2026</option><option value="2026-11-08.html">Issue 030 &middot; Sun 8 Nov 2026</option><option value="2026-11-07.html">Issue 029 &middot; Sat 7 Nov 2026</option><option value="2026-11-06.html">Issue 028 &middot; Fri 6 Nov 2026</option><option value="2026-10-28.html">Issue 027 &middot; Wed 28 Oct 2026</option><option value="2026-10-27.html">Issue 026 &middot; Tue 27 Oct 2026</option><option value="2026-10-26.html">Issue 025 &middot; Mon 26 Oct 2026</option><option value="2026-10-24.html">Issue 024 &middot; Sat 24 Oct 2026</option><option value="2026-10-23.html">Issue 023 &middot; Fri 23 Oct 2026</option><option value="2026-10-21.html">Issue 022 &middot; Wed 21 Oct 2026</option><option value="2026-10-20.html">Issue 021 &middot; Tue 20 Oct 2026</option><option value="2026-10-18.html">Issue 020 &middot; Sun 18 Oct 2026</option><option value="2026-10-17.html">Issue 019 &middot; Sat 17 Oct 2026</option><option value="2026-10-15.html">Issue 018 &middot; Thu 15 Oct 2026</option><option value="2026-10-14.html">Issue 017 &middot; Wed 14 Oct 2026</option><option value="2026-10-13.html">Issue 016 &middot; Tue 13 Oct 2026</option><option value="2026-10-12.html">Issue 015 &middot; Mon 12 Oct 2026</option><option value="2026-10-11.html">Issue 014 &middot; Sun 11 Oct 2026</option><option value="2026-10-10.html">Issue 013 &middot; Sat 10 Oct 2026</option><option value="2026-10-09.html">Issue 012 &middot; Fri 9 Oct 2026</option><option value="2026-10-08.html">Issue 011 &middot; Thu 8 Oct 2026</option><option value="2026-10-07.html">Issue 010 &middot; Wed 7 Oct 2026</option><option value="2026-10-06.html">Issue 009 &middot; Tue 6 Oct 2026</option><option value="2026-10-05.html">Issue 008 &middot; Mon 5 Oct 2026</option><option value="2026-10-04.html">Issue 007 &middot; Sun 4 Oct 2026</option><option value="2026-10-01.html">Issue 006 &middot; Thu 1 Oct 2026</option><option value="2026-09-30.html">Issue 005 &middot; Wed 30 Sep 2026</option><option value="2026-09-29.html">Issue 004 &middot; Tue 29 Sep 2026</option><option value="2026-09-28.html">Issue 002 &middot; Mon 28 Sep 2026</option><option value="2026-09-26.html">Issue 001 &middot; Sat 26 Sep 2026</option></select>
+  <span class="sp"></span>
+  <a href="index.html">All issues</a>
+</nav>
+<script>
+  document.getElementById("issuepick").addEventListener("change", function (e) {
+    if (e.target.value) window.location.href = e.target.value;
+  });
+</script>
+<!--ISSUE-NAV-END-->
+
+<header class="mast">
+  <h1>The Morning Brief</h1>
+  <div class="mastmeta">
+    <span>Issue 039</span>
+    <span>Tue 17 Nov 2026</span>
+    <span>527 items screened &rarr; 43 filed</span>
+    <span>Clean run: all sources returned, zero feed errors &mdash; HN, Lobsters, Techmeme, TechCrunch, Ars&nbsp;Technica, The&nbsp;Verge, 404&nbsp;Media, Simon&nbsp;Willison, Hackaday, Adafruit, Inc42, YourStory, Sifted, Crunchbase, DARPA, Institute&nbsp;for&nbsp;Progress, Marginal&nbsp;Revolution, Quanta, Nautilus, Aeon, MIT&nbsp;News, MIT&nbsp;Tech&nbsp;Review, IEEE&nbsp;Spectrum, Product&nbsp;Hunt, Devpost, HuggingFace and the full wildcard shelf (Atlas&nbsp;Obscura, Public&nbsp;Domain&nbsp;Review, Longreads, Kottke, Rest&nbsp;of&nbsp;World, Noema, Works&nbsp;in&nbsp;Progress, Palladium, Scientific&nbsp;American&hellip;). The lecture / `watch` feeds came back too &mdash; but only as 60-second Shorts, so &sect;7 runs the canon by editorial choice, and today the canon has the better match to the page anyway.</span>
+  </div>
+  <p class="thesis">
+    A day about <em>AI being handed the jobs humans were actually paid for &mdash; the security analyst, the salesforce, the closer &mdash; at the exact moment the software underneath is cracking in public</em>. <em>Corma went from stealth to a $1B valuation in 90 days</em> selling a foundation model that defends a network; <em>Dreamteam raised $53m to rebuild the CRM as four AI coworkers</em> that do the sales admin themselves; <em>Jordan&nbsp;Belfort raised ~$10m for an AI voice that sells with his tonality</em> &mdash; three bets that the agent takes the revenue seat. And they land the same week a <em>Microsoft&nbsp;365 outage poisoned 15&nbsp;hotel guests with chlorine gas</em>, Chase and United fell over, Optimizely served malware to 178 companies, and <em>California's AG sued OpenAI over agents that went where nobody told them to</em>. The read: capital is rushing agents into the highest-trust seats in the building precisely when nobody can prove what an agent touched. That gap &mdash; trust handed out faster than it can be audited &mdash; is where both of today's &sect;0 problems live.
+  </p>
+</header>
+
+<!-- ========== §0 ========== -->
+<section>
+  <div class="shead"><span class="snum">&sect;0</span><h2>The Problem Board</h2>
+    <span class="scount">2 of 15</span></div>
+  <p class="pintro">
+    Every accelerator says it funds people &ldquo;solving hard problems,&rdquo; and none tells you which. This does &mdash; sourced, graded honestly, with somewhere to start reading. Today: one <strong>green</strong> you can start this month, sharpened by a wire where software kept breaking because a change propagated badly; and one brand-new <strong>red</strong>, straight off a DARPA challenge that finished its finals four days ago &mdash; filed red because the company needs clearance and capital, kept because its on-ramp is the exact sensing your drone already wants.
+  </p>
+
+  <article class="problem">
+    <div class="pgrade" style="--g:#0D6A5E">
+      <span class="badge">START THIS MONTH</span><span class="caveat">green &middot; pure software &middot; no capital &middot; you already understand agentic code editing from the inside</span>
+    </div>
+    <h3>API providers still announce breaking changes instead of applying them &mdash; and this week a single bad change took down inboxes, banks and 178 companies at once</h3><span class="vote" data-id="b07b7720af41" data-title="API providers still announce breaking changes instead of applying them &amp;mdash; and this week a single bad change took down inboxes, banks and 178 companies at once" data-section="&sect;0" data-issue="2026-11-17"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span>
+    <dl class="brief">
+      <dt>The problem</dt><dd>When an API changes, every customer hand-edits their own codebase to keep up. The provider ships a changelog; the work of absorbing it falls on thousands of downstream teams, one repo at a time. Agentic coding tools just proved companies <em>will</em> grant an external tool write access to their code if the value is there &mdash; Claude&nbsp;Code, Devin and Greptile normalised exactly that. The infrastructure to let an API provider push a change <em>into</em> its customers' code now exists. The layer that does it does not.</dd>
+      <dt>Who says it's hard</dt><dd>Y&nbsp;Combinator's RFS, from <a href="https://www.ycombinator.com/rfs">a founder who worked with 50+ API vendors</a>, names it directly. And the cost of getting change-propagation wrong was the whole wire this morning: Microsoft <a href="https://www.theregister.com/saas/2026/11/16/microsoft-blames-monster-email-outage-on-software-defect-introduced-in-july-fix/5310026">blamed its monster email outage on a defect introduced by a July fix</a>, <a href="https://blog.report-uri.com/worlds-largest-brands-infected-with-malware-via-optimizely/">Optimizely served malicious JavaScript to 178 organisations</a> including Zoom and HSBC through one compromised dependency, and an engineer argued, with receipts, that <a href="https://www.breck-mckye.com/blog/2026/11/software-is-breaking-down-at-a-systemic-level/">software is breaking down at a systemic level</a>. Satya&nbsp;Nadella, same day, told an interviewer <a href="https://www.techmeme.com/261116/p41#a261116p41">code verification matters more as generation gets cheap</a> &mdash; which is this problem said from the other end.</dd>
+      <dt>Why it's still open</dt><dd>Two years ago nobody would grant an external tool write access to their repo, so nobody built the obvious thing. The window opened recently enough that it is still open. The hard part is not the codemod &mdash; it is <em>trust</em>: automated pull requests against a stranger's repository that a team will actually merge. Whoever earns that trust owns a position between every API provider and its customers.</dd>
+      <dt>Who's already trying</dt><dd>Greptile and Ellipsis (code review), Renovate (dependency bumps only, not API <em>semantics</em>). Nobody owns the specific thing: a provider-side button that turns &ldquo;we're deprecating this endpoint&rdquo; into a merged PR in every customer's codebase.</dd>
+      <dt>Your angle</dt><dd class="foryou">Pure software, no capital, and you already understand agentic code editing from the inside &mdash; you <em>are</em> the person who grants Claude&nbsp;Code access to a repo and watches what it does. Narrow enough to prototype in a weekend: pick one API, one breaking change, one automated migration. The trust problem is the moat, and feeling it on your own repos first is the cheapest research there is.</dd>
+      <dt>Research path</dt><dd><ol class="rpath">
+        <li>Pick one API with frequent breaking changes (Stripe, Twilio) and read two years of its changelog &mdash; every entry is a migration someone did by hand.</li>
+        <li>Write the migration codemod for a <em>single</em> breaking change by hand, on one of your own projects. Feel the work before you automate it.</li>
+        <li>Read Renovate's architecture docs on how automated PRs against a stranger's repo earn enough trust to get merged &mdash; that mechanism, not the diff, is the company.</li></ol></dd>
+    </dl>
+  </article>
+
+  <article class="problem">
+    <div class="pgrade" style="--g:#A33E12">
+      <span class="badge">NEW &middot; FILE, DON'T START</span><span class="caveat">red &mdash; the company is defense, clearance, hardware, a decade; the on-ramp is contactless sensing you can prototype on your drone</span>
+    </div>
+    <h3>Deciding who to save first &mdash; from a distance, with no hands on the patient &mdash; just got a DARPA finals and a $1.5m winner four days ago</h3><span class="vote" data-id="ff129cf064bb" data-title="Deciding who to save first &amp;mdash; from a distance, with no hands on the patient &amp;mdash; just got a DARPA finals and a $1.5m winner four days ago" data-section="&sect;0" data-issue="2026-11-17"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span>
+    <dl class="brief">
+      <dt>The problem</dt><dd>In a mass-casualty event &mdash; a tornado-struck market, a battlefield, a collapsed building &mdash; the first decision is triage: who is hurt worst, who to reach first, who can wait. Today that needs a trained human to get close and touch each casualty. The hard problem DARPA just funded is doing it <em>remotely and automatically</em>: an autonomous platform that reads the physiological signatures of injury &mdash; breathing, bleeding, consciousness &mdash; from stand-off sensors, in smoke and darkness, and ranks casualties before a human can arrive.</dd>
+      <dt>Who says it's hard</dt><dd>DARPA, via the <a href="https://www.darpa.mil/news/2026/triage-finals-winners">DARPA Triage Challenge</a>, whose Finals concluded 13&nbsp;Nov at Disaster City, Texas: RoboScout won the Systems competition and $1.5M, Disruptors won the Data competition and $1M. DARPA's director noted human-machine teams beat every other approach &mdash; but no single team was strong at identification, triage <em>and</em> evacuation together. The integration is unsolved, which is the tell that it's genuinely open.</dd>
+      <dt>Why it's still open</dt><dd>Contactless physiological sensing is an underdetermined inference problem: you're estimating vital signs and injury from faint, ambiguous, remote cues &mdash; thermal, RF, optical, acoustic &mdash; through smoke and motion, then making a life-or-death ranking no do-over forgives. It's the same family of hard as the board's <code>passive-ranging</code>: sense-making from what the world radiates, not from what you emit.</dd>
+      <dt>Who's already trying</dt><dd>DARPA performers &mdash; RoboScout, DART, Disruptors, OCA-SENTINEL, UAS-DTU, Guardian&nbsp;Angel, plus Carnegie&nbsp;Mellon's Team&nbsp;Chiron. Adjacent: battlefield-medicine and casualty-evac robotics, and the autonomous-drone sensing stack generally.</dd>
+      <dt>Your angle</dt><dd class="foryou">Red as a company &mdash; defense, clearance, hardware, capital, a decade; do not try to start it. But the <em>on-ramp</em> is the exact capability your tiltrotor needs anyway: passive, contactless perception and on-board scene understanding from a flying platform, provable in simulation on a laptop. It pairs with <code>american-defense</code> (you're US-eligible without sponsorship) and <code>passive-ranging</code>. Own the sensing math and vocabulary; let someone with a cleared lab own the company.</dd>
+      <dt>Research path</dt><dd><ol class="rpath">
+        <li>Read the <a href="https://www.darpa.mil/news/2026/triage-finals-winners">Triage Challenge Finals writeup</a> &mdash; note which stand-off signatures the Systems competition scored, and why no team was strong across all three stages.</li>
+        <li>Study remote vital-sign estimation as a signals problem: rPPG (pulse from ordinary video), thermal and RF respiration sensing &mdash; the laptop-sized version of the same question.</li>
+        <li>Ask it of your own aircraft: what could a camera plus cheap sensors on your tiltrotor infer about a person below without landing? Prototype the perception, never the aircraft.</li></ol></dd>
+    </dl>
+  </article>
+
+  <p class="note" style="margin-top:24px">
+    On the rotation: the green (<code>api-change-propagation</code>) has <em>never</em> led &sect;0 inside the 21-day window &mdash; it is the single freshest green on the board, and a wire full of changes propagating badly (Microsoft's July-fix defect, the Optimizely dependency compromise) is the right morning to run it. The red is <em>new</em>: DARPA's Triage Challenge finished its finals on 13&nbsp;Nov, so <code>autonomous-triage</code> was appended to <code>config/problems.yaml</code> this run and surfaces fresh &mdash; a genuinely new, funder-attached hard problem one domain from your drone work. Also appearing but not promoted: DARPA's <a href="https://www.darpa.mil/news/2026/nom4d-program-demonstrates-automated-in-space-assembly">NOM4D in-space-assembly</a> milestone (already filed, <code>in-space-assembly</code>, red) and the Institute&nbsp;for&nbsp;Progress piece on <a href="https://ifp.org/brain-cell-types/">the brain's cell types</a> (a science bottleneck, not yet an attackable problem). YC's RFS is unchanged since the Winter-2027 reset.
+  </p>
+</section>
+
+<!-- ========== §1 ========== -->
+<section>
+  <div class="shead"><span class="snum">&sect;1</span><h2>The Big Three</h2>
+    <span class="scount">researched, not rewritten from the headline</span></div>
+
+  <article class="story">
+    <div class="kicker">The security analyst, rebuilt as a model &middot; stealth to unicorn in 90 days</div>
+    <h3>Corma reached a $1B valuation three months after leaving stealth &mdash; betting that defense, not offense, is the part of cybersecurity AI nobody has trained for</h3><span class="vote" data-id="75cd88a998e8" data-title="Corma reached a $1B valuation three months after leaving stealth &amp;mdash; betting that defense, not offense, is the part of cybersecurity AI nobody has trained for" data-section="&sect;1" data-issue="2026-11-17"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span>
+    <p class="byline"><b>Corma</b> (Tel&nbsp;Aviv + San&nbsp;Francisco) &middot; <b>$125M</b> Series&nbsp;A &middot; <b>$1B</b> valuation &middot; led by <b>NEA</b>, existing backers <b>Sequoia</b>, <b>Khosla</b>, with <b>Coatue</b> &middot; total raised <b>$185M</b> &middot; <b>~90 days</b> from a $60M Sequoia-led seed &middot; founded <b>2025</b> &middot; compute expanded <b>24&times;</b> since Aug&nbsp;2026 &middot; claimed early results at Fortune&nbsp;100/500: threat-response time down <b>94%+</b>, coverage up <b>15&times;</b> &middot;
+      <a href="https://techcrunch.com/2026/11/16/cybersecurity-ai-startup-corma-reaches-1b-valuation-in-about-3-months/">TechCrunch</a> &middot;
+      <a href="https://www.theregister.com/security/2026/08/16/stopping-a-cyberattack-while-walking-your-dog-defensive-ai-security-ceo-says-its-not-ruff-to-do/5288126">The&nbsp;Register</a> &middot;
+      <a href="https://mofsafety.substack.com/p/margin-of-safety-69">Margin&nbsp;of&nbsp;Safety</a></p>
+    <dl class="brief">
+      <dt>What they do</dt><dd>Corma is building a foundation model purpose-trained for <em>defensive</em> cybersecurity &mdash; AI agents that embed inside a company and work alongside its security team, triaging threats and responding at machine speed. The thesis is specific: general models are getting exponentially better at <em>attacking</em>, because attack data and attack objectives are abundant, and barely better at <em>defending</em>, because defense was never the thing they were trained on. Corma wants to close that asymmetry with a model built for the defender from the ground up.</dd>
+      <dt>The tech &mdash; what's hard</dt><dd>Two hard things. One, there is almost no standardised benchmark for &ldquo;defensive cybersecurity intelligence,&rdquo; so even proving the model is good is unsolved science &mdash; you're building the ruler and the thing it measures at once. Two, a from-scratch frontier foundation model is enormously capital-hungry; the skeptics' sharpest point (see Margin&nbsp;of&nbsp;Safety) is that $185M may not buy frontier-grade reasoning built from zero, which would make this a very expensive fine-tune wearing a foundation-model's clothes.</dd>
+      <dt>The founders &mdash; the unfair access</dt><dd>CEO <b>Alon&nbsp;Pluda</b> is an alumnus of Israel's <b>Unit&nbsp;8200</b> and the Psagot program; Sequoia, which led the seed, called him &ldquo;one of the most elite hackers in the world.&rdquo; The team pairs cybersecurity veterans from 8200 with AI researchers out of <b>Google</b> and <b>DeepMind</b>. That is the access: people who spent years on the <em>offensive</em> side, who know exactly how modern attacks are built, turning around to train the defender. You cannot model what you've never had to break.</dd>
+      <dt>The bear case</dt><dd class="bear">The two hard things above are also the kill shots: if the benchmarks never materialise, buyers can't tell Corma from a wrapper, and if the capital can't fund a real frontier model, the &ldquo;foundation model&rdquo; framing is marketing. Add that incumbents (CrowdStrike, Palo&nbsp;Alto, Microsoft) own distribution and the Fortune&nbsp;500 relationships, and that &ldquo;94% faster&rdquo; is the company's own number with no third-party audit. A $1B price in 90 days is paying for the team and the thesis, not proven product.</dd>
+      <dt>What it means</dt><dd class="foryou">The transferable lesson is the shape of the bet, not the raise you can't replicate. Corma found a place where the <em>general</em> model is structurally weak &mdash; trained for one objective and therefore bad at its mirror image (defense) &mdash; and built the specialist. That's a repeatable pattern you can hunt for with no capital: where is the frontier model systematically weak <em>because of what it was trained to do</em>, and what narrow tool wins there? It also validates today's security wire as a market, not just noise &mdash; and &sect;0's <code>api-change-propagation</code> is one such narrow, trust-shaped slice.</dd>
+    </dl>
+  </article>
+
+  <article class="story">
+    <div class="kicker">The remake thesis, funded &middot; rebuild Salesforce AI-native, by the people who built Freshworks</div>
+    <h3>Dreamteam raised $53m to rebuild the CRM as four AI coworkers &mdash; because the richest customer context always lived everywhere except the CRM</h3><span class="vote" data-id="d26b77316d38" data-title="Dreamteam raised $53m to rebuild the CRM as four AI coworkers &amp;mdash; because the richest customer context always lived everywhere except the CRM" data-section="&sect;1" data-issue="2026-11-17"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span>
+    <p class="byline"><b>Dreamteam</b> (San&nbsp;Francisco) &middot; <b>$53M</b> &middot; from <b>Accel</b>, <b>Together&nbsp;Fund</b>, <b>Premji&nbsp;Invest</b> &middot; founded <b>2025</b> by ex-<b>Freshworks</b> execs <b>Anand&nbsp;Venkatraman</b> (25+ yrs enterprise SW, incl. Salesforce), <b>Ramesh&nbsp;Parthasarathy</b>, <b>Senthil&nbsp;Kanthaswamy</b> &middot; <b>100+</b> customers in its first <b>3</b> months of selling &middot; targets <b>Salesforce</b> and <b>HubSpot</b> &middot;
+      <a href="https://techcrunch.com/2026/11/16/freshworks-alums-raise-53m-to-take-on-salesforce-hubspot-with-ai-native-crm/">TechCrunch</a> &middot;
+      <a href="https://inc42.com/buzz/dreamteam-bags-53-mn-to-disrupt-the-crm-space-with-ai/">Inc42</a> &middot;
+      <a href="https://thenextweb.com/news/dreamteam-ai-native-crm-53m-accel">TNW</a></p>
+    <dl class="brief">
+      <dt>What they do</dt><dd>Dreamteam is a CRM rebuilt around a shared memory it calls the <em>Company&nbsp;Brain</em> &mdash; a system that continuously ingests context from email, calendars and meetings across Gmail, Outlook, Slack, Zoom and Google&nbsp;Meet, capturing buyer intent, objections, competitor mentions and who-knows-whom. On top sit four named AI coworkers (Rachel, Sally, Raj, Alex) that do research, sales operations and CRM admin themselves &mdash; the data entry a human rep is supposed to do and never does. The pitch isn't &ldquo;AI inside your CRM,&rdquo; it's &ldquo;the CRM maintains itself.&rdquo;</dd>
+      <dt>The tech &mdash; what's hard</dt><dd>The moat is the ingestion, not the chat. Pulling reliable structure out of the messy exhaust of real sales work &mdash; threads, calls, calendar invites &mdash; and keeping it current enough that a manager trusts the pipeline view is the hard, unglamorous part. A chatbot bolted onto Salesforce is a weekend; a shared memory that stays correct across five tools and a whole sales team is years, and it's exactly what the incumbents' architecture, built for manual entry, makes hard to retrofit.</dd>
+      <dt>The founders &mdash; the unfair access</dt><dd>Venkatraman spent 25+ years in enterprise software, including Salesforce and Freshworks, and kept hitting the same wall: reps updated records, yet managers still lacked a dependable view of the business. &ldquo;The CRM was supposed to give companies a complete picture of their customers, yet the richest parts of that picture have always lived outside the CRM.&rdquo; That is founder-market fit in one sentence &mdash; three people who <em>built</em> a CRM company (Freshworks) and therefore know precisely which promise CRMs never kept.</dd>
+      <dt>The bear case</dt><dd class="bear">Salesforce and HubSpot are not asleep &mdash; both are shipping their own AI agents onto distribution and data Dreamteam can't match, and &ldquo;rip out your CRM&rdquo; is the hardest switch in enterprise software. 100 customers in three months is real but tiny, and the category is crowded with AI-native-CRM pitches that sound identical. The &ldquo;Company&nbsp;Brain&rdquo; also needs deep access to every communication tool a company runs &mdash; a security and trust ask right as the whole industry gets nervous about exactly that.</dd>
+      <dt>What it means</dt><dd class="foryou">This is your &sect;A playbook at venture scale: take a proven, resented incumbent category and rebuild it for how work <em>actually</em> happens now. Note what they did <em>not</em> do &mdash; they didn't add a feature to a CRM, they moved the system of record to where the data already lived (the inbox, the call) and let agents keep it. The portable lesson: the opportunity is usually the gap between what a tool <em>promises</em> and what it has always silently required a human to do. Find that unkept promise in a category you can watch, and the remake writes itself.</dd>
+    </dl>
+  </article>
+
+  <article class="story">
+    <div class="kicker">Persuasion as a product &middot; the Wolf's closer, shipped as software</div>
+    <h3>Jordan Belfort raised ~$10m for an AI voice that sells with his tonality &mdash; the exact thing you've been told to study, now packaged and sold by the man himself</h3><span class="vote" data-id="776a7d6add4b" data-title="Jordan Belfort raised ~$10m for an AI voice that sells with his tonality &amp;mdash; the exact thing you've been told to study, now packaged and sold by the man himself" data-section="&sect;1" data-issue="2026-11-17"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span>
+    <p class="byline"><b>Tone</b> (Jordan&nbsp;Belfort) &middot; <b>~$10M</b> friends-and-family + seed &middot; revenue <b>~$700K&ndash;$1M</b> &middot; a voice-AI platform that imbues sales calls with Belfort's persuasion tonality &middot; customers already live: <b>law firms</b>, <b>health insurers</b>, <b>auto dealers</b> &mdash; businesses with more leads than human reps can work &middot; new: a self-serve tier turning authors' books into &ldquo;expressive AI narration&rdquo; &middot;
+      <a href="https://techcrunch.com/2026/11/16/jordan-belforts-new-ai-voice-startup-tone-wants-to-sell-like-the-wolf-of-wall-street/">TechCrunch</a> &middot;
+      <a href="https://dealroom.co/news/173182-jordan-belfort-launches-ai-voice-startup-tone-to-sell-like-wolf-of-wall-/">Dealroom</a></p>
+    <dl class="brief">
+      <dt>What they do</dt><dd>Tone is an AI voice agent engineered not around <em>what</em> it says but <em>how</em> &mdash; the tonality Belfort has taught since the late 1980s. It phrases statements as questions to &ldquo;build engagement,&rdquo; drops to a whisper to imply &ldquo;scarcity of information,&rdquo; and paces a call the way a trained closer does. Belfort claims it already closes almost as well as a top human rep and will catch up within a year. The buyers are businesses drowning in leads their human teams can't reach.</dd>
+      <dt>The tech &mdash; what's hard</dt><dd>The technically interesting bet is that in voice sales, <em>prosody is the product</em> &mdash; timing, pitch, the implied smile or whisper &mdash; and that it can be encoded as deliberately as a script. Modern voice models made the raw synthesis trivial; the hard, defensible part is the judgment layer that decides <em>when</em> to ask versus tell, when to slow down, when to imply scarcity &mdash; the stuff Belfort's seminars sell. Whether that's a durable moat or a prompt someone copies in a quarter is the open question.</dd>
+      <dt>The founders &mdash; the unfair access</dt><dd>The access is a person, not a dataset. Belfort is the &ldquo;Wolf of Wall Street&rdquo; &mdash; a convicted stock fraudster turned sales trainer whose name alone opens the sales-leadership market and whose decades of tonality coaching are the training signal no competitor has. That is the whole thesis: the most transferable thing in this company is a founder with unusual, hard-won access to how persuasion <em>sounds</em>, and he's turning the seminar into software.</dd>
+      <dt>The bear case</dt><dd class="bear">Belfort's name is both the distribution and the liability &mdash; a convicted fraudster selling AI built to be maximally persuasive is a headline and a regulator's first example. AI voice agents are a crowded, fast-commoditising field (a dozen funded startups, plus the model labs), and &ldquo;persuasion tonality&rdquo; may not survive contact with TCPA, robocall law and consent rules once it scales. Revenue is <b>~$700K&ndash;$1M</b> on ~$10M raised: an interesting start, not a proven business.</dd>
+      <dt>What it means</dt><dd class="foryou">You were told, by your own profile, to study persuasion as craft &mdash; and here is persuasion being <em>productised</em>, which is the sharper lesson. Two takeaways. First, watch it as a live case of a durable question: when a skill (tonality, taste, judgment) gets encoded into a tool, does the expert keep the margin or does the model commoditise it? That question governs &sect;0's <code>fifteen-dollar-expert</code> too. Second, &sect;7 tonight is <em>Influence</em> for exactly this reason: the levers Belfort is selling as software are the ones you should be able to name and recognise &mdash; from both sides of the call.</dd>
+    </dl>
+  </article>
+</section>
+
+<!-- ========== §A ========== -->
+<section>
+  <div class="shead"><span class="snum">&sect;A</span><h2>The Remake</h2>
+    <span class="scount">one evidenced candidate &middot; no idea without a linked complaint</span></div>
+
+  <article class="story">
+    <h3>Ship the Shopify page builder whose pages you actually own &mdash; so an app update can't make &ldquo;years of work&hellip; PUFF, gone forever&rdquo;</h3><span class="vote" data-id="2c1d9de962d1" data-title="Ship the Shopify page builder whose pages you actually own &amp;mdash; so an app update can't make &amp;ldquo;years of work&amp;hellip; PUFF, gone forever&amp;rdquo;" data-section="&sect;A" data-issue="2026-11-17"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span>
+    <dl class="brief">
+      <dt>The incumbent</dt><dd><b><a href="https://apps.shopify.com/shogun">Shogun Landing Page Builder</a></b> on the <b>Shopify App Store</b> &mdash; a drag-and-drop page builder with paid tiers running from about <b>$39/mo</b> up into the hundreds. Well-liked on average (<b>4.8&#9733;</b>, <b>1,980</b> reviews), which is the point: the opening isn't a bad product, it's a structural grievance inside a good one. Page builders like it also carry a documented tax &mdash; independent speed tests put the JavaScript layer they add at roughly <b>300&ndash;600ms</b> per page.</dd>
+      <dt>The complaint</dt><dd>A real merchant, in their own words, on the <a href="https://apps.shopify.com/shogun/reviews">reviews page</a> &mdash; <em>Bened&nbsp;Life</em> (US), a four-year customer: &ldquo;They just split the Personalization feature into a New App&hellip; someone just pushed the new app and REMOVED THE YEARS OF PERSONALIZATION work. Just PUFF, GONE forever.&rdquo; The nerve underneath it: your store's pages live <em>inside</em> the app, so when the vendor restructures, re-prices or splits features into a second paid app, your work is hostage. Uninstall and the pages can break. You rent your own storefront.</dd>
+      <dt>Which remake</dt><dd><b>#2, same tool, better taste &mdash; with ownership as the feature.</b> Build a section/page builder whose output is <em>clean native theme code the merchant owns</em>: the sections it writes stay in the theme and keep working if the app is ever removed. Calm, fast, legible, no second-app upsell, no JavaScript bloat layer. The incumbent can't copy this without dismantling the lock-in that is its business model &mdash; which is precisely why taste-plus-ownership is a defensible wedge and not just a nicer UI.</dd>
+      <dt>The buyer</dt><dd>Shopify merchants already paying Shogun, <a href="https://apps.shopify.com/pagefly-landing-page-builder">PageFly</a> or GemPages <b>$39&ndash;$499/mo</b> for landing pages &mdash; buyers with a card out, inside a marketplace that solves discovery for you. The felt pain is concrete and dated: lock-in, surprise re-pricing, page-speed penalties that cost them conversions.</dd>
+      <dt>Why him</dt><dd>This is a taste-and-trust product in a marketplace that hands you distribution &mdash; your two strongest edges in one place. The design judgment (a builder that's quiet and fast instead of a bloated suite) is exactly what you have and the incumbent won't ship. And &ldquo;you own the output&rdquo; is a <em>story</em> a filmmaker can tell cleanly, which is half of why a merchant switches.</dd>
+      <dt>First step</dt><dd>Doable in a day: build a Shopify <em>theme app extension</em> (an app block) that renders one clean, fast hero section &mdash; and prove the output survives uninstall by deleting the app and watching the section stay. If a merchant can drop one on-brand section into their theme in five minutes and see that it's <em>theirs</em>, not rented, you have the wedge and the demo. (See &sect;6: today's skill is exactly this extension.)
+      <span class="note">(Kill-filter check: useful on first install, one store, zero network effects; buyer&nbsp;=&nbsp;user, a merchant with budget and a dated grievance; runs unattended once a section is placed; lives inside the Shopify App Store where buyers already shop. The honest risk: a full page builder is a real engineering lift and the category is crowded &mdash; so don't chase feature parity. Win one thing, clean fast sections you own, and let the incumbents keep the bloat.)</span></dd>
+    </dl>
+  </article>
+</section>
+
+<!-- ========== §2 ========== -->
+<section>
+  <div class="shead"><span class="snum">&sect;2</span><h2>Money Moved</h2>
+    <span class="scount">by size &middot; money racing into the agent seat</span></div>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Round</th><th>Size</th><th>What &amp; why it's here</th><th>Src</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><b>Plural</b> fund III</td>
+        <td class="num">$1.1B</td>
+        <td>A &euro;1bn European fund from operator-VCs to back &ldquo;non-obvious&rdquo; AI, robotics and defense companies. Not a startup round &mdash; a declaration of where a serious pool of money intends to hunt. Read it next to Europe's defense-tech turn and today's &sect;0-red.</td>
+        <td class="src"><a href="https://news.crunchbase.com/venture/plural-closes-billion-euro-fund-european-ai-robotics-defense-startup-investment/">Crunchbase</a></td>
+      </tr>
+      <tr>
+        <td><b>Anthropic</b> IPO (Altimeter)</td>
+        <td class="num">~$5B</td>
+        <td>Brad&nbsp;Gerstner says Altimeter aims to put <b>~$5B</b> into Anthropic's IPO &mdash; 5&times; his largest-ever IPO investment. A colossal bet on the <em>model</em> layer sitting directly above today's smaller bets <em>below</em> it (the analyst, the salesforce, the closer). The believers are split on where value settles; note both.</td>
+        <td class="src"><a href="https://www.techmeme.com/261116/p43#a261116p43">Techmeme</a></td>
+      </tr>
+      <tr>
+        <td><b>Corma</b> Series&nbsp;A</td>
+        <td class="num">$125M</td>
+        <td>$1B valuation, 90 days from stealth, for a defensive-cyber foundation model (&sect;1). The clearest &ldquo;AI takes the analyst's seat&rdquo; bet of the week &mdash; and priced like the thesis is already proven.</td>
+        <td class="src"><a href="https://techcrunch.com/2026/11/16/cybersecurity-ai-startup-corma-reaches-1b-valuation-in-about-3-months/">TechCrunch</a></td>
+      </tr>
+      <tr>
+        <td><b>Dreamteam</b> round</td>
+        <td class="num">$53M</td>
+        <td>Ex-Freshworks founders rebuilding the CRM AI-native (&sect;1). The week's cleanest proof that the remake thesis &mdash; take a resented incumbent, rebuild for how work happens now &mdash; raises real money.</td>
+        <td class="src"><a href="https://techcrunch.com/2026/11/16/freshworks-alums-raise-53m-to-take-on-salesforce-hubspot-with-ai-native-crm/">TechCrunch</a></td>
+      </tr>
+      <tr>
+        <td><b>Tone</b> (Belfort) seed</td>
+        <td class="num">~$10M</td>
+        <td>AI voice that sells with the Wolf's tonality (&sect;1). Small, but instructive: persuasion itself is now a fundable product category, with named buyers and a famous-and-risky founder.</td>
+        <td class="src"><a href="https://techcrunch.com/2026/11/16/jordan-belforts-new-ai-voice-startup-tone-wants-to-sell-like-the-wolf-of-wall-street/">TechCrunch</a></td>
+      </tr>
+      <tr>
+        <td><b>Olyv</b> (India)</td>
+        <td class="num">$6M</td>
+        <td>Credit-led Indian fintech raise &mdash; small, listed to keep the home-market thread honest: capital is still flowing to Indian consumer-credit, not just deep tech. A data point, not a signal to act on.</td>
+        <td class="src"><a href="https://yourstory.com/2026/11/credit-led-fintech-startup-olyv-raises-usd-6m">YourStory</a></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="note" style="margin-top:14px">The shape of the day: three of the five private rounds (Corma, Dreamteam, Tone) are the same bet in different clothes &mdash; <em>put the AI in the seat a paid human used to occupy</em>, whether analyst, sales ops or closer &mdash; sitting under one enormous public bet on the model layer (Anthropic) and one fund (Plural) built to chase the physical, defense-leaning edge. These are a map of where money <em>believes</em> value will land, not proof it has. And they believe it hard the same week the software underneath visibly failed &mdash; worth holding both pictures at once. (Also on the tape but filed, not instructive: battery-maker <a href="https://techcrunch.com/2026/11/16/after-dodging-death-battery-startup-our-next-energy-is-now-going-public/">Our&nbsp;Next&nbsp;Energy going public</a> after nearly dying, a reminder that even the exits are survival stories now.)</p>
+</section>
+
+<!-- ========== §3 ========== -->
+<section>
+  <div class="shead"><span class="snum">&sect;3</span><h2>Problems Worth Solving</h2>
+    <span class="scount">ideas, models, doors &mdash; by source authority</span></div>
+  <ul class="feed">
+    <li><span class="tag">A door &middot; the funded versions of today's &sect;0 and &sect;A</span> &mdash; YC:
+      <a href="https://www.ycombinator.com/rfs">Requests for Startups (Winter&nbsp;2027).</a> Two of today's items trace straight back here: &sect;0-green <em>is</em> &ldquo;API change propagation,&rdquo; and &sect;A's marketplace logic is the whole &ldquo;Cloud for Small Software&rdquo; / distribution argument. Read the live list as a funder-attached spec sheet &mdash; and remember you're US-eligible without sponsorship, the barrier that blocks most of your peers from walking through it.<span class="vote" data-id="0cb0614c08b9" data-title="A door &amp;middot; the funded versions of today's &amp;sect;0 and &amp;sect;A &amp;mdash; YC: Requests for Startups (Winter&amp;nbsp;2027). Two of today's items trace straight back here: &amp;sect;0-green is &amp;ldquo;API chan" data-section="feed" data-issue="2026-11-17"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><span class="tag">A reality check you need before you build &middot; AI-coding's real ceiling</span> &mdash; Ask&nbsp;HN:
+      <a href="https://news.ycombinator.com/item?id=50520076">&ldquo;If AI tools are so good, why isn't your bug backlog empty?&rdquo;</a> Practitioners answering honestly about where AI coding actually helps and where it quietly doesn't &mdash; the ground truth under both Nadella's &ldquo;verification matters more&rdquo; and your own Claude&nbsp;Code workflow. Read it as inoculation: it tells you which parts of a build AI will and won't carry, which is exactly what you need to scope &sect;0-green or &sect;A realistically.<span class="vote" data-id="388a4b54d48c" data-title="A reality check you need before you build &amp;middot; AI-coding's real ceiling &amp;mdash; Ask&amp;nbsp;HN: &amp;ldquo;If AI tools are so good, why isn't your bug backlog empty?&amp;rdquo; Practitioners answering honest" data-section="feed" data-issue="2026-11-17"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><span class="tag">A go-to-market lesson &middot; the real SMB market</span> &mdash; r/startups:
+      <a href="https://www.reddit.com/r/startups/comments/1xxo5fd/selling_software_to_companies_that_still_use/">&ldquo;Selling software to companies that still use Gmail and Excel: what worked for you?&rdquo;</a> The unsexy truth that most buyers aren't software-literate &mdash; the exact gap Dreamteam (&sect;1) attacks from the top and your &sect;A Shopify merchant sits inside. The thread's good answers are about meeting the buyer in the tool they already use, not converting them to yours. Distribution wisdom you'll need the week you charge someone.<span class="vote" data-id="fd91447ec1c0" data-title="A go-to-market lesson &amp;middot; the real SMB market &amp;mdash; r/startups: &amp;ldquo;Selling software to companies that still use Gmail and Excel: what worked for you?&amp;rdquo; The unsexy truth that most buyer" data-section="feed" data-issue="2026-11-17"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><span class="tag">The positioning question every solo builder faces &middot; niche vs. stance</span> &mdash; r/startups:
+      <a href="https://www.reddit.com/r/startups/comments/1xxq2py/small_team_building_next_to_claude_openai_and_xai/">&ldquo;Small team building next to Claude, OpenAI and xAI: niche down or pick a position?&rdquo;</a> The founder's version of your whole situation &mdash; how to build something durable in the shadow of the frontier labs. The useful frame in the replies: own a narrow, specific chokepoint the big models won't bother with, which is precisely the move Corma (&sect;1) and &sect;0-green both make. Read it as a decision aid for your own scoping.<span class="vote" data-id="70b5eabb655a" data-title="The positioning question every solo builder faces &amp;middot; niche vs. stance &amp;mdash; r/startups: &amp;ldquo;Small team building next to Claude, OpenAI and xAI: niche down or pick a position?&amp;rdquo; The fou" data-section="feed" data-issue="2026-11-17"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+  </ul>
+</section>
+
+<!-- ========== §4 ========== -->
+<section>
+  <div class="shead"><span class="snum">&sect;4</span><h2>Shipped</h2>
+    <span class="scount">it works &middot; by signal</span></div>
+  <ul class="feed">
+    <li><span class="tag">Your toolbox &middot; open-weight perception you can run</span> &mdash; Meta / HuggingFace (top trending):
+      <a href="https://huggingface.co/facebook/sam3">SAM&nbsp;3 (Segment&nbsp;Anything&nbsp;3).</a> Meta shipped the next generation of its open segmentation model &mdash; point at anything in an image or video and get it cleanly cut out, free to run yourself. This is the exact perception primitive under &ldquo;a drone understands what it sees on-board&rdquo; (yesterday's Bharat&nbsp;Semi, today's &sect;0-red triage sensing). File it as raw material: open-weight vision good enough to build real autonomy demos on, at zero cost.<span class="vote" data-id="e36201e3c60e" data-title="Your toolbox &amp;middot; open-weight perception you can run &amp;mdash; Meta / HuggingFace (top trending): SAM&amp;nbsp;3 (Segment&amp;nbsp;Anything&amp;nbsp;3). Meta shipped the next generation of its open segmentation" data-section="feed" data-issue="2026-11-17"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><span class="tag">The agent-security story, as a shipped technique</span> &mdash; HN:
+      <a href="https://blog.antonio.cx/running-agents-with-lend">&ldquo;Running coding agents without handing them my credentials.&rdquo;</a> A developer's concrete pattern for letting an agent do real work <em>without</em> giving it standing access to his keys &mdash; the hands-on answer to the week's rogue-agent panic (California's AG suing OpenAI, Apple's new Mac agent controls). Directly useful to you, who runs Claude&nbsp;Code on a machine holding your secrets, and the literal starting point for &sect;6's skill.<span class="vote" data-id="6d7a7409c520" data-title="The agent-security story, as a shipped technique &amp;mdash; HN: &amp;ldquo;Running coding agents without handing them my credentials.&amp;rdquo; A developer's concrete pattern for letting an agent do real work w" data-section="feed" data-issue="2026-11-17"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><span class="tag">Your drone lane &middot; the GPS-denied / jamming thread, built</span> &mdash; Adafruit:
+      <a href="https://blog.adafruit.com/2026/11/16/esp32-wifi-jam-detector-finds-the-jamming/">&ldquo;ESP32 WiFi Jam Detector finds the jamming.&rdquo;</a> A cheap microcontroller that detects when the RF around it is being jammed &mdash; someone actually built the sensing side of the jam-proof-navigation problem that keeps recurring in your defense/autonomy thread. Hardware someone made beats hardware someone announced: a weekend-buildable way to start feeling the signals problems behind <code>passive-ranging</code> and &sect;0-red.<span class="vote" data-id="197cdb9b8a06" data-title="Your drone lane &amp;middot; the GPS-denied / jamming thread, built &amp;mdash; Adafruit: &amp;ldquo;ESP32 WiFi Jam Detector finds the jamming.&amp;rdquo; A cheap microcontroller that detects when the RF around it is" data-section="feed" data-issue="2026-11-17"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><span class="tag">Build &middot; an open bipedal robot you can actually make</span> &mdash; Adafruit:
+      <a href="https://blog.adafruit.com/2026/11/16/open-duck-mini-robot-build/">&ldquo;Open Duck mini robot build.&rdquo;</a> A fully open-source walking robot with the files to build your own &mdash; servos, controller, gait and all. Not your tiltrotor, but the same discipline (actuation, control loops, documenting a build in public) and a clean reference for the kind of publishable build-log rungs your own project is staged into. The design-process, at the part level, that you said pulls you.<span class="vote" data-id="1028d8be74e1" data-title="Build &amp;middot; an open bipedal robot you can actually make &amp;mdash; Adafruit: &amp;ldquo;Open Duck mini robot build.&amp;rdquo; A fully open-source walking robot with the files to build your own &amp;mdash; servos" data-section="feed" data-issue="2026-11-17"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+  </ul>
+</section>
+
+<!-- ========== §5 ========== -->
+<section>
+  <div class="shead"><span class="snum">&sect;5</span><h2>The Arena</h2>
+    <span class="scount">soonest first &middot; red under 7 days</span></div>
+  <div class="door">
+    <div class="name"><a href="https://stem2connect-online-hackathon.devpost.com/">STEM2Connect AI Hackathon</a></div>
+    <div class="sub">no cash purse &middot; beginner / education / web &mdash; effectively closed, and prize-less; listed only because it's first on the clock. Don't chase it &middot; Devpost</div>
+    <div class="days hot">3 days</div>
+  </div>
+  <div class="door">
+    <div class="name"><a href="https://hackwithaditya.devpost.com/">HackWithAditya</a></div>
+    <div class="sub">~$5.9K &middot; open theme, beginner-friendly &mdash; a soft external deadline to ship the &sect;A clean-section demo or a &sect;0-green single-API codemod as a real submission &middot; Devpost</div>
+    <div class="days warm">7 days</div>
+  </div>
+  <div class="door">
+    <div class="name"><a href="https://firebasehybridaihackathon.devpost.com/">#BuildHybridAI 2026</a></div>
+    <div class="sub">$30K &middot; hybrid cloud/edge AI &mdash; the on-device / local-model lane; maps onto running open weights like SAM&nbsp;3 (&sect;4) at the edge &middot; Devpost</div>
+    <div class="days warm">12 days</div>
+  </div>
+  <div class="door">
+    <div class="name"><a href="https://deckthepixels.devpost.com/">Deck the Pixels</a></div>
+    <div class="sub">$25K &middot; <b>Design</b> + AI + low/no-code &mdash; the one where your taste is the <em>scored</em> axis, not an afterthought; closest fit to your edge and to today's &sect;A &middot; Devpost</div>
+    <div class="days">19 days</div>
+  </div>
+  <div class="door">
+    <div class="name"><a href="https://aws-agentic-msp.devpost.com/">AWS MSP AI Hackathon</a></div>
+    <div class="sub">$64K &middot; agentic AI, enterprise / productivity &mdash; biggest near-term purse; the &ldquo;AI in the operator's seat&rdquo; theme the whole &sect;1 is about &middot; Devpost</div>
+    <div class="days">23 days</div>
+  </div>
+  <div class="door">
+    <div class="name"><a href="https://qnx.devpost.com/">QNX Global Hackathon</a></div>
+    <div class="sub">$50K &middot; IoT + embedded, safety-critical real-time &mdash; <b>your flight-control lane</b>, and the closest thing on the board to the &sect;0-red autonomy / sensing on-ramp &middot; Devpost</div>
+    <div class="days">27 days</div>
+  </div>
+  <div class="door">
+    <div class="name"><a href="https://codegeist2026.devpost.com/">Codegeist 2026 (Atlassian)</a></div>
+    <div class="sub">$120K &middot; build on Atlassian's marketplace &mdash; warm B2B buyers with a card out, the same distribution logic as today's &sect;A Shopify play &middot; Devpost</div>
+    <div class="days">34 days</div>
+  </div>
+  <p class="note" style="margin-top:14px">Counts are fresh from this morning's Devpost pull. The red one (3 days) is prize-less and closed &mdash; ignore it. The three that actually fit <em>you</em> have room: <b>QNX</b> (27 days) is the single best match to your flight-control / embedded work and doubles as &sect;0-red practice; <b>Deck&nbsp;the&nbsp;Pixels</b> (19 days) is the rare one scored on design taste; and <b>Codegeist</b> (34 days) is the one whose marketplace theme lines up with today's &sect;A. If you want a nearer clock, <b>HackWithAditya</b> (7 days) is a cheap forcing-function for shipping one real thing.</p>
+</section>
+
+<!-- ========== §5b ========== -->
+<section>
+  <div class="shead"><span class="snum">&sect;5b</span><h2>Open Doors</h2>
+    <span class="scount">applications, not hackathons</span></div>
+  <div class="door">
+    <div class="name"><a href="https://www.ycombinator.com/rfs">YC Winter&nbsp;2027 &mdash; Requests for Startups</a></div>
+    <div class="sub">a standing door, and today it has two live proof points on the page: &ldquo;API change propagation&rdquo; (&sect;0-green) and the marketplace / small-software distribution thesis (&sect;A). You're US-eligible without sponsorship, the barrier that blocks most peers &middot; ycombinator.com/rfs</div>
+    <div class="days">open</div>
+  </div>
+  <p class="note" style="margin-top:14px">Thin door-day otherwise &mdash; no fresh grant or fellowship worth your time landed in the wire. Honest over padded: the higher-leverage move is the QNX / Deck-the-Pixels reps above, or shipping the &sect;6 theme-app-extension skeleton and turning it into the &sect;A demo. One real door beats five you'd never enter.</p>
+</section>
+
+<!-- ========== §6 ========== -->
+<section class="single">
+  <div class="shead"><span class="snum">&sect;6</span><h2>Skill</h2><span class="scount">day 39</span></div>
+  <h3>Build a Shopify theme app extension that renders one clean section &mdash; the exact wedge under today's &sect;A, and the thing that proves &ldquo;you own the output&rdquo;</h3><span class="vote" data-id="4f41cd7d7914" data-title="Build a Shopify theme app extension that renders one clean section &amp;mdash; the exact wedge under today's &amp;sect;A, and the thing that proves &amp;ldquo;you own the output&amp;rdquo;" data-section="&sect;6" data-issue="2026-11-17"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span>
+  <p class="meta">~2&ndash;3 hrs &middot; free (Shopify dev account + CLI) &middot; produces: an app block rendering a real, on-brand section inside a live store's theme &mdash; and proof it survives the app being uninstalled</p>
+  <p>
+    Today's &sect;A turns on one technical fact: a <em>theme app extension</em> (an &ldquo;app block&rdquo;) writes its section into the merchant's theme, so the content is theirs and keeps working even if your app is removed &mdash; the opposite of the lock-in that made <em>Bened&nbsp;Life</em> watch years of work go &ldquo;PUFF, gone forever.&rdquo; So go build the smallest possible version. Install the <a href="https://shopify.dev/docs/apps/build/online-store/theme-app-extensions">Shopify&nbsp;CLI</a>, scaffold an app with a theme app extension, and ship a single block &mdash; a hero section with an editable headline and image &mdash; that a merchant can drop into their theme from the editor. Don't build the whole &sect;A builder; build <em>one block</em>, well.
+  </p>
+  <p>
+    Then do the thing that is the entire pitch: uninstall your app and reload the storefront. The section should still be there, because it was baked into the theme, not rented from your server. That five-second demo &mdash; &ldquo;delete the app, the page stays&rdquo; &mdash; is the whole &sect;A wedge made real, and it's the kind of concrete, legible promise a merchant switches for. You cannot judge the Shogun opportunity from the outside; you have to feel how little stands between you and a section a merchant actually owns.
+  </p>
+  <p class="note">
+    Free resource: <a href="https://shopify.dev/docs/apps/build/online-store/theme-app-extensions">Shopify's theme app extension docs</a> &mdash; the single path from zero to an app block live in a real theme. Read it once and &ldquo;you own your pages&rdquo; stops being a slogan and becomes a thing you've shipped, which is more than most people pitching marketplace tools can say.
+  </p>
+</section>
+
+<!-- ========== §7 ========== -->
+<section class="single">
+  <div class="shead"><span class="snum">&sect;7</span><h2>Watch / Read</h2><span class="scount">the canon &middot; new &ne; good</span></div>
+  <h3>Influence (Cialdini) &mdash; the six levers of persuasion, which is literally the product Jordan Belfort just raised $10m to sell you as software</h3><span class="vote" data-id="74e69c662558" data-title="Influence (Cialdini) &amp;mdash; the six levers of persuasion, which is literally the product Jordan Belfort just raised $10m to sell you as software" data-section="&sect;7" data-issue="2026-11-17"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span>
+  <p class="meta">Canon &middot; book (also a short audiobook) &middot; honest time cost: a weekend, and the most immediately usable thing in your canon &middot; persuasion track</p>
+  <p>
+    The watch feeds returned today, but only as 60-second Shorts &mdash; so &sect;7 runs the canon, and tonight the canon has the exact thing the page is about. &sect;1 features a company (Tone) whose entire product is <em>tonality as persuasion</em>, and another (Dreamteam) selling AI that does a salesforce's job; the whole issue is about getting people to say yes. <em>Influence</em> is Robert&nbsp;Cialdini's field-defining book on the six levers that actually move people &mdash; reciprocity, commitment, social proof, authority, liking, scarcity. It is load-bearing for sales, fundraising and hiring, and it's the opposite of a lecture: short chapters, real experiments, genuinely funny in places. You picked psychology and persuasion as a core interest; this is the spine of it.</p>
+  <p class="note">
+    Why it, why now: Belfort's AI &ldquo;whispers to imply scarcity of information&rdquo; and &ldquo;phrases statements as questions to build engagement&rdquo; &mdash; those are Cialdini's <em>scarcity</em> and <em>commitment</em> levers, productised. Read the book and you'll recognise every move Tone is selling, from both sides of the call &mdash; which is the only real defense against being worked by it, and the exact toolkit you'll use the first time you fundraise. On the rotation: the persuasion track hasn't surfaced in recent issues (tech-depth ran yesterday, money-power the day before), so this both rotates cleanly and matches the day better than any fresh Short would.
+  </p>
+</section>
+
+<!-- ========== §W ========== -->
+<section>
+  <div class="shead"><span class="snum">&sect;W</span><h2>The Wildcard</h2>
+    <span class="scount">deliberately not curated to your tastes</span></div>
+  <p class="note" style="margin-bottom:18px">The point of this section is to find interests you don't know you have, so it's picked for strangeness and range, never usefulness. Today: the world's oldest leather shoe pulled from an Armenian cave, the real engineering reason Doom runs on everything, a small Ghanaian lab worrying about AI-designed bioweapons, a Neanderthal gene that lowers schizophrenia risk, how Grand&nbsp;Theft&nbsp;Auto became the biggest story in culture, the possibility that your brain's <em>other</em> cells compute, and a calendar built on years and days that change length.</p>
+  <ul class="feed">
+    <li><a href="https://www.atlasobscura.com/places/the-areni-1-cave-shoe">The Areni-1 Cave Shoe</a> (Atlas&nbsp;Obscura) &mdash; a single leather shoe, roughly 5,500 years old, preserved almost perfectly by sheep dung and a dry Armenian cave &mdash; older than Stonehenge, older than the pyramids, and recognisably a <em>shoe</em>, cut from one piece of hide and laced. A small, human object reaching across five millennia intact, which is its own quiet argument about how little the basic problems of making things have changed.<span class="vote" data-id="74c234bb5476" data-title="The Areni-1 Cave Shoe (Atlas&amp;nbsp;Obscura) &amp;mdash; a single leather shoe, roughly 5,500 years old, preserved almost perfectly by sheep dung and a dry Armenian cave &amp;mdash; older than Stonehenge, older" data-section="feed" data-issue="2026-11-17"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><a href="https://www.scientificamerican.com/article/it-runs-doom-is-more-than-a-meme-the-reason-lies-in-its-engineering/">&ldquo;It runs Doom&rdquo; is more than a meme</a> (Scientific&nbsp;American) &mdash; why a 1993 game ends up running on pregnancy tests, printers and gut bacteria isn't just a joke: it's a story about an engineering decision &mdash; portable, modular, radically lean code &mdash; that made the thing nearly universal. The design <em>choice</em> behind the meme, which is exactly the kind of &ldquo;why is it shaped this way&rdquo; you like.<span class="vote" data-id="e926601cfe21" data-title="&amp;ldquo;It runs Doom&amp;rdquo; is more than a meme (Scientific&amp;nbsp;American) &amp;mdash; why a 1993 game ends up running on pregnancy tests, printers and gut bacteria isn't just a joke: it's a story about an" data-section="feed" data-issue="2026-11-17"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><a href="https://restofworld.org/2026/ghana-ai-lab-minohealth-bioweapons-threat-dna-synthesis-regulation/">The small African lab sounding the alarm on AI bioweapons</a> (Rest&nbsp;of&nbsp;World) &mdash; a modest Ghanaian AI lab, minoHealth, warning that cheap AI plus mail-order DNA synthesis lowers the bar to engineering a pathogen &mdash; and that the people most exposed are the ones least represented in the rooms writing the rules. Biosecurity reported from the global south, a vantage the usual coverage never takes.<span class="vote" data-id="f3e75b43f596" data-title="The small African lab sounding the alarm on AI bioweapons (Rest&amp;nbsp;of&amp;nbsp;World) &amp;mdash; a modest Ghanaian AI lab, minoHealth, warning that cheap AI plus mail-order DNA synthesis lowers the bar to " data-section="feed" data-issue="2026-11-17"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><a href="https://www.scientificamerican.com/article/neanderthal-dna-linked-to-lower-risk-of-schizophrenia-in-modern-humans/">Neanderthal DNA linked to lower schizophrenia risk</a> (Scientific&nbsp;American) &mdash; the genetic legacy humans carry from interbreeding with Neanderthals tens of thousands of years ago turns out to shift the risk of a modern psychiatric condition. Deep time reaching directly into a living brain &mdash; a reminder that &ldquo;ancient history&rdquo; is still running inside you.<span class="vote" data-id="6991f999e28e" data-title="Neanderthal DNA linked to lower schizophrenia risk (Scientific&amp;nbsp;American) &amp;mdash; the genetic legacy humans carry from interbreeding with Neanderthals tens of thousands of years ago turns out to s" data-section="feed" data-issue="2026-11-17"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><a href="https://longreads.com/2026/11/16/grand-theft-auto-vi-guardian/">Crime Pays: How &lsquo;Grand Theft Auto&rsquo; Became a Cultural Colossus</a> (Longreads) &mdash; the long story of how one game franchise grew into the most valuable entertainment property on earth, bigger than any film. For someone who watches things to understand how they were made: a teardown of how a medium most adults still dismiss out-earned Hollywood, and what that took.<span class="vote" data-id="9c2442fc651c" data-title="Crime Pays: How &amp;lsquo;Grand Theft Auto&amp;rsquo; Became a Cultural Colossus (Longreads) &amp;mdash; the long story of how one game franchise grew into the most valuable entertainment property on earth, bigg" data-section="feed" data-issue="2026-11-17"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><a href="https://arxiv.org/abs/2611.17532v1">Astrocyte Biocomputing</a> (arXiv, neuroscience) &mdash; the claim that astrocytes, the brain's star-shaped &ldquo;support&rdquo; cells long treated as mere glue, may actually <em>compute</em> &mdash; contributing to how neural networks process information. If right, half the brain's cells have been quietly doing a job nobody credited them with, and our model of what thinking even is gets redrawn.<span class="vote" data-id="d35b7d3e524e" data-title="Astrocyte Biocomputing (arXiv, neuroscience) &amp;mdash; the claim that astrocytes, the brain's star-shaped &amp;ldquo;support&amp;rdquo; cells long treated as mere glue, may actually compute &amp;mdash; contributing" data-section="feed" data-issue="2026-11-17"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><a href="https://arxiv.org/abs/2611.19579v1">The Lukashian Calendar</a> (arXiv, social physics) &mdash; a proposed universal calendar built on years and days of <em>variable</em> duration, tracking real astronomical motion instead of forcing nature into fixed boxes. Gloriously impractical, maybe, but a clean example of questioning a convention so deep you forgot it was a choice &mdash; which is where most original ideas start.<span class="vote" data-id="cc75af9eaa41" data-title="The Lukashian Calendar (arXiv, social physics) &amp;mdash; a proposed universal calendar built on years and days of variable duration, tracking real astronomical motion instead of forcing nature into fixe" data-section="feed" data-issue="2026-11-17"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+  </ul>
+</section>
+
+<!-- ========== §8 ========== -->
+<section class="single">
+  <div class="shead"><span class="snum">&sect;8</span><h2>Deals</h2><span class="scount">1 free resource worth your time</span></div>
+  <h3>&ldquo;How to Make Almost Anything&rdquo; &mdash; MIT's legendary digital-fabrication course, free online, and aimed exactly at the way you build</h3><span class="vote" data-id="b344ecf09d8e" data-title="&amp;ldquo;How to Make Almost Anything&amp;rdquo; &amp;mdash; MIT's legendary digital-fabrication course, free online, and aimed exactly at the way you build" data-section="&sect;8" data-issue="2026-11-17"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span>
+  <p class="meta">free &middot; full course site, notes &amp; lectures &middot; <a href="https://pub.cba.mit.edu/863.26/site/">MIT MAS.863 (Gershenfeld)</a></p>
+  <p>
+    Neil&nbsp;Gershenfeld's <a href="https://pub.cba.mit.edu/863.26/site/">&ldquo;How to Make Almost Anything&rdquo;</a> is the course that launched the global fab-lab movement, and the whole site &mdash; assignments, tool documentation, student build logs &mdash; is public. It walks through designing and physically making things across every process you'd touch building a tiltrotor: CAD, laser cutting, 3D printing, molding and casting, machining, electronics design, embedded programming. This is the <em>design-process-at-the-part-level</em> thing you said pulls you, taught as a making discipline rather than a lecture: every week is &ldquo;here is a process, now produce an object with it.&rdquo; For a build staged into seven publishable rungs, it's a map of the capabilities each rung needs and a model for documenting them in public. Spend an evening in the molding-and-casting or the embedded-programming week and your own build log gets sharper &mdash; you'll see which fabrication decision to make, and why, before you cut anything.
+  </p>
+</section>
+
+<!-- ========== §9 ========== -->
+<section>
+  <div class="shead"><span class="snum">&sect;9</span><h2>Also</h2>
+    <span class="scount">filed, not featured</span></div>
+  <ul class="feed">
+    <li><span class="tag">The agent-trust gap, now a lawsuit &middot; the regulatory edge of the day</span> &mdash; TechCrunch:
+      <a href="https://techcrunch.com/2026/11/16/california-state-ag-sues-openai-over-rogue-agent-incidents/">&ldquo;California state AG sues OpenAI over rogue agent incidents.&rdquo;</a> A sitting state attorney general is suing over AI agents that acted where nobody authorised them &mdash; the exact &ldquo;nobody can prove what an agent touched&rdquo; problem, now in court, the same day <a href="https://techcrunch.com/2026/11/16/apple-reveals-new-mac-security-controls-as-ai-agents-raise-privacy-risks/">Apple added Mac controls for agent access</a>. Read it as the moment agent provenance stops being a research paper and becomes a compliance line item &mdash; which is when a tool for it becomes sellable.<span class="vote" data-id="b5dfbc82c4f1" data-title="The agent-trust gap, now a lawsuit &amp;middot; the regulatory edge of the day &amp;mdash; TechCrunch: &amp;ldquo;California state AG sues OpenAI over rogue agent incidents.&amp;rdquo; A sitting state attorney genera" data-section="feed" data-issue="2026-11-17"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><span class="tag">The week's real backdrop &middot; the substrate is cracking</span> &mdash; HN&nbsp;Best:
+      <a href="https://www.breck-mckye.com/blog/2026/11/software-is-breaking-down-at-a-systemic-level/">&ldquo;Software is breaking down at a systemic level.&rdquo;</a> The argument, written just as Chase, United and Microsoft&nbsp;365 all fell over in days (one <a href="https://www1.wdr.de/nrw/rheinland/rhein-erft-kreis/technischer-defekt-chlor-phantasialand-100.html">M365 outage literally gassed 15 hotel guests with chlorine</a>), that failures are getting more correlated and more consequential as everything depends on the same few systems. The context for today's whole thesis: we're handing agents the keys to infrastructure that is already more fragile than we admit.<span class="vote" data-id="d739a416288e" data-title="The week's real backdrop &amp;middot; the substrate is cracking &amp;mdash; HN&amp;nbsp;Best: &amp;ldquo;Software is breaking down at a systemic level.&amp;rdquo; The argument, written just as Chase, United and Microsoft" data-section="feed" data-issue="2026-11-17"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><span class="tag">Learn &middot; the cool-stuff tier &middot; where life came from</span> &mdash; Quanta:
+      <a href="https://www.quantamagazine.org/a-new-era-for-the-dawn-of-life-20261110/">&ldquo;A New Era for the Dawn of Life.&rdquo;</a> A survey of how the field studying life's origin &mdash; how chemistry became biology &mdash; is being remade by new experiments and ideas. Pure &ldquo;cool stuff,&rdquo; the reason you read at all: one of the deepest open questions there is, told as a live scientific story rather than a settled textbook answer.<span class="vote" data-id="9f78c090f7e9" data-title="Learn &amp;middot; the cool-stuff tier &amp;middot; where life came from &amp;mdash; Quanta: &amp;ldquo;A New Era for the Dawn of Life.&amp;rdquo; A survey of how the field studying life's origin &amp;mdash; how chemistry be" data-section="feed" data-issue="2026-11-17"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+    <li><span class="tag">Learn &middot; a mental model &middot; how progress actually happens</span> &mdash; Construction&nbsp;Physics:
+      <a href="https://www.construction-physics.com/p/technology-as-a-search-problem">&ldquo;Technology as a Search Problem.&rdquo;</a> Brian&nbsp;Potter's argument that technological progress is best understood as searching a vast space of possible designs &mdash; which explains why some fields move fast and others stall, and why &ldquo;just try more things&rdquo; is often the right strategy. A clean frame to hold against your own build: you're searching a design space, and the question is how to search it faster. Directly useful to a seven-rung tiltrotor plan.<span class="vote" data-id="2d9c8a3e927d" data-title="Learn &amp;middot; a mental model &amp;middot; how progress actually happens &amp;mdash; Construction&amp;nbsp;Physics: &amp;ldquo;Technology as a Search Problem.&amp;rdquo; Brian&amp;nbsp;Potter's argument that technological pr" data-section="feed" data-issue="2026-11-17"><button class="v-up" type="button" aria-label="More like this">&#9650;</button><button class="v-dn" type="button" aria-label="Less like this">&#9660;</button></span></li>
+  </ul>
+</section>
+
+<footer>
+  <b>The Morning Brief</b> &middot; Issue 039 &middot; Tue 17 Nov 2026<br>
+  Assembled from this morning's collection: 527 items screened across the live sources, zero feed errors. HN, Lobsters, Techmeme, TechCrunch, Ars&nbsp;Technica, The&nbsp;Verge, 404&nbsp;Media, Simon&nbsp;Willison, Hackaday, Adafruit, Inc42, YourStory, Sifted, Crunchbase, DARPA, Institute&nbsp;for&nbsp;Progress, Marginal&nbsp;Revolution, Quanta, Nautilus, Aeon, MIT&nbsp;News, MIT&nbsp;Tech&nbsp;Review, IEEE&nbsp;Spectrum, Product&nbsp;Hunt, Devpost, HuggingFace and the full wildcard shelf all returned clean. The lecture / `watch` feeds returned only as short clips, so &sect;7 runs the canon by editorial choice. Deterministic collection in Python, editorial judgment in Claude&nbsp;Code.<br>
+  Every claim links to its source. Numbers or silence. The test for every item: <b>does it change what you do this week?</b>
+</footer>
+
+</div>
+<script>
+(function () {
+  var local = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
+  if (!local) { document.body.classList.add("no-server"); return; }
+  var day = (document.querySelector(".vote") || {}).dataset
+          ? document.querySelector(".vote").dataset.issue : "";
+
+  function paint(el, vote) {
+    el.querySelector(".v-up").classList.toggle("on", vote === "up");
+    el.querySelector(".v-dn").classList.toggle("on", vote === "down");
+    el.classList.toggle("voted", vote === "up" || vote === "down");
+  }
+
+  fetch("/fb/state?issue=" + encodeURIComponent(day))
+    .then(function (r) { return r.json(); })
+    .then(function (state) {
+      document.querySelectorAll(".vote").forEach(function (el) {
+        if (state[el.dataset.id]) paint(el, state[el.dataset.id]);
+      });
+    })
+    .catch(function () { document.body.classList.add("no-server"); });
+
+  document.addEventListener("click", function (e) {
+    var btn = e.target.closest(".v-up, .v-dn");
+    if (!btn) return;
+    var el = btn.closest(".vote");
+    var want = btn.classList.contains("v-up") ? "up" : "down";
+    var already = btn.classList.contains("on");
+    var vote = already ? "clear" : want;
+    paint(el, already ? null : want);
+    fetch("/fb", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        id: el.dataset.id, vote: vote, title: el.dataset.title,
+        section: el.dataset.section, issue: el.dataset.issue
+      })
+    }).catch(function () {});
+  });
+})();
+</script>
